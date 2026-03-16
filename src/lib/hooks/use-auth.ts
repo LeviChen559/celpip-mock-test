@@ -54,6 +54,8 @@ export function useAuthProvider(): AuthContextType {
         setCurrentUser(profile);
       }
       setLoading(false);
+    }).catch(() => {
+      setLoading(false);
     });
 
     // Listen for auth changes

@@ -16,6 +16,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { useHistory } from "@/lib/hooks/use-history";
+import TranscriptAudioPlayer from "@/components/TranscriptAudioPlayer";
 
 interface QuizQuestion {
   question: Question;
@@ -105,6 +106,9 @@ export default function QuizPractice({
 
   const finishQuiz = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
+    if (typeof window !== "undefined" && window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+    }
     setPhase("review");
   }, []);
 
@@ -249,6 +253,14 @@ export default function QuizPractice({
                       );
                     })}
                   </div>
+                  {section === "listening" && qq.context && (
+                    <div className="mt-4">
+                      <TranscriptAudioPlayer
+                        transcript={qq.context}
+                        mode="text"
+                      />
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             );
@@ -380,11 +392,20 @@ export default function QuizPractice({
                 )}
               </CardHeader>
               <CardContent>
-                <div className="bg-[#faf8f5] rounded-lg p-4 max-h-[calc(100vh-220px)] overflow-y-auto">
-                  <p className="text-sm leading-relaxed whitespace-pre-line">
-                    {current.context}
-                  </p>
-                </div>
+                {section === "listening" ? (
+                  <TranscriptAudioPlayer
+                    transcript={current.context || ""}
+                    mode="audio"
+                    autoPlay
+                    partId={current.partTitle}
+                  />
+                ) : (
+                  <div className="bg-[#faf8f5] rounded-lg p-4 max-h-[calc(100vh-220px)] overflow-y-auto">
+                    <p className="text-sm leading-relaxed whitespace-pre-line">
+                      {current.context}
+                    </p>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>

@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import Timer from "@/components/Timer";
 import QuestionCard from "@/components/QuestionCard";
 import TestNavigation from "@/components/TestNavigation";
+import TranscriptAudioPlayer from "@/components/TranscriptAudioPlayer";
 
 export default function ListeningTest() {
   const router = useRouter();
@@ -124,14 +125,12 @@ export default function ListeningTest() {
             <p className="text-sm text-muted-foreground mb-4">
               {part.instruction}
             </p>
-            <div className="bg-muted rounded-lg p-4 max-h-64 overflow-y-auto">
-              <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">
-                Transcript (simulated audio)
-              </p>
-              <p className="text-sm leading-relaxed whitespace-pre-line">
-                {part.transcript}
-              </p>
-            </div>
+            <TranscriptAudioPlayer
+              transcript={part.transcript}
+              mode="audio"
+              autoPlay
+              partId={part.id}
+            />
           </CardContent>
         </Card>
 
