@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, createContext, useContext } from "react";
+import { useState, useEffect, useMemo, useCallback, createContext, useContext } from "react";
 import { createClient } from "@/lib/supabase/client";
 import type { User } from "@supabase/supabase-js";
 
@@ -33,11 +33,11 @@ export function useAuth() {
 export function useAuthProvider(): AuthContextType {
   const [currentUser, setCurrentUser] = useState<AppUser | null>(null);
   const [loading, setLoading] = useState(true);
-  const supabase = createClient();
+  const supabase = useMemo(() => createClient(), []);
 
-  // Fetch profile from public.profiles
-  const fetchProfile = useCallback(
-    async (user: User): Promise<AppUser | null> => {
+  useEffect(() => {
+
+    const fetchProfile = async (user: User): Promise<AppUser | null> => {
       const { data } = await supabase
         .from("profiles")
         .select("name, email")
@@ -45,11 +45,8 @@ export function useAuthProvider(): AuthContextType {
         .single();
       if (!data) return null;
       return { id: user.id, name: data.name, email: data.email };
-    },
-    [supabase]
-  );
+    };
 
-  useEffect(() => {
     // Get initial session
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       if (session?.user) {
@@ -73,7 +70,7 @@ export function useAuthProvider(): AuthContextType {
     });
 
     return () => subscription.unsubscribe();
-  }, [supabase, fetchProfile]);
+  }, [supabase]);
 
   const signUp = useCallback(
     async (name: string, email: string, password: string): Promise<string | null> => {
@@ -104,6 +101,7 @@ export function useAuthProvider(): AuthContextType {
     await supabase.auth.signOut();
     setCurrentUser(null);
   }, [supabase]);
+
 
   return { currentUser, loading, signUp, signIn, signOut };
 }
