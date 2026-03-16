@@ -48,7 +48,7 @@ export function useAuthProvider(): AuthContextType {
     };
 
     // Get initial session
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
+    supabase.auth.getSession().then(async ({ data: { session } }: { data: { session: { user: User } | null } }) => {
       if (session?.user) {
         const profile = await fetchProfile(session.user);
         setCurrentUser(profile);
@@ -59,7 +59,7 @@ export function useAuthProvider(): AuthContextType {
     // Listen for auth changes
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (_event, session) => {
+    } = supabase.auth.onAuthStateChange(async (_event: string, session: { user: User } | null) => {
       if (session?.user) {
         const profile = await fetchProfile(session.user);
         setCurrentUser(profile);
