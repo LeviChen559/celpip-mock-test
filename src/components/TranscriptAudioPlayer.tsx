@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 
 interface TranscriptAudioPlayerProps {
@@ -8,20 +8,21 @@ interface TranscriptAudioPlayerProps {
   mode: "audio" | "text";
   autoPlay?: boolean;
   partId?: string;
+  /** The correct answer text — the transcript sentence containing it will be highlighted. */
+  highlightAnswer?: string;
 }
 
-type PlayStatus = "idle" | "playing" | "paused" | "ended";
+type PlayStatus = "idle" | "loading" | "playing" | "paused" | "ended" | "error";
 
 interface DialogueLine {
   speaker: string;
   text: string;
+  voice: "female" | "male";
 }
 
-/** Parse transcript into speaker-labelled dialogue lines. */
+/** Parse transcript into speaker-labelled dialogue lines with voice assignment. */
 function parseDialogue(transcript: string): DialogueLine[] {
   const lines: DialogueLine[] = [];
-  // Match lines like "Speaker Name: dialogue text"
-  // Split on newlines, then detect speaker labels
   const rawLines = transcript.split("\n").filter((l) => l.trim());
 
   let currentSpeaker = "";
@@ -30,107 +31,109 @@ function parseDialogue(transcript: string): DialogueLine[] {
   for (const line of rawLines) {
     const match = line.match(/^([A-Za-z][A-Za-z\s.'-]{0,30}):\s*(.+)/);
     if (match) {
-      // Save previous line if any
       if (currentSpeaker && currentText.trim()) {
-        lines.push({ speaker: currentSpeaker, text: currentText.trim() });
+        lines.push({ speaker: currentSpeaker, text: currentText.trim(), voice: "female" });
       }
       currentSpeaker = match[1].trim();
       currentText = match[2];
     } else {
-      // Continuation of previous speaker's line
       currentText += " " + line.trim();
     }
   }
-  // Push last line
   if (currentSpeaker && currentText.trim()) {
-    lines.push({ speaker: currentSpeaker, text: currentText.trim() });
+    lines.push({ speaker: currentSpeaker, text: currentText.trim(), voice: "female" });
   }
 
-  // Fallback: if no speakers detected, treat as single narrator
   if (lines.length === 0) {
-    lines.push({ speaker: "", text: transcript });
+    lines.push({ speaker: "", text: transcript, voice: "female" });
+  }
+
+  // Assign voices: alternate between speakers
+  const speakers = [...new Set(lines.map((l) => l.speaker))];
+  const femaleNames = ["woman", "she", "her", "sarah", "jane", "mary", "lisa", "anna", "emily", "emma", "linda", "jennifer", "susan", "jessica", "karen", "nancy", "betty", "margaret", "sandra", "ashley", "dorothy", "kimberly", "donna", "carol", "ruth", "sharon", "michelle", "laura", "megan", "rachel", "amy", "angela", "nicole", "samantha", "catherine", "stephanie"];
+  const maleNames = ["man", "he", "him", "mike", "john", "james", "robert", "david", "william", "richard", "joseph", "thomas", "charles", "daniel", "matthew", "anthony", "mark", "paul", "steven", "andrew", "kevin", "brian", "george", "edward", "ronald", "timothy", "jason", "jeffrey", "ryan", "jacob", "gary", "nicholas", "eric", "jonathan", "tom", "alex", "bob", "fred"];
+
+  const speakerVoice = new Map<string, "female" | "male">();
+  let nextDefault: "female" | "male" = "female";
+
+  for (const speaker of speakers) {
+    const lower = speaker.toLowerCase();
+    if (femaleNames.some((n) => lower.includes(n))) {
+      speakerVoice.set(speaker, "female");
+    } else if (maleNames.some((n) => lower.includes(n))) {
+      speakerVoice.set(speaker, "male");
+    } else {
+      speakerVoice.set(speaker, nextDefault);
+      nextDefault = nextDefault === "female" ? "male" : "female";
+    }
+  }
+
+  for (const line of lines) {
+    line.voice = speakerVoice.get(line.speaker) || "female";
   }
 
   return lines;
 }
 
-/** Split a long line into sentence-based chunks to avoid Chrome's ~15s TTS cutoff. */
-function splitIntoSentenceChunks(text: string): string[] {
-  const sentences = text.match(/[^.!?]+[.!?]+[\s]*/g) || [text];
-  const chunks: string[] = [];
-  let current = "";
-  for (const sentence of sentences) {
-    if ((current + sentence).length > 200) {
-      if (current) chunks.push(current.trim());
-      current = sentence;
-    } else {
-      current += sentence;
+/** Fetch TTS audio from our API route. */
+async function fetchTTSAudio(text: string, voice: "female" | "male"): Promise<string> {
+  const res = await fetch("/api/tts", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ text, voice }),
+  });
+
+  if (!res.ok) {
+    throw new Error(`TTS request failed: ${res.status}`);
+  }
+
+  const blob = await res.blob();
+  return URL.createObjectURL(blob);
+}
+
+/**
+ * Extract keywords from the correct answer and find the best matching sentence
+ * in the transcript. Returns the original transcript lines split for rendering
+ * with a flag indicating which line(s) to highlight.
+ */
+function findHighlightLines(transcript: string, answerText: string): Set<number> {
+  if (!answerText) return new Set();
+
+  const lines = transcript.split("\n").filter((l) => l.trim());
+  const answerLower = answerText.toLowerCase();
+
+  // Extract meaningful keywords (skip very short/common words)
+  const stopWords = new Set(["the", "a", "an", "is", "are", "was", "were", "in", "on", "at", "to", "for", "of", "and", "or", "but", "with", "that", "this", "it", "they", "them", "their", "its", "not", "from", "by", "as", "be", "has", "have", "had", "do", "does", "did", "will", "would", "could", "should", "may", "might", "can", "about"]);
+  const keywords = answerLower
+    .replace(/[^a-z0-9\s$%.,'-]/g, "")
+    .split(/\s+/)
+    .filter((w) => w.length > 2 && !stopWords.has(w));
+
+  if (keywords.length === 0) return new Set();
+
+  // Score each line by how many keywords it contains
+  const matchedLines = new Set<number>();
+  let bestScore = 0;
+  let bestLineIdx = -1;
+
+  lines.forEach((line, idx) => {
+    const lineLower = line.toLowerCase();
+    let score = 0;
+    for (const kw of keywords) {
+      if (lineLower.includes(kw)) score++;
     }
-  }
-  if (current.trim()) chunks.push(current.trim());
-  return chunks.length > 0 ? chunks : [text];
-}
-
-interface SpeechSegment {
-  speaker: string;
-  text: string;
-}
-
-/** Build flat list of speech segments (each ≤200 chars) with speaker info preserved. */
-function buildSegments(dialogue: DialogueLine[]): SpeechSegment[] {
-  const segments: SpeechSegment[] = [];
-  for (const line of dialogue) {
-    const chunks = splitIntoSentenceChunks(line.text);
-    for (const chunk of chunks) {
-      segments.push({ speaker: line.speaker, text: chunk });
+    if (score > bestScore) {
+      bestScore = score;
+      bestLineIdx = idx;
     }
-  }
-  return segments;
-}
+  });
 
-/** Pick two distinct voices, preferring one that sounds female and one male. */
-function pickVoices(): Map<string, SpeechSynthesisVoice> {
-  const voices = window.speechSynthesis.getVoices();
-  const enVoices = voices.filter(
-    (v) => v.lang.startsWith("en") && !v.name.includes("Novelty")
-  );
-  if (enVoices.length === 0) return new Map();
-
-  // Try to find voices with gendered names
-  const femaleHints = ["female", "woman", "samantha", "karen", "victoria", "fiona", "moira", "tessa", "zira"];
-  const maleHints = ["male", "daniel", "alex", "tom", "david", "james", "fred", "gordon"];
-
-  const femaleVoice = enVoices.find((v) =>
-    femaleHints.some((h) => v.name.toLowerCase().includes(h))
-  );
-  const maleVoice = enVoices.find((v) =>
-    maleHints.some((h) => v.name.toLowerCase().includes(h))
-  );
-
-  const voiceMap = new Map<string, SpeechSynthesisVoice>();
-  if (femaleVoice) voiceMap.set("female", femaleVoice);
-  if (maleVoice) voiceMap.set("male", maleVoice);
-
-  // Fallback: just pick first two distinct voices
-  if (voiceMap.size < 2 && enVoices.length >= 2) {
-    voiceMap.set("voice1", enVoices[0]);
-    voiceMap.set("voice2", enVoices[1]);
-  } else if (voiceMap.size === 0 && enVoices.length >= 1) {
-    voiceMap.set("voice1", enVoices[0]);
+  // Only highlight if at least 1 keyword matched
+  if (bestScore >= 1 && bestLineIdx >= 0) {
+    matchedLines.add(bestLineIdx);
   }
 
-  return voiceMap;
-}
-
-/** Guess gender from speaker name for voice assignment. */
-function guessSpeakerGender(name: string): "female" | "male" | "unknown" {
-  const lower = name.toLowerCase();
-  const femaleNames = ["woman", "she", "her", "sarah", "jane", "mary", "lisa", "anna", "emily", "emma", "linda", "jennifer", "susan", "jessica", "karen", "nancy", "betty", "margaret", "sandra", "ashley", "dorothy", "kimberly", "donna", "carol", "ruth", "sharon", "michelle", "laura", "megan", "rachel", "amy", "angela", "nicole", "samantha", "catherine", "stephanie"];
-  const maleNames = ["man", "he", "him", "mike", "john", "james", "robert", "david", "william", "richard", "joseph", "thomas", "charles", "daniel", "matthew", "anthony", "mark", "paul", "steven", "andrew", "kevin", "brian", "george", "edward", "ronald", "timothy", "jason", "jeffrey", "ryan", "jacob", "gary", "nicholas", "eric", "jonathan", "tom", "alex", "bob", "fred"];
-
-  if (femaleNames.some((n) => lower.includes(n))) return "female";
-  if (maleNames.some((n) => lower.includes(n))) return "male";
-  return "unknown";
+  return matchedLines;
 }
 
 export default function TranscriptAudioPlayer({
@@ -138,226 +141,206 @@ export default function TranscriptAudioPlayer({
   mode,
   autoPlay = false,
   partId,
+  highlightAnswer,
 }: TranscriptAudioPlayerProps) {
   const [status, setStatus] = useState<PlayStatus>("idle");
   const [progress, setProgress] = useState(0);
-  const [supported, setSupported] = useState(true);
-  const segmentsRef = useRef<SpeechSegment[]>([]);
-  const currentSegmentRef = useRef(0);
-  const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
-  const voiceMapRef = useRef<Map<string, SpeechSynthesisVoice>>(new Map());
-  const speakerVoiceAssignmentRef = useRef<Map<string, { voice?: SpeechSynthesisVoice; pitch: number }>>(new Map());
+  const [currentSpeaker, setCurrentSpeaker] = useState("");
+  const dialogueRef = useRef<DialogueLine[]>([]);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioCacheRef = useRef<Map<string, string>>(new Map());
+  const cancelledRef = useRef(false);
+  const playLineRef = useRef<(index: number) => void>(() => {});
 
+  // Compute highlighted lines for text mode
+  const highlightedLines = useMemo(() => {
+    if (!highlightAnswer) return new Set<number>();
+    return findHighlightLines(transcript, highlightAnswer);
+  }, [transcript, highlightAnswer]);
+
+  // Parse dialogue when transcript changes
+  const dialogue = useMemo(() => parseDialogue(transcript), [transcript]);
   useEffect(() => {
-    if (typeof window === "undefined" || !window.speechSynthesis) {
-      setSupported(false);
-      return;
-    }
-
-    // Voices may load asynchronously
-    const loadVoices = () => {
-      voiceMapRef.current = pickVoices();
-    };
-    loadVoices();
-    window.speechSynthesis.onvoiceschanged = loadVoices;
-  }, []);
+    dialogueRef.current = dialogue;
+  }, [dialogue]);
 
   const cancel = useCallback(() => {
-    if (typeof window !== "undefined" && window.speechSynthesis) {
-      window.speechSynthesis.cancel();
+    cancelledRef.current = true;
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.src = "";
+      audioRef.current = null;
     }
-    utteranceRef.current = null;
-    currentSegmentRef.current = 0;
   }, []);
-
-  // Assign voices/pitch to speakers
-  const assignVoices = useCallback((segments: SpeechSegment[]) => {
-    const speakers = [...new Set(segments.map((s) => s.speaker).filter(Boolean))];
-    const assignment = new Map<string, { voice?: SpeechSynthesisVoice; pitch: number }>();
-    const voiceMap = voiceMapRef.current;
-
-    const femaleVoice = voiceMap.get("female");
-    const maleVoice = voiceMap.get("male");
-    const voice1 = voiceMap.get("voice1");
-    const voice2 = voiceMap.get("voice2");
-
-    speakers.forEach((speaker, idx) => {
-      const gender = guessSpeakerGender(speaker);
-
-      if (femaleVoice && maleVoice) {
-        // Best case: we have gendered voices
-        if (gender === "female") {
-          assignment.set(speaker, { voice: femaleVoice, pitch: 1.1 });
-        } else if (gender === "male") {
-          assignment.set(speaker, { voice: maleVoice, pitch: 0.9 });
-        } else {
-          // Alternate assignment
-          assignment.set(speaker, idx % 2 === 0
-            ? { voice: femaleVoice, pitch: 1.1 }
-            : { voice: maleVoice, pitch: 0.9 });
-        }
-      } else if (voice1 && voice2) {
-        // Fallback: two different voices with pitch variation
-        assignment.set(speaker, idx % 2 === 0
-          ? { voice: voice1, pitch: 1.15 }
-          : { voice: voice2, pitch: 0.85 });
-      } else {
-        // Last resort: only pitch differentiation
-        assignment.set(speaker, { pitch: idx % 2 === 0 ? 1.15 : 0.85 });
-      }
-    });
-
-    speakerVoiceAssignmentRef.current = assignment;
-  }, []);
-
-  // Reset when part changes
-  useEffect(() => {
-    cancel();
-    setStatus("idle");
-    setProgress(0);
-    const dialogue = parseDialogue(transcript);
-    const segments = buildSegments(dialogue);
-    segmentsRef.current = segments;
-    currentSegmentRef.current = 0;
-    assignVoices(segments);
-  }, [partId, transcript, cancel, assignVoices]);
 
   // Cleanup on unmount
   useEffect(() => {
-    return () => cancel();
+    return () => {
+      cancel();
+      audioCacheRef.current.forEach((url) => URL.revokeObjectURL(url));
+      audioCacheRef.current.clear();
+    };
   }, [cancel]);
 
-  const speakSegment = useCallback(
-    (index: number) => {
-      const segments = segmentsRef.current;
-      if (index >= segments.length) {
-        setStatus("ended");
-        setProgress(100);
+  // Use a ref for recursive playLine to avoid declaration-order issues
+  const playLine = useCallback(
+    async (index: number) => {
+      const lines = dialogueRef.current;
+      if (index >= lines.length || cancelledRef.current) {
+        if (!cancelledRef.current) {
+          setStatus("ended");
+          setProgress(100);
+        }
         return;
       }
 
-      const segment = segments[index];
-      const utterance = new SpeechSynthesisUtterance(segment.text);
-      utterance.rate = 0.95;
+      const line = lines[index];
+      setCurrentSpeaker(line.speaker);
+      setProgress(Math.round((index / lines.length) * 100));
 
-      // Apply speaker-specific voice and pitch
-      const voiceConfig = speakerVoiceAssignmentRef.current.get(segment.speaker);
-      if (voiceConfig) {
-        if (voiceConfig.voice) utterance.voice = voiceConfig.voice;
-        utterance.pitch = voiceConfig.pitch;
-      } else {
-        utterance.pitch = 1;
+      const cacheKey = `${line.voice}:${line.text}`;
+      let audioUrl = audioCacheRef.current.get(cacheKey);
+
+      if (!audioUrl) {
+        setStatus("loading");
+        try {
+          audioUrl = await fetchTTSAudio(line.text, line.voice);
+          audioCacheRef.current.set(cacheKey, audioUrl);
+        } catch {
+          setStatus("error");
+          return;
+        }
       }
 
-      utteranceRef.current = utterance;
-      currentSegmentRef.current = index;
+      if (cancelledRef.current) return;
 
-      utterance.onstart = () => {
-        setStatus("playing");
+      const audio = new Audio(audioUrl);
+      audioRef.current = audio;
+      setStatus("playing");
+
+      // Pre-fetch next line
+      if (index + 1 < lines.length) {
+        const nextLine = lines[index + 1];
+        const nextCacheKey = `${nextLine.voice}:${nextLine.text}`;
+        if (!audioCacheRef.current.has(nextCacheKey)) {
+          fetchTTSAudio(nextLine.text, nextLine.voice)
+            .then((url) => audioCacheRef.current.set(nextCacheKey, url))
+            .catch(() => {});
+        }
+      }
+
+      audio.onended = () => {
+        playLineRef.current(index + 1);
       };
 
-      utterance.onboundary = (e) => {
-        const charsBefore = segments.slice(0, index).reduce((sum, s) => sum + s.text.length, 0);
-        const totalLen = segments.reduce((sum, s) => sum + s.text.length, 0);
-        const currentProgress = ((charsBefore + e.charIndex) / totalLen) * 100;
-        setProgress(Math.min(currentProgress, 100));
-      };
-
-      utterance.onend = () => {
-        speakSegment(index + 1);
-      };
-
-      utterance.onerror = (e) => {
-        if (e.error !== "canceled" && e.error !== "interrupted") {
-          setStatus("ended");
+      audio.onerror = () => {
+        if (!cancelledRef.current) {
+          setStatus("error");
         }
       };
 
-      window.speechSynthesis.speak(utterance);
+      audio.play().catch(() => {
+        if (!cancelledRef.current) setStatus("error");
+      });
     },
     []
   );
 
-  const play = useCallback(() => {
-    if (!window.speechSynthesis) return;
+  // Keep the ref in sync
+  useEffect(() => {
+    playLineRef.current = playLine;
+  }, [playLine]);
 
-    if (status === "paused") {
-      window.speechSynthesis.resume();
+  const play = useCallback(() => {
+    cancelledRef.current = false;
+
+    if (status === "paused" && audioRef.current) {
+      audioRef.current.play();
       setStatus("playing");
       return;
     }
 
     cancel();
-    const dialogue = parseDialogue(transcript);
-    const segments = buildSegments(dialogue);
-    segmentsRef.current = segments;
-    assignVoices(segments);
+    cancelledRef.current = false;
+    dialogueRef.current = parseDialogue(transcript);
     setProgress(0);
-    speakSegment(0);
-  }, [status, transcript, cancel, speakSegment, assignVoices]);
+    playLine(0);
+  }, [status, transcript, cancel, playLine]);
 
   const pause = useCallback(() => {
-    if (!window.speechSynthesis) return;
-    window.speechSynthesis.pause();
-    setStatus("paused");
+    if (audioRef.current) {
+      audioRef.current.pause();
+      setStatus("paused");
+    }
   }, []);
 
   const stop = useCallback(() => {
     cancel();
+    cancelledRef.current = false;
     setStatus("idle");
     setProgress(0);
+    setCurrentSpeaker("");
   }, [cancel]);
 
   // Auto-play on part change
   useEffect(() => {
-    if (autoPlay && mode === "audio" && supported) {
+    if (autoPlay && mode === "audio") {
+      cancelledRef.current = false;
       const timer = setTimeout(() => {
-        const dialogue = parseDialogue(transcript);
-        const segments = buildSegments(dialogue);
-        segmentsRef.current = segments;
-        assignVoices(segments);
-        speakSegment(0);
-      }, 500);
-      return () => clearTimeout(timer);
+        dialogueRef.current = parseDialogue(transcript);
+        playLine(0);
+      }, 300);
+      return () => {
+        clearTimeout(timer);
+        cancel();
+        cancelledRef.current = false;
+      };
     }
-  }, [partId, autoPlay, mode, supported, transcript, speakSegment, assignVoices]);
+  }, [partId, autoPlay, mode, transcript, playLine, cancel]);
 
-  // Text mode: just show the transcript
+  // Text mode — with optional answer highlighting
   if (mode === "text") {
+    const lines = transcript.split("\n").filter((l) => l.trim());
+
     return (
       <div className="bg-muted rounded-lg p-4 max-h-64 overflow-y-auto">
         <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">
           Transcript
         </p>
-        <p className="text-sm leading-relaxed whitespace-pre-line">
-          {transcript}
-        </p>
+        <div className="text-sm leading-relaxed space-y-1.5">
+          {lines.map((line, idx) => {
+            const isHighlighted = highlightedLines.has(idx);
+            return (
+              <p
+                key={idx}
+                className={
+                  isHighlighted
+                    ? "bg-yellow-100 border-l-4 border-yellow-400 pl-2 py-0.5 rounded-r"
+                    : ""
+                }
+              >
+                {line}
+              </p>
+            );
+          })}
+        </div>
       </div>
     );
   }
 
-  // Fallback if TTS not supported
-  if (!supported) {
-    return (
-      <div className="bg-muted rounded-lg p-4 max-h-64 overflow-y-auto">
-        <p className="text-xs font-medium text-amber-600 mb-2 uppercase tracking-wide">
-          Audio not supported in this browser — showing transcript
-        </p>
-        <p className="text-sm leading-relaxed whitespace-pre-line">
-          {transcript}
-        </p>
-      </div>
-    );
-  }
+  // Fallback if no audio support needed for text-only — skip to audio mode below
 
-  // Audio mode
   const statusLabel =
-    status === "playing"
-      ? "Playing audio..."
+    status === "loading"
+      ? "Loading audio..."
+      : status === "playing"
+      ? `Playing${currentSpeaker ? ` — ${currentSpeaker}` : ""}...`
       : status === "paused"
       ? "Paused"
       : status === "ended"
       ? "Audio ended"
+      : status === "error"
+      ? "Audio failed — try again"
       : "Ready to play";
 
   return (
@@ -376,20 +359,20 @@ export default function TranscriptAudioPlayer({
 
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          {status === "playing" ? (
-            <Button variant="outline" size="sm" onClick={pause}>
+          {status === "playing" || status === "loading" ? (
+            <Button variant="outline" size="sm" onClick={pause} disabled={status === "loading"}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <rect x="6" y="4" width="4" height="16" />
                 <rect x="14" y="4" width="4" height="16" />
               </svg>
-              <span className="ml-1">Pause</span>
+              <span className="ml-1">{status === "loading" ? "Loading..." : "Pause"}</span>
             </Button>
           ) : (
             <Button variant="outline" size="sm" onClick={play}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <polygon points="5,3 19,12 5,21" />
               </svg>
-              <span className="ml-1">{status === "ended" ? "Replay" : "Play"}</span>
+              <span className="ml-1">{status === "ended" || status === "error" ? "Replay" : "Play"}</span>
             </Button>
           )}
           {status !== "idle" && (

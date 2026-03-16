@@ -151,7 +151,14 @@ export default function QuizPractice({
       quizSection: section,
       quizPart: partParam,
       scores: {},
-      details: { quiz: { correct, total } },
+      details: {
+        quiz: { correct, total },
+        answers: {
+          quiz: Object.fromEntries(
+            questions.map((qq, idx) => [qq.question.id, answers[idx] ?? -1])
+          ),
+        },
+      },
       overallScore: score,
     });
     setResultSaved(true);
@@ -258,6 +265,7 @@ export default function QuizPractice({
                       <TranscriptAudioPlayer
                         transcript={qq.context}
                         mode="text"
+                        highlightAnswer={qq.question.options[qq.question.correctAnswer]}
                       />
                     </div>
                   )}

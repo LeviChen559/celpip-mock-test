@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -51,7 +52,12 @@ function scoreColor(score: number): string {
 
 type FilterKey = "all" | TestType;
 
+function hasAnswers(r: TestRecord): boolean {
+  return !!(r.details?.answers && Object.keys(r.details.answers).length > 0);
+}
+
 export default function MyTests() {
+  const router = useRouter();
   const { records, loading, deleteRecord, clearAll } = useHistory();
   const [filter, setFilter] = useState<FilterKey>("all");
 
@@ -197,13 +203,23 @@ export default function MyTests() {
                         {r.overallScore}
                       </p>
                       <Progress value={(r.overallScore / 12) * 100} className="h-1.5 w-16 mt-1" />
-                      <button
-                        onClick={() => deleteRecord(r.id)}
-                        className="text-xs mt-2 hover:text-red-600 transition-colors"
-                        style={{ color: "var(--muted-foreground)" }}
-                      >
-                        Remove
-                      </button>
+                      <div className="flex gap-2 mt-2">
+                        {hasAnswers(r) && (
+                          <button
+                            onClick={() => router.push(`/review?id=${r.id}`)}
+                            className="text-xs font-medium text-[#6b4c9a] hover:underline transition-colors"
+                          >
+                            Review
+                          </button>
+                        )}
+                        <button
+                          onClick={() => deleteRecord(r.id)}
+                          className="text-xs hover:text-red-600 transition-colors"
+                          style={{ color: "var(--muted-foreground)" }}
+                        >
+                          Remove
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </CardContent>

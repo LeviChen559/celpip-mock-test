@@ -164,6 +164,10 @@ export default function Results() {
         details: {
           listening: { correct: listeningCorrect, total: listeningTotal },
           reading: { correct: readingCorrect, total: readingTotal },
+          answers: {
+            listening: state.listeningAnswers,
+            reading: state.readingAnswers,
+          },
         },
         overallScore: finalScore,
       };

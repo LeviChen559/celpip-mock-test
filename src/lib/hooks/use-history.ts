@@ -21,6 +21,11 @@ export interface TestRecord {
     listening?: { correct: number; total: number };
     reading?: { correct: number; total: number };
     quiz?: { correct: number; total: number };
+    answers?: {
+      listening?: Record<string, number>;
+      reading?: Record<string, number>;
+      quiz?: Record<string, number>;
+    };
   };
   overallScore: number;
 }

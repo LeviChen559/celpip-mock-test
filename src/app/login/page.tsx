@@ -22,11 +22,11 @@ export default function LoginPage() {
     }
   }, [loading, currentUser, router]);
 
-  if (loading) return null;
   if (currentUser) return null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (loading) { setError("Still connecting, please try again."); return; }
     setError("");
     setSubmitting(true);
 
@@ -44,6 +44,8 @@ export default function LoginPage() {
         if (err) { setError(err); setSubmitting(false); return; }
       }
       router.push("/dashboard");
+    } catch {
+      setError("Something went wrong. Please try again.");
     } finally {
       setSubmitting(false);
     }
