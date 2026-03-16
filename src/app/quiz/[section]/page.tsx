@@ -23,6 +23,7 @@ interface QuizQuestion {
   context?: string;
   contextLabel?: string;
   partTitle: string;
+  partId?: string;
 }
 
 function buildQuestions(section: string, partParam: string): QuizQuestion[] {
@@ -34,6 +35,7 @@ function buildQuestions(section: string, partParam: string): QuizQuestion[] {
         context: p.transcript,
         contextLabel: "Transcript",
         partTitle: p.title,
+        partId: p.id,
       }))
     );
   }
@@ -45,6 +47,7 @@ function buildQuestions(section: string, partParam: string): QuizQuestion[] {
         context: p.passage,
         contextLabel: "Passage",
         partTitle: p.title,
+        partId: p.id,
       }))
     );
   }
@@ -405,7 +408,7 @@ export default function QuizPractice({
                     transcript={current.context || ""}
                     mode="audio"
                     autoPlay
-                    partId={current.partTitle}
+                    partId={current.partId}
                   />
                 ) : (
                   <div className="bg-[#faf8f5] rounded-lg p-4 max-h-[calc(100vh-220px)] overflow-y-auto">

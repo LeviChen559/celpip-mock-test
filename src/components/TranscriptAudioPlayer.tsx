@@ -75,7 +75,36 @@ function parseDialogue(transcript: string): DialogueLine[] {
   return lines;
 }
 
-/** Fetch TTS audio from our API route. */
+/** Audio manifest type for pre-generated files. */
+interface AudioManifest {
+  [partId: string]: {
+    lines: { file: string; speaker: string; voice: string }[];
+  };
+}
+
+let cachedManifest: AudioManifest | null = null;
+let manifestLoading: Promise<AudioManifest | null> | null = null;
+
+/** Load the pre-generated audio manifest. */
+async function loadManifest(): Promise<AudioManifest | null> {
+  if (cachedManifest) return cachedManifest;
+  if (manifestLoading) return manifestLoading;
+
+  manifestLoading = fetch("/audio/manifest.json")
+    .then((res) => {
+      if (!res.ok) return null;
+      return res.json();
+    })
+    .then((data) => {
+      cachedManifest = data;
+      return data;
+    })
+    .catch(() => null);
+
+  return manifestLoading;
+}
+
+/** Fetch TTS audio from our API route (fallback for parts without pre-generated audio). */
 async function fetchTTSAudio(text: string, voice: "female" | "male"): Promise<string> {
   const res = await fetch("/api/tts", {
     method: "POST",
@@ -151,6 +180,14 @@ export default function TranscriptAudioPlayer({
   const audioCacheRef = useRef<Map<string, string>>(new Map());
   const cancelledRef = useRef(false);
   const playLineRef = useRef<(index: number) => void>(() => {});
+  const manifestRef = useRef<AudioManifest | null>(null);
+  const partIdRef = useRef(partId);
+  partIdRef.current = partId;
+
+  // Load manifest on mount
+  useEffect(() => {
+    loadManifest().then((m) => { manifestRef.current = m; });
+  }, []);
 
   // Compute highlighted lines for text mode
   const highlightedLines = useMemo(() => {
@@ -198,17 +235,31 @@ export default function TranscriptAudioPlayer({
       setCurrentSpeaker(line.speaker);
       setProgress(Math.round((index / lines.length) * 100));
 
-      const cacheKey = `${line.voice}:${line.text}`;
-      let audioUrl = audioCacheRef.current.get(cacheKey);
+      // Check for pre-generated static audio file
+      const currentPartId = partIdRef.current;
+      const manifest = manifestRef.current;
+      const staticEntry = currentPartId && manifest?.[currentPartId]?.lines[index];
+      const hasStatic = staticEntry && staticEntry.file;
 
-      if (!audioUrl) {
-        setStatus("loading");
-        try {
-          audioUrl = await fetchTTSAudio(line.text, line.voice);
-          audioCacheRef.current.set(cacheKey, audioUrl);
-        } catch {
-          setStatus("error");
-          return;
+      let audioUrl: string | undefined;
+
+      if (hasStatic) {
+        // Use pre-generated static file — no API call needed
+        audioUrl = `/audio/${staticEntry.file}`;
+      } else {
+        // Fallback: call ElevenLabs API at runtime
+        const cacheKey = `${line.voice}:${line.text}`;
+        audioUrl = audioCacheRef.current.get(cacheKey);
+
+        if (!audioUrl) {
+          setStatus("loading");
+          try {
+            audioUrl = await fetchTTSAudio(line.text, line.voice);
+            audioCacheRef.current.set(cacheKey, audioUrl);
+          } catch {
+            setStatus("error");
+            return;
+          }
         }
       }
 
@@ -217,17 +268,6 @@ export default function TranscriptAudioPlayer({
       const audio = new Audio(audioUrl);
       audioRef.current = audio;
       setStatus("playing");
-
-      // Pre-fetch next line
-      if (index + 1 < lines.length) {
-        const nextLine = lines[index + 1];
-        const nextCacheKey = `${nextLine.voice}:${nextLine.text}`;
-        if (!audioCacheRef.current.has(nextCacheKey)) {
-          fetchTTSAudio(nextLine.text, nextLine.voice)
-            .then((url) => audioCacheRef.current.set(nextCacheKey, url))
-            .catch(() => {});
-        }
-      }
 
       audio.onended = () => {
         playLineRef.current(index + 1);

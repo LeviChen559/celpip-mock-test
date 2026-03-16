@@ -1,0 +1,239 @@
+{
+  "L0": {
+    "lines": [
+      {
+        "file": "L0-0.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L0-1.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L0-2.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L0-3.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L0-4.mp3",
+        "speaker": "",
+        "voice": "female"
+      }
+    ]
+  },
+  "L1": {
+    "lines": [
+      {
+        "file": "L1-0.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L1-1.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L1-2.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L1-3.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L1-4.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L1-5.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L1-6.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L1-7.mp3",
+        "speaker": "",
+        "voice": "female"
+      }
+    ]
+  },
+  "L2": {
+    "lines": [
+      {
+        "file": "L2-0.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L2-1.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L2-2.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L2-3.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L2-4.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L2-5.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L2-6.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L2-7.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L2-8.mp3",
+        "speaker": "",
+        "voice": "female"
+      }
+    ]
+  },
+  "L3": {
+    "lines": [
+      {
+        "file": "L3-0.mp3",
+        "speaker": "",
+        "voice": "female"
+      }
+    ]
+  },
+  "L4": {
+    "lines": [
+      {
+        "file": "L4-0.mp3",
+        "speaker": "",
+        "voice": "female"
+      }
+    ]
+  },
+  "L5": {
+    "lines": [
+      {
+        "file": "L5-0.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L5-1.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L5-2.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L5-3.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L5-4.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L5-5.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L5-6.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L5-7.mp3",
+        "speaker": "",
+        "voice": "female"
+      }
+    ]
+  },
+  "L6": {
+    "lines": [
+      {
+        "file": "L6-0.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L6-1.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L6-2.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L6-3.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L6-4.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L6-5.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L6-6.mp3",
+        "speaker": "",
+        "voice": "female"
+      }
+    ]
+  },
+  "L7": {
+    "lines": [
+      {
+        "file": "L7-0.mp3",
+        "speaker": "",
+        "voice": "female"
+      },
+      {
+        "file": "L7-1.mp3",
+        "speaker": "",
+        "voice": "female"
+      }
+    ]
+  }
+}
