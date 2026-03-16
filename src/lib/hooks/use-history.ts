@@ -81,7 +81,7 @@ export function useHistory(): HistoryHook {
       .select("*")
       .eq("user_id", currentUser.id)
       .order("timestamp", { ascending: false })
-      .then(({ data }) => {
+      .then(({ data }: { data: Record<string, unknown>[] | null }) => {
         setRecords((data || []).map(fromDbRecord));
         setLoading(false);
       });

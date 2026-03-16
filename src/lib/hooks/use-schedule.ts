@@ -51,9 +51,9 @@ export function useSchedule(): ScheduleHook {
         .select("target_date")
         .eq("id", currentUser.id)
         .single(),
-    ]).then(([{ data: scheduleData }, { data: profileData }]) => {
+    ]).then(([{ data: scheduleData }, { data: profileData }]: [{ data: ScheduleItem[] | null }, { data: { target_date: string } | null }]) => {
       setItems(
-        (scheduleData || []).map((row) => ({
+        (scheduleData || []).map((row: ScheduleItem) => ({
           id: row.id,
           date: row.date,
           section: row.section,
@@ -102,7 +102,7 @@ export function useSchedule(): ScheduleHook {
       const rows = newItems.map((item) => ({ user_id: currentUser.id, ...item }));
       const { data } = await supabase.from("schedule_items").insert(rows).select();
       if (data) {
-        const mapped = data.map((row) => ({
+        const mapped = data.map((row: ScheduleItem) => ({
           id: row.id,
           date: row.date,
           section: row.section,
