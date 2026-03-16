@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 320" width="300" height="320">
+  <style>
+    @keyframes blink {
+      0%, 88%, 100% { transform: scaleY(1); }
+      92% { transform: scaleY(0.05); }
+    }
+    @keyframes breathe {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-2px); }
+    }
+    @keyframes ear-wiggle-l {
+      0%, 80%, 100% { transform: rotate(0deg); }
+      85% { transform: rotate(-6deg); }
+      90% { transform: rotate(2deg); }
+    }
+    @keyframes ear-wiggle-r {
+      0%, 80%, 100% { transform: rotate(0deg); }
+      85% { transform: rotate(6deg); }
+      90% { transform: rotate(-2deg); }
+    }
+    @keyframes tongue-bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(2px); }
+    }
+    .eye-group-l, .eye-group-r {
+      animation: blink 3.5s ease-in-out infinite;
+    }
+    .eye-group-r { animation-delay: 0.08s; }
+    .eye-group-l { transform-origin: 125px 148px; }
+    .eye-group-r { transform-origin: 175px 148px; }
+    .body-group { animation: breathe 3s ease-in-out infinite; }
+    .ear-left { animation: ear-wiggle-l 6s ease-in-out infinite; transform-origin: 90px 105px; }
+    .ear-right { animation: ear-wiggle-r 6s ease-in-out infinite; animation-delay: 3s; transform-origin: 210px 105px; }
+    .tongue { animation: tongue-bounce 1.5s ease-in-out infinite; }
+  </style>
+
+  <g class="body-group">
+    <!-- Shadow -->
+    <ellipse cx="150" cy="308" rx="80" ry="8" fill="#d5cfc7" opacity="0.4"/>
+
+    <!-- Body -->
+    <rect x="85" y="215" width="130" height="90" rx="40" fill="#c8a87c"/>
+    <rect x="95" y="220" width="110" height="80" rx="35" fill="#dbbf94"/>
+    <!-- Belly -->
+    <ellipse cx="150" cy="260" rx="40" ry="35" fill="#eedcc0"/>
+
+    <!-- Paws at bottom -->
+    <ellipse cx="115" cy="298" rx="20" ry="12" fill="#c8a87c"/>
+    <ellipse cx="185" cy="298" rx="20" ry="12" fill="#c8a87c"/>
+    <!-- Paw pads -->
+    <ellipse cx="115" cy="300" rx="14" ry="6" fill="#b89768"/>
+    <ellipse cx="185" cy="300" rx="14" ry="6" fill="#b89768"/>
+
+    <!-- === HEAD === -->
+    <!-- Head background (big round) -->
+    <ellipse cx="150" cy="140" rx="78" ry="72" fill="#c8a87c"/>
+
+    <!-- Ears (floppy, droopy style) -->
+    <g class="ear-left">
+      <ellipse cx="82" cy="105" rx="28" ry="38" fill="#a57d52" transform="rotate(-20 82 105)"/>
+      <ellipse cx="84" cy="108" rx="19" ry="28" fill="#b8905e" transform="rotate(-20 84 108)"/>
+    </g>
+    <g class="ear-right">
+      <ellipse cx="218" cy="105" rx="28" ry="38" fill="#a57d52" transform="rotate(20 218 105)"/>
+      <ellipse cx="216" cy="108" rx="19" ry="28" fill="#b8905e" transform="rotate(20 216 108)"/>
+    </g>
+
+    <!-- Face (lighter round area) -->
+    <ellipse cx="150" cy="148" rx="58" ry="52" fill="#dbbf94"/>
+
+    <!-- Lighter cheek/muzzle area -->
+    <ellipse cx="150" cy="168" rx="40" ry="30" fill="#eedcc0"/>
+
+    <!-- Forehead wrinkles -->
+    <path d="M 125 112 Q 150 106 175 112" fill="none" stroke="#b89768" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+    <path d="M 128 120 Q 150 115 172 120" fill="none" stroke="#b89768" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+
+    <!-- Eyes - happy squinting style like StudyPug -->
+    <g class="eye-group-l">
+      <!-- Eye white -->
+      <ellipse cx="125" cy="148" rx="16" ry="15" fill="white"/>
+      <!-- Pupil -->
+      <ellipse cx="127" cy="149" rx="10" ry="10" fill="#2c1810"/>
+      <!-- Shine -->
+      <ellipse cx="131" cy="145" rx="4" ry="3.5" fill="white" opacity="0.85"/>
+      <ellipse cx="124" cy="151" rx="2" ry="1.8" fill="white" opacity="0.4"/>
+    </g>
+    <g class="eye-group-r">
+      <ellipse cx="175" cy="148" rx="16" ry="15" fill="white"/>
+      <ellipse cx="173" cy="149" rx="10" ry="10" fill="#2c1810"/>
+      <ellipse cx="177" cy="145" rx="4" ry="3.5" fill="white" opacity="0.85"/>
+      <ellipse cx="170" cy="151" rx="2" ry="1.8" fill="white" opacity="0.4"/>
+    </g>
+
+    <!-- Eyebrows (small arcs above eyes) -->
+    <path d="M 112 132 Q 125 126 138 132" fill="none" stroke="#8c6d45" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 162 132 Q 175 126 188 132" fill="none" stroke="#8c6d45" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Nose -->
+    <ellipse cx="150" cy="172" rx="16" ry="11" fill="#2c1810"/>
+    <ellipse cx="150" cy="170" rx="12" ry="7" fill="#3d2a1a"/>
+    <!-- Nose shine -->
+    <ellipse cx="146" cy="168" rx="4" ry="2.5" fill="#5a4030" opacity="0.5"/>
+
+    <!-- Mouth - big happy smile -->
+    <path d="M 128 182 Q 138 198 150 198 Q 162 198 172 182" fill="none" stroke="#2c1810" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Center line from nose to mouth -->
+    <line x1="150" y1="181" x2="150" y2="188" stroke="#2c1810" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Tongue -->
+    <g class="tongue">
+      <ellipse cx="150" cy="198" rx="12" ry="10" fill="#e87474"/>
+      <ellipse cx="150" cy="195" rx="10" ry="6" fill="#f09090"/>
+      <!-- Tongue line -->
+      <line x1="150" y1="191" x2="150" y2="204" stroke="#d45a5a" stroke-width="1" opacity="0.5"/>
+    </g>
+
+    <!-- Cheek blush -->
+    <ellipse cx="105" cy="168" rx="12" ry="8" fill="#e8a882" opacity="0.35"/>
+    <ellipse cx="195" cy="168" rx="12" ry="8" fill="#e8a882" opacity="0.35"/>
+
+    <!-- Side face darker patches (pug markings) -->
+    <path d="M 95 130 Q 85 150 95 170" fill="none" stroke="#a57d52" stroke-width="6" stroke-linecap="round" opacity="0.25"/>
+    <path d="M 205 130 Q 215 150 205 170" fill="none" stroke="#a57d52" stroke-width="6" stroke-linecap="round" opacity="0.25"/>
+  </g>
+</svg>
