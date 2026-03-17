@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import Timer from "@/components/Timer";
 import QuestionCard from "@/components/QuestionCard";
 import TestNavigation from "@/components/TestNavigation";
+import ReadingPassageRenderer from "@/components/ReadingPassageRenderer";
 
 export default function ReadingTest() {
   const router = useRouter();
@@ -127,9 +128,7 @@ export default function ReadingTest() {
               </CardHeader>
               <CardContent>
                 <div className="bg-muted rounded-lg p-4 max-h-[calc(100vh-220px)] overflow-y-auto">
-                  <p className="text-sm leading-relaxed whitespace-pre-line">
-                    {part.passage}
-                  </p>
+                  <ReadingPassageRenderer passage={part.passage} />
                 </div>
               </CardContent>
             </Card>

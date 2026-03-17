@@ -26,7 +26,6 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (loading) { setError("Still connecting, please try again."); return; }
     setError("");
     setSubmitting(true);
 

@@ -17,6 +17,7 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { useHistory } from "@/lib/hooks/use-history";
 import TranscriptAudioPlayer from "@/components/TranscriptAudioPlayer";
+import ReadingPassageRenderer from "@/components/ReadingPassageRenderer";
 
 interface QuizQuestion {
   question: Question;
@@ -412,9 +413,7 @@ export default function QuizPractice({
                   />
                 ) : (
                   <div className="bg-[#faf8f5] rounded-lg p-4 max-h-[calc(100vh-220px)] overflow-y-auto">
-                    <p className="text-sm leading-relaxed whitespace-pre-line">
-                      {current.context}
-                    </p>
+                    <ReadingPassageRenderer passage={current.context || ""} />
                   </div>
                 )}
               </CardContent>
