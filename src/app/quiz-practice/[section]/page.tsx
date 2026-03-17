@@ -9,7 +9,14 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import { useHistory } from "@/lib/hooks/use-history";
-import { estimateWritingScore, estimateSpeakingScore, calculateCelpipScore } from "@/lib/celpip-data";
+import { estimateWritingScore, estimateSpeakingScore } from "@/lib/celpip-data";
+
+interface WritingFeedback {
+  scoreExplanation: string;
+  strengths: string[];
+  improvements: string[];
+  exampleResponse: string;
+}
 
 interface PracticeTask {
   id: string;
@@ -85,6 +92,8 @@ export default function WritingSpeakingQuiz({
   const { addRecord } = useHistory();
   const [resultSaved, setResultSaved] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const [feedbacks, setFeedbacks] = useState<Record<number, WritingFeedback | null>>({});
+  const [feedbackLoading, setFeedbackLoading] = useState<Record<number, boolean>>({});
 
   useEffect(() => {
     if (finished) return;
@@ -127,6 +136,31 @@ export default function WritingSpeakingQuiz({
   const handleFinish = () => {
     if (timerRef.current) clearInterval(timerRef.current);
     setFinished(true);
+  };
+
+  const fetchFeedback = async (idx: number, task: PracticeTask, text: string, taskScore: number) => {
+    if (feedbacks[idx] !== undefined || feedbackLoading[idx]) return;
+    setFeedbackLoading((prev) => ({ ...prev, [idx]: true }));
+    try {
+      const res = await fetch("/api/writing-feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          taskTitle: task.title,
+          taskPrompt: task.prompt,
+          userResponse: text,
+          score: taskScore,
+          minWords: task.minWords || 150,
+          maxWords: task.maxWords || 200,
+        }),
+      });
+      const data = await res.json();
+      setFeedbacks((prev) => ({ ...prev, [idx]: res.ok ? data : null }));
+    } catch {
+      setFeedbacks((prev) => ({ ...prev, [idx]: null }));
+    } finally {
+      setFeedbackLoading((prev) => ({ ...prev, [idx]: false }));
+    }
   };
 
   // Compute scores
@@ -231,6 +265,8 @@ export default function WritingSpeakingQuiz({
               const taskScore = isWriting
                 ? estimateWritingScore(wc, task.minWords || 150, task.maxWords || 200)
                 : estimateSpeakingScore(wc);
+              const fb = feedbacks[idx];
+              const isLoadingFb = feedbackLoading[idx];
               return (
                 <Card key={idx} className="border-2 border-[#e2ddd5] rounded-2xl">
                   <CardContent className="pt-5">
@@ -260,6 +296,74 @@ export default function WritingSpeakingQuiz({
                       <p className="text-sm italic" style={{ color: "var(--muted-foreground)" }}>
                         No response submitted.
                       </p>
+                    )}
+
+                    {/* AI Feedback for writing tasks */}
+                    {isWriting && text && (
+                      <div className="mt-4">
+                        {!fb && !isLoadingFb && (
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="rounded-full text-xs border-[#6b4c9a] text-[#6b4c9a] hover:bg-purple-50"
+                            onClick={() => fetchFeedback(idx, task, text, taskScore)}
+                          >
+                            Get AI Feedback &rarr;
+                          </Button>
+                        )}
+                        {isLoadingFb && (
+                          <div className="flex items-center gap-2 text-xs mt-2" style={{ color: "var(--muted-foreground)" }}>
+                            <svg className="animate-spin w-3.5 h-3.5" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                            </svg>
+                            Analyzing your response…
+                          </div>
+                        )}
+                        {fb && (
+                          <div className="mt-3 space-y-4">
+                            {/* Why this score */}
+                            <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
+                              <p className="text-xs font-semibold text-amber-700 uppercase tracking-wide mb-1">Why Score {taskScore}/12?</p>
+                              <p className="text-sm text-amber-900">{fb.scoreExplanation}</p>
+                            </div>
+
+                            {/* Strengths & Improvements */}
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                              <div className="rounded-xl border border-green-200 bg-green-50 p-4">
+                                <p className="text-xs font-semibold text-green-700 uppercase tracking-wide mb-2">Strengths</p>
+                                <ul className="space-y-1">
+                                  {fb.strengths.map((s, i) => (
+                                    <li key={i} className="flex gap-1.5 text-sm text-green-900">
+                                      <span className="mt-0.5 text-green-500">&#10003;</span>
+                                      {s}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                              <div className="rounded-xl border border-blue-200 bg-blue-50 p-4">
+                                <p className="text-xs font-semibold text-blue-700 uppercase tracking-wide mb-2">To Reach 9–10</p>
+                                <ul className="space-y-1">
+                                  {fb.improvements.map((imp, i) => (
+                                    <li key={i} className="flex gap-1.5 text-sm text-blue-900">
+                                      <span className="mt-0.5 text-blue-400">&#8594;</span>
+                                      {imp}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            </div>
+
+                            {/* Example 9-10 response */}
+                            <div className="rounded-xl border border-purple-200 bg-purple-50 p-4">
+                              <p className="text-xs font-semibold text-purple-700 uppercase tracking-wide mb-2">Example 9–10 Response</p>
+                              <div className="text-sm text-purple-900 whitespace-pre-wrap leading-relaxed">
+                                {fb.exampleResponse}
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     )}
                   </CardContent>
                 </Card>
