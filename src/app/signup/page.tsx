@@ -6,12 +6,14 @@ import { useAuth } from "@/lib/hooks/use-auth";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 
-export default function LoginPage() {
+export default function SignupPage() {
   const router = useRouter();
-  const { currentUser, loading, signIn } = useAuth();
+  const { currentUser, loading, signUp } = useAuth();
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
@@ -34,14 +36,20 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    setSuccess("");
     setSubmitting(true);
 
     try {
+      if (!name.trim()) { setError("Name is required."); setSubmitting(false); return; }
       if (!email.trim()) { setError("Email is required."); setSubmitting(false); return; }
-      if (!password) { setError("Password is required."); setSubmitting(false); return; }
-      const err = await signIn(email.trim().toLowerCase(), password);
-      if (err) { setError(err); setSubmitting(false); return; }
-      router.push("/dashboard");
+      if (password.length < 6) { setError("Password must be at least 6 characters."); setSubmitting(false); return; }
+      const err = await signUp(name.trim(), email.trim().toLowerCase(), password);
+      if (err) {
+        const msg = err.toLowerCase().includes("rate") ? "Too many attempts. Please wait a few minutes and try again." : err;
+        setError(msg); setSubmitting(false); return;
+      }
+      setSuccess("Account created successfully! Please check your email to verify your account.");
+      setSubmitting(false);
     } catch {
       setError("Something went wrong. Please try again.");
     } finally {
@@ -132,14 +140,41 @@ export default function LoginPage() {
                 color: "var(--hp-text)",
               }}
             >
-              Welcome Back
+              Create Account
             </h1>
             <p className="text-sm" style={{ color: "var(--hp-text-muted)" }}>
-              Sign in to track your test results and schedule.
+              Join to save your progress and study plan.
             </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="hp-reveal hp-reveal-d2">
+              <label
+                className="block text-sm font-medium mb-1.5"
+                style={{ color: "var(--hp-text)" }}
+              >
+                Name
+              </label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Your name"
+                className="w-full rounded-xl px-4 py-3 text-sm transition-all outline-none"
+                style={{
+                  background: "var(--hp-bg)",
+                  border: "1px solid var(--hp-border)",
+                  color: "var(--hp-text)",
+                }}
+                onFocus={(e) =>
+                  (e.currentTarget.style.borderColor = "var(--hp-accent)")
+                }
+                onBlur={(e) =>
+                  (e.currentTarget.style.borderColor = "var(--hp-border)")
+                }
+              />
+            </div>
+
             <div className="hp-reveal hp-reveal-d2">
               <label
                 className="block text-sm font-medium mb-1.5"
@@ -178,7 +213,7 @@ export default function LoginPage() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Your password"
+                placeholder="At least 6 characters"
                 className="w-full rounded-xl px-4 py-3 text-sm transition-all outline-none"
                 style={{
                   background: "var(--hp-bg)",
@@ -200,6 +235,12 @@ export default function LoginPage() {
               </div>
             )}
 
+            {success && (
+              <div className="text-sm text-green-600 bg-green-50 border border-green-200 rounded-xl px-4 py-3">
+                {success}
+              </div>
+            )}
+
             <button
               type="submit"
               className="hp-cta-btn w-full rounded-full py-3.5 text-sm flex items-center justify-center gap-2 hp-reveal hp-reveal-d4"
@@ -208,7 +249,7 @@ export default function LoginPage() {
                 "Please wait..."
               ) : (
                 <>
-                  Sign In
+                  Create Account
                   <ArrowRight className="w-4 h-4" />
                 </>
               )}
@@ -217,7 +258,7 @@ export default function LoginPage() {
 
           <div className="text-center mt-6 hp-reveal hp-reveal-d5">
             <button
-              onClick={() => router.push("/signup")}
+              onClick={() => router.push("/login")}
               className="text-sm font-medium transition-colors"
               style={{ color: "var(--hp-accent)" }}
               onMouseEnter={(e) =>
@@ -227,7 +268,7 @@ export default function LoginPage() {
                 (e.currentTarget.style.color = "var(--hp-accent)")
               }
             >
-              Don&rsquo;t have an account? Sign up
+              Already have an account? Sign in
             </button>
           </div>
         </div>

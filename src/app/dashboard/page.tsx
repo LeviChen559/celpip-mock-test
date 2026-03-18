@@ -2,8 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { resetTestState, saveTestState, PracticeSection } from "@/lib/test-store";
 import { listeningParts, readingParts, writingTasks, speakingTasks } from "@/lib/celpip-data";
 import MyTests from "@/components/MyTests";
@@ -11,17 +9,22 @@ import MySchedule from "@/components/MySchedule";
 import StudyPlan from "@/components/StudyPlan";
 import { useAuth } from "@/lib/hooks/use-auth";
 import { useHistory } from "@/lib/hooks/use-history";
-import { Headphones, BookOpen, PenLine, Mic, type LucideIcon } from "lucide-react";
+import {
+  Headphones,
+  BookOpen,
+  PenLine,
+  Mic,
+  ArrowRight,
+  CheckCircle2,
+} from "lucide-react";
 
 // ── Helpers ────────────────────────────────────────────
 
-// Convert ALL CAPS to Title Case
 function toTitleCase(str: string): string {
   if (str !== str.toUpperCase()) return str;
   return str.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
-// Extract a short topic from the first line of a passage/transcript
 function extractTopic(text: string): string {
   let topic: string;
   const subjectMatch = text.match(/Subject:\s*(.+)/);
@@ -41,7 +44,6 @@ function extractTopic(text: string): string {
 
 // ── Section data ───────────────────────────────────────
 
-// Official CELPIP section structure — first set of parts only
 const sections = [
   {
     title: "Listening",
@@ -51,9 +53,7 @@ const sections = [
       "Conversations, news reports, and discussions with multiple-choice questions.",
     duration: "~47 min",
     summary: "6 parts + practice, 39 questions",
-    accent: "border-orange-300 bg-orange-50/60",
-    titleColor: "text-orange-700",
-    linkColor: "text-orange-600",
+    color: "#b8703b",
     href: "/test/listening",
     quizBase: "/quiz/listening",
     officialParts: listeningParts.slice(0, 7).map((p, i) => ({
@@ -71,9 +71,7 @@ const sections = [
       "Emails, schedules, articles, and opinion pieces with comprehension questions.",
     duration: "~55 min",
     summary: "4 parts + practice, 39 questions",
-    accent: "border-green-300 bg-green-50/60",
-    titleColor: "text-green-700",
-    linkColor: "text-green-600",
+    color: "#5a8a6a",
     href: "/test/reading",
     quizBase: "/quiz/reading",
     officialParts: readingParts.slice(0, 5).map((p, i) => ({
@@ -91,9 +89,7 @@ const sections = [
       "Write an email and respond to a survey question with structured responses.",
     duration: "~53 min",
     summary: "2 tasks",
-    accent: "border-purple-300 bg-purple-50/60",
-    titleColor: "text-purple-700",
-    linkColor: "text-purple-600",
+    color: "#7a7ac7",
     href: "/test/writing",
     quizBase: "/quiz-practice/writing",
     officialParts: writingTasks.slice(0, 2).map((t, i) => ({
@@ -111,9 +107,7 @@ const sections = [
       "Respond to prompts covering advice, descriptions, opinions, and persuasion.",
     duration: "~20 min",
     summary: "8 tasks + practice",
-    accent: "border-pink-300 bg-pink-50/60",
-    titleColor: "text-pink-700",
-    linkColor: "text-pink-600",
+    color: "#c77a8b",
     href: "/test/speaking",
     quizBase: "/quiz-practice/speaking",
     officialParts: speakingTasks.slice(0, 9).map((t, i) => ({
@@ -125,16 +119,24 @@ const sections = [
   },
 ];
 
-// Group parts/tasks by their CELPIP category, using the first item's full title as label
-// e.g. "Part 1: Reading Correspondence" groups all "Reading Correspondence" quizzes
+// Group parts/tasks by their CELPIP category
 function extractCategoryKey(title: string): string {
   if (title.startsWith("Practice")) return "Practice Task";
   const match = title.match(/(?:Part|Task)\s+\d+:\s+(.+)/);
   return match ? match[1] : title;
 }
 
-interface QuizItem { id: string; title: string; topic?: string; questionCount: number; originalIndex: number }
-interface QuizCategory { category: string; items: QuizItem[] }
+interface QuizItem {
+  id: string;
+  title: string;
+  topic?: string;
+  questionCount: number;
+  originalIndex: number;
+}
+interface QuizCategory {
+  category: string;
+  items: QuizItem[];
+}
 
 function groupByCategory(
   parts: { id: string; title: string; topic?: string; questionCount: number }[]
@@ -145,7 +147,10 @@ function groupByCategory(
     if (!map.has(key)) map.set(key, { label: p.title, items: [] });
     map.get(key)!.items.push({ ...p, originalIndex: idx });
   });
-  return Array.from(map.values()).map(({ label, items }) => ({ category: label, items }));
+  return Array.from(map.values()).map(({ label, items }) => ({
+    category: label,
+    items,
+  }));
 }
 
 const quizSections = [
@@ -153,48 +158,64 @@ const quizSections = [
     key: "listening",
     title: "Listening",
     icon: Headphones,
-    description: "Conversations, news reports, and discussions with multiple-choice questions.",
-    accent: "border-orange-300 bg-orange-50/60",
-    titleColor: "text-orange-700",
-    linkColor: "text-orange-600",
+    description:
+      "Conversations, news reports, and discussions with multiple-choice questions.",
+    color: "#b8703b",
     categories: groupByCategory(
-      listeningParts.map((p) => ({ id: p.id, title: p.title, topic: extractTopic(p.transcript), questionCount: p.questions.length }))
+      listeningParts.map((p) => ({
+        id: p.id,
+        title: p.title,
+        topic: extractTopic(p.transcript),
+        questionCount: p.questions.length,
+      }))
     ),
   },
   {
     key: "reading",
     title: "Reading",
     icon: BookOpen,
-    description: "Emails, schedules, articles, and opinion pieces with comprehension questions.",
-    accent: "border-green-300 bg-green-50/60",
-    titleColor: "text-green-700",
-    linkColor: "text-green-600",
+    description:
+      "Emails, schedules, articles, and opinion pieces with comprehension questions.",
+    color: "#5a8a6a",
     categories: groupByCategory(
-      readingParts.map((p) => ({ id: p.id, title: p.title, topic: extractTopic(p.passage), questionCount: p.questions.length }))
+      readingParts.map((p) => ({
+        id: p.id,
+        title: p.title,
+        topic: extractTopic(p.passage),
+        questionCount: p.questions.length,
+      }))
     ),
   },
   {
     key: "writing",
     title: "Writing",
     icon: PenLine,
-    description: "Write an email and respond to a survey question with structured responses.",
-    accent: "border-purple-300 bg-purple-50/60",
-    titleColor: "text-purple-700",
-    linkColor: "text-purple-600",
+    description:
+      "Write an email and respond to a survey question with structured responses.",
+    color: "#7a7ac7",
     categories: groupByCategory(
-      writingTasks.map((t) => ({ id: t.id, title: t.title, topic: extractTopic(t.prompt), questionCount: 1 }))
+      writingTasks.map((t) => ({
+        id: t.id,
+        title: t.title,
+        topic: extractTopic(t.prompt),
+        questionCount: 1,
+      }))
     ),
   },
   {
     key: "speaking",
     title: "Speaking",
     icon: Mic,
-    description: "Respond to prompts covering advice, descriptions, opinions, and persuasion.",
-    accent: "border-pink-300 bg-pink-50/60",
-    titleColor: "text-pink-700",
-    linkColor: "text-pink-600",
+    description:
+      "Respond to prompts covering advice, descriptions, opinions, and persuasion.",
+    color: "#c77a8b",
     categories: groupByCategory(
-      speakingTasks.map((t) => ({ id: t.id, title: t.title, topic: extractTopic(t.prompt), questionCount: 1 }))
+      speakingTasks.map((t) => ({
+        id: t.id,
+        title: t.title,
+        topic: extractTopic(t.prompt),
+        questionCount: 1,
+      }))
     ),
   },
 ];
@@ -233,31 +254,49 @@ export default function Dashboard() {
     if (!currentUser) return;
     import("@/lib/supabase/client").then(({ createClient: create }) => {
       const supabase = create();
-      supabase.from("profiles").select("role").eq("id", currentUser.id).single()
-        .then(({ data, error }: { data: { role: string } | null; error: unknown }) => {
-          console.log("Admin check:", { data, error });
-          if (data?.role === "admin") setIsAdmin(true);
-        });
+      supabase
+        .from("profiles")
+        .select("role")
+        .eq("id", currentUser.id)
+        .single()
+        .then(
+          ({
+            data,
+            error,
+          }: {
+            data: { role: string } | null;
+            error: unknown;
+          }) => {
+            console.log("Admin check:", { data, error });
+            if (data?.role === "admin") setIsAdmin(true);
+          }
+        );
     });
   }, [currentUser]);
 
   if (loading || !currentUser) return null;
 
-  // Build a map of completed quiz keys: "section:partIndex" → most recent record
+  // Build a map of completed quiz keys
   const completedQuizMap = new Map<string, number>();
   records
     .filter((r) => r.type === "quiz" && r.quizSection && r.quizPart)
     .forEach((r) => {
       const key = `${r.quizSection}:${r.quizPart}`;
       const prev = completedQuizMap.get(key);
-      if (!prev || r.timestamp > prev) completedQuizMap.set(key, r.timestamp);
+      if (!prev || r.timestamp > prev)
+        completedQuizMap.set(key, r.timestamp);
     });
   const isQuizDone = (section: string, partIndex: number) =>
     completedQuizMap.has(`${section}:${partIndex}`);
   const getQuizFinishedAt = (section: string, partIndex: number) => {
     const ts = completedQuizMap.get(`${section}:${partIndex}`);
     if (!ts) return "";
-    return new Date(ts).toLocaleDateString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+    return new Date(ts).toLocaleDateString(undefined, {
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+    });
   };
 
   const handleFullTest = () => {
@@ -266,19 +305,47 @@ export default function Dashboard() {
     router.push("/test");
   };
 
-  const handleSectionPractice = (section: (typeof sections)[number]) => {
-    resetTestState();
-    saveTestState({ practiceMode: section.key });
-    router.push(section.href);
-  };
-
   return (
-    <main className="min-h-screen bg-grid" style={{ backgroundColor: "var(--background)" }}>
+    <main className="homepage bg-grid min-h-screen relative">
+      {/* Grain */}
+      <div className="hp-grain" />
+
+      {/* Background meshes */}
+      <div
+        className="hp-mesh"
+        style={{
+          width: 500,
+          height: 500,
+          top: -150,
+          right: -100,
+          background:
+            "radial-gradient(circle, rgba(184,112,59,0.06) 0%, transparent 70%)",
+        }}
+      />
+      <div
+        className="hp-mesh"
+        style={{
+          width: 400,
+          height: 400,
+          bottom: "20%",
+          left: -120,
+          background:
+            "radial-gradient(circle, rgba(90,138,106,0.05) 0%, transparent 70%)",
+        }}
+      />
+
       {/* ── Top nav ────────────────────────────────── */}
-      <nav className="max-w-screen-xl mx-auto px-6 pt-6 flex items-center gap-2">
+      <nav className="max-w-screen-xl mx-auto px-6 pt-6 flex items-center gap-2 relative z-10">
         <button
           onClick={() => router.push("/")}
-          className="text-sm font-bold text-[#6b4c9a] hover:underline mr-auto"
+          className="text-xs font-semibold tracking-widest uppercase mr-auto transition-colors"
+          style={{ color: "var(--hp-accent)" }}
+          onMouseEnter={(e) =>
+            (e.currentTarget.style.color = "var(--hp-accent-light)")
+          }
+          onMouseLeave={(e) =>
+            (e.currentTarget.style.color = "var(--hp-accent)")
+          }
         >
           CELPIP Mock Test
         </button>
@@ -287,60 +354,123 @@ export default function Dashboard() {
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-              activeTab === tab.key
-                ? "bg-[#6b4c9a] text-white shadow-sm"
-                : "text-[#6b6b7b] hover:text-[#6b4c9a]"
-            }`}
+            className="px-4 py-2 rounded-full text-sm font-medium transition-all"
+            style={{
+              background:
+                activeTab === tab.key ? "var(--hp-accent)" : "transparent",
+              color:
+                activeTab === tab.key ? "#ffffff" : "var(--hp-text-muted)",
+            }}
+            onMouseEnter={(e) => {
+              if (activeTab !== tab.key)
+                e.currentTarget.style.color = "var(--hp-text)";
+            }}
+            onMouseLeave={(e) => {
+              if (activeTab !== tab.key)
+                e.currentTarget.style.color = "var(--hp-text-muted)";
+            }}
           >
             {tab.label}
           </button>
         ))}
-        <div className="w-px h-5 bg-[#e2ddd5] mx-1" />
-        <span className="text-sm font-medium text-[#1a1a2e]">
+
+        <div
+          className="w-px h-5 mx-1"
+          style={{ background: "var(--hp-border)" }}
+        />
+        <span
+          className="text-sm font-medium"
+          style={{ color: "var(--hp-text)" }}
+        >
           {currentUser.name}
         </span>
         {isAdmin && (
           <button
             onClick={() => router.push("/admin")}
-            className="px-3 py-1.5 rounded-full text-xs font-medium text-purple-600 hover:bg-purple-50 transition-colors"
+            className="px-3 py-1.5 rounded-full text-xs font-medium transition-colors"
+            style={{ color: "var(--hp-accent)" }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.color = "var(--hp-accent-light)")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.color = "var(--hp-accent)")
+            }
           >
             Admin
           </button>
         )}
         <button
           onClick={() => signOut()}
-          className="px-3 py-1.5 rounded-full text-xs font-medium text-[#6b6b7b] hover:text-red-600 transition-colors"
+          className="px-3 py-1.5 rounded-full text-xs font-medium transition-colors"
+          style={{ color: "var(--hp-text-muted)" }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "#c75050")}
+          onMouseLeave={(e) =>
+            (e.currentTarget.style.color = "var(--hp-text-muted)")
+          }
         >
           Sign Out
         </button>
       </nav>
 
       {/* ── Welcome header ─────────────────────────── */}
-      <section className="max-w-screen-xl mx-auto px-6 pt-10 pb-6">
+      <section className="max-w-screen-xl mx-auto px-6 pt-10 pb-6 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end gap-4 md:gap-16">
-          <h2 className="text-3xl font-sans font-bold text-[#1a1a2e]">
-            Welcome back, {currentUser.name.split(" ")[0]}
+          <h2
+            className="text-3xl font-bold"
+            style={{
+              fontFamily: "var(--font-serif)",
+              color: "var(--hp-text)",
+            }}
+          >
+            Welcome back,{" "}
+            <span style={{ color: "var(--hp-accent)" }}>
+              {currentUser.name.split(" ")[0]}
+            </span>
           </h2>
-          <p className="text-base leading-relaxed" style={{ color: "var(--muted-foreground)" }}>
+          <p
+            className="text-base leading-relaxed"
+            style={{ color: "var(--hp-text-muted)" }}
+          >
             Full timed tests, single section practice, or untimed quiz mode
             with instant feedback.
           </p>
         </div>
       </section>
 
-      {/* ── Tab navigation (Tines-style pill tabs) ─ */}
-      <section className="max-w-screen-xl mx-auto px-6 pb-10">
+      {/* ── Tab navigation ─────────────────────────── */}
+      <section className="max-w-screen-xl mx-auto px-6 pb-10 relative z-10">
         <div className="flex gap-2 mb-8">
           {tabs.slice(0, 4).map((tab) => (
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
-              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
-                activeTab === tab.key
-                  ? "bg-[#6b4c9a] text-white shadow-sm"
-                  : "bg-white border border-[#e2ddd5] text-[#6b6b7b] hover:border-[#6b4c9a] hover:text-[#6b4c9a]"
-              }`}
+              className="px-5 py-2.5 rounded-full text-sm font-medium transition-all"
+              style={{
+                background:
+                  activeTab === tab.key ? "var(--hp-accent)" : "var(--hp-glass)",
+                color:
+                  activeTab === tab.key ? "#ffffff" : "var(--hp-text-muted)",
+                border:
+                  activeTab === tab.key
+                    ? "1px solid var(--hp-accent)"
+                    : "1px solid var(--hp-border)",
+                boxShadow:
+                  activeTab === tab.key
+                    ? "0 2px 8px rgba(184,112,59,0.15)"
+                    : "none",
+              }}
+              onMouseEnter={(e) => {
+                if (activeTab !== tab.key) {
+                  e.currentTarget.style.borderColor = "var(--hp-accent)";
+                  e.currentTarget.style.color = "var(--hp-accent)";
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (activeTab !== tab.key) {
+                  e.currentTarget.style.borderColor = "var(--hp-border)";
+                  e.currentTarget.style.color = "var(--hp-text-muted)";
+                }
+              }}
             >
               {tab.label}
             </button>
@@ -352,40 +482,55 @@ export default function Dashboard() {
           <div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
               {sections.map((s) => (
-                <Card
+                <div
                   key={s.title}
-                  className={`border-2 ${s.accent} rounded-2xl overflow-hidden`}
+                  className="hp-glass rounded-2xl p-5 relative overflow-hidden"
                 >
-                  <CardContent className="py-6">
-                    <h3 className={`text-xl font-sans font-medium mb-1 ${s.titleColor} flex items-center gap-2`}>
-                      <s.icon className="w-5 h-5" />
-                      {s.title}
-                    </h3>
-                    <p className="text-xs mb-3" style={{ color: "var(--muted-foreground)" }}>
-                      {s.duration} · {s.summary}
-                    </p>
-                    <div className="space-y-1 mb-3">
-                      {s.officialParts.map((part, i) => (
-                        <p key={i} className="text-[11px] text-[#1a1a2e]">
-                          <span className={`font-medium ${s.titleColor}`}>{i + 1}.</span>{" "}
-                          {part.topic}
-                        </p>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
+                  {/* Accent top */}
+                  <div
+                    className="absolute top-0 left-5 right-5 h-[2px] rounded-full"
+                    style={{ background: s.color, opacity: 0.4 }}
+                  />
+                  <h3
+                    className="text-lg font-semibold mb-1 flex items-center gap-2"
+                    style={{ color: s.color }}
+                  >
+                    <s.icon className="w-5 h-5" />
+                    {s.title}
+                  </h3>
+                  <p
+                    className="text-xs mb-3"
+                    style={{ color: "var(--hp-text-muted)" }}
+                  >
+                    {s.duration} · {s.summary}
+                  </p>
+                  <div className="space-y-1 mb-3">
+                    {s.officialParts.map((part, i) => (
+                      <p
+                        key={i}
+                        className="text-[11px]"
+                        style={{ color: "var(--hp-text)" }}
+                      >
+                        <span className="font-medium" style={{ color: s.color }}>
+                          {i + 1}.
+                        </span>{" "}
+                        {part.topic}
+                      </p>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
 
             <div className="text-center space-y-3">
-              <Button
-                size="lg"
-                className="text-base px-10 py-6 rounded-full bg-[#6b4c9a] hover:bg-[#5a3d85] text-white shadow-sm"
+              <button
+                className="hp-cta-btn px-10 py-4 rounded-full text-base flex items-center gap-2 mx-auto"
                 onClick={handleFullTest}
               >
                 Start Full Mock Test
-              </Button>
-              <p className="text-sm" style={{ color: "var(--muted-foreground)" }}>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+              <p className="text-sm" style={{ color: "var(--hp-text-muted)" }}>
                 ~2 hours 55 minutes — Listening, Reading, Writing, Speaking
               </p>
             </div>
@@ -396,44 +541,64 @@ export default function Dashboard() {
         {activeTab === "section" && (
           <div className="flex gap-6">
             {/* Sidebar */}
-            <Card className="w-48 shrink-0 border-0 rounded-2xl h-fit shadow-none">
-              <CardContent className="pt-5 space-y-1.5">
-                {sections.map((s) => {
-                  const isActive = (expandedSection || "listening") === s.key;
-                  return (
-                    <button
-                      key={s.key}
-                      onClick={() => setExpandedSection(s.key)}
-                      className={`w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all flex items-center gap-2.5 ${
-                        isActive
-                          ? `${s.accent} ${s.titleColor} border-2 shadow-sm`
-                          : "bg-white border-2 border-transparent text-[#6b6b7b] hover:text-[#6b4c9a]"
-                      }`}
-                    >
-                      <s.icon className="w-4 h-4" />
-                      {s.title}
-                    </button>
-                  );
-                })}
-              </CardContent>
-            </Card>
+            <div className="w-48 shrink-0 space-y-1.5">
+              {sections.map((s) => {
+                const isActive =
+                  (expandedSection || "listening") === s.key;
+                return (
+                  <button
+                    key={s.key}
+                    onClick={() => setExpandedSection(s.key)}
+                    className="w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all flex items-center gap-2.5"
+                    style={{
+                      background: isActive ? `${s.color}12` : "transparent",
+                      color: isActive ? s.color : "var(--hp-text-muted)",
+                      border: isActive
+                        ? `2px solid ${s.color}30`
+                        : "2px solid transparent",
+                      boxShadow: isActive
+                        ? "0 2px 8px rgba(0,0,0,0.04)"
+                        : "none",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isActive) e.currentTarget.style.color = s.color;
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive)
+                        e.currentTarget.style.color = "var(--hp-text-muted)";
+                    }}
+                  >
+                    <s.icon className="w-4 h-4" />
+                    {s.title}
+                  </button>
+                );
+              })}
+            </div>
 
             {/* Content */}
-            <Card className="flex-1 border-0 rounded-2xl shadow-none">
-              <CardContent className="py-6 px-6">
+            <div className="flex-1">
               {sections.map((s) => {
                 if ((expandedSection || "listening") !== s.key) return null;
                 return (
                   <div key={s.key}>
-                    <div className="mb-4 text-center">
-                      <h3 className={`text-xl font-sans font-medium ${s.titleColor} flex items-center justify-center gap-2 mb-1`}>
+                    <div className="mb-5 text-center">
+                      <h3
+                        className="text-xl font-semibold flex items-center justify-center gap-2 mb-1"
+                        style={{ color: s.color }}
+                      >
                         <s.icon className="w-5 h-5" />
                         {s.title}
                       </h3>
-                      <p className="text-sm" style={{ color: "var(--muted-foreground)" }}>
+                      <p
+                        className="text-sm"
+                        style={{ color: "var(--hp-text-muted)" }}
+                      >
                         {s.description}
                       </p>
-                      <p className="text-xs mt-1" style={{ color: "var(--muted-foreground)" }}>
+                      <p
+                        className="text-xs mt-1"
+                        style={{ color: "var(--hp-text-muted)" }}
+                      >
                         {s.duration} · {s.summary}
                       </p>
                     </div>
@@ -442,22 +607,49 @@ export default function Dashboard() {
                       {s.officialParts.map((part, i) => (
                         <button
                           key={i}
-                          onClick={() => router.push(`${s.quizBase}?part=${part.index}`)}
-                          className="w-full text-left px-3 py-2.5 rounded-xl bg-white border border-[#e2ddd5] hover:border-[#6b4c9a] hover:shadow-sm transition-all flex items-center justify-between group"
+                          onClick={() =>
+                            router.push(
+                              `${s.quizBase}?part=${part.index}`
+                            )
+                          }
+                          className="hp-glass w-full text-left px-4 py-3 rounded-xl flex items-center justify-between group"
                         >
-                          <div className="flex items-center gap-2.5">
-                            <span className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold ${s.accent} ${s.titleColor}`}>
+                          <div className="flex items-center gap-3">
+                            <span
+                              className="w-7 h-7 rounded-lg flex items-center justify-center text-[11px] font-bold"
+                              style={{
+                                background: `${s.color}12`,
+                                color: s.color,
+                              }}
+                            >
                               {i + 1}
                             </span>
                             <div>
-                              <p className="text-sm font-medium text-[#1a1a2e]">{part.title}</p>
-                              <p className="text-[11px]" style={{ color: "var(--muted-foreground)" }}>
-                                {part.topic} · {part.questionCount} {part.questionCount === 1 ? "question" : "questions"}
+                              <p
+                                className="text-sm font-medium"
+                                style={{ color: "var(--hp-text)" }}
+                              >
+                                {part.title}
+                              </p>
+                              <p
+                                className="text-[11px]"
+                                style={{
+                                  color: "var(--hp-text-muted)",
+                                }}
+                              >
+                                {part.topic} · {part.questionCount}{" "}
+                                {part.questionCount === 1
+                                  ? "question"
+                                  : "questions"}
                               </p>
                             </div>
                           </div>
-                          <span className={`text-sm font-semibold ${s.linkColor} opacity-0 group-hover:opacity-100 transition-opacity`}>
-                            Start &rarr;
+                          <span
+                            className="text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1"
+                            style={{ color: s.color }}
+                          >
+                            Start
+                            <ArrowRight className="w-3.5 h-3.5" />
                           </span>
                         </button>
                       ))}
@@ -465,107 +657,198 @@ export default function Dashboard() {
                   </div>
                 );
               })}
-              </CardContent>
-            </Card>
+            </div>
           </div>
         )}
-
-        {/* ── Tab 4: Study Plan ──────────────────── */}
-        {activeTab === "plan" && <StudyPlan />}
-
-        {/* ── Tab 5: My Test Results ────────────────────── */}
-        {activeTab === "mytests" && <MyTests />}
-
-        {/* ── Tab 5: My Schedule ─────────────────── */}
-        {activeTab === "schedule" && <MySchedule />}
 
         {/* ── Tab 3: Quiz Practice ───────────────── */}
         {activeTab === "quiz" && (
           <div className="flex gap-6">
             {/* Sidebar */}
-            <Card className="w-48 shrink-0 border-0 rounded-2xl h-fit shadow-none">
-              <CardContent className="pt-5 space-y-1.5">
-                {quizSections.map((qs) => {
-                  const isActive = (expandedQuiz || "listening") === qs.key;
-                  return (
-                    <button
-                      key={qs.key}
-                      onClick={() => setExpandedQuiz(qs.key)}
-                      className={`w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all flex items-center gap-2.5 ${
-                        isActive
-                          ? `${qs.accent} ${qs.titleColor} border-2 shadow-sm`
-                          : "bg-white border-2 border-transparent text-[#6b6b7b] hover:text-[#6b4c9a]"
-                      }`}
-                    >
-                      <qs.icon className="w-4 h-4" />
-                      {qs.title}
-                    </button>
-                  );
-                })}
-              </CardContent>
-            </Card>
+            <div className="w-48 shrink-0 space-y-1.5">
+              {quizSections.map((qs) => {
+                const isActive =
+                  (expandedQuiz || "listening") === qs.key;
+                return (
+                  <button
+                    key={qs.key}
+                    onClick={() => setExpandedQuiz(qs.key)}
+                    className="w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all flex items-center gap-2.5"
+                    style={{
+                      background: isActive
+                        ? `${qs.color}12`
+                        : "transparent",
+                      color: isActive
+                        ? qs.color
+                        : "var(--hp-text-muted)",
+                      border: isActive
+                        ? `2px solid ${qs.color}30`
+                        : "2px solid transparent",
+                      boxShadow: isActive
+                        ? "0 2px 8px rgba(0,0,0,0.04)"
+                        : "none",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isActive)
+                        e.currentTarget.style.color = qs.color;
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive)
+                        e.currentTarget.style.color =
+                          "var(--hp-text-muted)";
+                    }}
+                  >
+                    <qs.icon className="w-4 h-4" />
+                    {qs.title}
+                  </button>
+                );
+              })}
+            </div>
 
             {/* Content */}
-            <Card className="flex-1 border-0 rounded-2xl shadow-none">
-              <CardContent className="py-6 px-6">
+            <div className="flex-1">
               {quizSections.map((qs) => {
                 if ((expandedQuiz || "listening") !== qs.key) return null;
-                const totalParts = qs.categories.reduce((sum, cat) => sum + cat.items.length, 0);
-                const base = qs.key === "writing" || qs.key === "speaking" ? "/quiz-practice" : "/quiz";
+                const totalParts = qs.categories.reduce(
+                  (sum, cat) => sum + cat.items.length,
+                  0
+                );
+                const base =
+                  qs.key === "writing" || qs.key === "speaking"
+                    ? "/quiz-practice"
+                    : "/quiz";
                 return (
                   <div key={qs.key}>
-                    <div className="mb-4 text-center">
-                      <h3 className={`text-xl font-sans font-medium ${qs.titleColor} flex items-center justify-center gap-2 mb-1`}>
+                    <div className="mb-5 text-center">
+                      <h3
+                        className="text-xl font-semibold flex items-center justify-center gap-2 mb-1"
+                        style={{ color: qs.color }}
+                      >
                         <qs.icon className="w-5 h-5" />
                         {qs.title}
                       </h3>
-                      <p className="text-sm" style={{ color: "var(--muted-foreground)" }}>
+                      <p
+                        className="text-sm"
+                        style={{ color: "var(--hp-text-muted)" }}
+                      >
                         {qs.description}
                       </p>
-                      <p className="text-xs mt-1" style={{ color: "var(--muted-foreground)" }}>
-                        {qs.categories.length} parts · {totalParts} quizzes
+                      <p
+                        className="text-xs mt-1"
+                        style={{ color: "var(--hp-text-muted)" }}
+                      >
+                        {qs.categories.length} parts · {totalParts}{" "}
+                        quizzes
                       </p>
                     </div>
 
-                    <div className="space-y-4">
+                    <div className="space-y-5">
                       {qs.categories.map((cat) => (
                         <div key={cat.category}>
-                          <p className={`text-xs font-semibold uppercase tracking-wide mb-2 ${qs.titleColor}`}>
+                          <p
+                            className="text-xs font-semibold uppercase tracking-wide mb-2"
+                            style={{ color: qs.color }}
+                          >
                             {cat.category}
                           </p>
                           <div className="space-y-1.5">
                             {cat.items.map((item, i) => {
-                              const done = isQuizDone(qs.key, item.originalIndex);
+                              const done = isQuizDone(
+                                qs.key,
+                                item.originalIndex
+                              );
                               return (
                                 <button
                                   key={item.id}
-                                  onClick={() => router.push(`${base}/${qs.key}?part=${item.originalIndex}`)}
-                                  className={`w-full text-left px-3 py-2.5 rounded-xl border hover:border-[#6b4c9a] hover:shadow-sm transition-all flex items-center justify-between group ${
-                                    done ? "bg-green-50/60 border-green-200" : "bg-white border-[#e2ddd5]"
-                                  }`}
+                                  onClick={() =>
+                                    router.push(
+                                      `${base}/${qs.key}?part=${item.originalIndex}`
+                                    )
+                                  }
+                                  className="w-full text-left px-4 py-3 rounded-xl flex items-center justify-between group transition-all"
+                                  style={{
+                                    background: done
+                                      ? "rgba(90,138,106,0.06)"
+                                      : "var(--hp-glass)",
+                                    border: done
+                                      ? "1px solid rgba(90,138,106,0.15)"
+                                      : "1px solid var(--hp-border)",
+                                  }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.borderColor =
+                                      qs.color;
+                                    e.currentTarget.style.transform =
+                                      "translateY(-1px)";
+                                    e.currentTarget.style.boxShadow =
+                                      "0 4px 12px rgba(0,0,0,0.06)";
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.borderColor = done
+                                      ? "rgba(90,138,106,0.15)"
+                                      : "var(--hp-border)";
+                                    e.currentTarget.style.transform =
+                                      "translateY(0)";
+                                    e.currentTarget.style.boxShadow =
+                                      "none";
+                                  }}
                                 >
-                                  <div className="flex items-center gap-2.5">
+                                  <div className="flex items-center gap-3">
                                     {done ? (
-                                      <span className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold bg-green-100 text-green-700">
-                                        &#10003;
-                                      </span>
+                                      <CheckCircle2
+                                        className="w-5 h-5 shrink-0"
+                                        style={{ color: "#5a8a6a" }}
+                                      />
                                     ) : (
-                                      <span className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold ${qs.accent} ${qs.titleColor}`}>
+                                      <span
+                                        className="w-7 h-7 rounded-lg flex items-center justify-center text-[11px] font-bold shrink-0"
+                                        style={{
+                                          background: `${qs.color}12`,
+                                          color: qs.color,
+                                        }}
+                                      >
                                         {i + 1}
                                       </span>
                                     )}
                                     <div>
-                                      <p className="text-sm font-medium text-[#1a1a2e]">
+                                      <p
+                                        className="text-sm font-medium"
+                                        style={{
+                                          color: "var(--hp-text)",
+                                        }}
+                                      >
                                         {item.topic || `Quiz ${i + 1}`}
                                       </p>
-                                      <p className="text-[11px]" style={{ color: "var(--muted-foreground)" }}>
-                                        {item.questionCount} {item.questionCount === 1 ? "question" : "questions"}
-                                        {done && <span className="ml-1 text-green-600 font-medium">· {getQuizFinishedAt(qs.key, item.originalIndex)}</span>}
+                                      <p
+                                        className="text-[11px]"
+                                        style={{
+                                          color: "var(--hp-text-muted)",
+                                        }}
+                                      >
+                                        {item.questionCount}{" "}
+                                        {item.questionCount === 1
+                                          ? "question"
+                                          : "questions"}
+                                        {done && (
+                                          <span
+                                            className="ml-1 font-medium"
+                                            style={{ color: "#5a8a6a" }}
+                                          >
+                                            ·{" "}
+                                            {getQuizFinishedAt(
+                                              qs.key,
+                                              item.originalIndex
+                                            )}
+                                          </span>
+                                        )}
                                       </p>
                                     </div>
                                   </div>
-                                  <span className={`text-sm font-semibold ${qs.linkColor} opacity-0 group-hover:opacity-100 transition-opacity`}>
-                                    {done ? "Redo" : "Start"} &rarr;
+                                  <span
+                                    className="text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1"
+                                    style={{ color: qs.color }}
+                                  >
+                                    {done ? "Redo" : "Start"}
+                                    <ArrowRight className="w-3.5 h-3.5" />
                                   </span>
                                 </button>
                               );
@@ -577,10 +860,18 @@ export default function Dashboard() {
                   </div>
                 );
               })}
-              </CardContent>
-            </Card>
+            </div>
           </div>
         )}
+
+        {/* ── Tab 4: Study Plan ──────────────────── */}
+        {activeTab === "plan" && <StudyPlan />}
+
+        {/* ── Tab 5: My Test Results ─────────────── */}
+        {activeTab === "mytests" && <MyTests />}
+
+        {/* ── Tab 6: My Schedule ─────────────────── */}
+        {activeTab === "schedule" && <MySchedule />}
       </section>
     </main>
   );

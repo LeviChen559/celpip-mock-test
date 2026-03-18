@@ -120,8 +120,8 @@
 /* Subtle grid background like Tines */
 .bg-grid {
   background-image:
-    linear-gradient(to right, #e2ddd540 1px, transparent 1px),
-    linear-gradient(to bottom, #e2ddd540 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
@@ -138,4 +138,236 @@
   button, [role="button"] {
     cursor: pointer;
   }
+}
+
+/* ── Homepage "Warm Editorial" theme ─────────────── */
+
+.homepage {
+  --hp-bg: #faf8f5;
+  --hp-bg-card: #ffffff;
+  --hp-bg-card-hover: #f7f4f0;
+  --hp-text: #1a1a2e;
+  --hp-text-muted: #6b6b7b;
+  --hp-accent: #b8703b;
+  --hp-accent-light: #d4884e;
+  --hp-accent-glow: rgba(184, 112, 59, 0.10);
+  --hp-border: rgba(0, 0, 0, 0.07);
+  --hp-glass: rgba(255, 255, 255, 0.7);
+  background-color: var(--hp-bg);
+  color: var(--hp-text);
+  overflow-x: hidden;
+}
+
+/* Grain overlay */
+.hp-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.18;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* Gradient mesh background */
+.hp-mesh {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Glass card */
+.hp-glass {
+  background: var(--hp-glass);
+  border: 1px solid var(--hp-border);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  transition: all 0.3s ease;
+}
+.hp-glass:hover {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+/* Glow orb behind mascot */
+.hp-glow-orb {
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--hp-accent-glow) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: hp-pulse 4s ease-in-out infinite;
+}
+
+/* Floating animation */
+@keyframes hp-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes hp-pulse {
+  0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.08); }
+}
+
+/* Staggered reveal */
+@keyframes hp-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hp-reveal {
+  animation: hp-reveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hp-reveal-d1 { animation-delay: 0.1s; }
+.hp-reveal-d2 { animation-delay: 0.2s; }
+.hp-reveal-d3 { animation-delay: 0.3s; }
+.hp-reveal-d4 { animation-delay: 0.4s; }
+.hp-reveal-d5 { animation-delay: 0.5s; }
+.hp-reveal-d6 { animation-delay: 0.6s; }
+.hp-reveal-d7 { animation-delay: 0.7s; }
+.hp-reveal-d8 { animation-delay: 0.8s; }
+
+/* Accent underline */
+.hp-accent-line {
+  position: relative;
+  display: inline-block;
+}
+.hp-accent-line::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--hp-accent);
+  border-radius: 2px;
+}
+
+/* Stats strip glow line */
+.hp-strip {
+  position: relative;
+}
+.hp-strip::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--hp-accent) 50%, transparent);
+  opacity: 0.4;
+}
+.hp-strip::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.06) 50%, transparent);
+}
+
+/* Section icon glow */
+.hp-icon-glow {
+  position: relative;
+}
+.hp-icon-glow::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: var(--hp-accent-glow);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.hp-glass:hover .hp-icon-glow::after {
+  opacity: 1;
+}
+
+/* Testimonial accent bar */
+.hp-testimonial-bar {
+  position: absolute;
+  left: 0;
+  top: 16px;
+  bottom: 16px;
+  width: 3px;
+  border-radius: 2px;
+}
+
+/* Scroll-triggered fade (IntersectionObserver applied via JS) */
+.hp-fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.hp-fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* CTA shimmer */
+@keyframes hp-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.hp-cta-btn {
+  background: linear-gradient(90deg, var(--hp-accent), var(--hp-accent-light), var(--hp-accent));
+  background-size: 200% auto;
+  color: #ffffff;
+  font-weight: 600;
+  border: none;
+  transition: all 0.3s ease;
+}
+.hp-cta-btn:hover {
+  animation: hp-shimmer 1.5s linear infinite;
+  box-shadow: 0 4px 20px var(--hp-accent-glow);
+}
+
+/* Decorative geometric shapes */
+.hp-deco-ring {
+  position: absolute;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Phase timeline dot */
+.hp-phase-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--hp-accent);
+  position: relative;
+  flex-shrink: 0;
+}
+.hp-phase-dot::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 28px;
+  background: rgba(0, 0, 0, 0.08);
+}
+.hp-phase-dot.last::after {
+  display: none;
 }

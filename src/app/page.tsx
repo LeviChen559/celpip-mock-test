@@ -1,55 +1,148 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import HeroAnimation from "@/components/HeroAnimation";
 import { useAuth } from "@/lib/hooks/use-auth";
-import { Headphones, BookOpen, PenLine, Mic, ClipboardList, Layers, HelpCircle, CalendarCheck, TrendingUp, SearchCheck } from "lucide-react";
+import HeroAnimation from "@/components/HeroAnimation";
+import {
+  Headphones,
+  BookOpen,
+  PenLine,
+  Mic,
+  ClipboardList,
+  Layers,
+  HelpCircle,
+  CalendarCheck,
+  TrendingUp,
+  SearchCheck,
+  ArrowRight,
+  Star,
+  Sparkles,
+} from "lucide-react";
 
 const features = [
   {
     title: "Full Mock Test",
     icon: ClipboardList,
-    description: "Complete timed test with all 4 sections — Listening, Reading, Writing, and Speaking.",
-    accent: "border-purple-300 bg-purple-50/60",
-    titleColor: "text-purple-700",
+    description:
+      "Complete timed test with all 4 sections — Listening, Reading, Writing, and Speaking.",
+    color: "#c78b3c",
   },
   {
     title: "Section Practice",
     icon: Layers,
-    description: "Focus on a single section at your own pace with full timing simulation.",
-    accent: "border-orange-300 bg-orange-50/60",
-    titleColor: "text-orange-700",
+    description:
+      "Focus on a single section at your own pace with full timing simulation.",
+    color: "#6b8f71",
   },
   {
     title: "Quiz Mode",
     icon: HelpCircle,
-    description: "Untimed question-by-question practice with instant feedback on every answer.",
-    accent: "border-green-300 bg-green-50/60",
-    titleColor: "text-green-700",
+    description:
+      "Untimed question-by-question practice with instant feedback on every answer.",
+    color: "#7a8fc7",
   },
   {
     title: "Smart Study Plan",
     icon: CalendarCheck,
-    description: "Set your test date and goal score — we generate a phased study plan tailored to your weak areas.",
-    accent: "border-blue-300 bg-blue-50/60",
-    titleColor: "text-blue-700",
+    description:
+      "Set your test date and goal score — we generate a phased study plan tailored to your weak areas.",
+    color: "#c77a8b",
   },
   {
     title: "Test Review",
     icon: SearchCheck,
-    description: "Review every answer after each test — see what you got right, what you missed, and the correct answers.",
-    accent: "border-cyan-300 bg-cyan-50/60",
-    titleColor: "text-cyan-700",
+    description:
+      "Review every answer after each test — see what you got right, what you missed, and the correct answers.",
+    color: "#8bc7a3",
   },
   {
     title: "Track Progress",
     icon: TrendingUp,
-    description: "Save your test history, view score trends, and plan your study schedule.",
-    accent: "border-pink-300 bg-pink-50/60",
-    titleColor: "text-pink-700",
+    description:
+      "Save your test history, view score trends, and plan your study schedule.",
+    color: "#c7a33c",
+  },
+];
+
+const testSections = [
+  {
+    label: "Listening",
+    detail: "6 parts, 30 questions",
+    time: "~47 min",
+    color: "#c78b3c",
+    Icon: Headphones,
+  },
+  {
+    label: "Reading",
+    detail: "4 parts, 27 questions",
+    time: "~55 min",
+    color: "#6b8f71",
+    Icon: BookOpen,
+  },
+  {
+    label: "Writing",
+    detail: "2 tasks",
+    time: "~53 min",
+    color: "#7a8fc7",
+    Icon: PenLine,
+  },
+  {
+    label: "Speaking",
+    detail: "8 tasks",
+    time: "~20 min",
+    color: "#c77a8b",
+    Icon: Mic,
+  },
+];
+
+const testimonials = [
+  {
+    name: "Priya S.",
+    score: "CLB 9",
+    location: "Toronto, ON",
+    quote:
+      "The study plan feature was a game-changer. It identified my weak spots in listening and gave me a structured path. I went from a 7 to a 9 in just 3 weeks.",
+    color: "#c78b3c",
+  },
+  {
+    name: "Marco L.",
+    score: "CLB 10",
+    location: "Vancouver, BC",
+    quote:
+      "The quiz mode with instant feedback helped me understand my mistakes right away. The full mock tests felt very close to the real exam.",
+    color: "#6b8f71",
+  },
+  {
+    name: "Aisha K.",
+    score: "CLB 8",
+    location: "Calgary, AB",
+    quote:
+      "I only had 2 weeks to prepare and was very stressed. The auto-generated study plan kept me focused and on track. Highly recommend.",
+    color: "#7a8fc7",
+  },
+  {
+    name: "David C.",
+    score: "CLB 9",
+    location: "Montreal, QC",
+    quote:
+      "Being able to practice individual sections was exactly what I needed. I spent extra time on writing and speaking, and my scores improved significantly.",
+    color: "#c77a8b",
+  },
+  {
+    name: "Yuki T.",
+    score: "CLB 10",
+    location: "Ottawa, ON",
+    quote:
+      "The progress tracking kept me motivated. Seeing my score trend go up over time gave me the confidence I needed heading into the real test.",
+    color: "#8bc7a3",
+  },
+  {
+    name: "Fatima R.",
+    score: "CLB 8",
+    location: "Edmonton, AB",
+    quote:
+      "I loved how the plan adjusted focus to my weakest areas. The three-phase approach made so much sense.",
+    color: "#c7a33c",
   },
 ];
 
@@ -57,318 +150,606 @@ export default function Home() {
   const router = useRouter();
   const { currentUser, loading } = useAuth();
 
+  const handleCta = () =>
+    router.push(!loading && currentUser ? "/dashboard" : "/signup");
+
   return (
-    <main className="min-h-screen bg-grid" style={{ backgroundColor: "var(--background)" }}>
-      {/* ── Top nav ────────────────────────────────── */}
-      <nav className="max-w-screen-xl mx-auto px-6 pt-6 flex justify-between items-center">
-        <span className="text-sm font-bold text-[#6b4c9a]">CELPIP Mock Test</span>
-        <div className="flex items-center gap-2">
+    <main className="homepage bg-grid min-h-screen relative">
+      {/* Grain overlay */}
+      <div className="hp-grain" />
+
+      {/* Background meshes */}
+      <div
+        className="hp-mesh"
+        style={{
+          width: 600,
+          height: 600,
+          top: -200,
+          right: -100,
+          background:
+            "radial-gradient(circle, rgba(184,112,59,0.08) 0%, transparent 70%)",
+        }}
+      />
+      <div
+        className="hp-mesh"
+        style={{
+          width: 500,
+          height: 500,
+          bottom: "30%",
+          left: -150,
+          background:
+            "radial-gradient(circle, rgba(107,143,113,0.06) 0%, transparent 70%)",
+        }}
+      />
+
+      {/* Decorative rings */}
+      <div
+        className="hp-deco-ring"
+        style={{ width: 400, height: 400, top: 100, right: -180 }}
+      />
+      <div
+        className="hp-deco-ring"
+        style={{ width: 260, height: 260, top: "60%", left: -100 }}
+      />
+
+      {/* ── Nav ─────────────────────────────────────── */}
+      <nav className="max-w-screen-xl mx-auto px-6 pt-8 flex justify-between items-center relative z-10 hp-reveal">
+        <span
+          className="text-sm font-semibold tracking-widest uppercase"
+          style={{ color: "var(--hp-accent)" }}
+        >
+          CELPIP Mock Test
+        </span>
+        <div className="flex items-center gap-3">
           {!loading && currentUser ? (
             <>
-              <span className="text-sm text-[#6b6b7b]">{currentUser.name}</span>
-              <Button
-                onClick={() => router.push("/dashboard")}
-                className="rounded-full bg-[#6b4c9a] hover:bg-[#5a3d85] text-white"
+              <span
+                className="text-sm"
+                style={{ color: "var(--hp-text-muted)" }}
               >
-                Go to Dashboard
-              </Button>
+                {currentUser.name}
+              </span>
+              <button
+                onClick={() => router.push("/dashboard")}
+                className="hp-cta-btn px-5 py-2.5 rounded-full text-sm"
+              >
+                Dashboard
+              </button>
             </>
           ) : (
             <>
               <button
                 onClick={() => router.push("/login")}
-                className="px-4 py-2 rounded-full text-sm font-medium text-[#6b6b7b] hover:text-[#6b4c9a] transition-colors"
+                className="px-4 py-2.5 rounded-full text-sm font-medium transition-colors"
+                style={{ color: "var(--hp-text-muted)" }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.color = "var(--hp-text)")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.color = "var(--hp-text-muted)")
+                }
               >
                 Sign In
               </button>
-              <Button
-                onClick={() => router.push("/login")}
-                className="rounded-full bg-[#6b4c9a] hover:bg-[#5a3d85] text-white"
+              <button
+                onClick={() => router.push("/signup")}
+                className="hp-cta-btn px-5 py-2.5 rounded-full text-sm"
               >
                 Get Started
-              </Button>
+              </button>
             </>
           )}
         </div>
       </nav>
 
-      {/* ── Hero ──────────────────────────────────── */}
-      <section className="max-w-screen-xl mx-auto px-6 pt-20 pb-16">
-        <div className="flex flex-col md:flex-row items-center gap-10">
+      {/* ── Hero ────────────────────────────────────── */}
+      <section className="max-w-screen-xl mx-auto px-6 pt-24 pb-12 relative z-10">
+        <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="flex-1 text-center md:text-left">
-            <Badge className="mb-5 bg-purple-100 text-purple-700 border-purple-200 hover:bg-purple-100 text-sm font-medium px-4 py-1">
-              CELPIP Preparation
-            </Badge>
-            <h1 className="text-5xl font-sans font-bold tracking-tight mb-5 text-[#1a1a2e]">
-              CELPIP Mock Test
+            <div className="hp-reveal hp-reveal-d1">
+              <span
+                className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase mb-6 px-4 py-2 rounded-full"
+                style={{
+                  color: "var(--hp-accent)",
+                  background: "var(--hp-accent-glow)",
+                  border: "1px solid rgba(199,139,60,0.2)",
+                }}
+              >
+                <Sparkles className="w-3.5 h-3.5" />
+                CELPIP Preparation
+              </span>
+            </div>
+            <h1
+              className="hp-reveal hp-reveal-d2 text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-[1.05]"
+              style={{ fontFamily: "var(--font-serif)" }}
+            >
+              Master the
+              <br />
+              <span
+                className="hp-accent-line"
+                style={{ color: "var(--hp-accent)" }}
+              >
+                CELPIP
+              </span>{" "}
+              exam.
             </h1>
-            <p className="text-lg leading-relaxed mb-8" style={{ color: "var(--muted-foreground)" }}>
-              Prepare for the Canadian English Language Proficiency Index
-              Program. Build confidence with realistic practice tests covering
-              all four sections.
+            <p
+              className="hp-reveal hp-reveal-d3 text-lg leading-relaxed mb-10 max-w-lg"
+              style={{ color: "var(--hp-text-muted)" }}
+            >
+              Build confidence with realistic practice tests covering all four
+              sections. AI-powered study plans. Instant feedback. Track your
+              progress to test day.
             </p>
-            <div className="flex gap-3 justify-center md:justify-start">
-              <Button
-                size="lg"
-                className="text-base px-8 py-6 rounded-full bg-[#6b4c9a] hover:bg-[#5a3d85] text-white shadow-sm"
-                onClick={() => router.push(!loading && currentUser ? "/dashboard" : "/login")}
+            <div className="hp-reveal hp-reveal-d4 flex gap-4 justify-center md:justify-start">
+              <button
+                onClick={handleCta}
+                className="hp-cta-btn px-8 py-4 rounded-full text-base flex items-center gap-2"
               >
                 {!loading && currentUser ? "Go to Dashboard" : "Get Started Free"}
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="text-base px-8 py-6 rounded-full border-[#e2ddd5] text-[#6b6b7b] hover:border-[#6b4c9a] hover:text-[#6b4c9a]"
-                onClick={() => {
-                  document.getElementById("features")?.scrollIntoView({ behavior: "smooth" });
+                <ArrowRight className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() =>
+                  document
+                    .getElementById("features")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="px-8 py-4 rounded-full text-base font-medium transition-all"
+                style={{
+                  color: "var(--hp-text-muted)",
+                  border: "1px solid var(--hp-border)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "var(--hp-accent)";
+                  e.currentTarget.style.color = "var(--hp-accent)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "var(--hp-border)";
+                  e.currentTarget.style.color = "var(--hp-text-muted)";
                 }}
               >
                 Learn More
-              </Button>
+              </button>
             </div>
           </div>
-          <div className="shrink-0">
+          <div className="shrink-0 hp-reveal hp-reveal-d5">
             <HeroAnimation />
           </div>
         </div>
       </section>
 
-      {/* ── Features ─────────────────────────────── */}
-      <section id="features" className="max-w-screen-xl mx-auto px-6 pb-16">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-sans font-bold text-[#1a1a2e] mb-3">
-            Everything you need to prepare
+      {/* ── Stats strip ─────────────────────────────── */}
+      <section className="relative z-10 my-8">
+        <div className="hp-strip max-w-screen-xl mx-auto px-6 py-6 flex flex-wrap justify-center gap-8 md:gap-16 hp-reveal hp-reveal-d6">
+          {[
+            { value: "4", label: "Test Sections" },
+            { value: "96+", label: "Questions" },
+            { value: "~3h", label: "Full Test" },
+            { value: "AI", label: "Study Plans" },
+          ].map((s) => (
+            <div key={s.label} className="text-center">
+              <p
+                className="text-2xl font-bold"
+                style={{
+                  color: "var(--hp-accent)",
+                  fontFamily: "var(--font-serif)",
+                }}
+              >
+                {s.value}
+              </p>
+              <p
+                className="text-xs font-medium tracking-wide uppercase"
+                style={{ color: "var(--hp-text-muted)" }}
+              >
+                {s.label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Features ────────────────────────────────── */}
+      <section
+        id="features"
+        className="max-w-screen-xl mx-auto px-6 py-20 relative z-10"
+      >
+        <div className="text-center mb-14">
+          <h2
+            className="text-4xl md:text-5xl font-bold mb-4 hp-reveal"
+            style={{ fontFamily: "var(--font-serif)" }}
+          >
+            Everything you need
+            <br />
+            to{" "}
+            <span style={{ color: "var(--hp-accent)" }}>
+              prepare
+            </span>
           </h2>
-          <p className="text-base" style={{ color: "var(--muted-foreground)" }}>
+          <p
+            className="text-base hp-reveal hp-reveal-d1"
+            style={{ color: "var(--hp-text-muted)" }}
+          >
             Multiple study modes designed to help you succeed on test day.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {features.map((f) => (
-            <Card
+          {features.map((f, i) => (
+            <div
               key={f.title}
-              className={`border-2 ${f.accent} rounded-2xl overflow-hidden`}
+              className={`hp-glass rounded-2xl p-6 relative overflow-hidden hp-reveal hp-reveal-d${i + 1}`}
             >
-              <CardContent className="pt-6">
-                <h3 className={`text-xl font-sans font-medium mb-2 ${f.titleColor} flex items-center justify-center gap-2`}>
+              {/* Accent top border */}
+              <div
+                className="absolute top-0 left-6 right-6 h-[2px] rounded-full"
+                style={{ background: f.color, opacity: 0.5 }}
+              />
+              <div className="flex items-start gap-4">
+                <div
+                  className="hp-icon-glow w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                  style={{
+                    background: `${f.color}15`,
+                    color: f.color,
+                  }}
+                >
                   <f.icon className="w-5 h-5" />
-                  {f.title}
-                </h3>
-                <p className="text-sm leading-relaxed" style={{ color: "var(--muted-foreground)" }}>
-                  {f.description}
-                </p>
-              </CardContent>
-            </Card>
+                </div>
+                <div>
+                  <h3
+                    className="text-base font-semibold mb-1.5"
+                    style={{ color: "var(--hp-text)" }}
+                  >
+                    {f.title}
+                  </h3>
+                  <p
+                    className="text-sm leading-relaxed"
+                    style={{ color: "var(--hp-text-muted)" }}
+                  >
+                    {f.description}
+                  </p>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </section>
 
-      {/* ── Study Plan showcase ───────────────────── */}
-      <section className="max-w-screen-xl mx-auto px-6 pb-16">
-        <Card className="border-2 border-blue-200 bg-blue-50/40 rounded-2xl overflow-hidden">
-          <CardContent className="pt-8 pb-8">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <Badge className="mb-4 bg-blue-100 text-blue-700 border-blue-200 hover:bg-blue-100 text-sm font-medium px-3 py-0.5">
-                  New Feature
-                </Badge>
-                <h2 className="text-2xl font-sans font-bold text-[#1a1a2e] mb-3">
-                  AI-Powered Study Plan
-                </h2>
-                <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--muted-foreground)" }}>
-                  Tell us your test date and target score. We analyze your past performance,
-                  identify weak areas, and generate a personalized day-by-day study plan
-                  with three phases:
-                </p>
-                <div className="space-y-2 mb-5">
-                  {[
-                    { phase: "Foundation", pct: "60%", desc: "Build skills with quizzes and section drills on weak areas", color: "bg-blue-100 text-blue-700" },
-                    { phase: "Integration", pct: "30%", desc: "Mixed practice sessions with full mock tests", color: "bg-amber-100 text-amber-700" },
-                    { phase: "Final Prep", pct: "10%", desc: "Full timed simulations and targeted review", color: "bg-red-100 text-red-700" },
-                  ].map((p) => (
-                    <div key={p.phase} className="flex items-start gap-2">
-                      <Badge className={`${p.color} border text-[10px] shrink-0 mt-0.5`}>
-                        {p.phase}
-                      </Badge>
-                      <p className="text-xs" style={{ color: "var(--muted-foreground)" }}>
-                        <strong>{p.pct}</strong> — {p.desc}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-                <Button
-                  onClick={() => router.push(!loading && currentUser ? "/dashboard" : "/login")}
-                  className="rounded-full bg-[#6b4c9a] hover:bg-[#5a3d85] text-white"
-                >
-                  Create Your Plan
-                </Button>
-              </div>
-              <div className="space-y-2">
+      {/* ── Study Plan showcase ──────────────────────── */}
+      <section className="max-w-screen-xl mx-auto px-6 py-20 relative z-10">
+        <div className="hp-glass rounded-3xl p-8 md:p-12 relative overflow-hidden hp-reveal">
+          {/* Decorative glow */}
+          <div
+            className="absolute -top-20 -right-20 w-64 h-64 rounded-full pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(199,139,60,0.1) 0%, transparent 70%)",
+            }}
+          />
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <span
+                className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.15em] uppercase mb-5 px-3 py-1.5 rounded-full"
+                style={{
+                  color: "var(--hp-accent)",
+                  background: "var(--hp-accent-glow)",
+                  border: "1px solid rgba(199,139,60,0.15)",
+                }}
+              >
+                <Sparkles className="w-3 h-3" />
+                New Feature
+              </span>
+              <h2
+                className="text-3xl md:text-4xl font-bold mb-4"
+                style={{ fontFamily: "var(--font-serif)" }}
+              >
+                AI-Powered
+                <br />
+                <span style={{ color: "var(--hp-accent)" }}>Study Plan</span>
+              </h2>
+              <p
+                className="text-sm leading-relaxed mb-8"
+                style={{ color: "var(--hp-text-muted)" }}
+              >
+                Tell us your test date and target score. We analyze your past
+                performance, identify weak areas, and generate a personalized
+                day-by-day study plan with three phases:
+              </p>
+
+              {/* Phase timeline */}
+              <div className="space-y-4 mb-8">
                 {[
-                  { day: "Mon", items: ["Listening Quiz Practice", "Reading Section Practice"] },
-                  { day: "Tue", items: ["Writing Section Practice", "Speaking Quiz Practice"] },
-                  { day: "Wed", items: ["Full Mock Test"] },
-                  { day: "Thu", items: ["Listening Review — Focus on Weak Areas", "Quick Quiz Review"] },
-                ].map((row) => (
-                  <div key={row.day} className="flex gap-3 items-start">
-                    <span className="w-10 text-right text-xs font-bold text-[#1a1a2e] pt-2">{row.day}</span>
-                    <div className="flex-1 space-y-1">
-                      {row.items.map((item, i) => (
-                        <div
-                          key={i}
-                          className="p-2 rounded-lg border border-[#e2ddd5] bg-white text-xs text-[#1a1a2e]"
+                  {
+                    phase: "Foundation",
+                    pct: "60%",
+                    desc: "Build skills with quizzes and section drills on weak areas",
+                  },
+                  {
+                    phase: "Integration",
+                    pct: "30%",
+                    desc: "Mixed practice sessions with full mock tests",
+                  },
+                  {
+                    phase: "Final Prep",
+                    pct: "10%",
+                    desc: "Full timed simulations and targeted review",
+                  },
+                ].map((p, i) => (
+                  <div key={p.phase} className="flex items-start gap-4">
+                    <div className="flex flex-col items-center pt-1">
+                      <div className={`hp-phase-dot ${i === 2 ? "last" : ""}`} />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold">
+                        {p.phase}{" "}
+                        <span
+                          className="font-normal"
+                          style={{ color: "var(--hp-accent)" }}
                         >
-                          {item}
-                        </div>
-                      ))}
+                          {p.pct}
+                        </span>
+                      </p>
+                      <p
+                        className="text-xs"
+                        style={{ color: "var(--hp-text-muted)" }}
+                      >
+                        {p.desc}
+                      </p>
                     </div>
                   </div>
                 ))}
               </div>
-            </div>
-          </CardContent>
-        </Card>
-      </section>
 
-      {/* ── Test overview ────────────────────────── */}
-      <section className="max-w-screen-xl mx-auto px-6 pb-16">
-        <Card className="border-2 border-[#e2ddd5] rounded-2xl overflow-hidden">
-          <CardContent className="pt-8 pb-8">
-            <div className="text-center mb-6">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/celpip-logo.jpg" alt="CELPIP General Test" width={160} height={160} className="mx-auto mb-4" />
-              <h2 className="text-2xl font-sans font-bold text-[#1a1a2e] mb-2">
-                CELPIP General Test Format
-              </h2>
-              <p className="text-sm" style={{ color: "var(--muted-foreground)" }}>
-                Our mock test mirrors the official CELPIP structure
-              </p>
+              <button
+                onClick={handleCta}
+                className="hp-cta-btn px-6 py-3 rounded-full text-sm flex items-center gap-2"
+              >
+                Create Your Plan
+                <ArrowRight className="w-4 h-4" />
+              </button>
             </div>
-            <div className="grid md:grid-cols-4 gap-6 text-center">
+
+            {/* Schedule preview */}
+            <div className="space-y-3">
               {[
-                { label: "Listening", detail: "6 parts, 30 questions", time: "~47 min", color: "text-orange-700", bg: "bg-orange-100", iconColor: "text-orange-600", Icon: Headphones },
-                { label: "Reading", detail: "4 parts, 27 questions", time: "~55 min", color: "text-green-700", bg: "bg-green-100", iconColor: "text-green-600", Icon: BookOpen },
-                { label: "Writing", detail: "2 tasks", time: "~53 min", color: "text-purple-700", bg: "bg-purple-100", iconColor: "text-purple-600", Icon: PenLine },
-                { label: "Speaking", detail: "8 tasks", time: "~20 min", color: "text-pink-700", bg: "bg-pink-100", iconColor: "text-pink-600", Icon: Mic },
-              ].map((s) => (
-                <div key={s.label}>
-                  <div className={`w-12 h-12 rounded-full ${s.bg} flex items-center justify-center mx-auto mb-2`}>
-                    <s.Icon className={`w-6 h-6 ${s.iconColor}`} />
+                {
+                  day: "Mon",
+                  items: [
+                    "Listening Quiz Practice",
+                    "Reading Section Practice",
+                  ],
+                },
+                {
+                  day: "Tue",
+                  items: [
+                    "Writing Section Practice",
+                    "Speaking Quiz Practice",
+                  ],
+                },
+                { day: "Wed", items: ["Full Mock Test"] },
+                {
+                  day: "Thu",
+                  items: [
+                    "Listening Review — Weak Areas",
+                    "Quick Quiz Review",
+                  ],
+                },
+              ].map((row, ri) => (
+                <div
+                  key={row.day}
+                  className={`flex gap-4 items-start hp-reveal hp-reveal-d${ri + 2}`}
+                >
+                  <span
+                    className="w-10 text-right text-xs font-bold pt-3 shrink-0"
+                    style={{ color: "var(--hp-accent)" }}
+                  >
+                    {row.day}
+                  </span>
+                  <div className="flex-1 space-y-1.5">
+                    {row.items.map((item, i) => (
+                      <div
+                        key={i}
+                        className="hp-glass rounded-xl px-4 py-3 text-xs"
+                        style={{ color: "var(--hp-text)" }}
+                      >
+                        {item}
+                      </div>
+                    ))}
                   </div>
-                  <p className={`text-lg font-bold ${s.color}`}>{s.label}</p>
-                  <p className="text-sm" style={{ color: "var(--muted-foreground)" }}>{s.detail}</p>
-                  <p className="text-xs mt-1" style={{ color: "var(--muted-foreground)" }}>{s.time}</p>
                 </div>
               ))}
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </section>
 
-      {/* ── Testimonials ─────────────────────────── */}
-      <section className="max-w-screen-xl mx-auto px-6 pb-16">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-sans font-bold text-[#1a1a2e] mb-3">
-            What our users say
+      {/* ── Test Format ─────────────────────────────── */}
+      <section className="max-w-screen-xl mx-auto px-6 py-20 relative z-10">
+        <div className="text-center mb-14">
+          <h2
+            className="text-4xl md:text-5xl font-bold mb-4 hp-reveal"
+            style={{ fontFamily: "var(--font-serif)" }}
+          >
+            CELPIP General
+            <br />
+            <span style={{ color: "var(--hp-accent)" }}>Test Format</span>
           </h2>
-          <p className="text-base" style={{ color: "var(--muted-foreground)" }}>
-            Thousands of test-takers have improved their CELPIP scores with our platform.
+          <p
+            className="text-base hp-reveal hp-reveal-d1"
+            style={{ color: "var(--hp-text-muted)" }}
+          >
+            Our mock test mirrors the official CELPIP structure
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-4">
-          {[
-            {
-              name: "Priya S.",
-              role: "Scored CLB 9",
-              location: "Toronto, ON",
-              quote: "The study plan feature was a game-changer. It identified my weak spots in listening and gave me a structured path. I went from a 7 to a 9 in just 3 weeks.",
-              accent: "border-orange-200",
-              avatarBg: "bg-orange-200 text-orange-700",
-            },
-            {
-              name: "Marco L.",
-              role: "Scored CLB 10",
-              location: "Vancouver, BC",
-              quote: "The quiz mode with instant feedback helped me understand my mistakes right away. The full mock tests felt very close to the real exam — no surprises on test day.",
-              accent: "border-green-200",
-              avatarBg: "bg-green-200 text-green-700",
-            },
-            {
-              name: "Aisha K.",
-              role: "Scored CLB 8",
-              location: "Calgary, AB",
-              quote: "I only had 2 weeks to prepare and was very stressed. The auto-generated study plan kept me focused and on track. Highly recommend for anyone short on time.",
-              accent: "border-purple-200",
-              avatarBg: "bg-purple-200 text-purple-700",
-            },
-            {
-              name: "David C.",
-              role: "Scored CLB 9",
-              location: "Montreal, QC",
-              quote: "Being able to practice individual sections was exactly what I needed. I spent extra time on writing and speaking, and my scores improved significantly.",
-              accent: "border-pink-200",
-              avatarBg: "bg-pink-200 text-pink-700",
-            },
-            {
-              name: "Yuki T.",
-              role: "Scored CLB 10",
-              location: "Ottawa, ON",
-              quote: "The progress tracking kept me motivated. Seeing my score trend go up over time gave me the confidence I needed heading into the real test.",
-              accent: "border-blue-200",
-              avatarBg: "bg-blue-200 text-blue-700",
-            },
-            {
-              name: "Fatima R.",
-              role: "Scored CLB 8",
-              location: "Edmonton, AB",
-              quote: "I loved how the plan adjusted focus to my weakest areas. The three-phase approach — foundation, integration, final prep — made so much sense.",
-              accent: "border-amber-200",
-              avatarBg: "bg-amber-200 text-amber-700",
-            },
-          ].map((t) => (
-            <Card
-              key={t.name}
-              className={`border-2 ${t.accent} rounded-2xl overflow-hidden`}
+        <div className="grid md:grid-cols-4 gap-4">
+          {testSections.map((s, i) => (
+            <div
+              key={s.label}
+              className={`hp-glass rounded-2xl p-6 text-center relative overflow-hidden hp-reveal hp-reveal-d${i + 1}`}
             >
-              <CardContent className="pt-6">
-                <p className="text-sm leading-relaxed mb-4 italic" style={{ color: "var(--muted-foreground)" }}>
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className={`w-10 h-10 rounded-full ${t.avatarBg} flex items-center justify-center text-sm font-bold shrink-0`}>
-                    {t.name.split(" ").map((n) => n[0]).join("")}
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-[#1a1a2e]">{t.name}</p>
-                    <p className="text-xs" style={{ color: "var(--muted-foreground)" }}>
-                      {t.role} &middot; {t.location}
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+              <div
+                className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4"
+                style={{
+                  background: `${s.color}15`,
+                  color: s.color,
+                }}
+              >
+                <s.Icon className="w-7 h-7" />
+              </div>
+              <p
+                className="text-xl font-bold mb-1"
+                style={{ color: s.color, fontFamily: "var(--font-serif)" }}
+              >
+                {s.label}
+              </p>
+              <p
+                className="text-sm mb-1"
+                style={{ color: "var(--hp-text-muted)" }}
+              >
+                {s.detail}
+              </p>
+              <p
+                className="text-xs"
+                style={{ color: "var(--hp-text-muted)", opacity: 0.7 }}
+              >
+                {s.time}
+              </p>
+            </div>
           ))}
         </div>
       </section>
 
-      {/* ── CTA ──────────────────────────────────── */}
-      <section className="max-w-screen-xl mx-auto px-6 pb-20 text-center">
-        <h2 className="text-3xl font-sans font-bold text-[#1a1a2e] mb-3">
-          Ready to start practicing?
+      {/* ── Testimonials ────────────────────────────── */}
+      <section className="max-w-screen-xl mx-auto px-6 py-20 relative z-10">
+        <div className="text-center mb-14">
+          <h2
+            className="text-4xl md:text-5xl font-bold mb-4 hp-reveal"
+            style={{ fontFamily: "var(--font-serif)" }}
+          >
+            Trusted by{" "}
+            <span style={{ color: "var(--hp-accent)" }}>thousands</span>
+          </h2>
+          <p
+            className="text-base hp-reveal hp-reveal-d1"
+            style={{ color: "var(--hp-text-muted)" }}
+          >
+            Real results from real test-takers across Canada.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {testimonials.map((t, i) => (
+            <div
+              key={t.name}
+              className={`hp-glass rounded-2xl p-6 relative overflow-hidden hp-reveal hp-reveal-d${i + 1}`}
+            >
+              {/* Accent bar */}
+              <div
+                className="hp-testimonial-bar"
+                style={{ background: t.color }}
+              />
+              <div className="pl-4">
+                {/* Stars */}
+                <div className="flex gap-0.5 mb-3">
+                  {[...Array(5)].map((_, j) => (
+                    <Star
+                      key={j}
+                      className="w-3.5 h-3.5"
+                      style={{ color: t.color }}
+                      fill={t.color}
+                    />
+                  ))}
+                </div>
+                <p
+                  className="text-sm leading-relaxed mb-5 italic"
+                  style={{ color: "var(--hp-text-muted)" }}
+                >
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+                <div className="flex items-center gap-3">
+                  <div
+                    className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold"
+                    style={{
+                      background: `${t.color}20`,
+                      color: t.color,
+                    }}
+                  >
+                    {t.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
+                  </div>
+                  <div>
+                    <p
+                      className="text-sm font-semibold"
+                      style={{ color: "var(--hp-text)" }}
+                    >
+                      {t.name}
+                    </p>
+                    <p className="text-xs" style={{ color: "var(--hp-text-muted)" }}>
+                      Scored {t.score} &middot; {t.location}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── CTA ─────────────────────────────────────── */}
+      <section className="relative z-10 py-24 text-center">
+        {/* CTA glow */}
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] rounded-full pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(199,139,60,0.08) 0%, transparent 70%)",
+          }}
+        />
+        <h2
+          className="text-4xl md:text-5xl font-bold mb-4 relative hp-reveal"
+          style={{ fontFamily: "var(--font-serif)" }}
+        >
+          Ready to start
+          <br />
+          <span style={{ color: "var(--hp-accent)" }}>practicing?</span>
         </h2>
-        <p className="text-base mb-6" style={{ color: "var(--muted-foreground)" }}>
+        <p
+          className="text-base mb-8 relative hp-reveal hp-reveal-d1"
+          style={{ color: "var(--hp-text-muted)" }}
+        >
           Create a free account and take your first mock test today.
         </p>
-        <Button
-          size="lg"
-          className="text-base px-10 py-6 rounded-full bg-[#6b4c9a] hover:bg-[#5a3d85] text-white shadow-sm"
-          onClick={() => router.push(!loading && currentUser ? "/dashboard" : "/login")}
+        <button
+          onClick={handleCta}
+          className="hp-cta-btn px-10 py-5 rounded-full text-lg flex items-center gap-3 mx-auto relative hp-reveal hp-reveal-d2"
         >
           {!loading && currentUser ? "Go to Dashboard" : "Get Started Free"}
-        </Button>
+          <ArrowRight className="w-5 h-5" />
+        </button>
       </section>
+
+      {/* ── Footer ──────────────────────────────────── */}
+      <footer className="relative z-10 pb-10">
+        <div
+          className="max-w-screen-xl mx-auto px-6 pt-8 flex justify-between items-center"
+          style={{
+            borderTop: "1px solid var(--hp-border)",
+          }}
+        >
+          <span
+            className="text-xs tracking-widest uppercase"
+            style={{ color: "var(--hp-text-muted)" }}
+          >
+            CELPIP Mock Test
+          </span>
+          <span className="text-xs" style={{ color: "var(--hp-text-muted)" }}>
+            &copy; {new Date().getFullYear()}
+          </span>
+        </div>
+      </footer>
     </main>
   );
 }
