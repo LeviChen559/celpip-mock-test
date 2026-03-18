@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
 
-const client = new Anthropic();
-
 export async function POST(req: NextRequest) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
@@ -22,11 +20,14 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  const client = new Anthropic({ apiKey });
+
   const wordCount = userResponse
     .trim()
     .split(/\s+/)
     .filter((w: string) => w.length > 0).length;
 
+  try {
   const message = await client.messages.create({
     model: "claude-opus-4-6",
     max_tokens: 1024,
@@ -65,4 +66,8 @@ Please provide feedback in the following JSON format (respond ONLY with valid JS
   }
 
   return NextResponse.json(feedback);
+  } catch (err) {
+    console.error("Writing feedback API error:", err);
+    return NextResponse.json({ error: "Failed to generate feedback" }, { status: 500 });
+  }
 }

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/lib/hooks/use-auth";
+import Image from "next/image";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -22,7 +23,13 @@ export default function LoginPage() {
     }
   }, [loading, currentUser, router]);
 
-  if (currentUser) return null;
+  if (loading || currentUser) {
+    return (
+      <main className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "var(--background)" }}>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#6b4c9a]" />
+      </main>
+    );
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -55,6 +62,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-md border-2 border-[#e2ddd5] rounded-2xl">
         <CardContent className="pt-8 pb-8">
           <div className="text-center mb-6">
+            <Image src="/puggy-happy.png" alt="StudyPug mascot" width={120} height={120} className="mx-auto mb-4" />
             <h1 className="text-2xl font-bold text-[#1a1a2e] mb-1">
               {mode === "login" ? "Welcome Back" : "Create Account"}
             </h1>

@@ -48,8 +48,8 @@ CEO, Prairie Tech Inc.`,
       {
         id: "R5Q2",
         question:
-          "What is the minimum duration of job protection promised to staff after the corporate change?",
-        options: ["6 months", "12 months", "18 months", "24 months"],
+          "How many months of job protection are promised to staff after the corporate change?",
+        options: ["6", "12", "18", "24"],
         correctAnswer: 2,
       },
       {
@@ -179,12 +179,12 @@ All stations are fully accessible, with elevators, tactile guide paths, and prio
       {
         id: "R6Q1",
         question:
-          "What is the total travel time for a complete trip across the entire light rail route?",
+          "How many minutes does a complete trip across the entire light rail route take?",
         options: [
-          "42 minutes",
-          "47 minutes",
-          "52 minutes",
-          "60 minutes",
+          "42",
+          "47",
+          "52",
+          "60",
         ],
         correctAnswer: 2,
       },
@@ -216,12 +216,12 @@ All stations are fully accessible, with elevators, tactile guide paths, and prio
       {
         id: "R6Q5",
         question:
-          "What is the frequency of service on weekends' second day?",
+          "How often (in minutes) does service run on weekends' second day?",
         options: [
-          "Every 5 minutes",
-          "Every 10 minutes",
-          "Every 15 minutes",
-          "Every 20 minutes",
+          "5",
+          "10",
+          "15",
+          "20",
         ],
         correctAnswer: 2,
       },
@@ -247,12 +247,12 @@ All stations are fully accessible, with elevators, tactile guide paths, and prio
       {
         id: "R6Q8",
         question:
-          "For what duration can a passenger use one individual ticket to make connections?",
+          "How many minutes can a passenger use one individual ticket to make connections?",
         options: [
-          "60 minutes",
-          "90 minutes",
-          "120 minutes",
-          "The entire day",
+          "60",
+          "90",
+          "120",
+          "No limit — the entire day",
         ],
         correctAnswer: 1,
       },
@@ -282,12 +282,12 @@ Applicants are encouraged to update their Express Entry profiles to accurately r
       {
         id: "R7Q1",
         question:
-          "What is the lowest ranking score a candidate can have and still be eligible for a targeted draw?",
+          "What is the lowest ranking score (in points) a candidate can have and still be eligible for a targeted draw?",
         options: [
-          "350 points",
-          "380 points",
-          "400 points",
-          "420 points",
+          "350",
+          "380",
+          "400",
+          "420",
         ],
         correctAnswer: 1,
       },
@@ -308,12 +308,12 @@ Applicants are encouraged to update their Express Entry profiles to accurately r
       {
         id: "R7Q4",
         question:
-          "What share of the federal skilled worker invitations will be reserved for occupation-specific rounds?",
+          "At minimum, what percentage of the federal skilled worker invitations will be reserved for occupation-specific rounds?",
         options: [
-          "At least 25 percent",
-          "At least 30 percent",
-          "At least 40 percent",
-          "At least 50 percent",
+          "25%",
+          "30%",
+          "40%",
+          "50%",
         ],
         correctAnswer: 2,
       },
@@ -332,12 +332,12 @@ Applicants are encouraged to update their Express Entry profiles to accurately r
       {
         id: "R7Q6",
         question:
-          "Of all the permanent residency offers, how many will come through the federal skilled immigration stream?",
+          "Approximately how many permanent residency offers will come through the federal skilled immigration stream?",
         options: [
-          "Approximately 85,000",
-          "Approximately 110,000",
-          "Approximately 200,000",
-          "Approximately 465,000",
+          "85,000",
+          "110,000",
+          "200,000",
+          "465,000",
         ],
         correctAnswer: 1,
       },
@@ -398,7 +398,7 @@ While remote work has clear benefits, making it permanent comes with serious dra
         id: "R8Q1",
         question:
           "What productivity gain did Marcus's organization experience after staff began working from home?",
-        options: ["8 percent", "10 percent", "12 percent", "15 percent"],
+        options: ["8%", "10%", "12%", "15%"],
         correctAnswer: 2,
       },
       {
@@ -558,8 +558,8 @@ Maplewood Property Management`,
       {
         id: "R9Q3",
         question:
-          "How far ahead of time will tenants be informed before glass installation begins in their apartment?",
-        options: ["24 hours", "48 hours", "72 hours", "One week"],
+          "How many hours ahead of time will tenants be informed before glass installation begins in their apartment?",
+        options: ["24", "48", "72", "168"],
         correctAnswer: 2,
       },
       {
@@ -724,12 +724,12 @@ Important Dates:
       {
         id: "R10Q6",
         question:
-          "How far in advance of their enrolment period do students need to set up their online portal?",
+          "How many hours in advance of their enrolment period do students need to set up their online portal?",
         options: [
-          "12 hours",
-          "24 hours",
-          "48 hours",
-          "72 hours",
+          "12",
+          "24",
+          "48",
+          "72",
         ],
         correctAnswer: 2,
       },
@@ -743,12 +743,12 @@ Important Dates:
       {
         id: "R10Q8",
         question:
-          "What is the payment deadline for the enrolment confirmation fee after signing up for classes?",
+          "How many days after signing up for classes is the payment deadline for the enrolment confirmation fee?",
         options: [
-          "3 days",
-          "5 days",
-          "7 days",
-          "14 days",
+          "3",
+          "5",
+          "7",
+          "14",
         ],
         correctAnswer: 2,
       },
@@ -776,24 +776,24 @@ The study recommends that Canada invest $2.4 billion over the next ten years in 
       {
         id: "R11Q1",
         question:
-          "At what rate is the far north heating up relative to the worldwide temperature trend?",
+          "How many times faster is the far north heating up compared to the worldwide temperature trend?",
         options: [
-          "Twice as fast",
-          "Three times as fast",
-          "Nearly four times as fast",
-          "Five times as fast",
+          "Two",
+          "Three",
+          "Nearly four",
+          "Five",
         ],
         correctAnswer: 2,
       },
       {
         id: "R11Q2",
         question:
-          "What is the total temperature increase recorded in the polar region over the study period?",
+          "What is the total temperature increase (in degrees Celsius) recorded in the polar region over the study period?",
         options: [
-          "0.8 degrees Celsius",
-          "2.1 degrees Celsius",
-          "3.1 degrees Celsius",
-          "5.2 degrees Celsius",
+          "0.8",
+          "2.1",
+          "3.1",
+          "5.2",
         ],
         correctAnswer: 2,
       },
@@ -802,10 +802,10 @@ The study recommends that Canada invest $2.4 billion over the next ten years in 
         question:
           "By which decade do researchers expect the northern polar waters to be completely open in warm months?",
         options: [
-          "By the 2030s",
-          "By the 2040s",
-          "By the 2050s",
-          "By the 2060s",
+          "2030s",
+          "2040s",
+          "2050s",
+          "2060s",
         ],
         correctAnswer: 1,
       },
@@ -826,10 +826,10 @@ The study recommends that Canada invest $2.4 billion over the next ten years in 
         question:
           "What level of spending do the researchers propose for upgrading buildings and systems in the far north?",
         options: [
-          "$1.2 billion over five years",
-          "$2.4 billion over ten years",
-          "$3.6 billion over ten years",
-          "$5 billion over twenty years",
+          "$1.2 billion / five years",
+          "$2.4 billion / ten years",
+          "$3.6 billion / ten years",
+          "$5 billion / twenty years",
         ],
         correctAnswer: 1,
       },
@@ -848,12 +848,12 @@ The study recommends that Canada invest $2.4 billion over the next ten years in 
       {
         id: "R11Q7",
         question:
-          "At what rate has the annual minimum frozen ocean coverage been shrinking every ten years?",
+          "Approximately what percentage has the annual minimum frozen ocean coverage been shrinking every ten years?",
         options: [
-          "Approximately 7 percent",
-          "Approximately 10 percent",
-          "Approximately 13 percent",
-          "Approximately 18 percent",
+          "7%",
+          "10%",
+          "13%",
+          "18%",
         ],
         correctAnswer: 2,
       },
@@ -943,12 +943,12 @@ While the idea of universal basic income sounds appealing, the economics simply 
       {
         id: "R12Q5",
         question:
-          "How much would the guaranteed income program cost the country each year, according to the writers?",
+          "How many billions of dollars would the guaranteed income program cost the country each year, according to the writers?",
         options: [
-          "$50 billion",
-          "$65 billion",
-          "$85 billion",
-          "$100 billion",
+          "$50",
+          "$65",
+          "$85",
+          "$100",
         ],
         correctAnswer: 2,
       },
@@ -1077,12 +1077,12 @@ The Oakville Community Association`,
       },
       {
         id: "R13Q4",
-        question: "What weight of trash was gathered during the previous year's neighbourhood tidy-up?",
+        question: "How many kilograms of trash were gathered during the previous year's neighbourhood tidy-up?",
         options: [
-          "800 kilograms",
-          "1,000 kilograms",
-          "1,200 kilograms",
-          "1,500 kilograms",
+          "800",
+          "1,000",
+          "1,200",
+          "1,500",
         ],
         correctAnswer: 2,
       },
@@ -1210,12 +1210,12 @@ The library is open Monday to Thursday 9:00 AM to 9:00 PM, Friday 9:00 AM to 6:0
       {
         id: "R14Q4",
         question:
-          "At what outstanding fee amount does the system prevent cardholders from taking out more items?",
+          "Above what outstanding fee amount does the system prevent cardholders from taking out more items?",
         options: [
-          "Over $5.00",
-          "Over $10.00",
-          "Over $15.00",
-          "Over $25.00",
+          "$5.00",
+          "$10.00",
+          "$15.00",
+          "$25.00",
         ],
         correctAnswer: 2,
       },
@@ -1223,14 +1223,14 @@ The library is open Monday to Thursday 9:00 AM to 9:00 PM, Friday 9:00 AM to 6:0
         id: "R14Q5",
         question:
           "How many days ahead of time can patrons reserve a private workspace?",
-        options: ["1 day", "3 days", "5 days", "7 days"],
+        options: ["1", "3", "5", "7"],
         correctAnswer: 3,
       },
       {
         id: "R14Q6",
         question:
-          "For how long may periodicals be kept before they must be returned?",
-        options: ["7 days", "14 days", "21 days", "30 days"],
+          "How many days may periodicals be kept before they must be returned?",
+        options: ["7", "14", "21", "30"],
         correctAnswer: 1,
       },
       {
@@ -1276,12 +1276,12 @@ The federal government's Canada Digital Adoption Program has allocated $4 billio
       {
         id: "R15Q1",
         question:
-          "What was the total amount of investment funding secured by new Canadian tech companies in the most recent year?",
+          "How many billions of dollars in investment funding did new Canadian tech companies secure in the most recent year?",
         options: [
-          "$6.3 billion",
-          "$7.9 billion",
-          "$9.7 billion",
-          "$11.2 billion",
+          "$6.3",
+          "$7.9",
+          "$9.7",
+          "$11.2",
         ],
         correctAnswer: 2,
       },
@@ -1289,7 +1289,7 @@ The federal government's Canada Digital Adoption Program has allocated $4 billio
         id: "R15Q2",
         question:
           "What percentage of costs can qualifying technology firms in the westernmost province claim back through a provincial incentive?",
-        options: ["20 percent", "25 percent", "30 percent", "37.5 percent"],
+        options: ["20%", "25%", "30%", "37.5%"],
         correctAnswer: 2,
       },
       {
@@ -1314,24 +1314,24 @@ The federal government's Canada Digital Adoption Program has allocated $4 billio
       {
         id: "R15Q5",
         question:
-          "What is the total budget set aside by the federal government's program to help businesses embrace new technology?",
+          "How many billions of dollars has the federal government set aside in its program to help businesses embrace new technology?",
         options: [
-          "$1 billion",
-          "$2.5 billion",
-          "$4 billion",
-          "$5 billion",
+          "$1",
+          "$2.5",
+          "$4",
+          "$5",
         ],
         correctAnswer: 2,
       },
       {
         id: "R15Q6",
         question:
-          "How large is the cluster of technology firms operating in the Toronto area?",
+          "Roughly how many technology firms operate in the Toronto area?",
         options: [
-          "More than 2,500",
-          "More than 3,800",
-          "More than 5,200",
-          "More than 7,000",
+          "2,500",
+          "3,800",
+          "5,200",
+          "7,000",
         ],
         correctAnswer: 2,
       },
@@ -1340,34 +1340,34 @@ The federal government's Canada Digital Adoption Program has allocated $4 billio
         question:
           "What proportion of new company leaders reported trouble keeping experienced employees from leaving?",
         options: [
-          "35 percent",
-          "45 percent",
-          "55 percent",
-          "62 percent",
+          "35%",
+          "45%",
+          "55%",
+          "62%",
         ],
         correctAnswer: 1,
       },
       {
         id: "R15Q8",
         question:
-          "What research and development incentive rate does Quebec provide to smaller enterprises?",
+          "What is the maximum research and development incentive rate that Quebec provides to smaller enterprises?",
         options: [
-          "Up to 22 percent",
-          "Up to 30 percent",
-          "Up to 37.5 percent",
-          "Up to 45 percent",
+          "22%",
+          "30%",
+          "37.5%",
+          "45%",
         ],
         correctAnswer: 2,
       },
       {
         id: "R15Q9",
         question:
-          "How much funding has flowed into the environmentally focused technology industry in Vancouver over recent years?",
+          "Approximately how much funding has flowed into the environmentally focused technology industry in Vancouver over recent years?",
         options: [
-          "Over $800 million",
-          "Over $1.3 billion",
-          "Over $2.1 billion",
-          "Over $4 billion",
+          "$800 million",
+          "$1.3 billion",
+          "$2.1 billion",
+          "$4 billion",
         ],
         correctAnswer: 1,
       },

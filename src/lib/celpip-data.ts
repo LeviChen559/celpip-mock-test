@@ -920,7 +920,7 @@ As cities continue to grow, the integration of food production into urban planni
       {
         id: "R3Q2",
         question: "Approximately how many shared growing plots are available in Vancouver?",
-        options: ["Over 50", "Over 75", "Over 100", "Over 150"],
+        options: ["50", "75", "100", "150"],
         correctAnswer: 2,
       },
       {
@@ -950,24 +950,24 @@ As cities continue to grow, the integration of food production into urban planni
       {
         id: "R3Q5",
         question:
-          "According to the Food Secure Canada study, how many people in the country lack reliable access to adequate nutrition?",
+          "According to the Food Secure Canada study, how many million people in the country lack reliable access to adequate nutrition?",
         options: [
-          "2.2 million",
-          "3.5 million",
-          "4.4 million",
-          "5.8 million",
+          "2.2",
+          "3.5",
+          "4.4",
+          "5.8",
         ],
         correctAnswer: 2,
       },
       {
         id: "R3Q6",
         question:
-          "How much revenue does city-based food production generate across the country each year?",
+          "How many billions of dollars in revenue does city-based food production generate across the country each year?",
         options: [
-          "$1.5 billion",
-          "$2.8 billion",
-          "$3.6 billion",
-          "$4.4 billion",
+          "$1.5",
+          "$2.8",
+          "$3.6",
+          "$4.4",
         ],
         correctAnswer: 1,
       },
@@ -985,8 +985,8 @@ As cities continue to grow, the integration of food production into urban planni
       {
         id: "R3Q8",
         question:
-          "By what percentage do the indoor growing operations in Toronto cut water usage relative to traditional agriculture?",
-        options: ["75% less", "85% less", "90% less", "95% less"],
+          "By what percentage do the indoor growing operations in Toronto cut water usage compared to traditional agriculture?",
+        options: ["75%", "85%", "90%", "95%"],
         correctAnswer: 3,
       },
       {
@@ -1099,7 +1099,7 @@ What we do need is legislation that protects workers who negotiate alternative s
         id: "R4Q7",
         question:
           "By what percentage would the logistics company owner need to expand his workforce?",
-        options: ["10% more", "15% more", "20% more", "25% more"],
+        options: ["10%", "15%", "20%", "25%"],
         correctAnswer: 2,
       },
       {
@@ -1130,10 +1130,10 @@ What we do need is legislation that protects workers who negotiate alternative s
         question:
           "How many participants took part in the major Icelandic experiment with a reduced-day schedule?",
         options: [
-          "Over 1,000",
-          "Over 1,500",
-          "Over 2,500",
-          "Over 5,000",
+          "1,000",
+          "1,500",
+          "2,500",
+          "5,000",
         ],
         correctAnswer: 2,
       },

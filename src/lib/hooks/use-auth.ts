@@ -36,6 +36,7 @@ export function useAuthProvider(): AuthContextType {
   const supabase = useMemo(() => createClient(), []);
 
   useEffect(() => {
+    let initialLoad = true;
 
     const fetchProfile = async (user: User): Promise<AppUser | null> => {
       const { data } = await supabase
@@ -58,17 +59,20 @@ export function useAuthProvider(): AuthContextType {
       setLoading(false);
     });
 
-    // Listen for auth changes
+    // Listen for subsequent auth changes
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (_event: string, session: { user: User } | null) => {
+      if (initialLoad) {
+        initialLoad = false;
+        return; // skip — getSession already handled the initial state
+      }
       if (session?.user) {
         const profile = await fetchProfile(session.user);
         setCurrentUser(profile);
       } else {
         setCurrentUser(null);
       }
-      setLoading(false);
     });
 
     return () => subscription.unsubscribe();
