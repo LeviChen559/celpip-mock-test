@@ -26,6 +26,8 @@ export interface TestRecord {
       reading?: Record<string, number>;
       quiz?: Record<string, number>;
     };
+    responses?: Record<string, { title: string; prompt: string; text: string }>;
+    feedbacks?: Record<string, unknown>;
   };
   overallScore: number;
 }
