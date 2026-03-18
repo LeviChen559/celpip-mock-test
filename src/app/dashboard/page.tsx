@@ -287,6 +287,14 @@ export default function Dashboard() {
         <span className="text-sm font-medium text-[#1a1a2e]">
           {currentUser.name}
         </span>
+        {currentUser.role === "admin" && (
+          <button
+            onClick={() => router.push("/admin")}
+            className="px-3 py-1.5 rounded-full text-xs font-medium text-purple-600 hover:bg-purple-50 transition-colors"
+          >
+            Admin
+          </button>
+        )}
         <button
           onClick={() => signOut()}
           className="px-3 py-1.5 rounded-full text-xs font-medium text-[#6b6b7b] hover:text-red-600 transition-colors"

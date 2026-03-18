@@ -8,6 +8,7 @@ export interface AppUser {
   id: string;
   name: string;
   email: string;
+  role?: string;
 }
 
 interface AuthContextType {
@@ -41,11 +42,11 @@ export function useAuthProvider(): AuthContextType {
     const fetchProfile = async (user: User): Promise<AppUser | null> => {
       const { data } = await supabase
         .from("profiles")
-        .select("name, email")
+        .select("name, email, role")
         .eq("id", user.id)
         .single();
       if (!data) return null;
-      return { id: user.id, name: data.name, email: data.email };
+      return { id: user.id, name: data.name, email: data.email, role: data.role };
     };
 
     // Get initial session
