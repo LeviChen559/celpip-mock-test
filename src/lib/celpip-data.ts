@@ -3,6 +3,7 @@ export interface Question {
   question: string;
   options: string[];
   correctAnswer: number;
+  passage?: string;
 }
 
 export interface ListeningPart {
@@ -625,12 +626,8 @@ If you need to renew items, please use our online portal at www.greenfieldlibrar
       },
     ],
   },
-  {
-    id: "R1",
-    title: "Part 1: Reading Correspondence",
-    instruction:
-      "Read the following email correspondence and answer the questions.",
-    passage: `From: HR Department <hr@techsolutions.ca>
+  (() => {
+    const passageA = `From: HR Department <hr@techsolutions.ca>
 To: All Employees
 Subject: Updated Remote Work Policy — Effective January 15
 
@@ -654,122 +651,163 @@ Please review the full policy document on the company intranet. If you have ques
 
 Best regards,
 Jennifer Walsh
-Director of Human Resources`,
-    questions: [
-      {
-        id: "R1Q1",
-        question: "How often are staff permitted to work from home each week?",
-        options: ["1 day", "2 days", "3 days", "4 days"],
-        correctAnswer: 2,
-      },
-      {
-        id: "R1Q2",
-        question: "During which mandatory availability window must all staff be reachable?",
-        options: [
-          "8:00 AM to 4:00 PM",
-          "9:00 AM to 5:00 PM",
-          "10:00 AM to 3:00 PM",
-          "9:00 AM to 3:00 PM",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R1Q3",
-        question: "What is the financial allowance provided for setting up a workspace at home?",
-        options: ["$250", "$400", "$500", "$750"],
-        correctAnswer: 2,
-      },
-      {
-        id: "R1Q4",
-        question:
-          "What consequence may follow if a worker fails to achieve their productivity goals?",
-        options: [
-          "They receive a warning",
-          "They lose their stipend",
-          "They may have to return to full-time in-office",
-          "They are automatically terminated",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R1Q5",
-        question: "How frequently do company-wide gatherings take place, and on what schedule?",
-        options: [
-          "Every Friday",
-          "The first Monday of each month",
-          "The last Wednesday of each month",
-          "Every two weeks",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R1Q6",
-        question: "On what date do the new telecommuting guidelines come into force?",
-        options: [
-          "December 1",
-          "January 1",
-          "January 15",
-          "February 1",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R1Q7",
-        question: "Who is responsible for determining which days staff must be physically present at work?",
-        options: [
-          "Individual employees",
-          "The HR department",
-          "Each department",
-          "The company CEO",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R1Q8",
-        question: "What is the deadline for turning in proof of purchase for the workspace equipment allowance?",
-        options: [
-          "January 15",
-          "February 1",
-          "March 1",
-          "March 15",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R1Q9",
-        question: "At what intervals will the company reassess whether employees qualify to work from home?",
-        options: [
-          "Monthly",
-          "Quarterly",
-          "Twice a year",
-          "Annually",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R1Q10",
-        question: "What do staff members need in order to be exempted from attending company-wide gatherings?",
-        options: [
-          "A doctor's note",
-          "Verbal permission from any manager",
-          "Prior written approval from their direct supervisor",
-          "Approval from the HR director",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R1Q11",
-        question: "What process led to the creation of the revised guidelines?",
-        options: [
-          "A government mandate on remote work",
-          "A company-wide survey and consultation with department heads",
-          "Feedback from clients and customers",
-          "Recommendations from an external consulting firm",
-        ],
-        correctAnswer: 1,
-      },
-    ],
-  },
+Director of Human Resources`;
+
+    const passageB = `From: David Park <d.park@techsolutions.ca>
+To: HR Department <hr@techsolutions.ca>
+Subject: RE: Updated Remote Work Policy — Effective January 15
+
+Dear Jennifer,
+
+Thank you for sharing the updated remote work policy. I appreciate the effort that went into gathering employee feedback and consulting with department heads. I have a few questions and concerns that I would like to raise on behalf of the Marketing Department.
+
+First, regarding the mandatory in-office days, our team frequently collaborates with external clients who are based in the Pacific Time Zone. Having our in-office days fixed by the department could conflict with key client meetings that are typically scheduled on Tuesday and Thursday afternoons. Would it be possible for individual teams within a department to negotiate their in-office schedules based on client-facing obligations?
+
+Second, I wanted to ask about the home office stipend. Several members of my team already invested in home office equipment during the previous remote work arrangement in 2022. Will employees who purchased equipment at their own expense before this policy be eligible for any retroactive reimbursement, or does the $500 stipend apply only to new purchases made after January 15th?
+
+Third, I am concerned about the quarterly performance review process for remote work eligibility. Our department's major campaigns typically launch in Q1 and Q3, which means our workload and measurable output vary significantly throughout the year. Could you clarify what specific metrics will be used to evaluate remote work eligibility, and whether seasonal variations in productivity will be taken into account?
+
+Finally, regarding the monthly all-hands meetings, the first Monday of the month often coincides with our campaign launch preparation days. Would it be feasible to provide at least two weeks' advance notice of the meeting agenda so that teams can plan accordingly? Additionally, for employees who travel for business, will virtual attendance be accepted as an alternative when travel conflicts arise?
+
+I look forward to your response and any additional guidance on these matters.
+
+Best regards,
+David Park
+Senior Marketing Manager`;
+
+    return {
+      id: "R1",
+      title: "Part 1: Reading Correspondence",
+      instruction:
+        "Read the following email exchange and answer the questions. Questions 1–6 are based on the first email from HR. Questions 7–11 are based on the response from David Park.",
+      passage: passageA,
+      questions: [
+        {
+          id: "R1Q1",
+          question: "How often are staff permitted to work from home each week?",
+          options: ["1 day", "2 days", "3 days", "4 days"],
+          correctAnswer: 2,
+          passage: passageA,
+        },
+        {
+          id: "R1Q2",
+          question: "During which mandatory availability window must all staff be reachable?",
+          options: [
+            "8:00 AM to 4:00 PM",
+            "9:00 AM to 5:00 PM",
+            "10:00 AM to 3:00 PM",
+            "9:00 AM to 3:00 PM",
+          ],
+          correctAnswer: 2,
+          passage: passageA,
+        },
+        {
+          id: "R1Q3",
+          question: "What is the financial allowance provided for setting up a workspace at home?",
+          options: ["$250", "$400", "$500", "$750"],
+          correctAnswer: 2,
+          passage: passageA,
+        },
+        {
+          id: "R1Q4",
+          question:
+            "What consequence may follow if a worker fails to achieve their productivity goals?",
+          options: [
+            "They receive a warning",
+            "They lose their stipend",
+            "They may have to return to full-time in-office",
+            "They are automatically terminated",
+          ],
+          correctAnswer: 2,
+          passage: passageA,
+        },
+        {
+          id: "R1Q5",
+          question: "How frequently do company-wide gatherings take place, and on what schedule?",
+          options: [
+            "Every Friday",
+            "The first Monday of each month",
+            "The last Wednesday of each month",
+            "Every two weeks",
+          ],
+          correctAnswer: 1,
+          passage: passageA,
+        },
+        {
+          id: "R1Q6",
+          question: "On what date do the new telecommuting guidelines come into force?",
+          options: [
+            "December 1",
+            "January 1",
+            "January 15",
+            "February 1",
+          ],
+          correctAnswer: 2,
+          passage: passageA,
+        },
+        {
+          id: "R1Q7",
+          question: "Why does David believe fixed in-office days could be problematic for his team?",
+          options: [
+            "His team members live far from the office",
+            "His team collaborates with clients in the Pacific Time Zone",
+            "His team prefers to work from home every day",
+            "His team has members in different provinces",
+          ],
+          correctAnswer: 1,
+          passage: passageB,
+        },
+        {
+          id: "R1Q8",
+          question: "What does David ask about regarding the home office stipend?",
+          options: [
+            "Whether the amount can be increased to $750",
+            "Whether employees can choose their own equipment",
+            "Whether employees who bought equipment in 2022 can receive retroactive reimbursement",
+            "Whether the stipend can be split into monthly payments",
+          ],
+          correctAnswer: 2,
+          passage: passageB,
+        },
+        {
+          id: "R1Q9",
+          question: "What concern does David raise about the quarterly performance reviews?",
+          options: [
+            "The reviews are too frequent and time-consuming",
+            "Seasonal workload variations may affect measurable output unfairly",
+            "The Marketing Department should be exempt from reviews",
+            "Performance reviews should be conducted by external consultants",
+          ],
+          correctAnswer: 1,
+          passage: passageB,
+        },
+        {
+          id: "R1Q10",
+          question: "What does David request regarding the monthly all-hands meetings?",
+          options: [
+            "That they be moved to a different day of the week",
+            "That they be held virtually instead of in person",
+            "That at least two weeks' advance notice of the agenda be provided",
+            "That the Marketing Department be excused from attending",
+          ],
+          correctAnswer: 2,
+          passage: passageB,
+        },
+        {
+          id: "R1Q11",
+          question: "What alternative does David suggest for employees who have business travel conflicts with the all-hands meetings?",
+          options: [
+            "Rescheduling the meeting to accommodate travellers",
+            "Sending a written summary instead of attending",
+            "Having a colleague attend on their behalf",
+            "Allowing virtual attendance as an alternative",
+          ],
+          correctAnswer: 3,
+          passage: passageB,
+        },
+      ],
+    };
+  })(),
   {
     id: "R2",
     title: "Part 2: Reading to Apply a Diagram",
@@ -998,12 +1036,8 @@ As cities continue to grow, the integration of food production into urban planni
       },
     ],
   },
-  {
-    id: "R4",
-    title: "Part 4: Reading for Viewpoints",
-    instruction:
-      "Read the following opinion pieces and answer the questions about each author's viewpoint.",
-    passage: `SHOULD CANADA ADOPT A FOUR-DAY WORK WEEK?
+  (() => {
+    const vpA = `SHOULD CANADA ADOPT A FOUR-DAY WORK WEEK?
 
 VIEWPOINT A — By Rachel Kim, Management Consultant
 
@@ -1011,7 +1045,9 @@ The four-day work week is not just a feel-good idea — it's an evidence-based p
 
 The benefits extend beyond individual well-being. Reduced commuting means lower carbon emissions. Fewer office days mean lower operational costs for businesses. And in a tight labour market, offering a four-day week can be a powerful recruitment and retention tool. A recent survey by Indeed Canada found that 67% of Canadian workers would consider taking a pay cut of up to 5% for a four-day schedule.
 
-Canada should launch a nationwide pilot program, starting with the public sector. The data is compelling, and we can't afford to fall behind other nations that are already making this shift.
+Canada should launch a nationwide pilot program, starting with the public sector. The data is compelling, and we can't afford to fall behind other nations that are already making this shift.`;
+
+    const vpB = `SHOULD CANADA ADOPT A FOUR-DAY WORK WEEK?
 
 VIEWPOINT B — By David Chen, Small Business Owner
 
@@ -1019,7 +1055,9 @@ As the owner of a logistics company with 45 employees, I can tell you that a fou
 
 The pilot programs cited by advocates mostly involved office-based, knowledge-economy workers. They don't represent the reality of manufacturing, healthcare, retail, or logistics. A cashier at a grocery store can't compress five days of customer interactions into four.
 
-Instead of mandating a shorter work week, the government should focus on improving working conditions across the board — better overtime pay, stronger mental health supports, and more affordable childcare. These changes would benefit all workers, not just those in desk jobs.
+Instead of mandating a shorter work week, the government should focus on improving working conditions across the board — better overtime pay, stronger mental health supports, and more affordable childcare. These changes would benefit all workers, not just those in desk jobs.`;
+
+    const vpC = `SHOULD CANADA ADOPT A FOUR-DAY WORK WEEK?
 
 VIEWPOINT C — By Dr. Sandra Okafor, Labour Economist
 
@@ -1027,118 +1065,28 @@ Both sides make valid points, but the debate often ignores a crucial nuance: fle
 
 In my research, the most successful work-time reduction models are sector-specific. Hospitals use compressed shifts. Tech companies offer flexible Fridays. Retail businesses rotate shorter weeks among staff. A one-size-fits-all policy would create more problems than it solves.
 
-What we do need is legislation that protects workers who negotiate alternative schedules from discrimination or penalization. Currently, requesting reduced hours can signal a lack of commitment, especially for women and caregivers. A legal framework that normalizes work-time flexibility without stigma would be the most effective approach.`,
-    questions: [
-      {
-        id: "R4Q1",
-        question: "What research does the management consultant reference to back up her position?",
-        options: [
-          "A Canadian government study",
-          "Pilot programs in Iceland, the UK, and Japan",
-          "Research from Harvard University",
-          "A survey by the World Health Organization",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R4Q2",
-        question: "Based on a national employment survey, what trade-off would a majority of Canadian employees be willing to accept?",
-        options: [
-          "Quitting their current job",
-          "Moving to a different city for better hours",
-          "Taking a pay cut of up to 5% for a four-day week",
-          "Working longer hours for higher pay",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R4Q3",
-        question: "What is the primary objection raised by the logistics company owner?",
-        options: [
-          "It would reduce employee morale",
-          "It's impractical for industries like logistics",
-          "It would increase carbon emissions",
-          "It would require too much government spending",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R4Q4",
-        question: "What alternative measures does the small business owner propose to help workers?",
-        options: [
-          "Higher minimum wages",
-          "More vacation time",
-          "Better overtime pay, mental health supports, and affordable childcare",
-          "Tax cuts for businesses",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R4Q5",
-        question: "According to the labour economist, what outcome should policymakers prioritize?",
-        options: [
-          "A mandatory three-day weekend for all",
-          "A framework for flexible negotiations, not a uniform mandate",
-          "Eliminating overtime entirely",
-          "Letting the market decide without any regulation",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R4Q6",
-        question: "What stigma does the economist say employees encounter when seeking a lighter schedule?",
-        options: [
-          "They lose benefits",
-          "They are paid less per hour",
-          "They may be seen as less committed, especially women and caregivers",
-          "Their contracts are automatically terminated",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R4Q7",
-        question:
-          "By what percentage would the logistics company owner need to expand his workforce?",
-        options: ["10%", "15%", "20%", "25%"],
-        correctAnswer: 2,
-      },
-      {
-        id: "R4Q8",
-        question: "Which author is most in favour of the public sector taking the lead on this change?",
-        options: [
-          "Viewpoint A (Rachel Kim)",
-          "Viewpoint B (David Chen)",
-          "Viewpoint C (Dr. Okafor)",
-          "All three equally",
-        ],
-        correctAnswer: 0,
-      },
-      {
-        id: "R4Q9",
-        question:
-          "Which approach to shortening working hours does the labour economist find most effective?",
-        options: [
-          "Universal four-day weeks",
-          "Sector-specific models",
-          "Individual negotiations without any framework",
-          "Government-mandated schedules",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R4Q10",
-        question:
-          "How many participants took part in the major Icelandic experiment with a reduced-day schedule?",
-        options: [
-          "1,000",
-          "1,500",
-          "2,500",
-          "5,000",
-        ],
-        correctAnswer: 2,
-      },
-    ],
-  },
+What we do need is legislation that protects workers who negotiate alternative schedules from discrimination or penalization. Currently, requesting reduced hours can signal a lack of commitment, especially for women and caregivers. A legal framework that normalizes work-time flexibility without stigma would be the most effective approach.`;
+
+    return {
+      id: "R4",
+      title: "Part 4: Reading for Viewpoints",
+      instruction:
+        "Read the opinion pieces and answer the questions. Each question shows the relevant viewpoint.",
+      passage: vpA,
+      questions: [
+        { id: "R4Q1", question: "What research does the management consultant reference to back up her position?", options: ["A Canadian government study", "Pilot programs in Iceland, the UK, and Japan", "Research from Harvard University", "A survey by the World Health Organization"], correctAnswer: 1, passage: vpA },
+        { id: "R4Q2", question: "Based on a national employment survey, what trade-off would a majority of Canadian employees be willing to accept?", options: ["Quitting their current job", "Moving to a different city for better hours", "Taking a pay cut of up to 5% for a four-day week", "Working longer hours for higher pay"], correctAnswer: 2, passage: vpA },
+        { id: "R4Q3", question: "What is the primary objection raised by the logistics company owner?", options: ["It would reduce employee morale", "It's impractical for industries like logistics", "It would increase carbon emissions", "It would require too much government spending"], correctAnswer: 1, passage: vpB },
+        { id: "R4Q4", question: "What alternative measures does the small business owner propose to help workers?", options: ["Higher minimum wages", "More vacation time", "Better overtime pay, mental health supports, and affordable childcare", "Tax cuts for businesses"], correctAnswer: 2, passage: vpB },
+        { id: "R4Q5", question: "According to the labour economist, what outcome should policymakers prioritize?", options: ["A mandatory three-day weekend for all", "A framework for flexible negotiations, not a uniform mandate", "Eliminating overtime entirely", "Letting the market decide without any regulation"], correctAnswer: 1, passage: vpC },
+        { id: "R4Q6", question: "What stigma does the economist say employees encounter when seeking a lighter schedule?", options: ["They lose benefits", "They are paid less per hour", "They may be seen as less committed, especially women and caregivers", "Their contracts are automatically terminated"], correctAnswer: 2, passage: vpC },
+        { id: "R4Q7", question: "By what percentage would the logistics company owner need to expand his workforce?", options: ["10%", "15%", "20%", "25%"], correctAnswer: 2, passage: vpB },
+        { id: "R4Q8", question: "Which author is most in favour of the public sector taking the lead on this change?", options: ["Viewpoint A (Rachel Kim)", "Viewpoint B (David Chen)", "Viewpoint C (Dr. Okafor)", "All three equally"], correctAnswer: 0, passage: vpA },
+        { id: "R4Q9", question: "Which approach to shortening working hours does the labour economist find most effective?", options: ["Universal four-day weeks", "Sector-specific models", "Individual negotiations without any framework", "Government-mandated schedules"], correctAnswer: 1, passage: vpC },
+        { id: "R4Q10", question: "How many participants took part in the major Icelandic experiment with a reduced-day schedule?", options: ["1,000", "1,500", "2,500", "5,000"], correctAnswer: 2, passage: vpA },
+      ],
+    };
+  })(),
 ];
 
 export const readingParts: ReadingPart[] = [...readingPartsBase, ...readingPartsExtra];

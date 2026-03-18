@@ -149,6 +149,22 @@ export default function AdminPage() {
     }
   };
 
+  const deleteUser = async (userId: string) => {
+    if (!window.confirm("⚠️ WARNING: This will permanently DELETE this user account and ALL their data. This cannot be undone.\n\nAre you sure?")) return;
+    const res = await fetch("/api/admin", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "delete-user", userId }),
+    });
+    const data = await res.json();
+    if (data.error) {
+      alert("Failed to delete user: " + data.error);
+      return;
+    }
+    setSelectedUser(null);
+    fetchUsers();
+  };
+
   if (authLoading || loading) {
     return (
       <main className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "var(--background)" }}>
@@ -222,6 +238,9 @@ export default function AdminPage() {
               )}
               <Button size="sm" variant="outline" onClick={() => deleteUserRecords(p.id)} className="rounded-full text-red-600 border-red-300 hover:bg-red-50">
                 <Trash2 className="w-4 h-4 mr-1" /> Clear Data
+              </Button>
+              <Button size="sm" variant="outline" onClick={() => deleteUser(p.id)} className="rounded-full text-red-600 bg-red-50 border-red-400 hover:bg-red-100">
+                <Trash2 className="w-4 h-4 mr-1" /> Delete User
               </Button>
             </div>
           </div>

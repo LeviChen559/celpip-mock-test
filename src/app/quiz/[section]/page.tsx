@@ -45,7 +45,7 @@ function buildQuestions(section: string, partParam: string): QuizQuestion[] {
     return parts.flatMap((p) =>
       p.questions.map((q) => ({
         question: q,
-        context: p.passage,
+        context: q.passage || p.passage,
         contextLabel: "Passage",
         partTitle: p.title,
         partId: p.id,
@@ -390,11 +390,11 @@ export default function QuizPractice({
         </div>
       </div>
 
-      <div className="max-w-screen-xl mx-auto px-4 py-8">
+      <div className="max-w-screen-xl mx-auto px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Left: Context */}
           <div className="lg:sticky lg:top-24 lg:self-start">
-            <Card className="border-2 border-[#e2ddd5] rounded-2xl">
+            <Card className="border-2 border-[#e2ddd5] rounded-2xl py-4 px-2">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base">{current.partTitle}</CardTitle>
                 {current.contextLabel && (
@@ -422,7 +422,7 @@ export default function QuizPractice({
 
           {/* Right: Question */}
           <div className="flex flex-col gap-4">
-            <Card className="border-2 border-[#e2ddd5] rounded-2xl">
+            <Card className="border-2 border-[#e2ddd5] rounded-2xl py-4 px-2">
               <CardHeader>
                 <CardTitle className="text-base">
                   Question {currentIndex + 1}

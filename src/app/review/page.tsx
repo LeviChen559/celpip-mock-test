@@ -145,7 +145,7 @@ function ReviewContent() {
       for (const q of p.questions) {
         reviewQuestions.push({
           question: q,
-          context: "transcript" in p ? (p as { transcript: string }).transcript : ("passage" in p ? (p as { passage: string }).passage : undefined),
+          context: q.passage || ("transcript" in p ? (p as { transcript: string }).transcript : ("passage" in p ? (p as { passage: string }).passage : undefined)),
           contextLabel: quizSection === "listening" ? "Transcript" : "Passage",
           partTitle: p.title,
           userAnswer: quizAnswers[q.id] ?? -1,
@@ -163,7 +163,7 @@ function ReviewContent() {
         for (const q of p.questions) {
           reviewQuestions.push({
             question: q,
-            context: p.transcript || p.passage,
+            context: q.passage || p.transcript || p.passage,
             contextLabel: sectionName === "listening" ? "Transcript" : "Passage",
             partTitle: `${sectionName.charAt(0).toUpperCase() + sectionName.slice(1)} — ${p.title}`,
             userAnswer: userAnswers[q.id] ?? -1,

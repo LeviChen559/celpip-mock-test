@@ -40,13 +40,23 @@ export function useAuthProvider(): AuthContextType {
     let initialLoad = true;
 
     const fetchProfile = async (user: User): Promise<AppUser | null> => {
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from("profiles")
-        .select("name, email, role")
+        .select("name, email")
         .eq("id", user.id)
         .single();
-      if (!data) return null;
-      return { id: user.id, name: data.name, email: data.email, role: data.role };
+      if (data) return { id: user.id, name: data.name, email: data.email };
+      // Profile missing — create it as fallback
+      if (error) {
+        const name = user.user_metadata?.name || user.email?.split("@")[0] || "";
+        await supabase.from("profiles").upsert({
+          id: user.id,
+          name,
+          email: user.email || "",
+        });
+        return { id: user.id, name, email: user.email || "" };
+      }
+      return null;
     };
 
     // Get initial session

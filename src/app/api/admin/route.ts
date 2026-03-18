@@ -1,20 +1,31 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 
-async function isAdmin(supabase: ReturnType<Awaited<ReturnType<typeof createClient>>>) {
-  const { data: { user } } = await (supabase as { auth: { getUser: () => Promise<{ data: { user: { id: string } | null } }> } }).auth.getUser();
-  if (!user) return false;
-  const { data } = await supabase.from("profiles").select("role").eq("id", user.id).single();
-  return data?.role === "admin";
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function isAdmin(supabase: any) {
+  try {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return false;
+    const { data } = await supabase.from("profiles").select("role").eq("id", user.id).single();
+    return data?.role === "admin";
+  } catch {
+    return false;
+  }
 }
 
 export async function GET(req: NextRequest) {
   const supabase = await createClient();
+  const action = req.nextUrl.searchParams.get("action");
+
+  if (action === "debug") {
+    const { data: { user } } = await supabase.auth.getUser();
+    const { data: profile, error } = await supabase.from("profiles").select("role").eq("id", user?.id).single();
+    return NextResponse.json({ userId: user?.id, email: user?.email, role: profile?.role, error: error?.message });
+  }
+
   if (!(await isAdmin(supabase))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
   }
-
-  const action = req.nextUrl.searchParams.get("action");
 
   if (action === "users") {
     const { data: users, error } = await supabase
@@ -110,6 +121,37 @@ export async function POST(req: NextRequest) {
 
     await supabase.from("test_records").delete().eq("user_id", userId);
     await supabase.from("schedule_items").delete().eq("user_id", userId);
+
+    return NextResponse.json({ success: true });
+  }
+
+  if (action === "delete-user") {
+    if (!userId) return NextResponse.json({ error: "userId required" }, { status: 400 });
+
+    const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    if (!serviceKey) return NextResponse.json({ error: "Service role key not configured" }, { status: 500 });
+
+    // Delete user data first (cascade should handle this, but be explicit)
+    await supabase.from("test_records").delete().eq("user_id", userId);
+    await supabase.from("schedule_items").delete().eq("user_id", userId);
+    await supabase.from("profiles").delete().eq("id", userId);
+
+    // Delete from Supabase Auth using service role
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/admin/users/${userId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${serviceKey}`,
+          apikey: serviceKey,
+        },
+      }
+    );
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      return NextResponse.json({ error: err.message || "Failed to delete user" }, { status: 500 });
+    }
 
     return NextResponse.json({ success: true });
   }

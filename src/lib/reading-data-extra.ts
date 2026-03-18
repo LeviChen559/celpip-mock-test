@@ -1,12 +1,8 @@
 import { ReadingPart } from "./celpip-data";
 
 export const readingPartsExtra: ReadingPart[] = [
-  {
-    id: "R5",
-    title: "Part 5: Reading Correspondence",
-    instruction:
-      "Read the following email correspondence and answer the questions.",
-    passage: `From: Sarah Nguyen, CEO <s.nguyen@prairietech.ca>
+  (() => {
+    const passageA = `From: Sarah Nguyen, CEO <s.nguyen@prairietech.ca>
 To: All Staff
 Subject: Announcement — Merger with Northern Digital Solutions
 
@@ -32,118 +28,161 @@ Thank you for your continued dedication.
 
 Warm regards,
 Sarah Nguyen
-CEO, Prairie Tech Inc.`,
-    questions: [
-      {
-        id: "R5Q1",
-        question: "What will the combined organization be called after the two businesses join together?",
-        options: [
-          "Prairie Digital Inc.",
-          "Northern Prairie Tech",
-          "PrairieNorth Technologies",
-          "Prairie Tech Solutions",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R5Q2",
-        question:
-          "How many months of job protection are promised to staff after the corporate change?",
-        options: ["6", "12", "18", "24"],
-        correctAnswer: 2,
-      },
-      {
-        id: "R5Q3",
-        question: "Which city will serve as the main headquarters for the new entity?",
-        options: ["Thunder Bay", "Toronto", "Winnipeg", "Ottawa"],
-        correctAnswer: 2,
-      },
-      {
-        id: "R5Q4",
-        question:
-          "How much will employees receive yearly for health and wellness expenses under the updated plan?",
-        options: ["$800", "$1,000", "$1,200", "$1,500"],
-        correctAnswer: 2,
-      },
-      {
-        id: "R5Q5",
-        question: "By what date will employees learn about the updated reporting structure from their managers?",
-        options: [
-          "By March 15th",
-          "By March 25th",
-          "By April 1st",
-          "By June 1st",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R5Q6",
-        question: "On what date does the corporate union officially begin?",
-        options: [
-          "March 15th",
-          "March 25th",
-          "April 1st",
-          "June 1st",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R5Q7",
-        question: "What role will the Thunder Bay location play after the two companies combine?",
-        options: [
-          "It will be closed immediately",
-          "It will become the new headquarters",
-          "It will continue operating as a regional hub",
-          "It will be converted into a warehouse",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R5Q8",
-        question: "By what date should staff expect the updated employee perks and coverage to roll out?",
-        options: [
-          "By March 25th",
-          "By April 1st",
-          "By June 1st",
-          "By December 31st",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R5Q9",
-        question: "What is the main goal of the group tasked with blending the two workplace cultures?",
-        options: [
-          "To decide which employees will be laid off",
-          "To plan team-building activities and establish shared values",
-          "To negotiate salary increases for all staff",
-          "To select the new company headquarters",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R5Q10",
-        question: "Who will be selected to serve on the committee responsible for unifying company cultures?",
-        options: [
-          "Senior executives from both companies",
-          "External consultants",
-          "Volunteers from both companies",
-          "Department heads only",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R5Q11",
-        question: "What method of contact is provided for staff who have concerns about the organizational change?",
-        options: [
-          "By calling the CEO directly",
-          "By emailing merger@prairietech.ca",
-          "By visiting the Thunder Bay office",
-          "By submitting a form on the company website",
-        ],
-        correctAnswer: 1,
-      },
-    ],
-  },
+CEO, Prairie Tech Inc.`;
+
+    const passageB = `From: James Whitfield, Senior Developer <j.whitfield@northerndigital.ca>
+To: Sarah Nguyen, CEO <s.nguyen@prairietech.ca>
+Cc: merger@prairietech.ca
+Subject: Re: Announcement — Merger with Northern Digital Solutions
+
+Dear Ms. Nguyen,
+
+Thank you for the detailed announcement regarding the merger. I have been with Northern Digital Solutions in the Thunder Bay office for over seven years, and I appreciate the transparency in your message. However, I do have a few questions and concerns that I hope can be addressed.
+
+First, while I understand that the Thunder Bay office will remain open as a regional hub, I am wondering whether the scope of our work here will change. Currently, our team of 14 developers handles all back-end infrastructure for Northern Digital's client projects. Will the Thunder Bay team continue to manage these projects independently, or will responsibilities be redistributed to the Winnipeg office after the merger?
+
+Second, regarding the new benefits package, several colleagues and I are currently enrolled in Northern Digital's extended health plan, which includes coverage for physiotherapy and mental health counselling up to $3,000 per year. We would like to know whether these specific benefits will be preserved or reduced under the new combined package.
+
+Third, I noticed that the Culture Integration Committee will be made up of volunteers. I would like to put my name forward for this committee. Could you let me know when and how the selection process will take place? I believe representation from the Thunder Bay office is essential to ensure our team's perspective is included.
+
+Finally, I want to raise a practical concern about communication. Since the merger announcement, there has been a great deal of uncertainty among staff here. Many of my colleagues feel that most of the planning discussions have been centred in Winnipeg, and they worry that decisions affecting our office may be made without sufficient input from Thunder Bay employees. Would it be possible to schedule a dedicated town hall meeting — either in person or via video conference — specifically for Thunder Bay staff before March 25th?
+
+I appreciate your openness to questions and look forward to hearing back from the transition team.
+
+Best regards,
+James Whitfield
+Senior Developer, Thunder Bay Office
+Northern Digital Solutions`;
+
+    return {
+      id: "R5",
+      title: "Part 5: Reading Correspondence",
+      instruction:
+        "Read the following email exchange and answer the questions. Questions 1–6 are based on the first email from the CEO. Questions 7–11 are based on the employee's response.",
+      passage: passageA,
+      questions: [
+        {
+          id: "R5Q1",
+          question: "What will the combined organization be called after the two businesses join together?",
+          options: [
+            "Prairie Digital Inc.",
+            "Northern Prairie Tech",
+            "PrairieNorth Technologies",
+            "Prairie Tech Solutions",
+          ],
+          correctAnswer: 2,
+          passage: passageA,
+        },
+        {
+          id: "R5Q2",
+          question:
+            "How many months of job protection are promised to staff after the corporate change?",
+          options: ["6", "12", "18", "24"],
+          correctAnswer: 2,
+          passage: passageA,
+        },
+        {
+          id: "R5Q3",
+          question: "Which city will serve as the main headquarters for the new entity?",
+          options: ["Thunder Bay", "Toronto", "Winnipeg", "Ottawa"],
+          correctAnswer: 2,
+          passage: passageA,
+        },
+        {
+          id: "R5Q4",
+          question:
+            "How much will employees receive yearly for health and wellness expenses under the updated plan?",
+          options: ["$800", "$1,000", "$1,200", "$1,500"],
+          correctAnswer: 2,
+          passage: passageA,
+        },
+        {
+          id: "R5Q5",
+          question: "By what date will employees learn about the updated reporting structure from their managers?",
+          options: [
+            "By March 15th",
+            "By March 25th",
+            "By April 1st",
+            "By June 1st",
+          ],
+          correctAnswer: 1,
+          passage: passageA,
+        },
+        {
+          id: "R5Q6",
+          question: "On what date does the corporate union officially begin?",
+          options: [
+            "March 15th",
+            "March 25th",
+            "April 1st",
+            "June 1st",
+          ],
+          correctAnswer: 2,
+          passage: passageA,
+        },
+        {
+          id: "R5Q7",
+          question: "How many developers currently work in the Thunder Bay office?",
+          options: [
+            "7",
+            "10",
+            "14",
+            "18",
+          ],
+          correctAnswer: 2,
+          passage: passageB,
+        },
+        {
+          id: "R5Q8",
+          question: "What specific type of work does the Thunder Bay development team currently handle?",
+          options: [
+            "Front-end design for marketing websites",
+            "Back-end infrastructure for client projects",
+            "Quality assurance testing for mobile apps",
+            "Customer support and technical documentation",
+          ],
+          correctAnswer: 1,
+          passage: passageB,
+        },
+        {
+          id: "R5Q9",
+          question: "How much annual coverage does Northern Digital's current extended health plan provide for physiotherapy and mental health counselling?",
+          options: [
+            "$1,200",
+            "$1,500",
+            "$2,000",
+            "$3,000",
+          ],
+          correctAnswer: 3,
+          passage: passageB,
+        },
+        {
+          id: "R5Q10",
+          question: "What does James request be arranged specifically for Thunder Bay employees before March 25th?",
+          options: [
+            "A salary review meeting",
+            "A dedicated town hall meeting",
+            "A visit from the CEO to the Thunder Bay office",
+            "A written summary of all planned changes",
+          ],
+          correctAnswer: 1,
+          passage: passageB,
+        },
+        {
+          id: "R5Q11",
+          question: "What is the main concern James raises about communication during the merger process?",
+          options: [
+            "That emails are not being delivered to Thunder Bay staff",
+            "That the transition team has not responded to previous inquiries",
+            "That planning discussions have been centred in Winnipeg without sufficient input from Thunder Bay",
+            "That the merger announcement was sent too late for staff to prepare",
+          ],
+          correctAnswer: 2,
+          passage: passageB,
+        },
+      ],
+    };
+  })(),
   {
     id: "R6",
     title: "Part 6: Reading to Apply a Diagram",
@@ -379,135 +418,41 @@ Applicants are encouraged to update their Express Entry profiles to accurately r
       },
     ],
   },
-  {
-    id: "R8",
-    title: "Part 8: Reading for Viewpoints",
-    instruction:
-      "Read the following two viewpoints and answer the questions.",
-    passage: `SHOULD COMPANIES ALLOW PERMANENT WORK-FROM-HOME ARRANGEMENTS?
+  (() => {
+    const vpA = `SHOULD COMPANIES ALLOW PERMANENT WORK-FROM-HOME ARRANGEMENTS?
 
 Viewpoint A — Marcus Thiessen, Operations Manager, Calgary:
 
-The pandemic proved that remote work is not only possible but often more productive. Our company saw a 12 percent increase in output when employees switched to working from home, and our overhead costs dropped by nearly $200,000 annually because we downsized our office space. Employees report higher satisfaction, spend less time commuting, and have more flexibility to manage family responsibilities. For companies in expensive cities like Toronto or Vancouver, remote work also opens the door to hiring talented people from smaller communities who would never relocate. The idea that people must sit in an office to be effective is outdated. I believe permanent remote work should be the default, with occasional in-person meetings for collaboration when truly needed.
+The pandemic proved that remote work is not only possible but often more productive. Our company saw a 12 percent increase in output when employees switched to working from home, and our overhead costs dropped by nearly $200,000 annually because we downsized our office space. Employees report higher satisfaction, spend less time commuting, and have more flexibility to manage family responsibilities. For companies in expensive cities like Toronto or Vancouver, remote work also opens the door to hiring talented people from smaller communities who would never relocate. The idea that people must sit in an office to be effective is outdated. I believe permanent remote work should be the default, with occasional in-person meetings for collaboration when truly needed.`;
+
+    const vpB = `SHOULD COMPANIES ALLOW PERMANENT WORK-FROM-HOME ARRANGEMENTS?
 
 Viewpoint B — Linda Carreiro, Human Resources Director, Halifax:
 
-While remote work has clear benefits, making it permanent comes with serious drawbacks that many people overlook. In my experience, team cohesion suffers significantly when people never see each other face to face. New employees especially struggle to build relationships and learn the company culture through a screen. Mental health is another concern — many remote workers report feelings of isolation and difficulty separating work from personal life, leading to burnout. There is also the issue of fairness: not every role can be done remotely, so allowing some employees to work from home permanently while others must come in creates resentment. A hybrid model — perhaps three days in the office and two at home — offers the best balance. It preserves flexibility while maintaining the human connections that make workplaces thrive.`,
-    questions: [
-      {
-        id: "R8Q1",
-        question:
-          "What productivity gain did Marcus's organization experience after staff began working from home?",
-        options: ["8%", "10%", "12%", "15%"],
-        correctAnswer: 2,
-      },
-      {
-        id: "R8Q2",
-        question: "What challenge does Linda highlight for recently hired staff in a fully remote setting?",
-        options: [
-          "They lack technical skills for remote tools",
-          "They struggle to build relationships and learn company culture",
-          "They are less productive than experienced workers",
-          "They demand higher salaries for remote positions",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R8Q3",
-        question:
-          "What yearly cost reduction did Marcus's firm achieve by reducing its physical workspace?",
-        options: ["$100,000", "$150,000", "$200,000", "$250,000"],
-        correctAnswer: 2,
-      },
-      {
-        id: "R8Q4",
-        question: "What type of work arrangement does Linda propose as the ideal compromise?",
-        options: [
-          "Full-time remote work",
-          "Full-time office work",
-          "A hybrid model with three office days and two home days",
-          "Alternating weeks between office and home",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R8Q5",
-        question:
-          "What equity problem does Linda identify with allowing some staff to always work from home?",
-        options: [
-          "Senior employees get preferential treatment",
-          "Not every role can be done remotely, creating resentment",
-          "Remote workers receive lower pay than office workers",
-          "Managers cannot evaluate remote employees accurately",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R8Q6",
-        question:
-          "How does Marcus say that working from home helps with recruitment?",
-        options: [
-          "It allows companies to pay lower salaries",
-          "It opens the door to hiring talented people from smaller communities",
-          "It eliminates the need for HR departments",
-          "It reduces the number of job applications",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R8Q7",
-        question:
-          "What psychological well-being issue does Linda link to employees never coming into the workplace?",
-        options: [
-          "Increased anxiety about job security",
-          "Difficulty learning new software tools",
-          "Feelings of isolation and difficulty separating work from personal life",
-          "Pressure to work longer hours due to manager surveillance",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R8Q8",
-        question: "What does Marcus think should be the standard policy for where employees do their jobs?",
-        options: [
-          "A hybrid model with equal office and home days",
-          "Full-time office work with remote Fridays",
-          "Permanent remote work with occasional in-person meetings",
-          "Rotating shifts between office and home weekly",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R8Q9",
-        question: "In which city does Marcus work?",
-        options: [
-          "Toronto",
-          "Vancouver",
-          "Calgary",
-          "Halifax",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R8Q10",
-        question:
-          "In Linda's view, what is the key ingredient that helps organizations flourish?",
-        options: [
-          "Competitive salaries and bonuses",
-          "Flexible scheduling software",
-          "Human connections",
-          "Strict performance management",
-        ],
-        correctAnswer: 2,
-      },
-    ],
-  },
-  {
-    id: "R9",
-    title: "Part 9: Reading Correspondence",
-    instruction:
-      "Read the following email correspondence and answer the questions.",
-    passage: `From: Maplewood Property Management <info@maplewoodpm.ca>
+While remote work has clear benefits, making it permanent comes with serious drawbacks that many people overlook. In my experience, team cohesion suffers significantly when people never see each other face to face. New employees especially struggle to build relationships and learn the company culture through a screen. Mental health is another concern — many remote workers report feelings of isolation and difficulty separating work from personal life, leading to burnout. There is also the issue of fairness: not every role can be done remotely, so allowing some employees to work from home permanently while others must come in creates resentment. A hybrid model — perhaps three days in the office and two at home — offers the best balance. It preserves flexibility while maintaining the human connections that make workplaces thrive.`;
+
+    return {
+      id: "R8",
+      title: "Part 8: Reading for Viewpoints",
+      instruction:
+        "Read the two viewpoints and answer the questions. Each question shows the relevant viewpoint.",
+      passage: vpA,
+      questions: [
+        { id: "R8Q1", question: "What productivity gain did Marcus's organization experience after staff began working from home?", options: ["8%", "10%", "12%", "15%"], correctAnswer: 2, passage: vpA },
+        { id: "R8Q2", question: "What challenge does Linda highlight for recently hired staff in a fully remote setting?", options: ["They lack technical skills for remote tools", "They struggle to build relationships and learn company culture", "They are less productive than experienced workers", "They demand higher salaries for remote positions"], correctAnswer: 1, passage: vpB },
+        { id: "R8Q3", question: "What yearly cost reduction did Marcus's firm achieve by reducing its physical workspace?", options: ["$100,000", "$150,000", "$200,000", "$250,000"], correctAnswer: 2, passage: vpA },
+        { id: "R8Q4", question: "What type of work arrangement does Linda propose as the ideal compromise?", options: ["Full-time remote work", "Full-time office work", "A hybrid model with three office days and two home days", "Alternating weeks between office and home"], correctAnswer: 2, passage: vpB },
+        { id: "R8Q5", question: "What equity problem does Linda identify with allowing some staff to always work from home?", options: ["Senior employees get preferential treatment", "Not every role can be done remotely, creating resentment", "Remote workers receive lower pay than office workers", "Managers cannot evaluate remote employees accurately"], correctAnswer: 1, passage: vpB },
+        { id: "R8Q6", question: "How does Marcus say that working from home helps with recruitment?", options: ["It allows companies to pay lower salaries", "It opens the door to hiring talented people from smaller communities", "It eliminates the need for HR departments", "It reduces the number of job applications"], correctAnswer: 1, passage: vpA },
+        { id: "R8Q7", question: "What psychological well-being issue does Linda link to employees never coming into the workplace?", options: ["Increased anxiety about job security", "Difficulty learning new software tools", "Feelings of isolation and difficulty separating work from personal life", "Pressure to work longer hours due to manager surveillance"], correctAnswer: 2, passage: vpB },
+        { id: "R8Q8", question: "What does Marcus think should be the standard policy for where employees do their jobs?", options: ["A hybrid model with equal office and home days", "Full-time office work with remote Fridays", "Permanent remote work with occasional in-person meetings", "Rotating shifts between office and home weekly"], correctAnswer: 2, passage: vpA },
+        { id: "R8Q9", question: "In which city does Marcus work?", options: ["Toronto", "Vancouver", "Calgary", "Halifax"], correctAnswer: 2, passage: vpA },
+        { id: "R8Q10", question: "In Linda's view, what is the key ingredient that helps organizations flourish?", options: ["Competitive salaries and bonuses", "Flexible scheduling software", "Human connections", "Strict performance management"], correctAnswer: 2, passage: vpB },
+      ],
+    };
+  })(),
+  (() => {
+    const passageA = `From: Maplewood Property Management <info@maplewoodpm.ca>
 To: All Residents — 245 Lakeshore Drive, Burlington, ON
 Subject: Important Notice — Building Renovation Schedule
 
@@ -529,125 +474,167 @@ Throughout the renovation, construction hours will be Monday to Friday, 8:00 AM 
 For questions, please contact our project coordinator, David Park, at d.park@maplewoodpm.ca or 905-555-0178.
 
 Thank you for your cooperation,
-Maplewood Property Management`,
-    questions: [
-      {
-        id: "R9Q1",
-        question:
-          "What is the deadline for tenants to collect their replacement access devices?",
-        options: [
-          "By April 15th",
-          "By May 3rd",
-          "By May 5th",
-          "By June 30th",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R9Q2",
-        question:
-          "How will tenants enter the building while the front foyer is being redesigned?",
-        options: [
-          "The main entrance",
-          "The parking garage entrance",
-          "The side entrance on Maple Avenue",
-          "The rear entrance on Lakeshore Drive",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R9Q3",
-        question:
-          "How many hours ahead of time will tenants be informed before glass installation begins in their apartment?",
-        options: ["24", "48", "72", "168"],
-        correctAnswer: 2,
-      },
-      {
-        id: "R9Q4",
-        question:
-          "What preparation step must tenants complete before the glass installation crew arrives?",
-        options: [
-          "Remove all furniture from the room",
-          "Move personal items at least one metre from windows",
-          "Cover windows with plastic sheeting",
-          "Stay out of the unit for the entire day",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R9Q5",
-        question: "On what date does the lift upgrade stage of the project start?",
-        options: ["May 5th", "June 30th", "July 1st", "September 1st"],
-        correctAnswer: 2,
-      },
-      {
-        id: "R9Q6",
-        question: "What is the location of the property undergoing improvements?",
-        options: [
-          "100 Maple Avenue, Burlington",
-          "245 Lakeshore Drive, Burlington",
-          "320 King Street, Hamilton",
-          "450 Ontario Street, Oakville",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R9Q7",
-        question: "What change will affect existing building access devices once construction begins?",
-        options: [
-          "They will be upgraded remotely",
-          "They will be deactivated",
-          "They will work only at the side entrance",
-          "They will be collected by management",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R9Q8",
-        question: "What are tenants encouraged to do while the lifts are being upgraded to reduce delays?",
-        options: [
-          "Avoid using elevators entirely",
-          "Only use elevators before 8:00 AM",
-          "Use the stairs for trips of three floors or fewer",
-          "Schedule elevator use in advance",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R9Q9",
-        question: "What is the expected duration of the glass installation in a single apartment?",
-        options: [
-          "A few hours",
-          "Approximately one full day",
-          "Two full days",
-          "One full week",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R9Q10",
-        question: "During which days and times will building work be carried out?",
-        options: [
-          "Monday to Friday, 7:00 AM to 4:00 PM",
-          "Monday to Friday, 8:00 AM to 5:00 PM",
-          "Monday to Saturday, 8:00 AM to 6:00 PM",
-          "Every day, 9:00 AM to 5:00 PM",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R9Q11",
-        question: "Which individual should residents contact with questions about the improvement project?",
-        options: [
-          "Sarah Nguyen",
-          "David Park",
-          "The building concierge",
-          "The Maplewood CEO",
-        ],
-        correctAnswer: 1,
-      },
-    ],
-  },
+Maplewood Property Management`;
+
+    const passageB = `From: Anita Sharma, Unit 1204 <anita.sharma@gmail.com>
+To: David Park <d.park@maplewoodpm.ca>
+Cc: Maplewood Property Management <info@maplewoodpm.ca>
+Subject: Re: Important Notice — Building Renovation Schedule
+
+Dear Mr. Park,
+
+Thank you for the detailed renovation notice. I have lived at 245 Lakeshore Drive for nearly nine years and I am glad to see the building finally receiving these upgrades. However, after reading the schedule carefully, I have several questions and concerns that I hope you can address.
+
+Regarding Phase 1, I work from home three days a week and rely on reliable building access. The side entrance on Maple Avenue is quite far from the underground parking garage, which means I will need to walk around the entire building every time I return from errands. Is there any possibility of keeping the garage-level entrance operational during this phase? Also, I was unable to visit the concierge desk during regular hours last week. Could the new key fobs be mailed to residents who cannot pick them up in person?
+
+My biggest concern relates to Phase 2. I live on the 12th floor and I have a knee condition that makes it very difficult to use the stairs. I noticed the email mentions priority elevator access for residents with mobility concerns, but it does not explain how this would work in practice. Will there be a sign-up system or scheduled time slots? I would appreciate more specific details, as two months with only one working elevator serving a 15-storey building with over 200 units could create serious delays during morning rush hours.
+
+As for Phase 3, I have floor-to-ceiling windows in my living room and bedroom, and I own several large bookcases positioned directly against the window walls. Moving these heavy items one metre away on my own is not feasible. Will management provide any assistance with moving furniture, or can you recommend a moving service that other residents have used? Additionally, I have two cats, and I am worried about them escaping through open windows or doors during the installation. Could the work crew ensure that all entry points remain sealed while working in occupied units?
+
+Finally, I would like to suggest that management hold an in-person information session for residents before May 5th. Many of my neighbours on the 12th floor have similar questions, and a group meeting would be far more efficient than individual emails. The party room on the ground floor would be an ideal venue and could easily accommodate 40 to 50 people.
+
+I appreciate your time and look forward to your response.
+
+Sincerely,
+Anita Sharma
+Unit 1204, 245 Lakeshore Drive`;
+
+    return {
+      id: "R9",
+      title: "Part 9: Reading Correspondence",
+      instruction:
+        "Read the following email exchange and answer the questions. Questions 1–6 are based on the first email from management. Questions 7–11 are based on the resident's response.",
+      passage: passageA,
+      questions: [
+        {
+          id: "R9Q1",
+          question:
+            "What is the deadline for tenants to collect their replacement access devices?",
+          options: [
+            "By April 15th",
+            "By May 3rd",
+            "By May 5th",
+            "By June 30th",
+          ],
+          correctAnswer: 1,
+          passage: passageA,
+        },
+        {
+          id: "R9Q2",
+          question:
+            "How will tenants enter the building while the front foyer is being redesigned?",
+          options: [
+            "The main entrance",
+            "The parking garage entrance",
+            "The side entrance on Maple Avenue",
+            "The rear entrance on Lakeshore Drive",
+          ],
+          correctAnswer: 2,
+          passage: passageA,
+        },
+        {
+          id: "R9Q3",
+          question:
+            "How many hours ahead of time will tenants be informed before glass installation begins in their apartment?",
+          options: ["24", "48", "72", "168"],
+          correctAnswer: 2,
+          passage: passageA,
+        },
+        {
+          id: "R9Q4",
+          question:
+            "What preparation step must tenants complete before the glass installation crew arrives?",
+          options: [
+            "Remove all furniture from the room",
+            "Move personal items at least one metre from windows",
+            "Cover windows with plastic sheeting",
+            "Stay out of the unit for the entire day",
+          ],
+          correctAnswer: 1,
+          passage: passageA,
+        },
+        {
+          id: "R9Q5",
+          question: "On what date does the lift upgrade stage of the project start?",
+          options: ["May 5th", "June 30th", "July 1st", "September 1st"],
+          correctAnswer: 2,
+          passage: passageA,
+        },
+        {
+          id: "R9Q6",
+          question: "What is the location of the property undergoing improvements?",
+          options: [
+            "100 Maple Avenue, Burlington",
+            "245 Lakeshore Drive, Burlington",
+            "320 King Street, Hamilton",
+            "450 Ontario Street, Oakville",
+          ],
+          correctAnswer: 1,
+          passage: passageA,
+        },
+        {
+          id: "R9Q7",
+          question: "How long has Anita Sharma been a resident at 245 Lakeshore Drive?",
+          options: [
+            "About five years",
+            "About seven years",
+            "Nearly nine years",
+            "Over twelve years",
+          ],
+          correctAnswer: 2,
+          passage: passageB,
+        },
+        {
+          id: "R9Q8",
+          question: "Why is Anita concerned about using the side entrance during Phase 1?",
+          options: [
+            "It is not accessible to wheelchair users",
+            "It is far from the underground parking garage",
+            "It does not have a working key fob reader",
+            "It is only open during business hours",
+          ],
+          correctAnswer: 1,
+          passage: passageB,
+        },
+        {
+          id: "R9Q9",
+          question: "What health issue makes it difficult for Anita to take the stairs during Phase 2?",
+          options: [
+            "A back injury",
+            "A heart condition",
+            "A knee condition",
+            "A respiratory illness",
+          ],
+          correctAnswer: 2,
+          passage: passageB,
+        },
+        {
+          id: "R9Q10",
+          question: "What does Anita suggest management organize before renovations begin?",
+          options: [
+            "A written FAQ document for all residents",
+            "A one-on-one meeting with each tenant",
+            "An in-person information session in the party room",
+            "A video conference call for each floor",
+          ],
+          correctAnswer: 2,
+          passage: passageB,
+        },
+        {
+          id: "R9Q11",
+          question: "What concern does Anita raise about the window replacement work in her unit?",
+          options: [
+            "She is worried about noise levels during the installation",
+            "She cannot move heavy furniture by herself and fears her cats may escape",
+            "She is concerned the new windows will not match her interior decor",
+            "She does not want workers entering her unit without supervision",
+          ],
+          correctAnswer: 1,
+          passage: passageB,
+        },
+      ],
+    };
+  })(),
   {
     id: "R10",
     title: "Part 10: Reading to Apply a Diagram",
@@ -883,143 +870,41 @@ The study recommends that Canada invest $2.4 billion over the next ten years in 
       },
     ],
   },
-  {
-    id: "R12",
-    title: "Part 12: Reading for Viewpoints",
-    instruction:
-      "Read the following two viewpoints and answer the questions.",
-    passage: `SHOULD CANADA INTRODUCE A UNIVERSAL BASIC INCOME?
+  (() => {
+    const vpA = `SHOULD CANADA INTRODUCE A UNIVERSAL BASIC INCOME?
 
 Viewpoint A — Priya Dhawan, Economist, University of Toronto:
 
-Canada should seriously consider implementing a universal basic income (UBI). The concept is simple: every adult citizen receives a guaranteed monthly payment — say $1,500 — regardless of employment status. This would replace the patchwork of existing social assistance programs, many of which are inefficient and stigmatizing. A UBI pilot project in Ontario from 2017 to 2019 showed that participants experienced improved mental health, better nutrition, and many used the money to pursue education or start small businesses. Automation is eliminating jobs in manufacturing, retail, and transportation, and we need a safety net that reflects this new reality. Finland, Kenya, and several U.S. cities have run successful UBI experiments with encouraging results. The cost would be significant — roughly $85 billion annually — but it could be funded through a combination of eliminating redundant programs, modest tax increases on high earners, and the economic growth that comes when people have stable financial footing.
+Canada should seriously consider implementing a universal basic income (UBI). The concept is simple: every adult citizen receives a guaranteed monthly payment — say $1,500 — regardless of employment status. This would replace the patchwork of existing social assistance programs, many of which are inefficient and stigmatizing. A UBI pilot project in Ontario from 2017 to 2019 showed that participants experienced improved mental health, better nutrition, and many used the money to pursue education or start small businesses. Automation is eliminating jobs in manufacturing, retail, and transportation, and we need a safety net that reflects this new reality. Finland, Kenya, and several U.S. cities have run successful UBI experiments with encouraging results. The cost would be significant — roughly $85 billion annually — but it could be funded through a combination of eliminating redundant programs, modest tax increases on high earners, and the economic growth that comes when people have stable financial footing.`;
+
+    const vpB = `SHOULD CANADA INTRODUCE A UNIVERSAL BASIC INCOME?
 
 Viewpoint B — Trevor Makenzie, Senior Policy Advisor, Fraser Institute:
 
-While the idea of universal basic income sounds appealing, the economics simply do not add up. At $1,500 per month for every Canadian adult, the annual cost would exceed $85 billion — nearly a third of the entire federal budget. Even with cuts to existing programs, the funding gap would require massive tax increases that could drive businesses and investment out of the country. Furthermore, a guaranteed income risks reducing the incentive to work. The Ontario pilot project was too small and too short to draw meaningful conclusions; participants knew the program was temporary, which likely influenced their behaviour. Instead of UBI, Canada should invest in targeted programs: expanded employment insurance, affordable childcare, and skills retraining for workers displaced by automation. These approaches address specific problems without the enormous fiscal risk of handing money to every citizen, including those who do not need it.`,
-    questions: [
-      {
-        id: "R12Q1",
-        question: "What dollar amount per month does Priya propose as a guaranteed income for every adult?",
-        options: ["$1,000", "$1,200", "$1,500", "$2,000"],
-        correctAnswer: 2,
-      },
-      {
-        id: "R12Q2",
-        question:
-          "What flaw does Trevor point out regarding the trial program that ran in Ontario?",
-        options: [
-          "It was conducted in the wrong province",
-          "It was too small and too short to draw meaningful conclusions",
-          "It showed that participants stopped working entirely",
-          "It was more expensive than projected",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R12Q3",
-        question:
-          "What beneficial results does Priya cite from the provincial trial program?",
-        options: [
-          "Higher employment rates and increased tax revenue",
-          "Improved mental health, better nutrition, and pursuit of education",
-          "Reduced crime rates and lower healthcare costs",
-          "More home ownership and decreased personal debt",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R12Q4",
-        question:
-          "What alternative approaches does Trevor favour over a universal guaranteed income?",
-        options: [
-          "A smaller UBI payment of $500 per month",
-          "Higher minimum wages across all provinces",
-          "Expanded employment insurance, affordable childcare, and skills retraining",
-          "Tax credits for low-income families",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R12Q5",
-        question:
-          "How many billions of dollars would the guaranteed income program cost the country each year, according to the writers?",
-        options: [
-          "$50",
-          "$65",
-          "$85",
-          "$100",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R12Q6",
-        question:
-          "Which places around the world does Priya mention as examples where guaranteed income programs have been tested?",
-        options: [
-          "Germany, Japan, and Australia",
-          "Finland, Kenya, and several U.S. cities",
-          "Sweden, India, and the United Kingdom",
-          "Norway, Brazil, and South Korea",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R12Q7",
-        question:
-          "According to Trevor, what would be the consequence of significantly raising taxes to fund this program?",
-        options: [
-          "They would primarily affect middle-class families",
-          "They would have no measurable impact",
-          "They could drive businesses and investment out of the country",
-          "They would be offset by increased consumer spending",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R12Q8",
-        question:
-          "What is one funding source that Priya suggests could help pay for a guaranteed income?",
-        options: [
-          "Reducing military spending",
-          "Eliminating redundant social assistance programs",
-          "Introducing a national sales tax",
-          "Borrowing from international organizations",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R12Q9",
-        question:
-          "During which years was the provincial guaranteed income trial conducted?",
-        options: [
-          "2014 to 2016",
-          "2015 to 2017",
-          "2017 to 2019",
-          "2019 to 2021",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R12Q10",
-        question:
-          "What negative behavioural effect does Trevor worry would result from providing unconditional payments?",
-        options: [
-          "Increased inflation in housing markets",
-          "Reducing the incentive to work",
-          "Higher rates of substance abuse",
-          "Declining birth rates",
-        ],
-        correctAnswer: 1,
-      },
-    ],
-  },
-  {
-    id: "R13",
-    title: "Part 13: Reading Correspondence",
-    instruction:
-      "Read the following email correspondence and answer the questions.",
-    passage: `From: Oakville Community Association <events@oakvilleca.org>
+While the idea of universal basic income sounds appealing, the economics simply do not add up. At $1,500 per month for every Canadian adult, the annual cost would exceed $85 billion — nearly a third of the entire federal budget. Even with cuts to existing programs, the funding gap would require massive tax increases that could drive businesses and investment out of the country. Furthermore, a guaranteed income risks reducing the incentive to work. The Ontario pilot project was too small and too short to draw meaningful conclusions; participants knew the program was temporary, which likely influenced their behaviour. Instead of UBI, Canada should invest in targeted programs: expanded employment insurance, affordable childcare, and skills retraining for workers displaced by automation. These approaches address specific problems without the enormous fiscal risk of handing money to every citizen, including those who do not need it.`;
+
+    return {
+      id: "R12",
+      title: "Part 12: Reading for Viewpoints",
+      instruction:
+        "Read the two viewpoints and answer the questions. Each question shows the relevant viewpoint.",
+      passage: vpA,
+      questions: [
+        { id: "R12Q1", question: "What dollar amount per month does Priya propose as a guaranteed income for every adult?", options: ["$1,000", "$1,200", "$1,500", "$2,000"], correctAnswer: 2, passage: vpA },
+        { id: "R12Q2", question: "What flaw does Trevor point out regarding the trial program that ran in Ontario?", options: ["It was conducted in the wrong province", "It was too small and too short to draw meaningful conclusions", "It showed that participants stopped working entirely", "It was more expensive than projected"], correctAnswer: 1, passage: vpB },
+        { id: "R12Q3", question: "What beneficial results does Priya cite from the provincial trial program?", options: ["Higher employment rates and increased tax revenue", "Improved mental health, better nutrition, and pursuit of education", "Reduced crime rates and lower healthcare costs", "More home ownership and decreased personal debt"], correctAnswer: 1, passage: vpA },
+        { id: "R12Q4", question: "What alternative approaches does Trevor favour over a universal guaranteed income?", options: ["A smaller UBI payment of $500 per month", "Higher minimum wages across all provinces", "Expanded employment insurance, affordable childcare, and skills retraining", "Tax credits for low-income families"], correctAnswer: 2, passage: vpB },
+        { id: "R12Q5", question: "How many billions of dollars would the guaranteed income program cost the country each year, according to the writers?", options: ["$50", "$65", "$85", "$100"], correctAnswer: 2, passage: vpA },
+        { id: "R12Q6", question: "Which places around the world does Priya mention as examples where guaranteed income programs have been tested?", options: ["Germany, Japan, and Australia", "Finland, Kenya, and several U.S. cities", "Sweden, India, and the United Kingdom", "Norway, Brazil, and South Korea"], correctAnswer: 1, passage: vpA },
+        { id: "R12Q7", question: "According to Trevor, what would be the consequence of significantly raising taxes to fund this program?", options: ["They would primarily affect middle-class families", "They would have no measurable impact", "They could drive businesses and investment out of the country", "They would be offset by increased consumer spending"], correctAnswer: 2, passage: vpB },
+        { id: "R12Q8", question: "What is one funding source that Priya suggests could help pay for a guaranteed income?", options: ["Reducing military spending", "Eliminating redundant social assistance programs", "Introducing a national sales tax", "Borrowing from international organizations"], correctAnswer: 1, passage: vpA },
+        { id: "R12Q9", question: "During which years was the provincial guaranteed income trial conducted?", options: ["2014 to 2016", "2015 to 2017", "2017 to 2019", "2019 to 2021"], correctAnswer: 2, passage: vpA },
+        { id: "R12Q10", question: "What negative behavioural effect does Trevor worry would result from providing unconditional payments?", options: ["Increased inflation in housing markets", "Reducing the incentive to work", "Higher rates of substance abuse", "Declining birth rates"], correctAnswer: 1, passage: vpB },
+      ],
+    };
+  })(),
+  (() => {
+    const passageA = `From: Oakville Community Association <events@oakvilleca.org>
 To: Members and Neighbours
 Subject: Annual Spring Clean-Up and Community BBQ — Saturday, April 26th
 
@@ -1043,124 +928,174 @@ We need a minimum of 60 volunteers to cover all zones. Last year we had 85 parti
 Questions? Email events@oakvilleca.org or call 905-555-0234.
 
 See you there!
-The Oakville Community Association`,
-    questions: [
-      {
-        id: "R13Q1",
-        question: "At what hour should helpers arrive for sign-in and a morning snack?",
-        options: ["8:00 AM", "8:30 AM", "9:00 AM", "10:00 AM"],
-        correctAnswer: 2,
-      },
-      {
-        id: "R13Q2",
-        question:
-          "What types of goods will the special disposal vehicle accept from residents?",
-        options: [
-          "Paint and chemicals",
-          "Tires and batteries",
-          "Household electronics and small appliances",
-          "Furniture and mattresses",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R13Q3",
-        question:
-          "What bonus item is given to people who sign up ahead of time?",
-        options: [
-          "A gift card",
-          "A free lunch voucher",
-          "A free t-shirt",
-          "A reusable water bottle",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R13Q4",
-        question: "How many kilograms of trash were gathered during the previous year's neighbourhood tidy-up?",
-        options: [
-          "800",
-          "1,000",
-          "1,200",
-          "1,500",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R13Q5",
-        question:
-          "How old must young people be to take part in the event on their own, without adult supervision?",
-        options: ["10", "12", "14", "16"],
-        correctAnswer: 2,
-      },
-      {
-        id: "R13Q6",
-        question: "Which musical group will provide live entertainment at the afternoon gathering?",
-        options: [
-          "The Burlington Five",
-          "The Lakeshore Four",
-          "The Oakville Trio",
-          "The Coronation Band",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R13Q7",
-        question: "When does the outdoor cookout wrap up for the day?",
-        options: [
-          "1:00 PM",
-          "2:00 PM",
-          "2:30 PM",
-          "3:00 PM",
-        ],
-        correctAnswer: 3,
-      },
-      {
-        id: "R13Q8",
-        question: "What is the smallest number of helpers required to staff every assigned area?",
-        options: [
-          "40",
-          "50",
-          "60",
-          "85",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R13Q9",
-        question: "Which materials are specifically excluded from the special disposal vehicle's collection?",
-        options: [
-          "Household electronics and batteries",
-          "Small appliances and electronics",
-          "Paint, chemicals, and tires",
-          "Cell phones and tablets",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R13Q10",
-        question: "How does the greenery exchange work at this event?",
-        options: [
-          "Seeds and gardening tools",
-          "Bring a potted plant and take one home",
-          "Free vegetable seedlings for all attendees",
-          "Dried flowers and wreaths",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R13Q11",
-        question: "How many times has this yearly neighbourhood tidy-up event been held, including this one?",
-        options: [
-          "5th",
-          "6th",
-          "8th",
-          "10th",
-        ],
-        correctAnswer: 2,
-      },
-    ],
-  },
+The Oakville Community Association`;
+
+    const passageB = `From: Meera Kapoor <meera.kapoor@gmail.com>
+To: Oakville Community Association <events@oakvilleca.org>
+Subject: Re: Annual Spring Clean-Up and Community BBQ — Saturday, April 26th
+
+Dear Oakville Community Association,
+
+Thank you so much for organizing the Spring Clean-Up and BBQ again this year. My family and I have participated in the last three clean-ups and it is always a highlight of our spring. I am writing to confirm our attendance, volunteer for some additional tasks, and raise a few questions.
+
+Volunteering:
+My husband Arjun and I would like to register as team leaders for one of the clean-up zones, if possible. We are both familiar with the Sixteen Mile Creek trail area and would be happy to lead a group there. We led a team along that same stretch in 2024 and managed to fill 18 garbage bags in just under two hours. Our two children, ages 10 and 12, will also be joining us.
+
+I would also like to volunteer to help coordinate the plant swap table during the BBQ. I have been running a small community garden on Lakeshore Road for the past four years and could bring approximately 15 potted herb seedlings — basil, mint, rosemary, and cilantro — to contribute.
+
+Food Donation Offer:
+Additionally, I run a small home baking business and would love to donate three dozen butter tarts and two dozen oatmeal raisin cookies for the BBQ dessert table. Would there be space for donated baked goods, and are there any food safety requirements I should be aware of? I carry a valid food handler's certificate from Halton Region, if that helps.
+
+Questions and Suggestions:
+1. Will there be a designated first aid station at Coronation Park this year? Last year, one of the volunteers on our team got a minor cut from broken glass, and the nearest first aid kit was back at the pavilion, which was quite a walk from our zone.
+
+2. I noticed the event runs from 9:00 AM to 3:00 PM. Would it be possible to set up a shaded rest area with water and sunscreen near the main registration point? April weather can be unpredictable, and I recall it was quite warm last year.
+
+3. My neighbour, Mrs. Dawson, uses a wheelchair and would love to attend the BBQ portion. Is the pavilion area fully accessible, including the washrooms?
+
+4. Finally, could the association consider adding a brief awards ceremony this year to recognize top volunteer teams or individuals? I think a small gesture like that would encourage even more participation next year.
+
+We are very excited about the event and look forward to another successful clean-up. Please let me know if you need anything else from me in advance.
+
+Warm regards,
+Meera Kapoor
+128 Trafalgar Road, Oakville`;
+
+    return {
+      id: "R13",
+      title: "Part 13: Reading Correspondence",
+      instruction:
+        "Read the following two emails. Questions 1 to 6 are based on the first email (the community association notice). Questions 7 to 11 are based on the second email (the community member's response).",
+      passage: passageA,
+      questions: [
+        {
+          id: "R13Q1",
+          question: "At what hour should helpers arrive for sign-in and a morning snack?",
+          options: ["8:00 AM", "8:30 AM", "9:00 AM", "10:00 AM"],
+          correctAnswer: 2,
+          passage: passageA,
+        },
+        {
+          id: "R13Q2",
+          question:
+            "What types of goods will the special disposal vehicle accept from residents?",
+          options: [
+            "Paint and chemicals",
+            "Tires and batteries",
+            "Household electronics and small appliances",
+            "Furniture and mattresses",
+          ],
+          correctAnswer: 2,
+          passage: passageA,
+        },
+        {
+          id: "R13Q3",
+          question:
+            "What bonus item is given to people who sign up ahead of time?",
+          options: [
+            "A gift card",
+            "A free lunch voucher",
+            "A free t-shirt",
+            "A reusable water bottle",
+          ],
+          correctAnswer: 2,
+          passage: passageA,
+        },
+        {
+          id: "R13Q4",
+          question: "How many kilograms of trash were gathered during the previous year's neighbourhood tidy-up?",
+          options: [
+            "800",
+            "1,000",
+            "1,200",
+            "1,500",
+          ],
+          correctAnswer: 2,
+          passage: passageA,
+        },
+        {
+          id: "R13Q5",
+          question:
+            "How old must young people be to take part in the event on their own, without adult supervision?",
+          options: ["10", "12", "14", "16"],
+          correctAnswer: 2,
+          passage: passageA,
+        },
+        {
+          id: "R13Q6",
+          question: "Which musical group will provide live entertainment at the afternoon gathering?",
+          options: [
+            "The Burlington Five",
+            "The Lakeshore Four",
+            "The Oakville Trio",
+            "The Coronation Band",
+          ],
+          correctAnswer: 1,
+          passage: passageA,
+        },
+        {
+          id: "R13Q7",
+          question: "Which trail area does Meera's family want to be assigned to for the clean-up?",
+          options: [
+            "Coronation Park loop",
+            "Lakeshore Road pathway",
+            "Sixteen Mile Creek trail",
+            "Bronte Creek trail",
+          ],
+          correctAnswer: 2,
+          passage: passageB,
+        },
+        {
+          id: "R13Q8",
+          question: "How many garbage bags did Meera's team fill during the previous year's clean-up?",
+          options: [
+            "12",
+            "15",
+            "18",
+            "22",
+          ],
+          correctAnswer: 2,
+          passage: passageB,
+        },
+        {
+          id: "R13Q9",
+          question: "What does Meera offer to donate for the BBQ dessert table?",
+          options: [
+            "Brownies and cupcakes",
+            "Butter tarts and oatmeal raisin cookies",
+            "Banana bread and scones",
+            "Lemon squares and sugar cookies",
+          ],
+          correctAnswer: 1,
+          passage: passageB,
+        },
+        {
+          id: "R13Q10",
+          question: "Why does Meera suggest setting up a first aid station at the park this year?",
+          options: [
+            "A child fell and injured their knee during the BBQ",
+            "A volunteer got a minor cut from broken glass and the nearest kit was far away",
+            "Several volunteers experienced heat exhaustion",
+            "The association received complaints from the local health authority",
+          ],
+          correctAnswer: 1,
+          passage: passageB,
+        },
+        {
+          id: "R13Q11",
+          question: "What new addition does Meera suggest to encourage greater volunteer participation in future years?",
+          options: [
+            "A raffle with gift card prizes",
+            "A social media photo contest",
+            "A brief awards ceremony to recognize top volunteers",
+            "Free memberships to the community association",
+          ],
+          correctAnswer: 2,
+          passage: passageB,
+        },
+      ],
+    };
+  })(),
   {
     id: "R14",
     title: "Part 14: Reading to Apply a Diagram",
@@ -1373,4 +1308,121 @@ The federal government's Canada Digital Adoption Program has allocated $4 billio
       },
     ],
   },
+  (() => {
+    const passageA = `R16-A — Ryan to Charlie:
+
+Hi Charlie,
+
+Thanks for your message! I'm happy to hear that you made it safe and sound to Albania. I really enjoyed the pictures you sent. Tirana looks like an awesome city! To be honest, when you first told me you were considering Albania, I thought you were joking. I didn't even know where Albania was. I had to ask my trusty friend Google for help. :) After doing some research, I realized that you made the perfect decision! You've always loved being close to mountains and the beach. I guess now you're a short drive from both! I saw some pictures of the mountains there, and it looks like there are lots of small cement bunkers all over the place. Do you know why that is? I guess I should learn more about Albanian history!
+
+Have you made any local friends to show you around yet? I'm sure staying in the dorm will give you a good opportunity to make lots of friends! I lived in the dorm during my first two years of college, and I have so many great memories of those days. Do you eat at the canteen every day, or are there kitchens in the dorm? I read online that there is a fast food called "suflaqe" which is similar to a doner or a souvlaki. Apparently, they only cost about a dollar! If I were you, I'd be eating those 24/7.
+
+Speaking of food, I've recently taken a job as a pizza delivery guy. I gave my notice at the bank two weeks ago and delivered my first pizzas last night. Talk about a drastic change in lifestyle! I've been wearing a tie to work for the past three years, and now I'll be wearing a Domino Pizza shirt. I don't think it'll take me very long to make the transition though because this lifestyle is what I've been wanting for a long time. I'll have a lot more time to myself from now on. Even though the pay is a lot lower, I'll be much happier because I won't have to deal with stressful situations in the bank, and I'll be able to take up some new hobbies. I'm thinking of getting into snowboarding this winter. Skiing would be good too, but I did a lot of skateboarding when I was a kid, so I think snowboarding might be easier for me.
+
+Anyway, I should sign off here. Hope you have a great time getting set up there!
+
+Take care,
+Ryan`;
+
+    const passageB = `R16-B — Charlie's Response:
+
+Hey Ryan,
+
+I'm really happy to hear about the recent changes you made in your life! I always knew a white-collar job didn't suit you. You're too creative and independent. Remember in junior high when you started selling M&Ms in math class? I can't believe you made $50 in three days! Mr. Philips was so mad when he realized that everyone in the class was eating M&Ms in class, haha. You've had an entrepreneurial spirit ever since you were a kid, and I'm sure it'll make you rich someday soon!
+
+You're right, Tirana is a perfect spot for me! The weather is so amazing. It's nice waking up every morning with a view of the mountains, yet smelling the warm air from the valley. I've heard about the bunkers in the mountains, but I haven't seen them yet. To be honest, I don't really know much about Albania's history either. I'm sure I'll know more soon though. I'll let you know when I find out.
+
+Yes, I've made several friends here, and they've shown me around the city. The school is in a really nice community with lots of nice shops and restaurants nearby. I've eaten at least one suflaqe every day since being here! You're right, they're super cheap! Even though the cafeteria isn't very expensive, I think it will be even cheaper to cook my own food every day.
+
+My next class starts in five minutes here, so I better run! Talk to you again soon.
+
+Charlie`;
+
+    return {
+      id: "R16",
+      title: "Part 16: Reading Correspondence",
+      instruction:
+        "Read the email exchange between two friends and answer the questions. Questions 1–6 are based on the first email (R16-A). Questions 7–11 are based on the response (R16-B).",
+      passage: passageA,
+      questions: [
+        {
+          id: "R16Q1",
+          question: "Charlie is in Albania to ____.",
+          options: ["work", "study", "travel", "start a business"],
+          correctAnswer: 1,
+          passage: passageA,
+        },
+        {
+          id: "R16Q2",
+          question: "Charlie lives ____.",
+          options: ["on campus", "off campus", "with a family", "with colleagues"],
+          correctAnswer: 0,
+          passage: passageA,
+        },
+        {
+          id: "R16Q3",
+          question: "When did Ryan stop working at the bank?",
+          options: ["Two weeks ago", "Yesterday", "He did not stop working at the bank", "Unknown"],
+          correctAnswer: 0,
+          passage: passageA,
+        },
+        {
+          id: "R16Q4",
+          question: "Ryan wanted more ____.",
+          options: ["flexibility", "money", "opportunity", "free time"],
+          correctAnswer: 3,
+          passage: passageA,
+        },
+        {
+          id: "R16Q5",
+          question: "Ryan thinks the job transition will be ____.",
+          options: ["difficult", "easy", "stressful", "awkward"],
+          correctAnswer: 1,
+          passage: passageA,
+        },
+        {
+          id: "R16Q6",
+          question: "Ryan's new hobby will be ____.",
+          options: ["snowboarding", "skiing", "skateboarding", "sledding"],
+          correctAnswer: 0,
+          passage: passageA,
+        },
+        {
+          id: "R16Q7",
+          question: "Charlie always knew a ____ job didn't suit Ryan.",
+          options: ["white-collar", "blue-collar", "trades", "management"],
+          correctAnswer: 0,
+          passage: passageB,
+        },
+        {
+          id: "R16Q8",
+          question: "Ryan has had a/an ____ spirit ever since he was a kid.",
+          options: ["wild", "kind-hearted", "entrepreneurial", "greedy"],
+          correctAnswer: 2,
+          passage: passageB,
+        },
+        {
+          id: "R16Q9",
+          question: "Charlie enjoys smelling the warm air from the ____.",
+          options: ["plateau", "valley", "south", "coast"],
+          correctAnswer: 1,
+          passage: passageB,
+        },
+        {
+          id: "R16Q10",
+          question: "Charlie will let Ryan know about Albanian history when he ____.",
+          options: ["uncovers it", "discovers it", "finds out", "gets knowledge"],
+          correctAnswer: 2,
+          passage: passageB,
+        },
+        {
+          id: "R16Q11",
+          question: "Charlie thinks it will be cheaper to ____ every day.",
+          options: ["eat out", "dine in", "cook his own food", "order in"],
+          correctAnswer: 2,
+          passage: passageB,
+        },
+      ],
+    };
+  })(),
 ];

@@ -15,6 +15,7 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
@@ -34,6 +35,7 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    setSuccess("");
     setSubmitting(true);
 
     try {
@@ -42,7 +44,13 @@ export default function LoginPage() {
         if (!email.trim()) { setError("Email is required."); setSubmitting(false); return; }
         if (password.length < 6) { setError("Password must be at least 6 characters."); setSubmitting(false); return; }
         const err = await signUp(name.trim(), email.trim().toLowerCase(), password);
-        if (err) { setError(err); setSubmitting(false); return; }
+        if (err) {
+          const msg = err.toLowerCase().includes("rate") ? "Too many attempts. Please wait a few minutes and try again." : err;
+          setError(msg); setSubmitting(false); return;
+        }
+        setSuccess("Account created successfully! Please check your email to verify your account.");
+        setSubmitting(false);
+        return;
       } else {
         if (!email.trim()) { setError("Email is required."); setSubmitting(false); return; }
         if (!password) { setError("Password is required."); setSubmitting(false); return; }
@@ -112,6 +120,12 @@ export default function LoginPage() {
             {error && (
               <div className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
                 {error}
+              </div>
+            )}
+
+            {success && (
+              <div className="text-sm text-green-600 bg-green-50 border border-green-200 rounded-lg px-3 py-2">
+                {success}
               </div>
             )}
 

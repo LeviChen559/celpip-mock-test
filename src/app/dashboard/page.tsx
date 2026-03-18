@@ -221,12 +221,25 @@ export default function Dashboard() {
   const [activeTab, setActiveTab] = useState<TabKey>("full");
   const [expandedQuiz, setExpandedQuiz] = useState<string | null>(null);
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     if (!loading && !currentUser) {
       router.push("/login");
     }
   }, [loading, currentUser, router]);
+
+  useEffect(() => {
+    if (!currentUser) return;
+    import("@/lib/supabase/client").then(({ createClient: create }) => {
+      const supabase = create();
+      supabase.from("profiles").select("role").eq("id", currentUser.id).single()
+        .then(({ data, error }: { data: { role: string } | null; error: unknown }) => {
+          console.log("Admin check:", { data, error });
+          if (data?.role === "admin") setIsAdmin(true);
+        });
+    });
+  }, [currentUser]);
 
   if (loading || !currentUser) return null;
 
@@ -287,7 +300,7 @@ export default function Dashboard() {
         <span className="text-sm font-medium text-[#1a1a2e]">
           {currentUser.name}
         </span>
-        {currentUser.role === "admin" && (
+        {isAdmin && (
           <button
             onClick={() => router.push("/admin")}
             className="px-3 py-1.5 rounded-full text-xs font-medium text-purple-600 hover:bg-purple-50 transition-colors"
@@ -343,7 +356,7 @@ export default function Dashboard() {
                   key={s.title}
                   className={`border-2 ${s.accent} rounded-2xl overflow-hidden`}
                 >
-                  <CardContent className="pt-6">
+                  <CardContent className="py-6">
                     <h3 className={`text-xl font-sans font-medium mb-1 ${s.titleColor} flex items-center gap-2`}>
                       <s.icon className="w-5 h-5" />
                       {s.title}
@@ -381,92 +394,79 @@ export default function Dashboard() {
 
         {/* ── Tab 2: Section Practice ────────────── */}
         {activeTab === "section" && (
-          <div className="grid md:grid-cols-2 gap-4 items-start">
-            {sections.map((s) => {
-              const isExpanded = expandedSection === s.key;
-              return (
-                <Card
-                  key={s.title}
-                  className={`border-2 ${s.accent} rounded-2xl overflow-hidden`}
-                >
-                  <CardContent className="pt-6">
-                    <div className="flex items-center justify-between mb-1">
-                      <h3 className={`text-xl font-sans font-medium ${s.titleColor} flex items-center gap-2`}>
+          <div className="flex gap-6">
+            {/* Sidebar */}
+            <Card className="w-48 shrink-0 border-0 rounded-2xl h-fit shadow-none">
+              <CardContent className="pt-5 space-y-1.5">
+                {sections.map((s) => {
+                  const isActive = (expandedSection || "listening") === s.key;
+                  return (
+                    <button
+                      key={s.key}
+                      onClick={() => setExpandedSection(s.key)}
+                      className={`w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all flex items-center gap-2.5 ${
+                        isActive
+                          ? `${s.accent} ${s.titleColor} border-2 shadow-sm`
+                          : "bg-white border-2 border-transparent text-[#6b6b7b] hover:text-[#6b4c9a]"
+                      }`}
+                    >
+                      <s.icon className="w-4 h-4" />
+                      {s.title}
+                    </button>
+                  );
+                })}
+              </CardContent>
+            </Card>
+
+            {/* Content */}
+            <Card className="flex-1 border-0 rounded-2xl shadow-none">
+              <CardContent className="py-6 px-6">
+              {sections.map((s) => {
+                if ((expandedSection || "listening") !== s.key) return null;
+                return (
+                  <div key={s.key}>
+                    <div className="mb-4 text-center">
+                      <h3 className={`text-xl font-sans font-medium ${s.titleColor} flex items-center justify-center gap-2 mb-1`}>
                         <s.icon className="w-5 h-5" />
                         {s.title}
                       </h3>
-                      <div className="flex gap-2">
-                        <span className="text-xs px-2.5 py-1 rounded-full bg-white/80 border" style={{ color: "var(--muted-foreground)" }}>
-                          {s.duration}
-                        </span>
-                      </div>
-                    </div>
-                    <p className="text-sm mb-1" style={{ color: "var(--muted-foreground)" }}>
-                      {s.description}
-                    </p>
-                    <p className="text-xs mb-4" style={{ color: "var(--muted-foreground)" }}>
-                      {s.summary}
-                    </p>
-
-                    <div className="flex gap-2 mb-3">
-                      <button
-                        onClick={() => handleSectionPractice(s)}
-                        className={`flex-1 px-4 py-2.5 rounded-full text-sm font-medium transition-all ${s.titleColor} border-2 ${s.accent} hover:shadow-sm`}
-                      >
-                        Start Full Section
-                      </button>
-                      <button
-                        onClick={() => setExpandedSection(isExpanded ? null : (s.key as string))}
-                        className={`px-4 py-2.5 rounded-full text-sm font-medium transition-all ${
-                          isExpanded
-                            ? "bg-[#6b4c9a] text-white shadow-sm"
-                            : "bg-white border border-[#e2ddd5] text-[#6b6b7b] hover:border-[#6b4c9a] hover:text-[#6b4c9a]"
-                        }`}
-                      >
-                        {isExpanded ? "Hide Parts" : "Pick a Part"}
-                        <span className="ml-1 inline-block transition-transform" style={{ transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)" }}>
-                          &#9662;
-                        </span>
-                      </button>
+                      <p className="text-sm" style={{ color: "var(--muted-foreground)" }}>
+                        {s.description}
+                      </p>
+                      <p className="text-xs mt-1" style={{ color: "var(--muted-foreground)" }}>
+                        {s.duration} · {s.summary}
+                      </p>
                     </div>
 
-                    {/* Expandable parts list */}
-                    <div
-                      className={`overflow-hidden ${isExpanded ? "transition-all duration-300" : ""}`}
-                      style={{
-                        maxHeight: isExpanded ? `${s.officialParts.length * 52 + 20}px` : "0px",
-                        opacity: isExpanded ? 1 : 0,
-                      }}
-                    >
-                      <div className="space-y-1.5 pt-1">
-                        {s.officialParts.map((part, i) => (
-                          <button
-                            key={i}
-                            onClick={() => router.push(`${s.quizBase}?part=${part.index}`)}
-                            className="w-full text-left px-3 py-2 rounded-lg bg-white border border-[#e2ddd5] hover:border-[#6b4c9a] hover:shadow-sm transition-all flex items-center justify-between group"
-                          >
-                            <div className="flex items-center gap-2.5">
-                              <span className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold ${s.accent} ${s.titleColor}`}>
-                                {i + 1}
-                              </span>
-                              <div>
-                                <p className="text-sm font-medium text-[#1a1a2e]">{part.title}</p>
-                                <p className="text-[11px]" style={{ color: "var(--muted-foreground)" }}>
-                                  {part.topic} · {part.questionCount} {part.questionCount === 1 ? "question" : "questions"}
-                                </p>
-                              </div>
-                            </div>
-                            <span className={`text-sm font-semibold ${s.linkColor} opacity-0 group-hover:opacity-100 transition-opacity`}>
-                              Start &rarr;
+                    <div className="space-y-1.5">
+                      {s.officialParts.map((part, i) => (
+                        <button
+                          key={i}
+                          onClick={() => router.push(`${s.quizBase}?part=${part.index}`)}
+                          className="w-full text-left px-3 py-2.5 rounded-xl bg-white border border-[#e2ddd5] hover:border-[#6b4c9a] hover:shadow-sm transition-all flex items-center justify-between group"
+                        >
+                          <div className="flex items-center gap-2.5">
+                            <span className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold ${s.accent} ${s.titleColor}`}>
+                              {i + 1}
                             </span>
-                          </button>
-                        ))}
-                      </div>
+                            <div>
+                              <p className="text-sm font-medium text-[#1a1a2e]">{part.title}</p>
+                              <p className="text-[11px]" style={{ color: "var(--muted-foreground)" }}>
+                                {part.topic} · {part.questionCount} {part.questionCount === 1 ? "question" : "questions"}
+                              </p>
+                            </div>
+                          </div>
+                          <span className={`text-sm font-semibold ${s.linkColor} opacity-0 group-hover:opacity-100 transition-opacity`}>
+                            Start &rarr;
+                          </span>
+                        </button>
+                      ))}
                     </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
+                  </div>
+                );
+              })}
+              </CardContent>
+            </Card>
           </div>
         )}
 
@@ -481,74 +481,66 @@ export default function Dashboard() {
 
         {/* ── Tab 3: Quiz Practice ───────────────── */}
         {activeTab === "quiz" && (
-          <div className="grid md:grid-cols-2 gap-4 items-start">
-            {quizSections.map((qs) => {
-              const isExpanded = expandedQuiz === qs.key;
-              const totalQ = qs.categories.reduce((sum, cat) => sum + cat.items.reduce((s, i) => s + i.questionCount, 0), 0);
-              const totalParts = qs.categories.reduce((sum, cat) => sum + cat.items.length, 0);
-              const base = qs.key === "writing" || qs.key === "speaking" ? "/quiz-practice" : "/quiz";
-              return (
-                <Card
-                  key={qs.key}
-                  className={`border-2 ${qs.accent} rounded-2xl overflow-hidden`}
-                >
-                  <CardContent className="pt-6">
-                    <div className="flex items-center justify-between mb-1">
-                      <h3 className={`text-xl font-sans font-medium ${qs.titleColor} flex items-center gap-2`}>
+          <div className="flex gap-6">
+            {/* Sidebar */}
+            <Card className="w-48 shrink-0 border-0 rounded-2xl h-fit shadow-none">
+              <CardContent className="pt-5 space-y-1.5">
+                {quizSections.map((qs) => {
+                  const isActive = (expandedQuiz || "listening") === qs.key;
+                  return (
+                    <button
+                      key={qs.key}
+                      onClick={() => setExpandedQuiz(qs.key)}
+                      className={`w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all flex items-center gap-2.5 ${
+                        isActive
+                          ? `${qs.accent} ${qs.titleColor} border-2 shadow-sm`
+                          : "bg-white border-2 border-transparent text-[#6b6b7b] hover:text-[#6b4c9a]"
+                      }`}
+                    >
+                      <qs.icon className="w-4 h-4" />
+                      {qs.title}
+                    </button>
+                  );
+                })}
+              </CardContent>
+            </Card>
+
+            {/* Content */}
+            <Card className="flex-1 border-0 rounded-2xl shadow-none">
+              <CardContent className="py-6 px-6">
+              {quizSections.map((qs) => {
+                if ((expandedQuiz || "listening") !== qs.key) return null;
+                const totalParts = qs.categories.reduce((sum, cat) => sum + cat.items.length, 0);
+                const base = qs.key === "writing" || qs.key === "speaking" ? "/quiz-practice" : "/quiz";
+                return (
+                  <div key={qs.key}>
+                    <div className="mb-4 text-center">
+                      <h3 className={`text-xl font-sans font-medium ${qs.titleColor} flex items-center justify-center gap-2 mb-1`}>
                         <qs.icon className="w-5 h-5" />
                         {qs.title}
                       </h3>
-                      <span className="text-xs px-2.5 py-1 rounded-full bg-white/80 border" style={{ color: "var(--muted-foreground)" }}>
-                        {totalParts} quizzes
-                      </span>
+                      <p className="text-sm" style={{ color: "var(--muted-foreground)" }}>
+                        {qs.description}
+                      </p>
+                      <p className="text-xs mt-1" style={{ color: "var(--muted-foreground)" }}>
+                        {qs.categories.length} parts · {totalParts} quizzes
+                      </p>
                     </div>
 
-                    <p className="text-sm mb-1" style={{ color: "var(--muted-foreground)" }}>
-                      {qs.description}
-                    </p>
-                    <p className="text-xs mb-4" style={{ color: "var(--muted-foreground)" }}>
-                      {qs.categories.length} parts · {totalParts} quizzes
-                    </p>
-
-                    {/* Action buttons row */}
-                    <div className="flex justify-center mb-3">
-                      <button
-                        onClick={() => setExpandedQuiz(isExpanded ? null : qs.key)}
-                        className={`px-4 py-2.5 rounded-full text-sm font-medium transition-all ${
-                          isExpanded
-                            ? "bg-[#6b4c9a] text-white shadow-sm"
-                            : "bg-white border border-[#e2ddd5] text-[#6b6b7b] hover:border-[#6b4c9a] hover:text-[#6b4c9a]"
-                        }`}
-                      >
-                        {isExpanded ? "Hide Parts" : "Pick a Part"}
-                        <span className="ml-1 inline-block transition-transform" style={{ transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)" }}>
-                          &#9662;
-                        </span>
-                      </button>
-                    </div>
-
-                    {/* Expandable categorized parts list */}
-                    <div
-                      className={`overflow-hidden ${isExpanded ? "transition-all duration-300" : ""}`}
-                      style={{
-                        maxHeight: isExpanded ? `${totalParts * 52 + qs.categories.length * 36 + 20}px` : "0px",
-                        opacity: isExpanded ? 1 : 0,
-                      }}
-                    >
-                      <div className="space-y-3 pt-1">
-                        {qs.categories.map((cat) => (
-                          <div key={cat.category}>
-                            <p className={`text-xs font-semibold uppercase tracking-wide mb-1.5 ${qs.titleColor}`}>
-                              {cat.category}
-                            </p>
-                            <div className="space-y-1.5">
-                              {cat.items.map((item, i) => {
-                                const done = isQuizDone(qs.key, item.originalIndex);
-                                return (
+                    <div className="space-y-4">
+                      {qs.categories.map((cat) => (
+                        <div key={cat.category}>
+                          <p className={`text-xs font-semibold uppercase tracking-wide mb-2 ${qs.titleColor}`}>
+                            {cat.category}
+                          </p>
+                          <div className="space-y-1.5">
+                            {cat.items.map((item, i) => {
+                              const done = isQuizDone(qs.key, item.originalIndex);
+                              return (
                                 <button
                                   key={item.id}
                                   onClick={() => router.push(`${base}/${qs.key}?part=${item.originalIndex}`)}
-                                  className={`w-full text-left px-3 py-2 rounded-lg border hover:border-[#6b4c9a] hover:shadow-sm transition-all flex items-center justify-between group ${
+                                  className={`w-full text-left px-3 py-2.5 rounded-xl border hover:border-[#6b4c9a] hover:shadow-sm transition-all flex items-center justify-between group ${
                                     done ? "bg-green-50/60 border-green-200" : "bg-white border-[#e2ddd5]"
                                   }`}
                                 >
@@ -576,16 +568,17 @@ export default function Dashboard() {
                                     {done ? "Redo" : "Start"} &rarr;
                                   </span>
                                 </button>
-                              );})}
-                            </div>
+                              );
+                            })}
                           </div>
-                        ))}
-                      </div>
+                        </div>
+                      ))}
                     </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
+                  </div>
+                );
+              })}
+              </CardContent>
+            </Card>
           </div>
         )}
       </section>

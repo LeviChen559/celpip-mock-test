@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { useHistory, TestRecord } from "@/lib/hooks/use-history";
 
@@ -62,6 +63,7 @@ export default function MyTests() {
   const router = useRouter();
   const { records, loading, deleteRecord, clearAll } = useHistory();
   const [filter, setFilter] = useState<FilterKey>("all");
+  const [showClearDialog, setShowClearDialog] = useState(false);
 
   if (loading) return null;
 
@@ -73,9 +75,8 @@ export default function MyTests() {
   const bestScore = totalTests > 0 ? Math.max(...records.map((r) => r.overallScore)) : 0;
 
   const handleClear = () => {
-    if (window.confirm("⚠️ WARNING: This will permanently delete ALL your test results from the database. This action cannot be undone.\n\nAre you sure you want to continue?")) {
-      clearAll();
-    }
+    clearAll();
+    setShowClearDialog(false);
   };
 
   const filters: { key: FilterKey; label: string }[] = [
@@ -243,12 +244,45 @@ export default function MyTests() {
       {totalTests > 0 && (
         <div className="text-center mt-6">
           <button
-            onClick={handleClear}
+            onClick={() => setShowClearDialog(true)}
             className="text-sm hover:text-red-600 transition-colors"
             style={{ color: "var(--muted-foreground)" }}
           >
             Clear All History
           </button>
+        </div>
+      )}
+
+      {/* Clear All Dialog */}
+      {showClearDialog && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div className="fixed inset-0 bg-black/50" onClick={() => setShowClearDialog(false)} />
+          <Card className="relative z-10 w-full max-w-md border-2 border-red-200 rounded-2xl shadow-xl">
+            <CardContent className="pt-6 pb-6">
+              <h3 className="text-lg font-bold text-[#1a1a2e] mb-2">Clear All Test History?</h3>
+              <p className="text-sm mb-1" style={{ color: "var(--muted-foreground)" }}>
+                This will permanently delete <strong className="text-red-600">all {totalTests} test results</strong> from the database.
+              </p>
+              <p className="text-sm mb-5 text-red-600 font-medium">
+                This action cannot be undone.
+              </p>
+              <div className="flex gap-3 justify-end">
+                <Button
+                  variant="outline"
+                  onClick={() => setShowClearDialog(false)}
+                  className="rounded-full px-6"
+                >
+                  Cancel
+                </Button>
+                <Button
+                  onClick={handleClear}
+                  className="rounded-full px-6 bg-red-600 hover:bg-red-700 text-white"
+                >
+                  Delete All
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       )}
     </div>
