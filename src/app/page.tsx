@@ -6,34 +6,47 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import HeroAnimation from "@/components/HeroAnimation";
 import { useAuth } from "@/lib/hooks/use-auth";
+import { Headphones, BookOpen, PenLine, Mic, ClipboardList, Layers, HelpCircle, CalendarCheck, TrendingUp, SearchCheck } from "lucide-react";
 
 const features = [
   {
     title: "Full Mock Test",
+    icon: ClipboardList,
     description: "Complete timed test with all 4 sections — Listening, Reading, Writing, and Speaking.",
     accent: "border-purple-300 bg-purple-50/60",
     titleColor: "text-purple-700",
   },
   {
     title: "Section Practice",
+    icon: Layers,
     description: "Focus on a single section at your own pace with full timing simulation.",
     accent: "border-orange-300 bg-orange-50/60",
     titleColor: "text-orange-700",
   },
   {
     title: "Quiz Mode",
+    icon: HelpCircle,
     description: "Untimed question-by-question practice with instant feedback on every answer.",
     accent: "border-green-300 bg-green-50/60",
     titleColor: "text-green-700",
   },
   {
     title: "Smart Study Plan",
+    icon: CalendarCheck,
     description: "Set your test date and goal score — we generate a phased study plan tailored to your weak areas.",
     accent: "border-blue-300 bg-blue-50/60",
     titleColor: "text-blue-700",
   },
   {
+    title: "Test Review",
+    icon: SearchCheck,
+    description: "Review every answer after each test — see what you got right, what you missed, and the correct answers.",
+    accent: "border-cyan-300 bg-cyan-50/60",
+    titleColor: "text-cyan-700",
+  },
+  {
     title: "Track Progress",
+    icon: TrendingUp,
     description: "Save your test history, view score trends, and plan your study schedule.",
     accent: "border-pink-300 bg-pink-50/60",
     titleColor: "text-pink-700",
@@ -131,14 +144,15 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {features.map((f) => (
             <Card
               key={f.title}
               className={`border-2 ${f.accent} rounded-2xl overflow-hidden`}
             >
               <CardContent className="pt-6">
-                <h3 className={`text-xl font-sans font-medium mb-2 ${f.titleColor}`}>
+                <h3 className={`text-xl font-sans font-medium mb-2 ${f.titleColor} flex items-center justify-center gap-2`}>
+                  <f.icon className="w-5 h-5" />
                   {f.title}
                 </h3>
                 <p className="text-sm leading-relaxed" style={{ color: "var(--muted-foreground)" }}>
@@ -222,6 +236,8 @@ export default function Home() {
         <Card className="border-2 border-[#e2ddd5] rounded-2xl overflow-hidden">
           <CardContent className="pt-8 pb-8">
             <div className="text-center mb-6">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/celpip-logo.jpg" alt="CELPIP General Test" width={160} height={160} className="mx-auto mb-4" />
               <h2 className="text-2xl font-sans font-bold text-[#1a1a2e] mb-2">
                 CELPIP General Test Format
               </h2>
@@ -231,12 +247,15 @@ export default function Home() {
             </div>
             <div className="grid md:grid-cols-4 gap-6 text-center">
               {[
-                { label: "Listening", detail: "6 parts, 30 questions", time: "~47 min", color: "text-orange-700" },
-                { label: "Reading", detail: "4 parts, 27 questions", time: "~55 min", color: "text-green-700" },
-                { label: "Writing", detail: "2 tasks", time: "~53 min", color: "text-purple-700" },
-                { label: "Speaking", detail: "8 tasks", time: "~20 min", color: "text-pink-700" },
+                { label: "Listening", detail: "6 parts, 30 questions", time: "~47 min", color: "text-orange-700", bg: "bg-orange-100", iconColor: "text-orange-600", Icon: Headphones },
+                { label: "Reading", detail: "4 parts, 27 questions", time: "~55 min", color: "text-green-700", bg: "bg-green-100", iconColor: "text-green-600", Icon: BookOpen },
+                { label: "Writing", detail: "2 tasks", time: "~53 min", color: "text-purple-700", bg: "bg-purple-100", iconColor: "text-purple-600", Icon: PenLine },
+                { label: "Speaking", detail: "8 tasks", time: "~20 min", color: "text-pink-700", bg: "bg-pink-100", iconColor: "text-pink-600", Icon: Mic },
               ].map((s) => (
                 <div key={s.label}>
+                  <div className={`w-12 h-12 rounded-full ${s.bg} flex items-center justify-center mx-auto mb-2`}>
+                    <s.Icon className={`w-6 h-6 ${s.iconColor}`} />
+                  </div>
                   <p className={`text-lg font-bold ${s.color}`}>{s.label}</p>
                   <p className="text-sm" style={{ color: "var(--muted-foreground)" }}>{s.detail}</p>
                   <p className="text-xs mt-1" style={{ color: "var(--muted-foreground)" }}>{s.time}</p>

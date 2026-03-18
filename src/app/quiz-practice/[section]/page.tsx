@@ -187,7 +187,14 @@ export default function WritingSpeakingQuiz({
       quizSection: section,
       quizPart: partParam,
       scores: isWriting ? { writing: score } : { speaking: score },
-      details: {},
+      details: {
+        responses: Object.fromEntries(
+          tasks.map((t, i) => [i, { title: t.title, prompt: t.prompt, text: responses[i] || "" }])
+        ),
+        feedbacks: Object.fromEntries(
+          Object.entries(feedbacks).filter(([, v]) => v != null)
+        ),
+      },
       overallScore: score,
     });
     setResultSaved(true);

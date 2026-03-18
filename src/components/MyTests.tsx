@@ -53,7 +53,9 @@ function scoreColor(score: number): string {
 type FilterKey = "all" | TestType;
 
 function hasAnswers(r: TestRecord): boolean {
-  return !!(r.details?.answers && Object.keys(r.details.answers).length > 0);
+  if (r.details?.answers && Object.keys(r.details.answers).length > 0) return true;
+  if (r.details?.responses && Object.keys(r.details.responses).length > 0) return true;
+  return false;
 }
 
 export default function MyTests() {
@@ -71,7 +73,7 @@ export default function MyTests() {
   const bestScore = totalTests > 0 ? Math.max(...records.map((r) => r.overallScore)) : 0;
 
   const handleClear = () => {
-    if (window.confirm("Clear all test history? This cannot be undone.")) {
+    if (window.confirm("⚠️ WARNING: This will permanently delete ALL your test results from the database. This action cannot be undone.\n\nAre you sure you want to continue?")) {
       clearAll();
     }
   };
@@ -83,7 +85,7 @@ export default function MyTests() {
     { key: "quiz", label: "Quizzes" },
   ];
 
-  const chartData = [...records].reverse().slice(-10);
+  const chartData = [...records].sort((a, b) => a.timestamp - b.timestamp).slice(-10);
 
   return (
     <div>
@@ -112,19 +114,28 @@ export default function MyTests() {
             <p className="text-sm font-medium text-[#1a1a2e] mb-3">
               Score Trend (last {chartData.length} tests)
             </p>
-            <div className="flex items-end gap-1.5 h-20">
-              {chartData.map((r, i) => (
-                <div key={r.id} className="flex-1 flex flex-col items-center gap-1">
-                  <div
-                    className="w-full rounded-t-md bg-[#6b4c9a] opacity-70 hover:opacity-100 transition-opacity min-h-[4px]"
-                    style={{ height: `${(r.overallScore / 12) * 100}%` }}
-                    title={`Score: ${r.overallScore}/12`}
-                  />
-                  <span className="text-[9px]" style={{ color: "var(--muted-foreground)" }}>
-                    {i === 0 || i === chartData.length - 1 ? r.overallScore : ""}
-                  </span>
-                </div>
-              ))}
+            <div className="flex items-end gap-1.5" style={{ height: 120 }}>
+              {chartData.map((r) => {
+                const barHeight = Math.max((r.overallScore / 12) * 100, 6);
+                const barColor = r.type === "full" ? "bg-[#6b4c9a]"
+                  : r.quizSection === "listening" || r.section === "listening" ? "bg-orange-400"
+                  : r.quizSection === "reading" || r.section === "reading" ? "bg-green-500"
+                  : r.quizSection === "writing" || r.section === "writing" ? "bg-purple-500"
+                  : r.quizSection === "speaking" || r.section === "speaking" ? "bg-pink-500"
+                  : "bg-[#6b4c9a]";
+                return (
+                  <div key={r.id} className="flex-1 flex flex-col items-center justify-end h-full">
+                    <span className={`text-[10px] font-bold mb-1 ${scoreColor(r.overallScore)}`}>
+                      {r.overallScore}
+                    </span>
+                    <div
+                      className={`w-full rounded-t-md ${barColor} opacity-70 hover:opacity-100 transition-opacity`}
+                      style={{ height: `${barHeight}%` }}
+                      title={`${getRecordLabel(r)} — Score: ${r.overallScore}/12`}
+                    />
+                  </div>
+                );
+              })}
             </div>
           </CardContent>
         </Card>
@@ -162,11 +173,11 @@ export default function MyTests() {
           </CardContent>
         </Card>
       ) : (
-        <div className="space-y-3">
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
           {filtered.map((r) => {
             const style = getRecordStyle(r);
             return (
-              <Card key={r.id} className="border-2 border-[#e2ddd5] rounded-2xl overflow-hidden">
+              <Card key={r.id} className="border-2 border-[#e2ddd5] rounded-2xl overflow-hidden break-inside-avoid">
                 <CardContent className="pt-4 pb-4">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1 min-w-0">

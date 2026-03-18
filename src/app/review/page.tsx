@@ -111,7 +111,9 @@ function ReviewContent() {
   const timestamp = record.timestamp as number;
 
   // Check if we have answers to review
-  const hasAnswers = answers && Object.keys(answers).length > 0;
+  const responses = (details.responses || {}) as Record<string, { title: string; prompt: string; text: string }>;
+  const feedbacks = (details.feedbacks || {}) as Record<string, { scoreExplanation: string; strengths: string[]; improvements: string[]; exampleResponse: string }>;
+  const hasAnswers = (answers && Object.keys(answers).length > 0) || Object.keys(responses).length > 0;
 
   if (!hasAnswers) {
     return (
@@ -197,6 +199,10 @@ function ReviewContent() {
       ? "bg-blue-500 text-white"
       : (quizSection === "reading" || section === "reading")
       ? "bg-emerald-500 text-white"
+      : (quizSection === "writing" || section === "writing")
+      ? "bg-purple-500 text-white"
+      : (quizSection === "speaking" || section === "speaking")
+      ? "bg-pink-500 text-white"
       : "bg-purple-100 text-[#6b4c9a]";
 
   return (
@@ -206,9 +212,11 @@ function ReviewContent() {
         <div className="max-w-screen-xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Badge className={sectionBadgeClass}>{testLabel}</Badge>
-            <span className="text-sm font-bold text-[#1a1a2e]">
-              {correct}/{total} correct ({pct}%)
-            </span>
+            {total > 0 && (
+              <span className="text-sm font-bold text-[#1a1a2e]">
+                {correct}/{total} correct ({pct}%)
+              </span>
+            )}
             <span className="text-xs text-muted-foreground">
               {new Intl.DateTimeFormat("en-CA", {
                 dateStyle: "medium",
@@ -233,6 +241,70 @@ function ReviewContent() {
 
       {/* Question-by-question review */}
       <div className="max-w-screen-xl mx-auto px-4 py-8 space-y-6">
+        {/* Writing/Speaking response review */}
+        {Object.keys(responses).length > 0 && Object.entries(responses).map(([idx, resp]) => {
+          const fb = feedbacks[idx];
+          return (
+            <Card key={`resp-${idx}`} className="border-2 border-purple-200 rounded-2xl overflow-hidden">
+              <CardContent className="pt-5">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold bg-purple-100 text-purple-700">
+                    {Number(idx) + 1}
+                  </span>
+                  <Badge className="text-[10px] border bg-purple-100 text-purple-700 border-purple-200">
+                    {quizSection === "writing" ? "Writing" : "Speaking"}
+                  </Badge>
+                  <span className="text-xs text-muted-foreground">{resp.title}</span>
+                </div>
+
+                <div className="bg-muted rounded-lg p-4 mb-4">
+                  <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">Prompt</p>
+                  <p className="text-sm leading-relaxed">{resp.prompt}</p>
+                </div>
+
+                <div className="bg-white border border-[#e2ddd5] rounded-lg p-4 mb-4">
+                  <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">Your Response</p>
+                  <p className="text-sm leading-relaxed whitespace-pre-line">{resp.text || <span className="text-muted-foreground italic">No response submitted</span>}</p>
+                </div>
+
+                {fb && (
+                  <div className="space-y-3">
+                    {fb.scoreExplanation && (
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                        <p className="text-xs font-medium text-blue-700 mb-1 uppercase tracking-wide">Score Explanation</p>
+                        <p className="text-sm text-[#1a1a2e]">{fb.scoreExplanation}</p>
+                      </div>
+                    )}
+                    {fb.strengths && fb.strengths.length > 0 && (
+                      <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                        <p className="text-xs font-medium text-green-700 mb-1 uppercase tracking-wide">Strengths</p>
+                        <ul className="text-sm text-[#1a1a2e] list-disc list-inside space-y-1">
+                          {fb.strengths.map((s: string, i: number) => <li key={i}>{s}</li>)}
+                        </ul>
+                      </div>
+                    )}
+                    {fb.improvements && fb.improvements.length > 0 && (
+                      <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                        <p className="text-xs font-medium text-amber-700 mb-1 uppercase tracking-wide">Areas to Improve</p>
+                        <ul className="text-sm text-[#1a1a2e] list-disc list-inside space-y-1">
+                          {fb.improvements.map((s: string, i: number) => <li key={i}>{s}</li>)}
+                        </ul>
+                      </div>
+                    )}
+                    {fb.exampleResponse && (
+                      <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                        <p className="text-xs font-medium text-purple-700 mb-1 uppercase tracking-wide">Example High-Score Response</p>
+                        <p className="text-sm text-[#1a1a2e] whitespace-pre-line">{fb.exampleResponse}</p>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          );
+        })}
+
+        {/* Multiple-choice question review */}
         {reviewQuestions.map((rq, idx) => {
           const isCorrect = rq.userAnswer === rq.question.correctAnswer;
           const wasSkipped = rq.userAnswer === -1;

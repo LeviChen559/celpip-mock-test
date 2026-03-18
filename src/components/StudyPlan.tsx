@@ -98,15 +98,17 @@ function generatePlan(config: PlanConfig, weakSections: string[]): ScheduleItem[
     const sessionsToday = sessionsPerDay;
 
     if (day < phase1End) {
-      // Phase 1: Foundation — quizzes and section practice on weak areas
+      // Phase 1: Foundation — quizzes and section practice, cycling through all priority sections across days
       for (let s = 0; s < sessionsToday; s++) {
-        const sectionKey = prioritySections[s % prioritySections.length];
-        if (s % 2 === 0) {
+        const sectionIndex = (day * sessionsToday + s) % prioritySections.length;
+        const sectionKey = prioritySections[sectionIndex];
+        if (day % 2 === 0) {
           // Quiz practice
+          const quizSection = sectionKey === "writing" || sectionKey === "speaking" ? "listening" : sectionKey;
           items.push({
             id: crypto.randomUUID(),
             date,
-            section: `quiz-${sectionKey === "writing" || sectionKey === "speaking" ? "listening" : sectionKey}`,
+            section: `quiz-${quizSection}`,
             label: `${capitalize(sectionKey)} Quiz Practice`,
             completed: false,
           });
@@ -134,7 +136,8 @@ function generatePlan(config: PlanConfig, weakSections: string[]): ScheduleItem[
         });
       } else {
         for (let s = 0; s < sessionsToday; s++) {
-          const sectionKey = prioritySections[s % prioritySections.length];
+          const sectionIndex = (day * sessionsToday + s) % prioritySections.length;
+          const sectionKey = prioritySections[sectionIndex];
           items.push({
             id: crypto.randomUUID(),
             date,
@@ -187,7 +190,7 @@ function capitalize(s: string): string {
 // ── Component ──────────────────────────────────────────
 
 export default function StudyPlan() {
-  const { targetDate, items, loading: scheduleLoading, setTargetDate, addItem, addItems, deleteItem, clearAll: clearSchedule } = useSchedule();
+  const { targetDate, loading: scheduleLoading, setTargetDate, addItems, clearAll: clearSchedule } = useSchedule();
   const { records, loading: historyLoading } = useHistory();
   const [goalScore, setGoalScore] = useState(8);
   const [sessionsPerDay, setSessionsPerDay] = useState(2);
@@ -257,6 +260,7 @@ export default function StudyPlan() {
     setGenerated(false);
     setPreview([]);
   };
+
 
   // Group preview by date
   const grouped: Record<string, ScheduleItem[]> = {};

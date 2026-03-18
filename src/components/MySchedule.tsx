@@ -41,7 +41,7 @@ function todayStr(): string {
 }
 
 export default function MySchedule() {
-  const { targetDate, items, loading, setTargetDate, addItem, toggleItem, deleteItem } = useSchedule();
+  const { targetDate, items, loading, setTargetDate, addItem, toggleItem, deleteItem, clearAll } = useSchedule();
   const [formDate, setFormDate] = useState(todayStr());
   const [formSection, setFormSection] = useState("full");
   const [formLabel, setFormLabel] = useState("");
@@ -97,13 +97,22 @@ export default function MySchedule() {
                 <p className="text-xs" style={{ color: "var(--muted-foreground)" }}>
                   {days > 0 ? "days remaining" : days === 0 ? "Test day!" : "Past due"}
                 </p>
+                {totalItems > 0 && (
+                  <Button
+                    onClick={() => clearAll()}
+                    variant="outline"
+                    className="mt-2 rounded-full border-red-300 text-red-600 hover:bg-red-50 text-xs px-4"
+                  >
+                    Reset Plan
+                  </Button>
+                )}
               </div>
             )}
           </div>
         </CardContent>
       </Card>
 
-      {/* Progress */}
+      {/* Progress & Reset */}
       {totalItems > 0 && (
         <Card className="border-2 border-[#e2ddd5] rounded-2xl mb-6">
           <CardContent className="pt-5">

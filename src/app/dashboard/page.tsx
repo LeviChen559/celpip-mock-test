@@ -11,6 +11,7 @@ import MySchedule from "@/components/MySchedule";
 import StudyPlan from "@/components/StudyPlan";
 import { useAuth } from "@/lib/hooks/use-auth";
 import { useHistory } from "@/lib/hooks/use-history";
+import { Headphones, BookOpen, PenLine, Mic, type LucideIcon } from "lucide-react";
 
 // ── Helpers ────────────────────────────────────────────
 
@@ -45,6 +46,7 @@ const sections = [
   {
     title: "Listening",
     key: "listening" as PracticeSection,
+    icon: Headphones,
     description:
       "Conversations, news reports, and discussions with multiple-choice questions.",
     duration: "~47 min",
@@ -64,6 +66,7 @@ const sections = [
   {
     title: "Reading",
     key: "reading" as PracticeSection,
+    icon: BookOpen,
     description:
       "Emails, schedules, articles, and opinion pieces with comprehension questions.",
     duration: "~55 min",
@@ -83,6 +86,7 @@ const sections = [
   {
     title: "Writing",
     key: "writing" as PracticeSection,
+    icon: PenLine,
     description:
       "Write an email and respond to a survey question with structured responses.",
     duration: "~53 min",
@@ -102,6 +106,7 @@ const sections = [
   {
     title: "Speaking",
     key: "speaking" as PracticeSection,
+    icon: Mic,
     description:
       "Respond to prompts covering advice, descriptions, opinions, and persuasion.",
     duration: "~20 min",
@@ -147,6 +152,7 @@ const quizSections = [
   {
     key: "listening",
     title: "Listening",
+    icon: Headphones,
     description: "Conversations, news reports, and discussions with multiple-choice questions.",
     accent: "border-orange-300 bg-orange-50/60",
     titleColor: "text-orange-700",
@@ -158,6 +164,7 @@ const quizSections = [
   {
     key: "reading",
     title: "Reading",
+    icon: BookOpen,
     description: "Emails, schedules, articles, and opinion pieces with comprehension questions.",
     accent: "border-green-300 bg-green-50/60",
     titleColor: "text-green-700",
@@ -169,6 +176,7 @@ const quizSections = [
   {
     key: "writing",
     title: "Writing",
+    icon: PenLine,
     description: "Write an email and respond to a survey question with structured responses.",
     accent: "border-purple-300 bg-purple-50/60",
     titleColor: "text-purple-700",
@@ -180,6 +188,7 @@ const quizSections = [
   {
     key: "speaking",
     title: "Speaking",
+    icon: Mic,
     description: "Respond to prompts covering advice, descriptions, opinions, and persuasion.",
     accent: "border-pink-300 bg-pink-50/60",
     titleColor: "text-pink-700",
@@ -197,7 +206,7 @@ const tabs = [
   { key: "section", label: "Section Practice" },
   { key: "quiz", label: "Quiz Practice" },
   { key: "plan", label: "Study Plan" },
-  { key: "mytests", label: "My Tests" },
+  { key: "mytests", label: "My Test Results" },
   { key: "schedule", label: "My Schedule" },
 ] as const;
 
@@ -327,7 +336,8 @@ export default function Dashboard() {
                   className={`border-2 ${s.accent} rounded-2xl overflow-hidden`}
                 >
                   <CardContent className="pt-6">
-                    <h3 className={`text-xl font-sans font-medium mb-1 ${s.titleColor}`}>
+                    <h3 className={`text-xl font-sans font-medium mb-1 ${s.titleColor} flex items-center gap-2`}>
+                      <s.icon className="w-5 h-5" />
                       {s.title}
                     </h3>
                     <p className="text-xs mb-3" style={{ color: "var(--muted-foreground)" }}>
@@ -373,7 +383,8 @@ export default function Dashboard() {
                 >
                   <CardContent className="pt-6">
                     <div className="flex items-center justify-between mb-1">
-                      <h3 className={`text-xl font-sans font-medium ${s.titleColor}`}>
+                      <h3 className={`text-xl font-sans font-medium ${s.titleColor} flex items-center gap-2`}>
+                        <s.icon className="w-5 h-5" />
                         {s.title}
                       </h3>
                       <div className="flex gap-2">
@@ -454,7 +465,7 @@ export default function Dashboard() {
         {/* ── Tab 4: Study Plan ──────────────────── */}
         {activeTab === "plan" && <StudyPlan />}
 
-        {/* ── Tab 5: My Tests ────────────────────── */}
+        {/* ── Tab 5: My Test Results ────────────────────── */}
         {activeTab === "mytests" && <MyTests />}
 
         {/* ── Tab 5: My Schedule ─────────────────── */}
@@ -475,7 +486,8 @@ export default function Dashboard() {
                 >
                   <CardContent className="pt-6">
                     <div className="flex items-center justify-between mb-1">
-                      <h3 className={`text-xl font-sans font-medium ${qs.titleColor}`}>
+                      <h3 className={`text-xl font-sans font-medium ${qs.titleColor} flex items-center gap-2`}>
+                        <qs.icon className="w-5 h-5" />
                         {qs.title}
                       </h3>
                       <span className="text-xs px-2.5 py-1 rounded-full bg-white/80 border" style={{ color: "var(--muted-foreground)" }}>
