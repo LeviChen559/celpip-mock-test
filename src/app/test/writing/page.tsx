@@ -68,10 +68,10 @@ export default function WritingTest() {
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-gray-950">
       <div className="sticky top-0 z-10 bg-white dark:bg-gray-900 border-b px-4 py-3">
-        <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Badge className="bg-amber-500 text-white">Writing</Badge>
-            <span className="text-sm text-muted-foreground">
+        <div className="max-w-4xl mx-auto flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            <Badge className="bg-amber-500 text-white shrink-0">Writing</Badge>
+            <span className="text-xs sm:text-sm text-muted-foreground truncate">
               Task {currentTask + 1} of {writingTasks.length}
             </span>
           </div>

@@ -90,12 +90,12 @@ export default function ReadingTest() {
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-gray-950">
       <div className="sticky top-0 z-10 bg-white dark:bg-gray-900 border-b px-4 py-3">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Badge className="bg-emerald-500 text-white">Reading</Badge>
-            <span className="text-sm text-muted-foreground">
-              Part {currentPart + 1} of {readingParts.length} | Question{" "}
-              {currentQuestion + 1} of {part.questions.length}
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            <Badge className="bg-emerald-500 text-white shrink-0">Reading</Badge>
+            <span className="text-xs sm:text-sm text-muted-foreground truncate">
+              Part {currentPart + 1}/{readingParts.length} · Q{" "}
+              {currentQuestion + 1}/{part.questions.length}
             </span>
           </div>
           <Timer

@@ -335,10 +335,10 @@ export default function Dashboard() {
       />
 
       {/* ── Top nav ────────────────────────────────── */}
-      <nav className="max-w-screen-xl mx-auto px-6 pt-6 flex items-center gap-2 relative z-10">
+      <nav className="max-w-screen-xl mx-auto px-4 sm:px-6 pt-6 flex items-center gap-2 relative z-10">
         <button
           onClick={() => router.push("/")}
-          className="text-xs font-semibold tracking-widest uppercase mr-auto transition-colors"
+          className="text-xs font-semibold tracking-widest uppercase mr-auto transition-colors shrink-0"
           style={{ color: "var(--hp-accent)" }}
           onMouseEnter={(e) =>
             (e.currentTarget.style.color = "var(--hp-accent-light)")
@@ -350,36 +350,40 @@ export default function Dashboard() {
           CELPIP Mock Test
         </button>
 
-        {tabs.slice(4).map((tab) => (
-          <button
-            key={tab.key}
-            onClick={() => setActiveTab(tab.key)}
-            className="px-4 py-2 rounded-full text-sm font-medium transition-all"
-            style={{
-              background:
-                activeTab === tab.key ? "var(--hp-accent)" : "transparent",
-              color:
-                activeTab === tab.key ? "#ffffff" : "var(--hp-text-muted)",
-            }}
-            onMouseEnter={(e) => {
-              if (activeTab !== tab.key)
-                e.currentTarget.style.color = "var(--hp-text)";
-            }}
-            onMouseLeave={(e) => {
-              if (activeTab !== tab.key)
-                e.currentTarget.style.color = "var(--hp-text-muted)";
-            }}
-          >
-            {tab.label}
-          </button>
-        ))}
+        {/* Desktop-only nav tabs */}
+        <div className="hidden md:flex items-center gap-2">
+          {tabs.slice(4).map((tab) => (
+            <button
+              key={tab.key}
+              onClick={() => setActiveTab(tab.key)}
+              className="px-4 py-2 rounded-full text-sm font-medium transition-all"
+              style={{
+                background:
+                  activeTab === tab.key ? "var(--hp-accent)" : "transparent",
+                color:
+                  activeTab === tab.key ? "#ffffff" : "var(--hp-text-muted)",
+              }}
+              onMouseEnter={(e) => {
+                if (activeTab !== tab.key)
+                  e.currentTarget.style.color = "var(--hp-text)";
+              }}
+              onMouseLeave={(e) => {
+                if (activeTab !== tab.key)
+                  e.currentTarget.style.color = "var(--hp-text-muted)";
+              }}
+            >
+              {tab.label}
+            </button>
+          ))}
 
-        <div
-          className="w-px h-5 mx-1"
-          style={{ background: "var(--hp-border)" }}
-        />
+          <div
+            className="w-px h-5 mx-1"
+            style={{ background: "var(--hp-border)" }}
+          />
+        </div>
+
         <span
-          className="text-sm font-medium"
+          className="text-sm font-medium hidden sm:inline"
           style={{ color: "var(--hp-text)" }}
         >
           {currentUser.name}
@@ -413,10 +417,10 @@ export default function Dashboard() {
       </nav>
 
       {/* ── Welcome header ─────────────────────────── */}
-      <section className="max-w-screen-xl mx-auto px-6 pt-10 pb-6 relative z-10">
-        <div className="flex flex-col md:flex-row md:items-end gap-4 md:gap-16">
+      <section className="max-w-screen-xl mx-auto px-4 sm:px-6 pt-8 sm:pt-10 pb-6 relative z-10">
+        <div className="flex flex-col md:flex-row md:items-end gap-3 md:gap-16">
           <h2
-            className="text-3xl font-bold"
+            className="text-2xl sm:text-3xl font-bold"
             style={{
               fontFamily: "var(--font-serif)",
               color: "var(--hp-text)",
@@ -438,13 +442,14 @@ export default function Dashboard() {
       </section>
 
       {/* ── Tab navigation ─────────────────────────── */}
-      <section className="max-w-screen-xl mx-auto px-6 pb-10 relative z-10">
-        <div className="flex gap-2 mb-8">
-          {tabs.slice(0, 4).map((tab) => (
+      <section className="max-w-screen-xl mx-auto px-4 sm:px-6 pb-10 relative z-10">
+        <div className="flex gap-2 mb-8 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none">
+          {/* On mobile show all tabs; on md+ only show first 4 (rest are in nav) */}
+          {tabs.map((tab, i) => (
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
-              className="px-5 py-2.5 rounded-full text-sm font-medium transition-all"
+              className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-sm font-medium transition-all whitespace-nowrap shrink-0 ${i >= 4 ? "md:hidden" : ""}`}
               style={{
                 background:
                   activeTab === tab.key ? "var(--hp-accent)" : "var(--hp-glass)",
@@ -539,9 +544,9 @@ export default function Dashboard() {
 
         {/* ── Tab 2: Section Practice ────────────── */}
         {activeTab === "section" && (
-          <div className="flex gap-6">
-            {/* Sidebar */}
-            <div className="w-48 shrink-0 space-y-1.5">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-6">
+            {/* Sidebar — horizontal scroll on mobile, vertical on md+ */}
+            <div className="flex md:flex-col gap-2 md:gap-1.5 overflow-x-auto pb-2 md:pb-0 md:w-48 md:shrink-0 scrollbar-none">
               {sections.map((s) => {
                 const isActive =
                   (expandedSection || "listening") === s.key;
@@ -549,7 +554,7 @@ export default function Dashboard() {
                   <button
                     key={s.key}
                     onClick={() => setExpandedSection(s.key)}
-                    className="w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all flex items-center gap-2.5"
+                    className="md:w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all flex items-center gap-2.5 whitespace-nowrap shrink-0"
                     style={{
                       background: isActive ? `${s.color}12` : "transparent",
                       color: isActive ? s.color : "var(--hp-text-muted)",
@@ -576,7 +581,7 @@ export default function Dashboard() {
             </div>
 
             {/* Content */}
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
               {sections.map((s) => {
                 if ((expandedSection || "listening") !== s.key) return null;
                 return (
@@ -663,9 +668,9 @@ export default function Dashboard() {
 
         {/* ── Tab 3: Quiz Practice ───────────────── */}
         {activeTab === "quiz" && (
-          <div className="flex gap-6">
-            {/* Sidebar */}
-            <div className="w-48 shrink-0 space-y-1.5">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-6">
+            {/* Sidebar — horizontal scroll on mobile, vertical on md+ */}
+            <div className="flex md:flex-col gap-2 md:gap-1.5 overflow-x-auto pb-2 md:pb-0 md:w-48 md:shrink-0 scrollbar-none">
               {quizSections.map((qs) => {
                 const isActive =
                   (expandedQuiz || "listening") === qs.key;
@@ -673,7 +678,7 @@ export default function Dashboard() {
                   <button
                     key={qs.key}
                     onClick={() => setExpandedQuiz(qs.key)}
-                    className="w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all flex items-center gap-2.5"
+                    className="md:w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all flex items-center gap-2.5 whitespace-nowrap shrink-0"
                     style={{
                       background: isActive
                         ? `${qs.color}12`
@@ -706,7 +711,7 @@ export default function Dashboard() {
             </div>
 
             {/* Content */}
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
               {quizSections.map((qs) => {
                 if ((expandedQuiz || "listening") !== qs.key) return null;
                 const totalParts = qs.categories.reduce(

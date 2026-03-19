@@ -193,7 +193,7 @@ export default function Home() {
       />
 
       {/* ── Nav ─────────────────────────────────────── */}
-      <nav className="max-w-screen-xl mx-auto px-6 pt-8 flex justify-between items-center relative z-10 hp-reveal">
+      <nav className="max-w-screen-xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8 flex justify-between items-center relative z-10 hp-reveal">
         <span
           className="text-sm font-semibold tracking-widest uppercase"
           style={{ color: "var(--hp-accent)" }}
@@ -243,8 +243,8 @@ export default function Home() {
       </nav>
 
       {/* ── Hero ────────────────────────────────────── */}
-      <section className="max-w-screen-xl mx-auto px-6 pt-24 pb-12 relative z-10">
-        <div className="flex flex-col md:flex-row items-center gap-12">
+      <section className="max-w-screen-xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-12 relative z-10">
+        <div className="flex flex-col md:flex-row items-center gap-8 sm:gap-12">
           <div className="flex-1 text-center md:text-left">
             <div className="hp-reveal hp-reveal-d1">
               <span
@@ -260,7 +260,7 @@ export default function Home() {
               </span>
             </div>
             <h1
-              className="hp-reveal hp-reveal-d2 text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-[1.05]"
+              className="hp-reveal hp-reveal-d2 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-[1.05]"
               style={{ fontFamily: "var(--font-serif)" }}
             >
               Master the
@@ -281,10 +281,10 @@ export default function Home() {
               sections. AI-powered study plans. Instant feedback. Track your
               progress to test day.
             </p>
-            <div className="hp-reveal hp-reveal-d4 flex gap-4 justify-center md:justify-start">
+            <div className="hp-reveal hp-reveal-d4 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
               <button
                 onClick={handleCta}
-                className="hp-cta-btn px-8 py-4 rounded-full text-base flex items-center gap-2"
+                className="hp-cta-btn px-6 sm:px-8 py-3.5 sm:py-4 rounded-full text-sm sm:text-base flex items-center justify-center gap-2"
               >
                 {!loading && currentUser ? "Go to Dashboard" : "Get Started Free"}
                 <ArrowRight className="w-4 h-4" />
@@ -295,7 +295,7 @@ export default function Home() {
                     .getElementById("features")
                     ?.scrollIntoView({ behavior: "smooth" })
                 }
-                className="px-8 py-4 rounded-full text-base font-medium transition-all"
+                className="px-6 sm:px-8 py-3.5 sm:py-4 rounded-full text-sm sm:text-base font-medium transition-all text-center"
                 style={{
                   color: "var(--hp-text-muted)",
                   border: "1px solid var(--hp-border)",
@@ -321,7 +321,7 @@ export default function Home() {
 
       {/* ── Stats strip ─────────────────────────────── */}
       <section className="relative z-10 my-8">
-        <div className="hp-strip max-w-screen-xl mx-auto px-6 py-6 flex flex-wrap justify-center gap-8 md:gap-16 hp-reveal hp-reveal-d6">
+        <div className="hp-strip max-w-screen-xl mx-auto px-4 sm:px-6 py-6 flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-16 hp-reveal hp-reveal-d6">
           {[
             { value: "4", label: "Test Sections" },
             { value: "96+", label: "Questions" },
@@ -352,11 +352,11 @@ export default function Home() {
       {/* ── Features ────────────────────────────────── */}
       <section
         id="features"
-        className="max-w-screen-xl mx-auto px-6 py-20 relative z-10"
+        className="max-w-screen-xl mx-auto px-4 sm:px-6 py-12 sm:py-20 relative z-10"
       >
-        <div className="text-center mb-14">
+        <div className="text-center mb-10 sm:mb-14">
           <h2
-            className="text-4xl md:text-5xl font-bold mb-4 hp-reveal"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 hp-reveal"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             Everything you need
@@ -416,8 +416,8 @@ export default function Home() {
       </section>
 
       {/* ── Study Plan showcase ──────────────────────── */}
-      <section className="max-w-screen-xl mx-auto px-6 py-20 relative z-10">
-        <div className="hp-glass rounded-3xl p-8 md:p-12 relative overflow-hidden hp-reveal">
+      <section className="max-w-screen-xl mx-auto px-4 sm:px-6 py-12 sm:py-20 relative z-10">
+        <div className="hp-glass rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 relative overflow-hidden hp-reveal">
           {/* Decorative glow */}
           <div
             className="absolute -top-20 -right-20 w-64 h-64 rounded-full pointer-events-none"
@@ -564,10 +564,10 @@ export default function Home() {
       </section>
 
       {/* ── Test Format ─────────────────────────────── */}
-      <section className="max-w-screen-xl mx-auto px-6 py-20 relative z-10">
-        <div className="text-center mb-14">
+      <section className="max-w-screen-xl mx-auto px-4 sm:px-6 py-12 sm:py-20 relative z-10">
+        <div className="text-center mb-10 sm:mb-14">
           <h2
-            className="text-4xl md:text-5xl font-bold mb-4 hp-reveal"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 hp-reveal"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             CELPIP General
@@ -582,7 +582,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {testSections.map((s, i) => (
             <div
               key={s.label}
@@ -621,10 +621,10 @@ export default function Home() {
       </section>
 
       {/* ── Testimonials ────────────────────────────── */}
-      <section className="max-w-screen-xl mx-auto px-6 py-20 relative z-10">
-        <div className="text-center mb-14">
+      <section className="max-w-screen-xl mx-auto px-4 sm:px-6 py-12 sm:py-20 relative z-10">
+        <div className="text-center mb-10 sm:mb-14">
           <h2
-            className="text-4xl md:text-5xl font-bold mb-4 hp-reveal"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 hp-reveal"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             Trusted by{" "}
@@ -699,7 +699,7 @@ export default function Home() {
       </section>
 
       {/* ── CTA ─────────────────────────────────────── */}
-      <section className="relative z-10 py-24 text-center">
+      <section className="relative z-10 py-16 sm:py-24 text-center px-4 sm:px-6">
         {/* CTA glow */}
         <div
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] rounded-full pointer-events-none"
@@ -709,7 +709,7 @@ export default function Home() {
           }}
         />
         <h2
-          className="text-4xl md:text-5xl font-bold mb-4 relative hp-reveal"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 relative hp-reveal"
           style={{ fontFamily: "var(--font-serif)" }}
         >
           Ready to start
@@ -734,7 +734,7 @@ export default function Home() {
       {/* ── Footer ──────────────────────────────────── */}
       <footer className="relative z-10 pb-10">
         <div
-          className="max-w-screen-xl mx-auto px-6 pt-8 flex justify-between items-center"
+          className="max-w-screen-xl mx-auto px-4 sm:px-6 pt-8 flex justify-between items-center"
           style={{
             borderTop: "1px solid var(--hp-border)",
           }}

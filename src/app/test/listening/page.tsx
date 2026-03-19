@@ -91,12 +91,12 @@ export default function ListeningTest() {
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-gray-950">
       <div className="sticky top-0 z-10 bg-white dark:bg-gray-900 border-b px-4 py-3">
-        <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Badge className="bg-blue-500 text-white">Listening</Badge>
-            <span className="text-sm text-muted-foreground">
-              Part {currentPart + 1} of {listeningParts.length} | Question{" "}
-              {currentQuestion + 1} of {part.questions.length}
+        <div className="max-w-4xl mx-auto flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            <Badge className="bg-blue-500 text-white shrink-0">Listening</Badge>
+            <span className="text-xs sm:text-sm text-muted-foreground truncate">
+              Part {currentPart + 1}/{listeningParts.length} · Q{" "}
+              {currentQuestion + 1}/{part.questions.length}
             </span>
           </div>
           <Timer

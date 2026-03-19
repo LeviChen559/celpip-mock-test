@@ -5,7 +5,7 @@ export default function HeroAnimation() {
     <div className="relative">
       <div className="hp-glow-orb" />
       <div
-        className="w-[360px] h-[360px] md:w-[420px] md:h-[420px]"
+        className="w-[260px] h-[260px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px]"
         style={{ animation: "hp-float 5s ease-in-out infinite" }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
