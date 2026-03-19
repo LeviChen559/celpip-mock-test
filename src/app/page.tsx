@@ -195,23 +195,24 @@ export default function Home() {
       {/* ── Nav ─────────────────────────────────────── */}
       <nav className="max-w-screen-xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8 flex justify-between items-center relative z-10 hp-reveal">
         <span
-          className="text-sm font-semibold tracking-widest uppercase"
+          className="text-xs sm:text-sm font-semibold tracking-wider sm:tracking-widest uppercase shrink-0"
           style={{ color: "var(--hp-accent)" }}
         >
-          CELPIP Mock Test
+          CELPIP
+          <span className="hidden sm:inline"> Mock Test</span>
         </span>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           {!loading && currentUser ? (
             <>
               <span
-                className="text-sm"
+                className="text-sm hidden sm:inline"
                 style={{ color: "var(--hp-text-muted)" }}
               >
                 {currentUser.name}
               </span>
               <button
                 onClick={() => router.push("/dashboard")}
-                className="hp-cta-btn px-5 py-2.5 rounded-full text-sm"
+                className="hp-cta-btn px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-sm"
               >
                 Dashboard
               </button>
@@ -220,7 +221,7 @@ export default function Home() {
             <>
               <button
                 onClick={() => router.push("/login")}
-                className="px-4 py-2.5 rounded-full text-sm font-medium transition-colors"
+                className="px-3 sm:px-4 py-2 sm:py-2.5 rounded-full text-sm font-medium transition-colors"
                 style={{ color: "var(--hp-text-muted)" }}
                 onMouseEnter={(e) =>
                   (e.currentTarget.style.color = "var(--hp-text)")
@@ -233,7 +234,7 @@ export default function Home() {
               </button>
               <button
                 onClick={() => router.push("/signup")}
-                className="hp-cta-btn px-5 py-2.5 rounded-full text-sm"
+                className="hp-cta-btn px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-sm whitespace-nowrap"
               >
                 Get Started
               </button>
