@@ -11,8 +11,17 @@ export default function LoginPage() {
   const { currentUser, loading, signIn } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("remembered_email");
+    if (saved) {
+      setEmail(saved);
+      setRememberMe(true);
+    }
+  }, []);
 
   useEffect(() => {
     if (!loading && currentUser) {
@@ -39,6 +48,11 @@ export default function LoginPage() {
     try {
       if (!email.trim()) { setError("Email is required."); setSubmitting(false); return; }
       if (!password) { setError("Password is required."); setSubmitting(false); return; }
+      if (rememberMe) {
+        localStorage.setItem("remembered_email", email.trim().toLowerCase());
+      } else {
+        localStorage.removeItem("remembered_email");
+      }
       const err = await signIn(email.trim().toLowerCase(), password);
       if (err) { setError(err); setSubmitting(false); return; }
       router.push("/dashboard");
@@ -192,6 +206,23 @@ export default function LoginPage() {
                   (e.currentTarget.style.borderColor = "var(--hp-border)")
                 }
               />
+            </div>
+
+            <div className="flex items-center gap-2 hp-reveal hp-reveal-d3">
+              <input
+                type="checkbox"
+                id="remember-me"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+                className="w-4 h-4 rounded border-gray-300 accent-[var(--hp-accent)] cursor-pointer"
+              />
+              <label
+                htmlFor="remember-me"
+                className="text-sm cursor-pointer select-none"
+                style={{ color: "var(--hp-text-muted)" }}
+              >
+                Remember my email
+              </label>
             </div>
 
             {error && (

@@ -9,6 +9,7 @@ import {
   type Question,
 } from "@/lib/celpip-data";
 import { useHistory } from "@/lib/hooks/use-history";
+import { useAuth } from "@/lib/hooks/use-auth";
 import TranscriptAudioPlayer from "@/components/TranscriptAudioPlayer";
 import ReadingPassageRenderer from "@/components/ReadingPassageRenderer";
 
@@ -154,6 +155,10 @@ export default function QuizPractice({
   const { section } = use(params);
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { currentUser } = useAuth();
+
+  const ctaLabel = currentUser ? "Dashboard" : "Get Started";
+  const ctaHref = currentUser ? "/dashboard" : "/signup";
 
   const partParam = searchParams.get("part") || "all";
 
@@ -283,6 +288,14 @@ export default function QuizPractice({
               <div className="flex-1" />
 
               {/* Actions */}
+              {!currentUser && (
+                <button
+                  onClick={() => router.push("/")}
+                  className="px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg border border-black/[0.06] text-[#1a1a2e] hover:bg-[#f5f0e8] transition-colors shrink-0"
+                >
+                  Home
+                </button>
+              )}
               <button
                 onClick={() => setPhase("finished")}
                 className="px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg border border-black/[0.06] text-[#1a1a2e] hover:bg-[#f5f0e8] transition-colors shrink-0"
@@ -290,10 +303,10 @@ export default function QuizPractice({
                 Summary
               </button>
               <button
-                onClick={() => router.push("/dashboard")}
+                onClick={() => router.push(ctaHref)}
                 className="px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg bg-[#b8703b] text-white hover:bg-[#d4884e] transition-colors shrink-0"
               >
-                Dashboard
+                {ctaLabel}
               </button>
             </div>
           </div>
@@ -488,10 +501,10 @@ export default function QuizPractice({
                 Review Answers
               </button>
               <button
-                onClick={() => router.push("/dashboard")}
+                onClick={() => router.push(ctaHref)}
                 className="w-full py-2.5 text-sm font-medium rounded-lg text-[var(--quiz-ink)]/50 hover:text-[var(--quiz-ink)] transition-colors"
               >
-                Back to Dashboard
+                {currentUser ? "Back to Dashboard" : "Get Started Free"}
               </button>
             </div>
           </div>
@@ -549,9 +562,9 @@ export default function QuizPractice({
               Finish
             </button>
 
-            {/* Quit (X) - hide on mobile, show on sm+ */}
+            {/* Quit (X) */}
             <button
-              onClick={() => router.push("/dashboard")}
+              onClick={() => router.push(ctaHref)}
               className="p-1.5 rounded-lg text-[var(--quiz-ink)]/30 hover:text-[var(--quiz-ink)]/60 hover:bg-black/5 transition-colors shrink-0 hidden sm:flex"
               title="Quit"
             >

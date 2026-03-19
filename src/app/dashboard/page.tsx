@@ -239,10 +239,10 @@ export default function Dashboard() {
   const router = useRouter();
   const { currentUser, loading, signOut } = useAuth();
   const { records } = useHistory();
-  const [activeTab, setActiveTab] = useState<TabKey>("full");
+  const [activeTab, setActiveTab] = useState<TabKey | null>(null);
   const [expandedQuiz, setExpandedQuiz] = useState<string | null>(null);
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const userRole = currentUser?.role || "subscriber";
 
   useEffect(() => {
     if (!loading && !currentUser) {
@@ -250,31 +250,17 @@ export default function Dashboard() {
     }
   }, [loading, currentUser, router]);
 
+  // Set default tab based on role
   useEffect(() => {
-    if (!currentUser) return;
-    import("@/lib/supabase/client").then(({ createClient: create }) => {
-      const supabase = create();
-      supabase
-        .from("profiles")
-        .select("role")
-        .eq("id", currentUser.id)
-        .single()
-        .then(
-          ({
-            data,
-            error,
-          }: {
-            data: { role: string } | null;
-            error: unknown;
-          }) => {
-            console.log("Admin check:", { data, error });
-            if (data?.role === "admin") setIsAdmin(true);
-          }
-        );
-    });
-  }, [currentUser]);
+    if (currentUser) {
+      setActiveTab((prev) => prev ?? (userRole === "admin" || userRole === "teacher" ? "full" : "quiz"));
+    }
+  }, [currentUser, userRole]);
 
-  if (loading || !currentUser) return null;
+  if (loading || !currentUser || !activeTab) return null;
+
+  const canAccessFullTest = userRole === "admin" || userRole === "teacher";
+  const visibleTabs = canAccessFullTest ? tabs : tabs.filter((t) => t.key !== "full");
 
   // Build a map of completed quiz keys
   const completedQuizMap = new Map<string, number>();
@@ -352,7 +338,7 @@ export default function Dashboard() {
 
         {/* Desktop-only nav tabs */}
         <div className="hidden md:flex items-center gap-2">
-          {tabs.slice(4).map((tab) => (
+          {visibleTabs.slice(4).map((tab) => (
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
@@ -388,7 +374,7 @@ export default function Dashboard() {
         >
           {currentUser.name}
         </span>
-        {isAdmin && (
+        {userRole === "admin" && (
           <button
             onClick={() => router.push("/admin")}
             className="px-3 py-1.5 rounded-full text-xs font-medium transition-colors"
@@ -401,6 +387,21 @@ export default function Dashboard() {
             }
           >
             Admin
+          </button>
+        )}
+        {userRole === "teacher" && (
+          <button
+            onClick={() => router.push("/teacher")}
+            className="px-3 py-1.5 rounded-full text-xs font-medium transition-colors"
+            style={{ color: "var(--hp-accent)" }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.color = "var(--hp-accent-light)")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.color = "var(--hp-accent)")
+            }
+          >
+            My Students
           </button>
         )}
         <button
@@ -445,7 +446,7 @@ export default function Dashboard() {
       <section className="max-w-screen-xl mx-auto px-4 sm:px-6 pb-10 relative z-10">
         <div className="flex gap-2 mb-8 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none">
           {/* On mobile show all tabs; on md+ only show first 4 (rest are in nav) */}
-          {tabs.map((tab, i) => (
+          {visibleTabs.map((tab, i) => (
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
@@ -483,7 +484,7 @@ export default function Dashboard() {
         </div>
 
         {/* ── Tab 1: Full Mock Test ──────────────── */}
-        {activeTab === "full" && (
+        {activeTab === "full" && canAccessFullTest && (
           <div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
               {sections.map((s) => (

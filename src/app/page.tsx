@@ -350,6 +350,100 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── Try a Free Quiz ──────────────────────────── */}
+      <section className="max-w-screen-xl mx-auto px-4 sm:px-6 py-12 sm:py-20 relative z-10">
+        <div className="text-center mb-10 sm:mb-14">
+          <h2
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 hp-reveal"
+            style={{ fontFamily: "var(--font-serif)" }}
+          >
+            Try a{" "}
+            <span style={{ color: "var(--hp-accent)" }}>Free Quiz</span>
+          </h2>
+          <p
+            className="text-base hp-reveal hp-reveal-d1"
+            style={{ color: "var(--hp-text-muted)" }}
+          >
+            No account needed. Jump right in and test your skills.
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+          {[
+            {
+              title: "Listening",
+              description: "Listen to a conversation and answer comprehension questions.",
+              icon: Headphones,
+              color: "#c78b3c",
+              href: "/quiz/listening?part=0",
+              detail: "Part 1 — Practice",
+            },
+            {
+              title: "Reading",
+              description: "Read a passage and answer questions about key details.",
+              icon: BookOpen,
+              color: "#6b8f71",
+              href: "/quiz/reading?part=0",
+              detail: "Part 1 — Practice",
+            },
+          ].map((q, i) => (
+            <button
+              key={q.title}
+              onClick={() => router.push(q.href)}
+              className={`hp-glass rounded-2xl p-6 text-left relative overflow-hidden group transition-all hp-reveal hp-reveal-d${i + 1}`}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = q.color;
+                e.currentTarget.style.transform = "translateY(-2px)";
+                e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.08)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "var(--hp-border)";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "none";
+              }}
+              style={{ border: "1px solid var(--hp-border)" }}
+            >
+              <div
+                className="absolute top-0 left-6 right-6 h-[2px] rounded-full"
+                style={{ background: q.color, opacity: 0.5 }}
+              />
+              <div className="flex items-start gap-4">
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+                  style={{ background: `${q.color}15`, color: q.color }}
+                >
+                  <q.icon className="w-6 h-6" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p
+                    className="text-lg font-bold mb-0.5"
+                    style={{ color: q.color, fontFamily: "var(--font-serif)" }}
+                  >
+                    {q.title}
+                  </p>
+                  <p
+                    className="text-xs font-medium mb-2"
+                    style={{ color: "var(--hp-text-muted)" }}
+                  >
+                    {q.detail}
+                  </p>
+                  <p
+                    className="text-sm leading-relaxed"
+                    style={{ color: "var(--hp-text-muted)" }}
+                  >
+                    {q.description}
+                  </p>
+                </div>
+                <ArrowRight
+                  className="w-5 h-5 shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                  style={{ color: q.color }}
+                />
+              </div>
+            </button>
+          ))}
+        </div>
+      </section>
+
       {/* ── Features ────────────────────────────────── */}
       <section
         id="features"

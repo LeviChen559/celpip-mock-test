@@ -37,56 +37,70 @@ export function useAuthProvider(): AuthContextType {
   const supabase = useMemo(() => createClient(), []);
 
   useEffect(() => {
-    let initialLoad = true;
+    let mounted = true;
 
-    const fetchProfile = async (user: User): Promise<AppUser | null> => {
-      const { data, error } = await supabase
-        .from("profiles")
-        .select("name, email")
-        .eq("id", user.id)
-        .single();
-      if (data) return { id: user.id, name: data.name, email: data.email };
-      // Profile missing — create it as fallback
-      if (error) {
-        const name = user.user_metadata?.name || user.email?.split("@")[0] || "";
-        await supabase.from("profiles").upsert({
-          id: user.id,
-          name,
-          email: user.email || "",
-        });
-        return { id: user.id, name, email: user.email || "" };
+    const fetchProfile = async (user: User): Promise<AppUser> => {
+      const fallbackName = user.user_metadata?.name || user.email?.split("@")[0] || "";
+      const fallbackEmail = user.email || "";
+
+      // Use server API — avoids client-side RLS issues entirely
+      try {
+        const res = await fetch("/api/auth/profile");
+        if (res.ok) {
+          const profile = await res.json();
+          console.log("[useAuth] profile loaded via API:", { id: user.id, role: profile.role });
+          return { id: user.id, name: profile.name || fallbackName, email: profile.email || fallbackEmail, role: profile.role ?? "subscriber" };
+        }
+      } catch (e) {
+        console.log("[useAuth] API fetch failed:", e);
       }
-      return null;
+
+      // API failed — return basic info from auth metadata
+      console.log("[useAuth] using auth metadata fallback");
+      return { id: user.id, name: fallbackName, email: fallbackEmail, role: "subscriber" };
     };
+
+    let initialSessionHandled = false;
 
     // Get initial session
     supabase.auth.getSession().then(async ({ data: { session } }: { data: { session: { user: User } | null } }) => {
+      initialSessionHandled = true;
       if (session?.user) {
-        const profile = await fetchProfile(session.user);
-        setCurrentUser(profile);
+        try {
+          const profile = await fetchProfile(session.user);
+          if (mounted) setCurrentUser(profile);
+        } catch (e) {
+          console.log("[useAuth] fetchProfile error:", e);
+        }
       }
-      setLoading(false);
+      if (mounted) setLoading(false);
     }).catch(() => {
-      setLoading(false);
+      initialSessionHandled = true;
+      if (mounted) setLoading(false);
     });
 
-    // Listen for subsequent auth changes
+    // Listen for subsequent auth changes (sign in, sign out, token refresh)
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (_event: string, session: { user: User } | null) => {
-      if (initialLoad) {
-        initialLoad = false;
-        return; // skip — getSession already handled the initial state
-      }
+      // Skip if getSession already handled the initial load
+      if (!initialSessionHandled) return;
       if (session?.user) {
-        const profile = await fetchProfile(session.user);
-        setCurrentUser(profile);
+        try {
+          const profile = await fetchProfile(session.user);
+          if (mounted) setCurrentUser(profile);
+        } catch (e) {
+          console.log("[useAuth] fetchProfile error on auth change:", e);
+        }
       } else {
-        setCurrentUser(null);
+        if (mounted) setCurrentUser(null);
       }
     });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      mounted = false;
+      subscription.unsubscribe();
+    };
   }, [supabase]);
 
   const signUp = useCallback(
