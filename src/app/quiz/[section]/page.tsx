@@ -8,13 +8,6 @@ import {
   calculateCelpipScore,
   type Question,
 } from "@/lib/celpip-data";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
 import { useHistory } from "@/lib/hooks/use-history";
 import TranscriptAudioPlayer from "@/components/TranscriptAudioPlayer";
 import ReadingPassageRenderer from "@/components/ReadingPassageRenderer";
@@ -61,6 +54,96 @@ function formatTime(seconds: number): string {
   return `${m}:${s.toString().padStart(2, "0")}`;
 }
 
+// ── Circular timer ring ──────────────────────────────
+function TimerRing({ timeLeft, totalTime }: { timeLeft: number; totalTime: number }) {
+  const pct = totalTime > 0 ? timeLeft / totalTime : 0;
+  const radius = 13;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference * (1 - pct);
+  const isWarning = timeLeft <= totalTime * 0.25 && timeLeft > 60;
+  const isCritical = timeLeft <= 60;
+
+  const strokeColor = isCritical
+    ? "var(--quiz-terra)"
+    : isWarning
+    ? "#d4a843"
+    : "var(--quiz-copper)";
+
+  const textColor = isCritical
+    ? "text-[var(--quiz-terra)]"
+    : isWarning
+    ? "text-yellow-700"
+    : "text-[var(--quiz-ink)]";
+
+  const pulseClass = isCritical
+    ? "quiz-timer-critical"
+    : isWarning
+    ? "quiz-timer-warning"
+    : "";
+
+  return (
+    <div className={`flex items-center gap-1.5 px-2 py-1 rounded-full bg-white border border-[var(--quiz-border)] shrink-0 ${pulseClass}`}>
+      <svg width="30" height="30" viewBox="0 0 30 30" className="shrink-0 -rotate-90">
+        <circle
+          cx="15" cy="15" r={radius}
+          fill="none"
+          stroke="rgba(0,0,0,0.06)"
+          strokeWidth="2.5"
+        />
+        <circle
+          cx="15" cy="15" r={radius}
+          fill="none"
+          stroke={strokeColor}
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeDasharray={circumference}
+          strokeDashoffset={offset}
+          style={{ transition: "stroke-dashoffset 1s linear, stroke 0.5s ease" }}
+        />
+      </svg>
+      <span className={`font-mono text-xs sm:text-sm font-bold tracking-tight ${textColor}`}>
+        {formatTime(timeLeft)}
+      </span>
+    </div>
+  );
+}
+
+// ── Progress dots ────────────────────────────────────
+function ProgressDots({
+  total,
+  current,
+  answers,
+  onSelect,
+}: {
+  total: number;
+  current: number;
+  answers: Record<number, number>;
+  onSelect: (i: number) => void;
+}) {
+  return (
+    <div className="flex items-center gap-1">
+      {Array.from({ length: total }, (_, idx) => {
+        const isActive = idx === current;
+        const isAnswered = answers[idx] !== undefined;
+        return (
+          <button
+            key={idx}
+            onClick={() => onSelect(idx)}
+            className={`rounded-full transition-all duration-300 ${
+              isActive
+                ? "w-6 h-2.5 bg-[var(--quiz-copper)] quiz-dot-active"
+                : isAnswered
+                ? "w-2.5 h-2.5 bg-[var(--quiz-copper)]/50"
+                : "w-2.5 h-2.5 bg-black/10 hover:bg-black/20"
+            }`}
+            title={`Question ${idx + 1}${isAnswered ? " (answered)" : ""}`}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
 // ── Component ──────────────────────────────────────────
 
 export default function QuizPractice({
@@ -89,6 +172,7 @@ export default function QuizPractice({
   const { addRecord } = useHistory();
   const [resultSaved, setResultSaved] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const [slideKey, setSlideKey] = useState(0);
 
   // Timer
   useEffect(() => {
@@ -116,25 +200,23 @@ export default function QuizPractice({
     setPhase("review");
   }, []);
 
+  const goToQuestion = useCallback((idx: number) => {
+    setCurrentIndex(idx);
+    setSlideKey((k) => k + 1);
+  }, []);
+
   if (questions.length === 0) {
     return (
-      <main className="min-h-screen flex items-center justify-center">
-        <p className="text-muted-foreground">No questions found.</p>
+      <main className="min-h-screen flex items-center justify-center quiz-page">
+        <p className="text-[var(--quiz-ink)]/50 font-serif text-lg">No questions found.</p>
       </main>
     );
   }
 
   const current = questions[currentIndex];
   const q = current.question;
-  const progress = ((currentIndex + 1) / questions.length) * 100;
   const answeredCount = Object.keys(answers).length;
   const sectionLabel = section === "listening" ? "Listening" : "Reading";
-  const sectionBadgeClass =
-    section === "listening" ? "bg-blue-500 text-white" : "bg-emerald-500 text-white";
-
-  const timerPct = (timeLeft / totalTime) * 100;
-  const timerColor =
-    timeLeft <= 60 ? "text-red-600" : timeLeft <= totalTime * 0.25 ? "text-yellow-600" : "text-[#1a1a2e]";
 
   // ── Compute results ──────────────────────────────────
   const computeResults = () => {
@@ -168,7 +250,7 @@ export default function QuizPractice({
     setResultSaved(true);
   };
 
-  // ── Review phase: show all answers ───────────────────
+  // ── Review phase ───────────────────────────────────
   if (phase === "review") {
     const { correct, total } = computeResults();
     const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
@@ -176,89 +258,125 @@ export default function QuizPractice({
     if (!resultSaved) saveResult(correct, total);
 
     return (
-      <main className="min-h-screen bg-grid" style={{ backgroundColor: "var(--background)" }}>
-        {/* Summary header */}
-        <div className="sticky top-0 z-10 bg-white border-b px-4 py-4">
-          <div className="max-w-screen-xl mx-auto flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Badge className={sectionBadgeClass}>{sectionLabel} Quiz</Badge>
-              <span className="text-sm font-bold text-[#1a1a2e]">
-                Results: {correct}/{total} correct ({pct}%)
+      <main className="min-h-screen quiz-page" style={{ backgroundColor: "var(--quiz-parchment)" }}>
+        {/* Review header */}
+        <div className="sticky top-0 z-10 bg-white/90 backdrop-blur-md quiz-header-line">
+          <div className="max-w-screen-xl mx-auto px-4 sm:px-6 py-3">
+            <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+              {/* Icon + title */}
+              <span className="w-7 h-7 rounded-lg bg-[#b8703b] flex items-center justify-center shrink-0">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 11l3 3L22 4" />
+                  <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
+                </svg>
               </span>
-            </div>
-            <div className="flex gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                className="rounded-full"
+              <span className="font-serif text-base font-bold text-[#1a1a2e] shrink-0">
+                Review
+              </span>
+
+              {/* Score */}
+              <span className="text-xs text-[#1a1a2e]/50 font-medium shrink-0">
+                {correct}/{total} ({pct}%)
+              </span>
+
+              {/* Spacer */}
+              <div className="flex-1" />
+
+              {/* Actions */}
+              <button
                 onClick={() => setPhase("finished")}
+                className="px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg border border-black/[0.06] text-[#1a1a2e] hover:bg-[#f5f0e8] transition-colors shrink-0"
               >
-                View Summary
-              </Button>
-              <Button
-                size="sm"
-                className="rounded-full bg-[#6b4c9a] hover:bg-[#5a3d85] text-white"
+                Summary
+              </button>
+              <button
                 onClick={() => router.push("/dashboard")}
+                className="px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg bg-[#b8703b] text-white hover:bg-[#d4884e] transition-colors shrink-0"
               >
-                Back to Dashboard
-              </Button>
+                Dashboard
+              </button>
             </div>
           </div>
         </div>
 
         {/* Question-by-question review */}
-        <div className="max-w-screen-xl mx-auto px-4 py-8 space-y-6">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-5">
           {questions.map((qq, idx) => {
             const userAnswer = answers[idx] ?? -1;
             const isCorrect = userAnswer === qq.question.correctAnswer;
             const wasSkipped = userAnswer === -1;
+
+            const statusColor = isCorrect ? "sage" : wasSkipped ? "amber" : "terra";
+            const statusBg = isCorrect ? "bg-[#e8f0eb]" : wasSkipped ? "bg-amber-50" : "bg-[#faeae8]";
+            const statusText = isCorrect ? "text-[#3d7a5f]" : wasSkipped ? "text-amber-700" : "text-[#c4493c]";
+
             return (
-              <Card
+              <div
                 key={idx}
-                className={`border-2 rounded-2xl overflow-hidden ${
-                  isCorrect ? "border-green-200" : wasSkipped ? "border-amber-200" : "border-red-200"
-                }`}
+                className="quiz-card quiz-review-card"
+                style={{ animationDelay: `${Math.min(idx * 0.06, 0.6)}s` }}
               >
-                <CardContent className="pt-5">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold ${
-                      isCorrect ? "bg-green-100 text-green-700" : wasSkipped ? "bg-amber-100 text-amber-700" : "bg-red-100 text-red-700"
-                    }`}>
+                {/* Left accent bar */}
+                <div className={`absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl ${
+                  isCorrect ? "bg-[#3d7a5f]" : wasSkipped ? "bg-amber-400" : "bg-[#c4493c]"
+                }`} />
+
+                <div className="p-5 pl-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className={`w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold ${statusBg} ${statusText}`}>
                       {idx + 1}
                     </span>
-                    <Badge className={`text-[10px] border ${
-                      isCorrect ? "bg-green-100 text-green-700 border-green-200"
-                        : wasSkipped ? "bg-amber-100 text-amber-700 border-amber-200"
-                        : "bg-red-100 text-red-700 border-red-200"
-                    }`}>
-                      {isCorrect ? "Correct" : wasSkipped ? "Skipped" : "Wrong"}
-                    </Badge>
-                    <span className="text-xs" style={{ color: "var(--muted-foreground)" }}>
+                    <span className={`text-[10px] uppercase tracking-widest font-bold px-2 py-0.5 rounded ${statusBg} ${statusText}`}>
+                      {isCorrect ? "Correct" : wasSkipped ? "Skipped" : "Incorrect"}
+                    </span>
+                    <span className="text-xs text-[#1a1a2e]/40 ml-auto">
                       {qq.partTitle}
                     </span>
                   </div>
 
-                  <p className="text-sm font-medium text-[#1a1a2e] mb-3">{qq.question.question}</p>
+                  <p className="text-sm font-medium text-[#1a1a2e] mb-4 leading-relaxed">{qq.question.question}</p>
 
-                  <div className="space-y-1.5">
+                  <div className="space-y-2">
                     {qq.question.options.map((opt, optIdx) => {
-                      let cls = "border-[#e2ddd5] bg-white";
-                      if (optIdx === qq.question.correctAnswer) {
-                        cls = "border-green-300 bg-green-50";
-                      } else if (optIdx === userAnswer && !isCorrect) {
-                        cls = "border-red-300 bg-red-50";
-                      }
+                      const isCorrectOption = optIdx === qq.question.correctAnswer;
+                      const isUserWrong = optIdx === userAnswer && !isCorrect;
                       return (
-                        <div key={optIdx} className={`flex items-center gap-2 p-2.5 rounded-lg border ${cls}`}>
-                          <span className="text-xs font-bold w-5 text-center" style={{ color: "var(--muted-foreground)" }}>
+                        <div
+                          key={optIdx}
+                          className={`flex items-center gap-3 px-3 py-2.5 rounded-lg border text-sm ${
+                            isCorrectOption
+                              ? "border-[#3d7a5f]/30 bg-[#e8f0eb]"
+                              : isUserWrong
+                              ? "border-[#c4493c]/30 bg-[#faeae8]"
+                              : "border-transparent bg-black/[0.02]"
+                          }`}
+                        >
+                          <span className={`w-6 h-6 rounded-md flex items-center justify-center text-[10px] font-bold shrink-0 ${
+                            isCorrectOption
+                              ? "bg-[#3d7a5f] text-white"
+                              : isUserWrong
+                              ? "bg-[#c4493c] text-white"
+                              : "bg-black/5 text-[#1a1a2e]/40"
+                          }`}>
                             {String.fromCharCode(65 + optIdx)}
                           </span>
-                          <span className="text-sm flex-1">{opt}</span>
-                          {optIdx === qq.question.correctAnswer && (
-                            <span className="text-green-600 text-xs font-semibold">Correct</span>
+                          <span className={`flex-1 ${isCorrectOption ? "font-medium text-[#3d7a5f]" : isUserWrong ? "text-[#c4493c]" : ""}`}>
+                            {opt}
+                          </span>
+                          {isCorrectOption && (
+                            <span className="text-[#3d7a5f] shrink-0">
+                              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <polyline points="20 6 9 17 4 12" />
+                              </svg>
+                            </span>
                           )}
-                          {optIdx === userAnswer && !isCorrect && optIdx !== qq.question.correctAnswer && (
-                            <span className="text-red-600 text-xs font-semibold">Your answer</span>
+                          {isUserWrong && (
+                            <span className="text-[#c4493c] shrink-0">
+                              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <line x1="18" y1="6" x2="6" y2="18" />
+                                <line x1="6" y1="6" x2="18" y2="18" />
+                              </svg>
+                            </span>
                           )}
                         </div>
                       );
@@ -273,8 +391,8 @@ export default function QuizPractice({
                       />
                     </div>
                   )}
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             );
           })}
         </div>
@@ -286,124 +404,184 @@ export default function QuizPractice({
   if (phase === "finished") {
     const { correct, total } = computeResults();
     const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+    const score = calculateCelpipScore(correct, total);
 
     return (
-      <main className="min-h-screen bg-grid flex items-center justify-center px-4" style={{ backgroundColor: "var(--background)" }}>
-        <Card className="w-full max-w-lg border-2 border-[#e2ddd5] rounded-2xl">
-          <CardContent className="pt-8 pb-8 text-center">
-            <h2 className="text-2xl font-bold text-[#1a1a2e] mb-2">Quiz Complete!</h2>
-            <p className="text-sm mb-6" style={{ color: "var(--muted-foreground)" }}>
+      <main className="min-h-screen quiz-page flex items-center justify-center px-6" style={{ backgroundColor: "var(--quiz-parchment)" }}>
+        {/* Decorative background elements */}
+        <div className="fixed inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-[var(--quiz-copper)]/5 blur-[100px]" />
+          <div className="absolute bottom-1/4 -right-32 w-96 h-96 rounded-full bg-[var(--quiz-sage)]/5 blur-[100px]" />
+        </div>
+
+        <div className="quiz-card w-full max-w-md relative z-10">
+          <div className="p-8 text-center">
+            {/* Decorative top accent */}
+            <div className="w-12 h-1 rounded-full bg-[var(--quiz-copper)] mx-auto mb-6" />
+
+            <h2 className="font-serif text-2xl font-bold text-[var(--quiz-ink)] mb-1">Quiz Complete</h2>
+            <p className="text-sm text-[var(--quiz-ink)]/50 mb-8">
               {sectionLabel} — {partParam === "all" ? "All Parts" : current.partTitle}
             </p>
-            <div className="text-6xl font-bold mb-2">
-              <span className={pct >= 70 ? "text-green-600" : pct >= 50 ? "text-yellow-600" : "text-red-600"}>
-                {pct}%
-              </span>
+
+            {/* Score circle */}
+            <div className="relative w-36 h-36 mx-auto mb-6">
+              <svg viewBox="0 0 120 120" className="w-full h-full -rotate-90">
+                <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(0,0,0,0.04)" strokeWidth="6" />
+                <circle
+                  cx="60" cy="60" r="52" fill="none"
+                  stroke={pct >= 70 ? "var(--quiz-sage)" : pct >= 50 ? "#d4a843" : "var(--quiz-terra)"}
+                  strokeWidth="6"
+                  strokeLinecap="round"
+                  strokeDasharray={`${2 * Math.PI * 52}`}
+                  strokeDashoffset={`${2 * Math.PI * 52 * (1 - pct / 100)}`}
+                  style={{ transition: "stroke-dashoffset 1s cubic-bezier(0.16, 1, 0.3, 1)" }}
+                />
+              </svg>
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <span className={`text-4xl font-bold quiz-count ${
+                  pct >= 70 ? "text-[var(--quiz-sage)]" : pct >= 50 ? "text-yellow-700" : "text-[var(--quiz-terra)]"
+                }`}>
+                  {pct}%
+                </span>
+                <span className="text-xs text-[var(--quiz-ink)]/40 font-medium">Score</span>
+              </div>
             </div>
-            <p className="text-lg mb-6" style={{ color: "var(--muted-foreground)" }}>
-              {correct} / {total} correct
-            </p>
-            <Progress value={pct} className="h-3 mb-8" />
-            <div className="flex justify-center gap-3">
-              <Button
-                variant="outline"
-                className="rounded-full"
+
+            {/* Stats row */}
+            <div className="flex items-center justify-center gap-6 mb-8 text-sm">
+              <div className="text-center">
+                <div className="font-bold text-[var(--quiz-ink)]">{correct}</div>
+                <div className="text-[var(--quiz-ink)]/40 text-xs">Correct</div>
+              </div>
+              <div className="w-px h-8 bg-black/5" />
+              <div className="text-center">
+                <div className="font-bold text-[var(--quiz-ink)]">{total - correct}</div>
+                <div className="text-[var(--quiz-ink)]/40 text-xs">Incorrect</div>
+              </div>
+              <div className="w-px h-8 bg-black/5" />
+              <div className="text-center">
+                <div className="font-bold text-[var(--quiz-copper)]">{score}</div>
+                <div className="text-[var(--quiz-ink)]/40 text-xs">CELPIP</div>
+              </div>
+            </div>
+
+            {/* Action buttons */}
+            <div className="flex flex-col gap-2.5">
+              <button
                 onClick={() => {
                   setCurrentIndex(0);
                   setAnswers({});
                   setTimeLeft(totalTime);
                   setPhase("quiz");
                   setResultSaved(false);
+                  setSlideKey(0);
                 }}
+                className="w-full py-2.5 text-sm font-semibold rounded-lg bg-[var(--quiz-copper)] text-white hover:bg-[var(--quiz-copper-light)] transition-colors"
               >
-                Retry
-              </Button>
-              <Button
-                variant="outline"
-                className="rounded-full"
-                onClick={() => {
-                  setPhase("review");
-                }}
+                Try Again
+              </button>
+              <button
+                onClick={() => setPhase("review")}
+                className="w-full py-2.5 text-sm font-medium rounded-lg border border-[var(--quiz-border)] text-[var(--quiz-ink)] hover:bg-[var(--quiz-warm)] transition-colors"
               >
                 Review Answers
-              </Button>
-              <Button
-                className="rounded-full bg-[#6b4c9a] hover:bg-[#5a3d85] text-white"
+              </button>
+              <button
                 onClick={() => router.push("/dashboard")}
+                className="w-full py-2.5 text-sm font-medium rounded-lg text-[var(--quiz-ink)]/50 hover:text-[var(--quiz-ink)] transition-colors"
               >
-                Dashboard
-              </Button>
+                Back to Dashboard
+              </button>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </main>
     );
   }
 
   // ── Quiz phase ───────────────────────────────────────
   return (
-    <main className="min-h-screen bg-grid" style={{ backgroundColor: "var(--background)" }}>
-      {/* Top bar */}
-      <div className="sticky top-0 z-10 bg-white border-b px-4 py-3">
-        <div className="max-w-screen-xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Badge className={sectionBadgeClass}>{sectionLabel} Quiz</Badge>
-            <span className="text-sm" style={{ color: "var(--muted-foreground)" }}>
-              Question {currentIndex + 1} of {questions.length}
+    <main className="min-h-screen quiz-page" style={{ backgroundColor: "var(--quiz-parchment)" }}>
+      {/* Subtle grain overlay */}
+      <div className="hp-grain" style={{ opacity: 0.08 }} />
+
+      {/* ── Header ─────────────────────────────────────── */}
+      <div className="sticky top-0 z-20 bg-white/90 backdrop-blur-md quiz-header-line">
+        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 py-2.5">
+          {/* Single row: all items inline */}
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            {/* Section dot + label */}
+            <span className={`w-2 h-2 rounded-full shrink-0 ${section === "listening" ? "bg-blue-500" : "bg-emerald-500"}`} />
+            <span className="text-[11px] uppercase tracking-widest font-bold text-[var(--quiz-ink)]/60 shrink-0 hidden sm:inline">
+              {sectionLabel}
             </span>
-            <Separator orientation="vertical" className="h-5" />
-            <span className="text-sm font-medium text-[#1a1a2e]">
-              {answeredCount}/{questions.length} answered
+
+            {/* Question counter */}
+            <span className="text-sm text-[var(--quiz-ink)] shrink-0">
+              <span className="font-bold">{currentIndex + 1}</span>
+              <span className="text-[var(--quiz-ink)]/40">/{questions.length}</span>
             </span>
-          </div>
-          <div className="flex items-center gap-3">
-            {/* Timer */}
-            <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#e2ddd5] ${timerColor} font-mono text-sm font-bold`}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg>
-              {formatTime(timeLeft)}
+
+            {/* Answered count - hide on very small screens */}
+            <span className="text-[11px] text-[var(--quiz-ink)]/40 shrink-0 hidden xs:inline">
+              {answeredCount} done
+            </span>
+
+            {/* Flexible spacer + progress dots (centered) */}
+            <div className="flex-1 flex justify-center min-w-0 overflow-hidden px-1">
+              <ProgressDots
+                total={questions.length}
+                current={currentIndex}
+                answers={answers}
+                onSelect={goToQuestion}
+              />
             </div>
-            <Button
-              variant="outline"
-              size="sm"
-              className="rounded-full"
+
+            {/* Timer */}
+            <TimerRing timeLeft={timeLeft} totalTime={totalTime} />
+
+            {/* Finish button */}
+            <button
               onClick={finishQuiz}
+              className="px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg border border-[var(--quiz-border)] text-[var(--quiz-ink)] hover:bg-[var(--quiz-warm)] transition-colors shrink-0"
             >
-              Finish Quiz
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
+              Finish
+            </button>
+
+            {/* Quit (X) - hide on mobile, show on sm+ */}
+            <button
               onClick={() => router.push("/dashboard")}
+              className="p-1.5 rounded-lg text-[var(--quiz-ink)]/30 hover:text-[var(--quiz-ink)]/60 hover:bg-black/5 transition-colors shrink-0 hidden sm:flex"
+              title="Quit"
             >
-              Quit
-            </Button>
-          </div>
-        </div>
-        <div className="max-w-screen-xl mx-auto mt-2 flex gap-2 items-center">
-          <Progress value={progress} className="h-2 flex-1" />
-          <div className="w-20">
-            <Progress value={timerPct} className="h-1.5" />
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>
 
-      <div className="max-w-screen-xl mx-auto px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Left: Context */}
-          <div className="lg:sticky lg:top-24 lg:self-start">
-            <Card className="border-2 border-[#e2ddd5] rounded-2xl py-4 px-2">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-base">{current.partTitle}</CardTitle>
+      {/* ── Main content ───────────────────────────────── */}
+      <div className="max-w-screen-xl mx-auto px-6 lg:px-10 py-8 lg:py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-6 lg:gap-10">
+
+          {/* Left: Passage / Context */}
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <div className="quiz-card">
+              {/* Card accent stripe */}
+              <div className="h-1 bg-gradient-to-r from-[var(--quiz-copper)] via-[var(--quiz-copper-light)] to-transparent" />
+              <div className="p-5 lg:p-6">
+                <div className="flex items-center gap-2 mb-1">
+                  <h2 className="font-serif text-lg font-bold text-[var(--quiz-ink)]">{current.partTitle}</h2>
+                </div>
                 {current.contextLabel && (
-                  <p className="text-xs uppercase tracking-wide" style={{ color: "var(--muted-foreground)" }}>
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--quiz-ink)]/35 font-semibold mb-4">
                     {current.contextLabel}
                   </p>
                 )}
-              </CardHeader>
-              <CardContent>
                 {section === "listening" ? (
                   <TranscriptAudioPlayer
                     transcript={current.context || ""}
@@ -412,98 +590,99 @@ export default function QuizPractice({
                     partId={current.partId}
                   />
                 ) : (
-                  <div className="bg-[#faf8f5] rounded-lg p-4 max-h-[calc(100vh-220px)] overflow-y-auto">
+                  <div className="bg-[var(--quiz-warm)] rounded-xl p-5 max-h-[calc(100vh-240px)] overflow-y-auto quiz-passage-scroll">
                     <ReadingPassageRenderer passage={current.context || ""} />
                   </div>
                 )}
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
 
           {/* Right: Question */}
-          <div className="flex flex-col gap-4">
-            <Card className="border-2 border-[#e2ddd5] rounded-2xl py-4 px-2">
-              <CardHeader>
-                <CardTitle className="text-base">
-                  Question {currentIndex + 1}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-4 text-sm leading-relaxed">{q.question}</p>
-                <RadioGroup
-                  key={currentIndex}
-                  value={answers[currentIndex] !== undefined ? String(answers[currentIndex]) : ""}
-                  onValueChange={(val) => {
-                    setAnswers((prev) => ({ ...prev, [currentIndex]: Number(val) }));
-                  }}
-                >
+          <div className="flex flex-col gap-5">
+            <div className="quiz-card quiz-slide-in" key={slideKey}>
+              <div className="p-5 lg:p-6">
+                {/* Question header */}
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="w-8 h-8 rounded-lg bg-[var(--quiz-copper)]/10 flex items-center justify-center text-sm font-bold text-[var(--quiz-copper)]">
+                    {currentIndex + 1}
+                  </span>
+                  <span className="text-xs text-[var(--quiz-ink)]/40 font-medium">
+                    Question {currentIndex + 1} of {questions.length}
+                  </span>
+                </div>
+
+                <p className="text-sm leading-relaxed text-[var(--quiz-ink)] mb-5">{q.question}</p>
+
+                {/* Options */}
+                <div className="space-y-2.5">
                   {q.options.map((option, idx) => {
                     const isSelected = answers[currentIndex] === idx;
                     return (
-                      <div
+                      <button
                         key={idx}
-                        className={`flex items-center space-x-3 py-2.5 px-3 rounded-xl border transition-all cursor-pointer ${
+                        onClick={() => setAnswers((prev) => ({ ...prev, [currentIndex]: idx }))}
+                        className={`quiz-option w-full flex items-center gap-3 px-4 py-3 rounded-xl border text-left text-sm ${
                           isSelected
-                            ? "border-[#6b4c9a] bg-purple-50"
-                            : "border-[#e2ddd5] hover:border-[#6b4c9a]/50"
+                            ? "quiz-option-selected border-[var(--quiz-copper)]"
+                            : "border-[var(--quiz-border)] hover:border-[var(--quiz-copper)]/30 bg-white"
                         }`}
                       >
-                        <RadioGroupItem value={String(idx)} id={`quiz-${idx}`} />
-                        <Label
-                          htmlFor={`quiz-${idx}`}
-                          className="cursor-pointer text-sm leading-relaxed flex-1"
-                        >
-                          {String.fromCharCode(65 + idx)}. {option}
-                        </Label>
-                      </div>
+                        <span className={`w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold shrink-0 transition-colors ${
+                          isSelected
+                            ? "bg-[var(--quiz-copper)] text-white"
+                            : "bg-black/[0.04] text-[var(--quiz-ink)]/40"
+                        }`}>
+                          {String.fromCharCode(65 + idx)}
+                        </span>
+                        <span className={`flex-1 ${isSelected ? "text-[var(--quiz-ink)] font-medium" : "text-[var(--quiz-ink)]/80"}`}>
+                          {option}
+                        </span>
+                        {isSelected && (
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--quiz-copper)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
+                            <polyline points="20 6 9 17 4 12" />
+                          </svg>
+                        )}
+                      </button>
                     );
                   })}
-                </RadioGroup>
-              </CardContent>
-            </Card>
+                </div>
+              </div>
+            </div>
 
             {/* Navigation */}
             <div className="flex items-center justify-between">
-              <Button
-                variant="outline"
-                className="rounded-full"
+              <button
                 disabled={currentIndex === 0}
-                onClick={() => setCurrentIndex(currentIndex - 1)}
+                onClick={() => goToQuestion(currentIndex - 1)}
+                className="flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium rounded-lg border border-[var(--quiz-border)] text-[var(--quiz-ink)] hover:bg-[var(--quiz-warm)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent"
               >
-                &larr; Previous
-              </Button>
-
-              <div className="flex gap-1.5">
-                {questions.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setCurrentIndex(idx)}
-                    className={`w-2.5 h-2.5 rounded-full transition-all ${
-                      idx === currentIndex
-                        ? "bg-[#6b4c9a] scale-125"
-                        : answers[idx] !== undefined
-                        ? "bg-[#6b4c9a]/40"
-                        : "bg-[#e2ddd5]"
-                    }`}
-                    title={`Question ${idx + 1}${answers[idx] !== undefined ? " (answered)" : ""}`}
-                  />
-                ))}
-              </div>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+                Previous
+              </button>
 
               {currentIndex < questions.length - 1 ? (
-                <Button
-                  className="rounded-full bg-[#6b4c9a] hover:bg-[#5a3d85] text-white"
-                  onClick={() => setCurrentIndex(currentIndex + 1)}
+                <button
+                  onClick={() => goToQuestion(currentIndex + 1)}
+                  className="flex items-center gap-1.5 px-5 py-2.5 text-sm font-semibold rounded-lg bg-[var(--quiz-copper)] text-white hover:bg-[var(--quiz-copper-light)] transition-colors"
                 >
-                  Next &rarr;
-                </Button>
+                  Next
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                </button>
               ) : (
-                <Button
-                  className="rounded-full bg-[#6b4c9a] hover:bg-[#5a3d85] text-white"
+                <button
                   onClick={finishQuiz}
+                  className="flex items-center gap-1.5 px-5 py-2.5 text-sm font-semibold rounded-lg bg-[var(--quiz-copper)] text-white hover:bg-[var(--quiz-copper-light)] transition-colors"
                 >
                   Finish Quiz
-                </Button>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </button>
               )}
             </div>
           </div>
