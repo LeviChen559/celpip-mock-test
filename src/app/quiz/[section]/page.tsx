@@ -177,33 +177,6 @@ export default function QuizPractice({
   const userRole = currentUser?.role || "subscriber";
   const hasPaidAccess = userRole === "admin" || userRole === "teacher";
 
-  if (isPaidContent && !hasPaidAccess) {
-    return (
-      <main className="min-h-screen quiz-page flex items-center justify-center px-6" style={{ backgroundColor: "var(--quiz-parchment)" }}>
-        <div className="quiz-card w-full max-w-md">
-          <div className="p-8 text-center">
-            <div className="w-14 h-14 rounded-2xl bg-[var(--quiz-copper)]/10 flex items-center justify-center mx-auto mb-5">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--quiz-copper)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-              </svg>
-            </div>
-            <h2 className="font-serif text-xl font-bold text-[var(--quiz-ink)] mb-2">Premium Content</h2>
-            <p className="text-sm text-[var(--quiz-ink)]/50 mb-6 leading-relaxed">
-              This quiz is part of our Pro collection. Upgrade your account to access all premium practice materials.
-            </p>
-            <button
-              onClick={() => router.push("/dashboard")}
-              className="w-full py-2.5 text-sm font-semibold rounded-lg bg-[var(--quiz-copper)] text-white hover:bg-[var(--quiz-copper-light)] transition-colors"
-            >
-              Back to Dashboard
-            </button>
-          </div>
-        </div>
-      </main>
-    );
-  }
-
   // Reading: 1 minute per question global timer. Listening: 30s per question.
   const LISTENING_QUESTION_TIME = 30;
   const totalTime = questions.length * 60;
@@ -295,6 +268,33 @@ export default function QuizPractice({
     return (
       <main className="min-h-screen flex items-center justify-center quiz-page">
         <p className="text-[var(--quiz-ink)]/50 font-serif text-lg">No questions found.</p>
+      </main>
+    );
+  }
+
+  if (isPaidContent && !hasPaidAccess) {
+    return (
+      <main className="min-h-screen quiz-page flex items-center justify-center px-6" style={{ backgroundColor: "var(--quiz-parchment)" }}>
+        <div className="quiz-card w-full max-w-md">
+          <div className="p-8 text-center">
+            <div className="w-14 h-14 rounded-2xl bg-[var(--quiz-copper)]/10 flex items-center justify-center mx-auto mb-5">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--quiz-copper)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+            </div>
+            <h2 className="font-serif text-xl font-bold text-[var(--quiz-ink)] mb-2">Premium Content</h2>
+            <p className="text-sm text-[var(--quiz-ink)]/50 mb-6 leading-relaxed">
+              This quiz is part of our Pro collection. Upgrade your account to access all premium practice materials.
+            </p>
+            <button
+              onClick={() => router.push("/dashboard")}
+              className="w-full py-2.5 text-sm font-semibold rounded-lg bg-[var(--quiz-copper)] text-white hover:bg-[var(--quiz-copper-light)] transition-colors"
+            >
+              Back to Dashboard
+            </button>
+          </div>
+        </div>
       </main>
     );
   }
