@@ -16,6 +16,7 @@ import {
   Mic,
   ArrowRight,
   CheckCircle2,
+  Lock,
 } from "lucide-react";
 
 // ── Helpers ────────────────────────────────────────────
@@ -132,6 +133,7 @@ interface QuizItem {
   topic?: string;
   questionCount: number;
   originalIndex: number;
+  paid?: boolean;
 }
 interface QuizCategory {
   category: string;
@@ -139,7 +141,7 @@ interface QuizCategory {
 }
 
 function groupByCategory(
-  parts: { id: string; title: string; topic?: string; questionCount: number }[]
+  parts: { id: string; title: string; topic?: string; questionCount: number; paid?: boolean }[]
 ): QuizCategory[] {
   const map = new Map<string, { label: string; items: QuizItem[] }>();
   parts.forEach((p, idx) => {
@@ -183,6 +185,7 @@ const quizSections = [
         title: p.title,
         topic: extractTopic(p.passage),
         questionCount: p.questions.length,
+        paid: p.paid,
       }))
     ),
   },
@@ -242,6 +245,7 @@ export default function Dashboard() {
   const [activeTab, setActiveTab] = useState<TabKey | null>(null);
   const [expandedQuiz, setExpandedQuiz] = useState<string | null>(null);
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
+  const [quizCategoryFilter, setQuizCategoryFilter] = useState<string | null>(null);
   const userRole = currentUser?.role || "subscriber";
 
   useEffect(() => {
@@ -678,7 +682,7 @@ export default function Dashboard() {
                 return (
                   <button
                     key={qs.key}
-                    onClick={() => setExpandedQuiz(qs.key)}
+                    onClick={() => { setExpandedQuiz(qs.key); setQuizCategoryFilter(null); }}
                     className="md:w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all flex items-center gap-2.5 whitespace-nowrap shrink-0"
                     style={{
                       background: isActive
@@ -748,8 +752,45 @@ export default function Dashboard() {
                       </p>
                     </div>
 
+                    {/* Category filter tabs */}
+                    {qs.categories.length > 2 && (
+                      <div className="flex flex-wrap gap-1.5 mb-5">
+                        <button
+                          onClick={() => setQuizCategoryFilter(null)}
+                          className="px-3 py-1.5 rounded-lg text-xs font-semibold transition-all"
+                          style={{
+                            background: quizCategoryFilter === null ? qs.color : "var(--hp-glass)",
+                            color: quizCategoryFilter === null ? "#fff" : "var(--hp-text-muted)",
+                            border: `1px solid ${quizCategoryFilter === null ? qs.color : "var(--hp-border)"}`,
+                          }}
+                        >
+                          All
+                        </button>
+                        {qs.categories.map((cat) => {
+                          const label = cat.category.replace(/^Part \d+:\s*/, "");
+                          const isActive = quizCategoryFilter === cat.category;
+                          return (
+                            <button
+                              key={cat.category}
+                              onClick={() => setQuizCategoryFilter(cat.category)}
+                              className="px-3 py-1.5 rounded-lg text-xs font-semibold transition-all"
+                              style={{
+                                background: isActive ? qs.color : "var(--hp-glass)",
+                                color: isActive ? "#fff" : "var(--hp-text-muted)",
+                                border: `1px solid ${isActive ? qs.color : "var(--hp-border)"}`,
+                              }}
+                            >
+                              {label}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
+
                     <div className="space-y-5">
-                      {qs.categories.map((cat) => (
+                      {qs.categories
+                        .filter((cat) => quizCategoryFilter === null || cat.category === quizCategoryFilter)
+                        .map((cat) => (
                         <div key={cat.category}>
                           <p
                             className="text-xs font-semibold uppercase tracking-wide mb-2"
@@ -763,24 +804,32 @@ export default function Dashboard() {
                                 qs.key,
                                 item.originalIndex
                               );
+                              const isPaid = item.paid === true;
+                              const isLocked = isPaid && userRole !== "admin" && userRole !== "teacher";
                               return (
                                 <button
                                   key={item.id}
-                                  onClick={() =>
+                                  onClick={() => {
+                                    if (isLocked) return;
                                     router.push(
                                       `${base}/${qs.key}?part=${item.originalIndex}`
-                                    )
-                                  }
-                                  className="w-full text-left px-4 py-3 rounded-xl flex items-center justify-between group transition-all"
+                                    );
+                                  }}
+                                  className={`w-full text-left px-4 py-3 rounded-xl flex items-center justify-between group transition-all ${isLocked ? "cursor-not-allowed opacity-60" : ""}`}
                                   style={{
-                                    background: done
+                                    background: isLocked
+                                      ? "rgba(0,0,0,0.03)"
+                                      : done
                                       ? "rgba(90,138,106,0.06)"
                                       : "var(--hp-glass)",
-                                    border: done
+                                    border: isLocked
+                                      ? "1px solid rgba(0,0,0,0.08)"
+                                      : done
                                       ? "1px solid rgba(90,138,106,0.15)"
                                       : "1px solid var(--hp-border)",
                                   }}
                                   onMouseEnter={(e) => {
+                                    if (isLocked) return;
                                     e.currentTarget.style.borderColor =
                                       qs.color;
                                     e.currentTarget.style.transform =
@@ -789,6 +838,7 @@ export default function Dashboard() {
                                       "0 4px 12px rgba(0,0,0,0.06)";
                                   }}
                                   onMouseLeave={(e) => {
+                                    if (isLocked) return;
                                     e.currentTarget.style.borderColor = done
                                       ? "rgba(90,138,106,0.15)"
                                       : "var(--hp-border)";
@@ -799,7 +849,12 @@ export default function Dashboard() {
                                   }}
                                 >
                                   <div className="flex items-center gap-3">
-                                    {done ? (
+                                    {isLocked ? (
+                                      <Lock
+                                        className="w-5 h-5 shrink-0"
+                                        style={{ color: "var(--hp-text-muted)" }}
+                                      />
+                                    ) : done ? (
                                       <CheckCircle2
                                         className="w-5 h-5 shrink-0"
                                         style={{ color: "#5a8a6a" }}
@@ -819,10 +874,22 @@ export default function Dashboard() {
                                       <p
                                         className="text-sm font-medium"
                                         style={{
-                                          color: "var(--hp-text)",
+                                          color: isLocked ? "var(--hp-text-muted)" : "var(--hp-text)",
                                         }}
                                       >
                                         {item.topic || `Quiz ${i + 1}`}
+                                        {isPaid && (
+                                          <span
+                                            className="ml-1.5 inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider"
+                                            style={{
+                                              background: "linear-gradient(135deg, #d4a843, #b8703b)",
+                                              color: "#fff",
+                                              verticalAlign: "middle",
+                                            }}
+                                          >
+                                            PRO
+                                          </span>
+                                        )}
                                       </p>
                                       <p
                                         className="text-[11px]"
@@ -834,7 +901,7 @@ export default function Dashboard() {
                                         {item.questionCount === 1
                                           ? "question"
                                           : "questions"}
-                                        {done && (
+                                        {done && !isLocked && (
                                           <span
                                             className="ml-1 font-medium"
                                             style={{ color: "#5a8a6a" }}
@@ -849,13 +916,22 @@ export default function Dashboard() {
                                       </p>
                                     </div>
                                   </div>
-                                  <span
-                                    className="text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1"
-                                    style={{ color: qs.color }}
-                                  >
-                                    {done ? "Redo" : "Start"}
-                                    <ArrowRight className="w-3.5 h-3.5" />
-                                  </span>
+                                  {isLocked ? (
+                                    <span
+                                      className="text-[11px] font-medium"
+                                      style={{ color: "var(--hp-text-muted)" }}
+                                    >
+                                      Upgrade
+                                    </span>
+                                  ) : (
+                                    <span
+                                      className="text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1"
+                                      style={{ color: qs.color }}
+                                    >
+                                      {done ? "Redo" : "Start"}
+                                      <ArrowRight className="w-3.5 h-3.5" />
+                                    </span>
+                                  )}
                                 </button>
                               );
                             })}

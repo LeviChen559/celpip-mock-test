@@ -20,6 +20,7 @@ export interface ReadingPart {
   instruction: string;
   passage: string;
   questions: Question[];
+  paid?: boolean;
 }
 
 export interface WritingTask {
@@ -42,6 +43,10 @@ export interface SpeakingTask {
 
 import { listeningPartsExtra } from "./listening-data-extra";
 import { readingPartsExtra } from "./reading-data-extra";
+import { madEnglishTask1Parts } from "./mad-english-task1-correspondence";
+import { madEnglishTask2Parts } from "./mad-english-task2-diagram";
+import { madEnglishTask3Parts } from "./mad-english-task3-information";
+import { madEnglishTask4Parts } from "./mad-english-task4-viewpoints";
 import { speakingTasksExtra } from "./speaking-data-extra";
 import { writingTasksExtra } from "./writing-data-extra";
 
@@ -1089,7 +1094,7 @@ What we do need is legislation that protects workers who negotiate alternative s
   })(),
 ];
 
-export const readingParts: ReadingPart[] = [...readingPartsBase, ...readingPartsExtra];
+export const readingParts: ReadingPart[] = [...readingPartsBase, ...readingPartsExtra, ...madEnglishTask1Parts, ...madEnglishTask2Parts, ...madEnglishTask3Parts, ...madEnglishTask4Parts];
 // Official CELPIP test set (1 practice + 4 parts = 5 items, 39 questions)
 export const readingPartsOfficial: ReadingPart[] = readingPartsBase;
 

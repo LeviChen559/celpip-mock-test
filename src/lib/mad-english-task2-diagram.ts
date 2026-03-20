@@ -4,7 +4,8 @@ export const madEnglishTask2Parts: ReadingPart[] = [
   // ─── SET 1: Driving Lessons (Ian → Omar) ────────────────────────────────────
   {
     id: "ME-T2-S1",
-    title: "Reading to Apply a Diagram – Set 1",
+    title: "Part 22: Reading to Apply a Diagram",
+    paid: true,
     instruction:
       "Read the following advertisement and email. Then fill in each blank with the best word or phrase, or answer the question.",
     passage: `*** BEST DRIVING LESSONS IN CALGARY ***
@@ -121,7 +122,8 @@ Ian`,
   // ─── SET 2: Birthday Cakes (Mom → Chloe) ────────────────────────────────────
   {
     id: "ME-T2-S2",
-    title: "Reading to Apply a Diagram – Set 2",
+    title: "Part 23: Reading to Apply a Diagram",
+    paid: true,
     instruction:
       "Read the following recipe list and email. Then fill in each blank with the best word or phrase, or answer the question.",
     passage: `Birthday Cake Recipes
@@ -243,7 +245,8 @@ Mom`,
   // ─── SET 3: Bank Accounts (Sam → Jared) ─────────────────────────────────────
   {
     id: "ME-T2-S3",
-    title: "Reading to Apply a Diagram – Set 3",
+    title: "Part 24: Reading to Apply a Diagram",
+    paid: true,
     instruction:
       "Read the following bank account information and email. Then fill in each blank with the best word or phrase, or answer the question.",
     passage: `Bank Account Options
@@ -385,7 +388,8 @@ Sam`,
   // ─── SET 4: Markland Polytechnic (Julie → Anne) ──────────────────────────────
   {
     id: "ME-T2-S4",
-    title: "Reading to Apply a Diagram – Set 4",
+    title: "Part 25: Reading to Apply a Diagram",
+    paid: true,
     instruction:
       "Read the following college program information and email. Then fill in each blank with the best word or phrase, or answer the question.",
     passage: `Find the right career at Markland Polytechnic!
@@ -520,7 +524,8 @@ Julie`,
   // ─── SET 5: Vancouver University Sports (Raymond → Paula) ────────────────────
   {
     id: "ME-T2-S5",
-    title: "Reading to Apply a Diagram – Set 5",
+    title: "Part 26: Reading to Apply a Diagram",
+    paid: true,
     instruction:
       "Read the following sports club information and email. Then fill in each blank with the best word or phrase, or answer the question.",
     passage: `VANCOUVER UNIVERSITY

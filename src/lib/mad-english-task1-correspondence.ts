@@ -4,7 +4,8 @@ export const madEnglishTask1Parts: ReadingPart[] = [
   // ─── SET 1: Ryan & Charlie (Albania) ───────────────────────────────────────
   {
     id: "ME-T1-S1",
-    title: "Reading Correspondence – Set 1",
+    title: "Part 17: Reading Correspondence",
+    paid: true,
     instruction:
       "Read the following emails between two friends. Select the best word or phrase to fill in each blank.",
     passage: `Hi Charlie,
@@ -113,7 +114,8 @@ Charlie`,
   // ─── SET 2: Brad & Uncle Denis (Motorbike Trip) ────────────────────────────
   {
     id: "ME-T1-S2",
-    title: "Reading Correspondence – Set 2",
+    title: "Part 18: Reading Correspondence",
+    paid: true,
     instruction:
       "Read the following emails between Brad and his Uncle Denis. Select the best word or phrase to fill in each blank.",
     passage: `Dear Uncle Denis,
@@ -261,7 +263,8 @@ Uncle Denis`,
   // ─── SET 3: Jim Baker & Cpl. John Bradley (Police Report) ──────────────────
   {
     id: "ME-T1-S3",
-    title: "Reading Correspondence – Set 3",
+    title: "Part 19: Reading Correspondence",
+    paid: true,
     instruction:
       "Read the following police report and the officer's response. Select the best word or phrase to fill in each blank.",
     passage: `To the Calgary Police:
@@ -424,7 +427,8 @@ Cpl. John Bradley`,
   // ─── SET 4: Tony & Professor Johnson (Late Assignment) ─────────────────────
   {
     id: "ME-T1-S4",
-    title: "Reading Correspondence – Set 4",
+    title: "Part 20: Reading Correspondence",
+    paid: true,
     instruction:
       "Read the following student email and professor's response. Select the best word or phrase to fill in each blank.",
     passage: `Dear Professor Johnson,
@@ -577,7 +581,8 @@ Professor Johnson`,
   // ─── SET 5: Greg & John (Wedding / Thailand) ───────────────────────────────
   {
     id: "ME-T1-S5",
-    title: "Reading Correspondence – Set 5",
+    title: "Part 21: Reading Correspondence",
+    paid: true,
     instruction:
       "Read the following emails between two old colleagues. Select the best word or phrase to fill in each blank.",
     passage: `Hey John,

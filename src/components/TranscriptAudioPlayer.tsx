@@ -10,6 +10,8 @@ interface TranscriptAudioPlayerProps {
   partId?: string;
   /** The correct answer text — the transcript sentence containing it will be highlighted. */
   highlightAnswer?: string;
+  /** Called when audio playback finishes (all lines played). */
+  onEnded?: () => void;
 }
 
 type PlayStatus = "idle" | "loading" | "playing" | "paused" | "ended" | "error";
@@ -171,6 +173,7 @@ export default function TranscriptAudioPlayer({
   autoPlay = false,
   partId,
   highlightAnswer,
+  onEnded,
 }: TranscriptAudioPlayerProps) {
   const [status, setStatus] = useState<PlayStatus>("idle");
   const [progress, setProgress] = useState(0);
@@ -183,6 +186,8 @@ export default function TranscriptAudioPlayer({
   const manifestRef = useRef<AudioManifest | null>(null);
   const partIdRef = useRef(partId);
   partIdRef.current = partId;
+  const onEndedRef = useRef(onEnded);
+  onEndedRef.current = onEnded;
 
   // Load manifest on mount
   useEffect(() => {
@@ -227,6 +232,7 @@ export default function TranscriptAudioPlayer({
         if (!cancelledRef.current) {
           setStatus("ended");
           setProgress(100);
+          onEndedRef.current?.();
         }
         return;
       }

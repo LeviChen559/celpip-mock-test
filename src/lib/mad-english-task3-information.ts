@@ -4,7 +4,8 @@ export const madEnglishTask3Parts: ReadingPart[] = [
   // ─── SET 1: Head-Smashed-In Buffalo Jump ─────────────────────────────────────
   {
     id: "ME-T3-S1",
-    title: "Reading for Information – Set 1",
+    title: "Part 27: Reading for Information",
+    paid: true,
     instruction:
       "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
     passage: `A. Head-Smashed-In Buffalo Jump is a buffalo jump located where the foothills of the Rocky Mountains begin to rise from the prairie 18 km west of Fort Macleod, Alberta, Canada on highway 785. It is a UNESCO World Heritage Site and home of the museum of Blackfoot culture. Joe Crowshoe Sr. OC (1903–1999) – Aapohsoy'yiis (Weasel Tail) – a ceremonial Elder of the Piikani Nation in southern Alberta, was instrumental in the development of the site. The Joe Crow Shoe Sr. Lodge is dedicated to his memory. He dedicated his life to preserving Aboriginal culture and promoting the relationship between Aboriginal and non-Aboriginal people and in 1998 was awarded the National Aboriginal Achievement Award for "saving the knowledge and practices of the Blackfoot people."
@@ -82,7 +83,8 @@ E. Not in any of the paragraphs`,
   // ─── SET 2: Trans-Canada Highway ─────────────────────────────────────────────
   {
     id: "ME-T3-S2",
-    title: "Reading for Information – Set 2",
+    title: "Part 28: Reading for Information",
+    paid: true,
     instruction:
       "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
     passage: `A. The Trans-Canada Highway (French: Route Transcanadienne) is a transcontinental federal-provincial highway system that travels through all ten provinces of Canada from the Pacific Ocean on the west to the Atlantic on the east. The main route spans 7,821 kilometres (4,860 mi) across the country, one of the longest routes of its type in the world. The highway system is recognizable by its distinctive white-on-green maple leaf route markers, although there are small variations in the markers in some provinces.
@@ -163,7 +165,8 @@ E. Not in any of the paragraphs`,
   // ─── SET 3: The Loonie ────────────────────────────────────────────────────────
   {
     id: "ME-T3-S3",
-    title: "Reading for Information – Set 3",
+    title: "Part 29: Reading for Information",
+    paid: true,
     instruction:
       "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
     passage: `A. The Canadian one dollar coin, commonly called the loonie (French: huard), is a gold-coloured one-dollar coin introduced in 1987. It bears images of a common loon, a bird which is common and well known in Canada, on the reverse, and of Queen Elizabeth II on the obverse. It is produced by the Royal Canadian Mint at its facility in Winnipeg.
@@ -240,7 +243,8 @@ E. Not in any of the paragraphs`,
   // ─── SET 4: Maple Syrup ───────────────────────────────────────────────────────
   {
     id: "ME-T3-S4",
-    title: "Reading for Information – Set 4",
+    title: "Part 30: Reading for Information",
+    paid: true,
     instruction:
       "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
     passage: `A. Maple syrup is a syrup usually made from the xylem sap of sugar maple, red maple, or black maple trees, although it can also be made from other maple species. In cold climates, these trees store starch in their trunks and roots before winter; the starch is then converted to sugar that rises in the sap in late winter and early spring. Maple trees are tapped by drilling holes into their trunks and collecting the exuded sap, which is processed by heating to evaporate much of the water, leaving the concentrated syrup.
@@ -319,7 +323,8 @@ E. Not in any of the paragraphs`,
   // ─── SET 5: Banff National Park ───────────────────────────────────────────────
   {
     id: "ME-T3-S5",
-    title: "Reading for Information – Set 5",
+    title: "Part 31: Reading for Information",
+    paid: true,
     instruction:
       "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
     passage: `A. Banff National Park is Canada's oldest national park and was established in 1885. Located in the Rocky Mountains, 110–180 kilometres west of Calgary in the province of Alberta, Banff encompasses 6,641 square kilometres of mountainous terrain, with numerous glaciers and ice fields, dense coniferous forest, and alpine landscapes. The Icefields Parkway extends from Lake Louise, connecting to Jasper National Park in the north. Provincial forests and Yoho National Park are neighbours to the west, while Kootenay National Park is located to the south and Kananaskis Country to the southeast. The main commercial centre of the park is the town of Banff, in the Bow River valley.
