@@ -190,6 +190,8 @@ export default function QuizPractice({
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [slideKey, setSlideKey] = useState(0);
   const [audioFinishedParts, setAudioFinishedParts] = useState<Set<string>>(new Set());
+  const [questionSpoken, setQuestionSpoken] = useState(false);
+  const [isSpeakingQuestion, setIsSpeakingQuestion] = useState(false);
 
   // Reading: global countdown timer
   useEffect(() => {
@@ -221,7 +223,7 @@ export default function QuizPractice({
     const audioFinished = currentPartId ? audioFinishedParts.has(currentPartId) : true;
     listeningTimerActiveRef.current = audioFinished;
 
-    if (!audioFinished) return;
+    if (!audioFinished || !questionSpoken) return;
 
     // Reset timer for this question
     setTimeLeft(LISTENING_QUESTION_TIME);
@@ -245,7 +247,7 @@ export default function QuizPractice({
 
     return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [section, phase, currentIndex, audioFinishedParts]);
+  }, [section, phase, currentIndex, audioFinishedParts, questionSpoken]);
 
   const finishQuiz = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
@@ -256,12 +258,69 @@ export default function QuizPractice({
   }, []);
 
   const goToQuestion = useCallback((idx: number) => {
+    if (typeof window !== "undefined" && window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+    }
+    setQuestionSpoken(false);
+    setIsSpeakingQuestion(false);
     setCurrentIndex(idx);
     setSlideKey((k) => k + 1);
   }, []);
 
   const handleAudioEnded = useCallback((partId: string) => {
     setAudioFinishedParts((prev) => new Set(prev).add(partId));
+  }, []);
+
+  const speakQuestion = useCallback((text: string) => {
+    if (typeof window === "undefined" || !window.speechSynthesis) {
+      setQuestionSpoken(true);
+      setIsSpeakingQuestion(false);
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 0.95;
+    utterance.onend = () => {
+      setQuestionSpoken(true);
+      setIsSpeakingQuestion(false);
+    };
+    utterance.onerror = () => {
+      setQuestionSpoken(true);
+      setIsSpeakingQuestion(false);
+    };
+    setIsSpeakingQuestion(true);
+    setQuestionSpoken(false);
+    window.speechSynthesis.speak(utterance);
+  }, []);
+
+  // Trigger speech when audio finishes for listening questions
+  useEffect(() => {
+    if (section !== "listening") return;
+    if (phase !== "quiz") return;
+    const currentPartId = questions[currentIndex]?.partId;
+    const audioFinished = currentPartId ? audioFinishedParts.has(currentPartId) : true;
+    if (!audioFinished) return;
+
+    const questionText = questions[currentIndex]?.question.question;
+    if (questionText) {
+      speakQuestion(questionText);
+    }
+
+    return () => {
+      if (typeof window !== "undefined" && window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [section, phase, currentIndex, audioFinishedParts, speakQuestion]);
+
+  // Cancel speech on unmount
+  useEffect(() => {
+    return () => {
+      if (typeof window !== "undefined" && window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
+    };
   }, []);
 
   if (questions.length === 0) {
@@ -564,6 +623,9 @@ export default function QuizPractice({
             <div className="flex flex-col gap-2.5">
               <button
                 onClick={() => {
+                  if (typeof window !== "undefined" && window.speechSynthesis) {
+                    window.speechSynthesis.cancel();
+                  }
                   setCurrentIndex(0);
                   setAnswers({});
                   setTimeLeft(section === "listening" ? LISTENING_QUESTION_TIME : totalTime);
@@ -571,6 +633,8 @@ export default function QuizPractice({
                   setResultSaved(false);
                   setSlideKey(0);
                   setAudioFinishedParts(new Set());
+                  setQuestionSpoken(false);
+                  setIsSpeakingQuestion(false);
                 }}
                 className="w-full py-2.5 text-sm font-semibold rounded-lg bg-[var(--quiz-copper)] text-white hover:bg-[var(--quiz-copper-light)] transition-colors"
               >
@@ -773,7 +837,14 @@ export default function QuizPractice({
                     </span>
                   </div>
 
-                  <p className="text-[15px] leading-relaxed text-[var(--quiz-ink)] mb-5">{q.question}</p>
+                  {isSpeakingQuestion ? (
+                    <div className="flex items-center gap-2 text-sm text-[var(--quiz-ink)]/60 mb-5">
+                      <span className="w-2 h-2 rounded-full bg-[var(--quiz-copper)] animate-pulse" />
+                      Listening to question...
+                    </div>
+                  ) : (
+                    <p className="text-sm text-[var(--quiz-ink)]/40 italic mb-5">Question was read aloud</p>
+                  )}
 
                   {/* Options */}
                   <div className="space-y-2.5">
