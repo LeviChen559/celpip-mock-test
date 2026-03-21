@@ -606,7 +606,7 @@ export const listeningPartsOfficial: ListeningPart[] = listeningPartsBase;
 
 const readingPartsBase: ReadingPart[] = [
   {
-    id: "R0",
+    id: "Reading-Practice",
     title: "Practice Task (unscored)",
     instruction:
       "This is a practice task to help you get familiar with the reading test format. Your answer will not be scored.",
@@ -619,7 +619,7 @@ Book returns can be made at any time using the outdoor drop box located to the l
 If you need to renew items, please use our online portal at www.greenfieldlibrary.ca or call 905-555-0142 during regular business hours.`,
     questions: [
       {
-        id: "R0Q1",
+        id: "Reading-Practice-Q1",
         question: "How can you bring back a borrowed item on the day the library is closed for the holiday?",
         options: [
           "Wait until the library reopens on February 18",
@@ -681,21 +681,21 @@ David Park
 Senior Marketing Manager`;
 
     return {
-      id: "R1",
-      title: "Part 1: Reading Correspondence",
+      id: "Reading-Part1-01",
+      title: "Reading-Part1-01",
       instruction:
         "Read the following email exchange. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
       passage: passageA,
       questions: [
         {
-          id: "R1Q1",
+          id: "Reading-Part1-01-Q1",
           question: "How often are staff permitted to work from home each week?",
           options: ["1 day", "2 days", "3 days", "4 days"],
           correctAnswer: 2,
           passage: passageA,
         },
         {
-          id: "R1Q2",
+          id: "Reading-Part1-01-Q2",
           question: "During which mandatory availability window must all staff be reachable?",
           options: [
             "8:00 AM to 4:00 PM",
@@ -707,14 +707,14 @@ Senior Marketing Manager`;
           passage: passageA,
         },
         {
-          id: "R1Q3",
+          id: "Reading-Part1-01-Q3",
           question: "What is the financial allowance provided for setting up a workspace at home?",
           options: ["$250", "$400", "$500", "$750"],
           correctAnswer: 2,
           passage: passageA,
         },
         {
-          id: "R1Q4",
+          id: "Reading-Part1-01-Q4",
           question:
             "What consequence may follow if a worker fails to achieve their productivity goals?",
           options: [
@@ -727,7 +727,7 @@ Senior Marketing Manager`;
           passage: passageA,
         },
         {
-          id: "R1Q5",
+          id: "Reading-Part1-01-Q5",
           question: "How frequently do company-wide gatherings take place, and on what schedule?",
           options: [
             "Every Friday",
@@ -739,7 +739,7 @@ Senior Marketing Manager`;
           passage: passageA,
         },
         {
-          id: "R1Q6",
+          id: "Reading-Part1-01-Q6",
           question: "On what date do the new telecommuting guidelines come into force?",
           options: [
             "December 1",
@@ -751,7 +751,7 @@ Senior Marketing Manager`;
           passage: passageA,
         },
         {
-          id: "R1Q7",
+          id: "Reading-Part1-01-Q7",
           question: "Having our in-office days fixed by the department could ___ with key client meetings.",
           options: [
             "interfere",
@@ -763,7 +763,7 @@ Senior Marketing Manager`;
           passage: passageB,
         },
         {
-          id: "R1Q8",
+          id: "Reading-Part1-01-Q8",
           question: "Will employees who purchased equipment at their own expense before this policy be eligible for any ___?",
           options: [
             "tax deduction",
@@ -775,7 +775,7 @@ Senior Marketing Manager`;
           passage: passageB,
         },
         {
-          id: "R1Q9",
+          id: "Reading-Part1-01-Q9",
           question: "Could you clarify whether ___ will be taken into account when evaluating remote work eligibility?",
           options: [
             "employee seniority",
@@ -787,7 +787,7 @@ Senior Marketing Manager`;
           passage: passageB,
         },
         {
-          id: "R1Q10",
+          id: "Reading-Part1-01-Q10",
           question: "Would it be feasible to provide at least ___ of the meeting agenda so that teams can plan accordingly?",
           options: [
             "one week's advance notice",
@@ -799,7 +799,7 @@ Senior Marketing Manager`;
           passage: passageB,
         },
         {
-          id: "R1Q11",
+          id: "Reading-Part1-01-Q11",
           question: "For employees who travel for business, will ___ be accepted as an alternative when travel conflicts arise?",
           options: [
             "sending a delegate",
@@ -814,8 +814,8 @@ Senior Marketing Manager`;
     };
   })(),
   {
-    id: "R2",
-    title: "Part 2: Reading to Apply a Diagram",
+    id: "Reading-Part2-01",
+    title: "Reading-Part2-01",
     instruction:
       "Read the following schedule and email. Then fill in each blank with the best word or phrase, or answer the question.",
     passage: `MAPLEWOOD COMMUNITY CENTRE — WINTER PROGRAM SCHEDULE
@@ -864,7 +864,7 @@ Talk soon,
 Megan`,
     questions: [
       {
-        id: "R2Q1",
+        id: "Reading-Part2-01-Q1",
         question: "Registration opens on ___.",
         options: [
           "October 15",
@@ -875,7 +875,7 @@ Megan`,
         correctAnswer: 2,
       },
       {
-        id: "R2Q2",
+        id: "Reading-Part2-01-Q2",
         question: "They're offered on ___.",
         options: [
           "Tuesday and Thursday mornings",
@@ -886,7 +886,7 @@ Megan`,
         correctAnswer: 1,
       },
       {
-        id: "R2Q3",
+        id: "Reading-Part2-01-Q3",
         question: "It runs on ___ at 6:00 AM.",
         options: [
           "Monday and Wednesday",
@@ -897,13 +897,13 @@ Megan`,
         correctAnswer: 2,
       },
       {
-        id: "R2Q4",
+        id: "Reading-Part2-01-Q4",
         question: "The cost for the full session would be ___.",
         options: ["$85", "$120", "$150", "$45"],
         correctAnswer: 1,
       },
       {
-        id: "R2Q5",
+        id: "Reading-Part2-01-Q5",
         question: "Since she's 70 and lives here, ___.",
         options: [
           "she would pay $3 per visit",
@@ -914,7 +914,7 @@ Megan`,
         correctAnswer: 2,
       },
       {
-        id: "R2Q6",
+        id: "Reading-Part2-01-Q6",
         question: "Why did Megan rule out the weekday afternoon Level 2 sessions?",
         options: [
           "They are too expensive",
@@ -925,7 +925,7 @@ Megan`,
         correctAnswer: 1,
       },
       {
-        id: "R2Q7",
+        id: "Reading-Part2-01-Q7",
         question: "What requirement would the children need to meet before moving to Level 3?",
         options: [
           "A doctor's note",
@@ -936,7 +936,7 @@ Megan`,
         correctAnswer: 2,
       },
       {
-        id: "R2Q8",
+        id: "Reading-Part2-01-Q8",
         question: "Megan and Karen are most likely ___.",
         options: [
           "coworkers",
@@ -949,8 +949,8 @@ Megan`,
     ],
   },
   {
-    id: "R3",
-    title: "Part 3: Reading for Information",
+    id: "Reading-Part3-01",
+    title: "Reading-Part3-01",
     instruction: "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
     passage: `A. Urban farming — growing food in cities — is no longer a fringe movement. Across Canada, municipalities, non-profits, and everyday citizens are turning empty lots, rooftops, and even parking garages into productive green spaces. The trend has accelerated since 2020, driven by concerns about food security, environmental sustainability, and community well-being.
 
@@ -963,55 +963,55 @@ D. The economic potential is also significant. The Canadian Urban Farm Associati
 E. Not in any of the paragraphs`,
     questions: [
       {
-        id: "R3Q1",
+        id: "Reading-Part3-01-Q1",
         question: "A commercial farm delivers fresh vegetables to thousands of customers on a weekly basis.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
       },
       {
-        id: "R3Q2",
+        id: "Reading-Part3-01-Q2",
         question: "A city government changed its land-use regulations to remove a barrier to urban agriculture.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
       },
       {
-        id: "R3Q3",
+        id: "Reading-Part3-01-Q3",
         question: "Indoor growing facilities use significantly less water than conventional farming methods.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
       },
       {
-        id: "R3Q4",
+        id: "Reading-Part3-01-Q4",
         question: "An expert questions whether urban farms can produce essential staple crops at a large enough scale.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
-        id: "R3Q5",
+        id: "Reading-Part3-01-Q5",
         question: "Millions of Canadians live in households that do not have reliable access to adequate food.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
-        id: "R3Q6",
+        id: "Reading-Part3-01-Q6",
         question: "The growth of urban farming has been driven by worries about food security and the environment.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 0,
       },
       {
-        id: "R3Q7",
+        id: "Reading-Part3-01-Q7",
         question: "High demand for shared growing spaces in one city has resulted in a long waiting list.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
       },
       {
-        id: "R3Q8",
+        id: "Reading-Part3-01-Q8",
         question: "The urban agriculture sector provides a significant number of full-time employment opportunities.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 3,
       },
       {
-        id: "R3Q9",
+        id: "Reading-Part3-01-Q9",
         question: "The Canadian government has announced a national strategy to fund urban farming initiatives.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 4,
@@ -1019,8 +1019,8 @@ E. Not in any of the paragraphs`,
     ],
   },
   {
-    id: "R4",
-    title: "Part 4: Reading for Viewpoints",
+    id: "Reading-Part4-01",
+    title: "Reading-Part4-01",
     instruction:
       "Read the following article and response. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
     passage: `SHOULD CANADA ADOPT A FOUR-DAY WORK WEEK?
@@ -1037,16 +1037,16 @@ Labour economist Dr. Sandra Okafor suggests that the goal shouldn't be a mandate
 
 As someone who has worked in logistics for 15 years, I think this article raises some important points. The Iceland trial sounds impressive, but I doubt the results would ___ [6]. David Chen is right that in our industry, switching to four days would ___ [7]. I've seen companies try compressed schedules before, and the result was ___ [8]. Dr. Okafor's idea about sector-specific models makes the most sense to me. What we really need is ___ [9]. The article mentions that 67% of workers would accept a pay cut, but I suspect most of those people are already ___ [10].`,
     questions: [
-      { id: "R4Q1", question: "What did the Iceland trial demonstrate about the four-day work week?", options: ["Productivity declined slightly but was acceptable", "Productivity stayed the same or improved while well-being increased", "Workers were less satisfied with their jobs", "Companies saved money but workers were unhappy"], correctAnswer: 1 },
-      { id: "R4Q2", question: "What trade-off would a majority of Canadian workers be willing to accept for a four-day schedule?", options: ["Quitting their current job", "Moving to a different city for better hours", "Taking a pay cut of up to 5%", "Working longer hours for higher pay"], correctAnswer: 2 },
-      { id: "R4Q3", question: "Why does David Chen believe the four-day work week is impractical for his business?", options: ["His employees don't want shorter weeks", "His clients expect deliveries six days a week and he would need 20% more staff", "His company has already tried it and failed", "Government regulations prevent him from changing schedules"], correctAnswer: 1 },
-      { id: "R4Q4", question: "What does Dr. Okafor believe is the most effective approach to work-time reduction?", options: ["A mandatory four-day week for all industries", "Sector-specific models with legal protections for workers", "Letting each company decide without any government involvement", "Eliminating overtime pay entirely"], correctAnswer: 1 },
-      { id: "R4Q5", question: "According to Dr. Okafor, what stigma do workers face when requesting reduced hours?", options: ["They lose health benefits", "They are paid less per hour", "They may be seen as less committed, especially women and caregivers", "Their contracts are automatically terminated"], correctAnswer: 2 },
-      { id: "R4Q6", question: "I doubt the results would ___.", options: ["apply to physically demanding jobs like logistics", "be repeated in any other country", "impress Canadian politicians", "change the way people think about work"], correctAnswer: 0 },
-      { id: "R4Q7", question: "Switching to four days would ___.", options: ["improve driver morale immediately", "have no effect on our operations", "force us to hire more people and raise costs", "make our clients switch to competitors"], correctAnswer: 2 },
-      { id: "R4Q8", question: "I've seen companies try compressed schedules before, and the result was ___.", options: ["a huge success for everyone involved", "employee burnout from longer daily shifts", "an increase in company profits", "better customer satisfaction"], correctAnswer: 1 },
-      { id: "R4Q9", question: "What we really need is ___.", options: ["a law requiring all companies to adopt a four-day week", "flexible arrangements that fit different types of work", "higher wages instead of shorter hours", "more government-funded research on the topic"], correctAnswer: 1 },
-      { id: "R4Q10", question: "I suspect most of those people are already ___.", options: ["working in physically demanding jobs", "unhappy with their current employers", "earning enough to afford a small pay cut", "planning to quit their jobs"], correctAnswer: 2 },
+      { id: "Reading-Part4-01-Q1", question: "What did the Iceland trial demonstrate about the four-day work week?", options: ["Productivity declined slightly but was acceptable", "Productivity stayed the same or improved while well-being increased", "Workers were less satisfied with their jobs", "Companies saved money but workers were unhappy"], correctAnswer: 1 },
+      { id: "Reading-Part4-01-Q2", question: "What trade-off would a majority of Canadian workers be willing to accept for a four-day schedule?", options: ["Quitting their current job", "Moving to a different city for better hours", "Taking a pay cut of up to 5%", "Working longer hours for higher pay"], correctAnswer: 2 },
+      { id: "Reading-Part4-01-Q3", question: "Why does David Chen believe the four-day work week is impractical for his business?", options: ["His employees don't want shorter weeks", "His clients expect deliveries six days a week and he would need 20% more staff", "His company has already tried it and failed", "Government regulations prevent him from changing schedules"], correctAnswer: 1 },
+      { id: "Reading-Part4-01-Q4", question: "What does Dr. Okafor believe is the most effective approach to work-time reduction?", options: ["A mandatory four-day week for all industries", "Sector-specific models with legal protections for workers", "Letting each company decide without any government involvement", "Eliminating overtime pay entirely"], correctAnswer: 1 },
+      { id: "Reading-Part4-01-Q5", question: "According to Dr. Okafor, what stigma do workers face when requesting reduced hours?", options: ["They lose health benefits", "They are paid less per hour", "They may be seen as less committed, especially women and caregivers", "Their contracts are automatically terminated"], correctAnswer: 2 },
+      { id: "Reading-Part4-01-Q6", question: "I doubt the results would ___.", options: ["apply to physically demanding jobs like logistics", "be repeated in any other country", "impress Canadian politicians", "change the way people think about work"], correctAnswer: 0 },
+      { id: "Reading-Part4-01-Q7", question: "Switching to four days would ___.", options: ["improve driver morale immediately", "have no effect on our operations", "force us to hire more people and raise costs", "make our clients switch to competitors"], correctAnswer: 2 },
+      { id: "Reading-Part4-01-Q8", question: "I've seen companies try compressed schedules before, and the result was ___.", options: ["a huge success for everyone involved", "employee burnout from longer daily shifts", "an increase in company profits", "better customer satisfaction"], correctAnswer: 1 },
+      { id: "Reading-Part4-01-Q9", question: "What we really need is ___.", options: ["a law requiring all companies to adopt a four-day week", "flexible arrangements that fit different types of work", "higher wages instead of shorter hours", "more government-funded research on the topic"], correctAnswer: 1 },
+      { id: "Reading-Part4-01-Q10", question: "I suspect most of those people are already ___.", options: ["working in physically demanding jobs", "unhappy with their current employers", "earning enough to afford a small pay cut", "planning to quit their jobs"], correctAnswer: 2 },
     ],
   },
 ];

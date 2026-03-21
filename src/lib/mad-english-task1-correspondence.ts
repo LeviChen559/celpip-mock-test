@@ -3,8 +3,8 @@ import { ReadingPart } from "./celpip-data";
 export const madEnglishTask1Parts: ReadingPart[] = [
   // ─── SET 1: Ryan & Charlie (Albania) ───────────────────────────────────────
   {
-    id: "ME-T1-S1",
-    title: "Part 17: Reading Correspondence",
+    id: "Reading-Part1-05",
+    title: "Reading-Part1-05",
     paid: true,
     instruction:
       "Read the following emails between two friends. Select the best word or phrase to fill in each blank.",
@@ -36,19 +36,19 @@ My next class starts in five minutes here, so I better run! Talk to you again so
 Charlie`,
     questions: [
       {
-        id: "ME-T1-S1-Q1",
+        id: "Reading-Part1-05-Q1",
         question: "Charlie is in Albania to ___.",
         options: ["work", "study", "travel", "start a business"],
         correctAnswer: 1,
       },
       {
-        id: "ME-T1-S1-Q2",
+        id: "Reading-Part1-05-Q2",
         question: "Charlie lives ___.",
         options: ["on campus", "off campus", "with a family", "with colleagues"],
         correctAnswer: 0,
       },
       {
-        id: "ME-T1-S1-Q3",
+        id: "Reading-Part1-05-Q3",
         question: "When did Ryan stop working at the bank?",
         options: [
           "two weeks ago",
@@ -59,50 +59,50 @@ Charlie`,
         correctAnswer: 3,
       },
       {
-        id: "ME-T1-S1-Q4",
+        id: "Reading-Part1-05-Q4",
         question: "Ryan wanted more ___.",
         options: ["flexibility", "money", "opportunity", "free time"],
         correctAnswer: 3,
       },
       {
-        id: "ME-T1-S1-Q5",
+        id: "Reading-Part1-05-Q5",
         question: "Ryan thinks the job transition will be ___.",
         options: ["difficult", "easy", "stressful", "awkward"],
         correctAnswer: 1,
       },
       {
-        id: "ME-T1-S1-Q6",
+        id: "Reading-Part1-05-Q6",
         question: "Ryan's new hobby will be ___.",
         options: ["snowboarding", "skiing", "skateboarding", "sledding"],
         correctAnswer: 0,
       },
       {
-        id: "ME-T1-S1-Q7",
+        id: "Reading-Part1-05-Q7",
         question: "I always knew a ___ job didn't suit you.",
         options: ["white-collar", "blue-collar", "trades", "management"],
         correctAnswer: 0,
       },
       {
-        id: "ME-T1-S1-Q8",
+        id: "Reading-Part1-05-Q8",
         question: "You've had a/an ___ spirit ever since you were a kid.",
         options: ["wild", "kind-hearted", "entrepreneurial", "greedy"],
         correctAnswer: 2,
       },
       {
-        id: "ME-T1-S1-Q9",
+        id: "Reading-Part1-05-Q9",
         question:
           "It's nice waking up every morning smelling the warm air from the ___.",
         options: ["plateau", "valley", "south", "coast"],
         correctAnswer: 3,
       },
       {
-        id: "ME-T1-S1-Q10",
+        id: "Reading-Part1-05-Q10",
         question: "I'll let you know when I ___.",
         options: ["uncover it", "discover it", "find out", "get knowledge"],
         correctAnswer: 2,
       },
       {
-        id: "ME-T1-S1-Q11",
+        id: "Reading-Part1-05-Q11",
         question:
           "Even though the cafeteria isn't very expensive, I think it will be even cheaper to ___ every day.",
         options: ["eat out", "dine in", "cook my own food", "order in"],
@@ -113,8 +113,8 @@ Charlie`,
 
   // ─── SET 2: Brad & Uncle Denis (Motorbike Trip) ────────────────────────────
   {
-    id: "ME-T1-S2",
-    title: "Part 18: Reading Correspondence",
+    id: "Reading-Part1-06",
+    title: "Reading-Part1-06",
     paid: true,
     instruction:
       "Read the following emails between Brad and his Uncle Denis. Select the best word or phrase to fill in each blank.",
@@ -146,7 +146,7 @@ Love,
 Uncle Denis`,
     questions: [
       {
-        id: "ME-T1-S2-Q1",
+        id: "Reading-Part1-06-Q1",
         question: "Brad's motorbike ___.",
         options: [
           "got stolen",
@@ -157,7 +157,7 @@ Uncle Denis`,
         correctAnswer: 2,
       },
       {
-        id: "ME-T1-S2-Q2",
+        id: "Reading-Part1-06-Q2",
         question:
           "Brad thinks his uncle would like his friend's motorbike because ___.",
         options: [
@@ -169,7 +169,7 @@ Uncle Denis`,
         correctAnswer: 1,
       },
       {
-        id: "ME-T1-S2-Q3",
+        id: "Reading-Part1-06-Q3",
         question: "The trip was delayed because ___.",
         options: [
           "it started raining",
@@ -180,7 +180,7 @@ Uncle Denis`,
         correctAnswer: 0,
       },
       {
-        id: "ME-T1-S2-Q4",
+        id: "Reading-Part1-06-Q4",
         question: "Brad's body was sore because ___.",
         options: [
           "he fell off the bike",
@@ -191,7 +191,7 @@ Uncle Denis`,
         correctAnswer: 1,
       },
       {
-        id: "ME-T1-S2-Q5",
+        id: "Reading-Part1-06-Q5",
         question: "Brad was confused because ___.",
         options: [
           "the gas prices were so high",
@@ -202,7 +202,7 @@ Uncle Denis`,
         correctAnswer: 3,
       },
       {
-        id: "ME-T1-S2-Q6",
+        id: "Reading-Part1-06-Q6",
         question: "The landscape in the USA is ___.",
         options: [
           "similar to Canada's",
@@ -213,19 +213,19 @@ Uncle Denis`,
         correctAnswer: 2,
       },
       {
-        id: "ME-T1-S2-Q7",
+        id: "Reading-Part1-06-Q7",
         question: "It's great that you had some ___.",
         options: ["company", "setbacks", "precipitation", "detours"],
         correctAnswer: 0,
       },
       {
-        id: "ME-T1-S2-Q8",
+        id: "Reading-Part1-06-Q8",
         question: "Just like you, my favourite place was the ___.",
         options: ["desert", "mountains", "prairies", "West Coast"],
         correctAnswer: 3,
       },
       {
-        id: "ME-T1-S2-Q9",
+        id: "Reading-Part1-06-Q9",
         question: "It was probably a good call to ___.",
         options: [
           "stay in a hotel",
@@ -236,7 +236,7 @@ Uncle Denis`,
         correctAnswer: 1,
       },
       {
-        id: "ME-T1-S2-Q10",
+        id: "Reading-Part1-06-Q10",
         question: "You're right, I would have loved ___.",
         options: [
           "to come with you",
@@ -247,7 +247,7 @@ Uncle Denis`,
         correctAnswer: 2,
       },
       {
-        id: "ME-T1-S2-Q11",
+        id: "Reading-Part1-06-Q11",
         question: "It was my pleasure to ___.",
         options: [
           "borrow your bike",
@@ -262,8 +262,8 @@ Uncle Denis`,
 
   // ─── SET 3: Jim Baker & Cpl. John Bradley (Police Report) ──────────────────
   {
-    id: "ME-T1-S3",
-    title: "Part 19: Reading Correspondence",
+    id: "Reading-Part1-07",
+    title: "Reading-Part1-07",
     paid: true,
     instruction:
       "Read the following police report and the officer's response. Select the best word or phrase to fill in each blank.",
@@ -300,7 +300,7 @@ Sincerely,
 Cpl. John Bradley`,
     questions: [
       {
-        id: "ME-T1-S3-Q1",
+        id: "Reading-Part1-07-Q1",
         question: "The restaurant's customers ___.",
         options: [
           "received a discount on their order",
@@ -311,7 +311,7 @@ Cpl. John Bradley`,
         correctAnswer: 3,
       },
       {
-        id: "ME-T1-S3-Q2",
+        id: "Reading-Part1-07-Q2",
         question: "Jim Baker believes that ___.",
         options: [
           "many things happened leading up to this event",
@@ -322,7 +322,7 @@ Cpl. John Bradley`,
         correctAnswer: 0,
       },
       {
-        id: "ME-T1-S3-Q3",
+        id: "Reading-Part1-07-Q3",
         question: "Jim Baker was asked to ___.",
         options: [
           "figure out who was guilty",
@@ -333,7 +333,7 @@ Cpl. John Bradley`,
         correctAnswer: 1,
       },
       {
-        id: "ME-T1-S3-Q4",
+        id: "Reading-Part1-07-Q4",
         question: "The older man ___.",
         options: [
           "was wearing a green shirt",
@@ -344,7 +344,7 @@ Cpl. John Bradley`,
         correctAnswer: 2,
       },
       {
-        id: "ME-T1-S3-Q5",
+        id: "Reading-Part1-07-Q5",
         question: "The men were fighting ___.",
         options: [
           "about the cost of utilities",
@@ -355,7 +355,7 @@ Cpl. John Bradley`,
         correctAnswer: 3,
       },
       {
-        id: "ME-T1-S3-Q6",
+        id: "Reading-Part1-07-Q6",
         question: "Both men ___.",
         options: [
           "were similar in age",
@@ -366,7 +366,7 @@ Cpl. John Bradley`,
         correctAnswer: 2,
       },
       {
-        id: "ME-T1-S3-Q7",
+        id: "Reading-Part1-07-Q7",
         question: "I would like to thank you for your ___.",
         options: [
           "summary of the event",
@@ -377,7 +377,7 @@ Cpl. John Bradley`,
         correctAnswer: 2,
       },
       {
-        id: "ME-T1-S3-Q8",
+        id: "Reading-Part1-07-Q8",
         question:
           "Your description of the fight confirms why the older man ___.",
         options: [
@@ -389,7 +389,7 @@ Cpl. John Bradley`,
         correctAnswer: 0,
       },
       {
-        id: "ME-T1-S3-Q9",
+        id: "Reading-Part1-07-Q9",
         question: "I agree with you that ___.",
         options: [
           "there is too much intergenerational violence",
@@ -400,7 +400,7 @@ Cpl. John Bradley`,
         correctAnswer: 1,
       },
       {
-        id: "ME-T1-S3-Q10",
+        id: "Reading-Part1-07-Q10",
         question: "I'm happy to hear that ___.",
         options: [
           "you received a free coffee",
@@ -411,7 +411,7 @@ Cpl. John Bradley`,
         correctAnswer: 0,
       },
       {
-        id: "ME-T1-S3-Q11",
+        id: "Reading-Part1-07-Q11",
         question: "I appreciate your ___.",
         options: [
           "willingness to make a court appearance",
@@ -426,8 +426,8 @@ Cpl. John Bradley`,
 
   // ─── SET 4: Tony & Professor Johnson (Late Assignment) ─────────────────────
   {
-    id: "ME-T1-S4",
-    title: "Part 20: Reading Correspondence",
+    id: "Reading-Part1-08",
+    title: "Reading-Part1-08",
     paid: true,
     instruction:
       "Read the following student email and professor's response. Select the best word or phrase to fill in each blank.",
@@ -455,7 +455,7 @@ I appreciate you letting me know about ___ [7]. It can be very frustrating when 
 Professor Johnson`,
     questions: [
       {
-        id: "ME-T1-S4-Q1",
+        id: "Reading-Part1-08-Q1",
         question: "Tony is writing the email to ___.",
         options: [
           "complain about his group mates",
@@ -466,7 +466,7 @@ Professor Johnson`,
         correctAnswer: 2,
       },
       {
-        id: "ME-T1-S4-Q2",
+        id: "Reading-Part1-08-Q2",
         question: "Tony feels ___.",
         options: [
           "disappointed in his group",
@@ -477,7 +477,7 @@ Professor Johnson`,
         correctAnswer: 0,
       },
       {
-        id: "ME-T1-S4-Q3",
+        id: "Reading-Part1-08-Q3",
         question: "The last frustration Tony faced was ___.",
         options: [
           "writing Roger's part for him",
@@ -488,7 +488,7 @@ Professor Johnson`,
         correctAnswer: 3,
       },
       {
-        id: "ME-T1-S4-Q4",
+        id: "Reading-Part1-08-Q4",
         question: "Tony finished the introduction and conclusion early ___.",
         options: [
           "so that he could help Roger with his part",
@@ -499,7 +499,7 @@ Professor Johnson`,
         correctAnswer: 1,
       },
       {
-        id: "ME-T1-S4-Q5",
+        id: "Reading-Part1-08-Q5",
         question: "Roger ___.",
         options: [
           "finished his part on Thursday evening",
@@ -510,7 +510,7 @@ Professor Johnson`,
         correctAnswer: 3,
       },
       {
-        id: "ME-T1-S4-Q6",
+        id: "Reading-Part1-08-Q6",
         question: "Tony asked his professor ___.",
         options: [
           "for a higher grade",
@@ -521,7 +521,7 @@ Professor Johnson`,
         correctAnswer: 1,
       },
       {
-        id: "ME-T1-S4-Q7",
+        id: "Reading-Part1-08-Q7",
         question: "I appreciate you letting me know about ___.",
         options: [
           "your difficulties this week",
@@ -532,7 +532,7 @@ Professor Johnson`,
         correctAnswer: 0,
       },
       {
-        id: "ME-T1-S4-Q8",
+        id: "Reading-Part1-08-Q8",
         question: "It can be very frustrating when your group mates ___.",
         options: [
           "ask too many questions",
@@ -543,7 +543,7 @@ Professor Johnson`,
         correctAnswer: 3,
       },
       {
-        id: "ME-T1-S4-Q9",
+        id: "Reading-Part1-08-Q9",
         question: "It takes into account ___.",
         options: [
           "the effort of each member",
@@ -554,7 +554,7 @@ Professor Johnson`,
         correctAnswer: 0,
       },
       {
-        id: "ME-T1-S4-Q10",
+        id: "Reading-Part1-08-Q10",
         question: "This will ___.",
         options: [
           "provide you some compensation for your hard work",
@@ -565,7 +565,7 @@ Professor Johnson`,
         correctAnswer: 0,
       },
       {
-        id: "ME-T1-S4-Q11",
+        id: "Reading-Part1-08-Q11",
         question: "I will gladly overlook ___.",
         options: [
           "the spelling and grammar errors",
@@ -580,8 +580,8 @@ Professor Johnson`,
 
   // ─── SET 5: Greg & John (Wedding / Thailand) ───────────────────────────────
   {
-    id: "ME-T1-S5",
-    title: "Part 21: Reading Correspondence",
+    id: "Reading-Part1-09",
+    title: "Reading-Part1-09",
     paid: true,
     instruction:
       "Read the following emails between two old colleagues. Select the best word or phrase to fill in each blank.",
@@ -617,19 +617,19 @@ Anway, I look forward to catching up soon!
 John`,
     questions: [
       {
-        id: "ME-T1-S5-Q1",
+        id: "Reading-Part1-09-Q1",
         question: "John and Greg are ___.",
         options: ["classmates", "workmates", "old colleagues", "cousins"],
         correctAnswer: 2,
       },
       {
-        id: "ME-T1-S5-Q2",
+        id: "Reading-Part1-09-Q2",
         question: "Cindy is Greg's ___.",
         options: ["wife", "friend", "fiancée", "girlfriend"],
         correctAnswer: 3,
       },
       {
-        id: "ME-T1-S5-Q3",
+        id: "Reading-Part1-09-Q3",
         question: "Greg wants John to ___.",
         options: [
           "go to Thailand for his honeymoon",
@@ -640,7 +640,7 @@ John`,
         correctAnswer: 1,
       },
       {
-        id: "ME-T1-S5-Q4",
+        id: "Reading-Part1-09-Q4",
         question: "John is ___.",
         options: [
           "a CEO",
@@ -651,7 +651,7 @@ John`,
         correctAnswer: 2,
       },
       {
-        id: "ME-T1-S5-Q5",
+        id: "Reading-Part1-09-Q5",
         question: "John and Cindy are ___.",
         options: [
           "taking a direct flight",
@@ -662,7 +662,7 @@ John`,
         correctAnswer: 3,
       },
       {
-        id: "ME-T1-S5-Q6",
+        id: "Reading-Part1-09-Q6",
         question: "Greg wants John to ___.",
         options: [
           "video the wedding",
@@ -673,7 +673,7 @@ John`,
         correctAnswer: 0,
       },
       {
-        id: "ME-T1-S5-Q7",
+        id: "Reading-Part1-09-Q7",
         question: "Don't worry about missing the wedding. I ___.",
         options: [
           "completely understand",
@@ -684,7 +684,7 @@ John`,
         correctAnswer: 0,
       },
       {
-        id: "ME-T1-S5-Q8",
+        id: "Reading-Part1-09-Q8",
         question: "So, you might be able to ___.",
         options: [
           "watch it after you get back",
@@ -695,7 +695,7 @@ John`,
         correctAnswer: 1,
       },
       {
-        id: "ME-T1-S5-Q9",
+        id: "Reading-Part1-09-Q9",
         question: "I want ___ in our new apartment.",
         options: [
           "to go to a nice resort for our honeymoon",
@@ -706,7 +706,7 @@ John`,
         correctAnswer: 2,
       },
       {
-        id: "ME-T1-S5-Q10",
+        id: "Reading-Part1-09-Q10",
         question: "How's everything going ___?",
         options: [
           "with school",
@@ -717,7 +717,7 @@ John`,
         correctAnswer: 3,
       },
       {
-        id: "ME-T1-S5-Q11",
+        id: "Reading-Part1-09-Q11",
         question: "The work is a bit more stressful, but ___.",
         options: [
           "my schedule is not great",

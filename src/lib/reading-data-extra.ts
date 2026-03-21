@@ -55,14 +55,14 @@ Senior Developer, Thunder Bay Office
 Northern Digital Solutions`;
 
     return {
-      id: "R5",
-      title: "Part 5: Reading Correspondence",
+      id: "Reading-Part1-02",
+      title: "Reading-Part1-02",
       instruction:
         "Read the following email exchange. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
       passage: passageA,
       questions: [
         {
-          id: "R5Q1",
+          id: "Reading-Part1-02-Q1",
           question: "What will the combined organization be called after the two businesses join together?",
           options: [
             "Prairie Digital Inc.",
@@ -74,7 +74,7 @@ Northern Digital Solutions`;
           passage: passageA,
         },
         {
-          id: "R5Q2",
+          id: "Reading-Part1-02-Q2",
           question:
             "How many months of job protection are promised to staff after the corporate change?",
           options: ["6", "12", "18", "24"],
@@ -82,14 +82,14 @@ Northern Digital Solutions`;
           passage: passageA,
         },
         {
-          id: "R5Q3",
+          id: "Reading-Part1-02-Q3",
           question: "Which city will serve as the main headquarters for the new entity?",
           options: ["Thunder Bay", "Toronto", "Winnipeg", "Ottawa"],
           correctAnswer: 2,
           passage: passageA,
         },
         {
-          id: "R5Q4",
+          id: "Reading-Part1-02-Q4",
           question:
             "How much will employees receive yearly for health and wellness expenses under the updated plan?",
           options: ["$800", "$1,000", "$1,200", "$1,500"],
@@ -97,7 +97,7 @@ Northern Digital Solutions`;
           passage: passageA,
         },
         {
-          id: "R5Q5",
+          id: "Reading-Part1-02-Q5",
           question: "By what date will employees learn about the updated reporting structure from their managers?",
           options: [
             "By March 15th",
@@ -109,7 +109,7 @@ Northern Digital Solutions`;
           passage: passageA,
         },
         {
-          id: "R5Q6",
+          id: "Reading-Part1-02-Q6",
           question: "On what date does the corporate union officially begin?",
           options: [
             "March 15th",
@@ -121,7 +121,7 @@ Northern Digital Solutions`;
           passage: passageA,
         },
         {
-          id: "R5Q7",
+          id: "Reading-Part1-02-Q7",
           question: "Will the Thunder Bay team continue to ___?",
           options: [
             "report to the same manager",
@@ -133,7 +133,7 @@ Northern Digital Solutions`;
           passage: passageB,
         },
         {
-          id: "R5Q8",
+          id: "Reading-Part1-02-Q8",
           question: "We would like to know whether these specific benefits will be ___ under the new combined package.",
           options: [
             "expanded or improved",
@@ -145,7 +145,7 @@ Northern Digital Solutions`;
           passage: passageB,
         },
         {
-          id: "R5Q9",
+          id: "Reading-Part1-02-Q9",
           question: "I would like to ___ for this committee.",
           options: [
             "nominate a colleague",
@@ -157,7 +157,7 @@ Northern Digital Solutions`;
           passage: passageB,
         },
         {
-          id: "R5Q10",
+          id: "Reading-Part1-02-Q10",
           question: "There has been a great deal of ___ among staff here.",
           options: [
             "excitement",
@@ -169,7 +169,7 @@ Northern Digital Solutions`;
           passage: passageB,
         },
         {
-          id: "R5Q11",
+          id: "Reading-Part1-02-Q11",
           question: "They worry that decisions affecting our office may be made without ___ from Thunder Bay employees.",
           options: [
             "written approval",
@@ -184,8 +184,8 @@ Northern Digital Solutions`;
     };
   })(),
   {
-    id: "R6",
-    title: "Part 6: Reading to Apply a Diagram",
+    id: "Reading-Part2-02",
+    title: "Reading-Part2-02",
     instruction:
       "Read the following transit information and email. Then fill in each blank with the best word or phrase, or answer the question.",
     passage: `CITY OF EDMONTON — VALLEY LINE LRT RIDER GUIDE
@@ -230,7 +230,7 @@ Let me know if Sunday works for you!
 Tanya`,
     questions: [
       {
-        id: "R6Q1",
+        id: "Reading-Part2-02-Q1",
         question: "The whole trip takes about ___.",
         options: [
           "27 minutes",
@@ -241,7 +241,7 @@ Tanya`,
         correctAnswer: 2,
       },
       {
-        id: "R6Q2",
+        id: "Reading-Part2-02-Q2",
         question: "They would ___ as long as one of us pays.",
         options: [
           "need a youth pass",
@@ -252,13 +252,13 @@ Tanya`,
         correctAnswer: 2,
       },
       {
-        id: "R6Q3",
+        id: "Reading-Part2-02-Q3",
         question: "I think a day pass would be worth it at ___ each.",
         options: ["$3.50", "$7.00", "$10.25", "$75.00"],
         correctAnswer: 2,
       },
       {
-        id: "R6Q4",
+        id: "Reading-Part2-02-Q4",
         question: "On Sundays the trains only run every ___.",
         options: [
           "5 minutes",
@@ -269,7 +269,7 @@ Tanya`,
         correctAnswer: 2,
       },
       {
-        id: "R6Q5",
+        id: "Reading-Part2-02-Q5",
         question: "There's ___ that takes you right into the building.",
         options: [
           "a shuttle bus",
@@ -280,7 +280,7 @@ Tanya`,
         correctAnswer: 1,
       },
       {
-        id: "R6Q6",
+        id: "Reading-Part2-02-Q6",
         question: "Where would Tanya and Marcus need to transfer if they wanted to visit the Royal Alberta Museum?",
         options: [
           "Churchill",
@@ -291,7 +291,7 @@ Tanya`,
         correctAnswer: 2,
       },
       {
-        id: "R6Q7",
+        id: "Reading-Part2-02-Q7",
         question: "Why does Tanya suggest they check the schedule carefully on Sunday?",
         options: [
           "The trains stop running early in the evening",
@@ -302,7 +302,7 @@ Tanya`,
         correctAnswer: 1,
       },
       {
-        id: "R6Q8",
+        id: "Reading-Part2-02-Q8",
         question: "Tanya and Marcus are most likely ___.",
         options: [
           "coworkers planning a team outing",
@@ -315,8 +315,8 @@ Tanya`,
     ],
   },
   {
-    id: "R7",
-    title: "Part 7: Reading for Information",
+    id: "Reading-Part3-02",
+    title: "Reading-Part3-02",
     instruction:
       "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
     passage: `A. Immigration, Refugees and Citizenship Canada (IRCC) has announced significant changes to the Express Entry system, introducing category-based selection rounds designed to address specific labour market shortages across the country. Under the previous system, candidates were ranked solely by their Comprehensive Ranking System (CRS) score, which considers factors such as age, education, language proficiency, and work experience. While this approach was effective at selecting highly skilled immigrants, critics argued that it did not sufficiently target sectors facing acute shortages.
@@ -330,55 +330,55 @@ D. Provincial Nominee Programs (PNPs) will continue to operate alongside Express
 E. Not in any of the paragraphs`,
     questions: [
       {
-        id: "R7Q1",
+        id: "Reading-Part3-02-Q1",
         question: "Candidates with experience in certain fields may be selected even if their general score is below the usual cutoff.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
       },
       {
-        id: "R7Q2",
+        id: "Reading-Part3-02-Q2",
         question: "The previous ranking system was criticized for not targeting sectors with the most urgent worker shortages.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 0,
       },
       {
-        id: "R7Q3",
+        id: "Reading-Part3-02-Q3",
         question: "The total number of permanent residence invitations has increased compared to the previous year.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
-        id: "R7Q4",
+        id: "Reading-Part3-02-Q4",
         question: "Some provinces have aligned their nominee programs with the new federal categories.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 3,
       },
       {
-        id: "R7Q5",
+        id: "Reading-Part3-02-Q5",
         question: "A policy expert explains that nurses address a more urgent gap than software engineers in many communities.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
       },
       {
-        id: "R7Q6",
+        id: "Reading-Part3-02-Q6",
         question: "Applicants should update their profiles so the system can match their occupation to the targeted categories.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 3,
       },
       {
-        id: "R7Q7",
+        id: "Reading-Part3-02-Q7",
         question: "At least 40 percent of Express Entry invitations will go to category-based draws.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
-        id: "R7Q8",
+        id: "Reading-Part3-02-Q8",
         question: "The government plans to create a new immigration stream specifically for international students graduating from Canadian universities.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 4,
       },
       {
-        id: "R7Q9",
+        id: "Reading-Part3-02-Q9",
         question: "The CRS score takes into account factors such as age, education, and language proficiency.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 0,
@@ -399,8 +399,8 @@ Viewpoint B — Linda Carreiro, Human Resources Director, Halifax:
 While remote work has clear benefits, making it permanent comes with serious drawbacks that many people overlook. In my experience, team cohesion suffers significantly when people never see each other face to face. New employees especially struggle to build relationships and learn the company culture through a screen. Mental health is another concern — many remote workers report feelings of isolation and difficulty separating work from personal life, leading to burnout. There is also the issue of fairness: not every role can be done remotely, so allowing some employees to work from home permanently while others must come in creates resentment. A hybrid model — perhaps three days in the office and two at home — offers the best balance. It preserves flexibility while maintaining the human connections that make workplaces thrive.`;
 
     return {
-      id: "R8",
-      title: "Part 8: Reading for Viewpoints",
+      id: "Reading-Part4-02",
+      title: "Reading-Part4-02",
       instruction:
         "Read the following article and response. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
       passage: vpA + `
@@ -411,16 +411,16 @@ While remote work has clear benefits, making it permanent comes with serious dra
 
 As a mid-career professional who has worked both remotely and in an office, I think this debate misses some important nuances. Marcus is right that productivity can ___ [6] when employees work from home, but Linda makes a fair point that ___ [7]. In my own experience, the biggest challenge of remote work was ___ [8]. I think the best solution is what Linda suggests — a hybrid model — because it ___ [9]. However, companies need to make sure that remote workers are not ___ [10] compared to those who come into the office every day.`,
       questions: [
-        { id: "R8Q1", question: "What productivity gain did Marcus's organization experience after staff began working from home?", options: ["8%", "10%", "12%", "15%"], correctAnswer: 2 },
-        { id: "R8Q2", question: "What challenge does Linda highlight for recently hired staff in a fully remote setting?", options: ["They lack technical skills for remote tools", "They struggle to build relationships and learn company culture", "They are less productive than experienced workers", "They demand higher salaries for remote positions"], correctAnswer: 1 },
-        { id: "R8Q3", question: "What yearly cost reduction did Marcus's firm achieve by reducing its physical workspace?", options: ["$100,000", "$150,000", "$200,000", "$250,000"], correctAnswer: 2 },
-        { id: "R8Q4", question: "What type of work arrangement does Linda propose as the ideal compromise?", options: ["Full-time remote work", "Full-time office work", "A hybrid model with three office days and two home days", "Alternating weeks between office and home"], correctAnswer: 2 },
-        { id: "R8Q5", question: "What equity problem does Linda identify with allowing some staff to always work from home?", options: ["Senior employees get preferential treatment", "Not every role can be done remotely, creating resentment", "Remote workers receive lower pay than office workers", "Managers cannot evaluate remote employees accurately"], correctAnswer: 1 },
-        { id: "R8Q6", question: "Marcus is right that productivity can ___.", options: ["stay the same or improve with remote work", "only improve with strict monitoring", "decline without proper management", "be difficult to measure at home"], correctAnswer: 0 },
-        { id: "R8Q7", question: "Linda makes a fair point that ___.", options: ["remote work should be banned entirely", "new employees struggle to build relationships through a screen", "all workers prefer to be in the office", "technology cannot replace face-to-face meetings"], correctAnswer: 1 },
-        { id: "R8Q8", question: "The biggest challenge of remote work was ___.", options: ["learning new software tools", "dealing with slow internet", "feeling isolated and disconnected from colleagues", "managing household distractions"], correctAnswer: 2 },
-        { id: "R8Q9", question: "A hybrid model is best because it ___.", options: ["eliminates the need for office space entirely", "preserves flexibility while maintaining human connections", "allows managers to monitor employees more closely", "reduces the company's tax obligations"], correctAnswer: 1 },
-        { id: "R8Q10", question: "Companies need to make sure that remote workers are not ___.", options: ["paid more than office workers", "given too much flexibility", "overlooked for promotions and opportunities", "allowed to work on weekends"], correctAnswer: 2 },
+        { id: "Reading-Part4-02-Q1", question: "What productivity gain did Marcus's organization experience after staff began working from home?", options: ["8%", "10%", "12%", "15%"], correctAnswer: 2 },
+        { id: "Reading-Part4-02-Q2", question: "What challenge does Linda highlight for recently hired staff in a fully remote setting?", options: ["They lack technical skills for remote tools", "They struggle to build relationships and learn company culture", "They are less productive than experienced workers", "They demand higher salaries for remote positions"], correctAnswer: 1 },
+        { id: "Reading-Part4-02-Q3", question: "What yearly cost reduction did Marcus's firm achieve by reducing its physical workspace?", options: ["$100,000", "$150,000", "$200,000", "$250,000"], correctAnswer: 2 },
+        { id: "Reading-Part4-02-Q4", question: "What type of work arrangement does Linda propose as the ideal compromise?", options: ["Full-time remote work", "Full-time office work", "A hybrid model with three office days and two home days", "Alternating weeks between office and home"], correctAnswer: 2 },
+        { id: "Reading-Part4-02-Q5", question: "What equity problem does Linda identify with allowing some staff to always work from home?", options: ["Senior employees get preferential treatment", "Not every role can be done remotely, creating resentment", "Remote workers receive lower pay than office workers", "Managers cannot evaluate remote employees accurately"], correctAnswer: 1 },
+        { id: "Reading-Part4-02-Q6", question: "Marcus is right that productivity can ___.", options: ["stay the same or improve with remote work", "only improve with strict monitoring", "decline without proper management", "be difficult to measure at home"], correctAnswer: 0 },
+        { id: "Reading-Part4-02-Q7", question: "Linda makes a fair point that ___.", options: ["remote work should be banned entirely", "new employees struggle to build relationships through a screen", "all workers prefer to be in the office", "technology cannot replace face-to-face meetings"], correctAnswer: 1 },
+        { id: "Reading-Part4-02-Q8", question: "The biggest challenge of remote work was ___.", options: ["learning new software tools", "dealing with slow internet", "feeling isolated and disconnected from colleagues", "managing household distractions"], correctAnswer: 2 },
+        { id: "Reading-Part4-02-Q9", question: "A hybrid model is best because it ___.", options: ["eliminates the need for office space entirely", "preserves flexibility while maintaining human connections", "allows managers to monitor employees more closely", "reduces the company's tax obligations"], correctAnswer: 1 },
+        { id: "Reading-Part4-02-Q10", question: "Companies need to make sure that remote workers are not ___.", options: ["paid more than office workers", "given too much flexibility", "overlooked for promotions and opportunities", "allowed to work on weekends"], correctAnswer: 2 },
       ],
     };
   })(),
@@ -473,14 +473,14 @@ Anita Sharma
 Unit 1204, 245 Lakeshore Drive`;
 
     return {
-      id: "R9",
-      title: "Part 9: Reading Correspondence",
+      id: "Reading-Part1-03",
+      title: "Reading-Part1-03",
       instruction:
         "Read the following email exchange. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
       passage: passageA,
       questions: [
         {
-          id: "R9Q1",
+          id: "Reading-Part1-03-Q1",
           question:
             "What is the deadline for tenants to collect their replacement access devices?",
           options: [
@@ -493,7 +493,7 @@ Unit 1204, 245 Lakeshore Drive`;
           passage: passageA,
         },
         {
-          id: "R9Q2",
+          id: "Reading-Part1-03-Q2",
           question:
             "How will tenants enter the building while the front foyer is being redesigned?",
           options: [
@@ -506,7 +506,7 @@ Unit 1204, 245 Lakeshore Drive`;
           passage: passageA,
         },
         {
-          id: "R9Q3",
+          id: "Reading-Part1-03-Q3",
           question:
             "How many hours ahead of time will tenants be informed before glass installation begins in their apartment?",
           options: ["24", "48", "72", "168"],
@@ -514,7 +514,7 @@ Unit 1204, 245 Lakeshore Drive`;
           passage: passageA,
         },
         {
-          id: "R9Q4",
+          id: "Reading-Part1-03-Q4",
           question:
             "What preparation step must tenants complete before the glass installation crew arrives?",
           options: [
@@ -527,14 +527,14 @@ Unit 1204, 245 Lakeshore Drive`;
           passage: passageA,
         },
         {
-          id: "R9Q5",
+          id: "Reading-Part1-03-Q5",
           question: "On what date does the lift upgrade stage of the project start?",
           options: ["May 5th", "June 30th", "July 1st", "September 1st"],
           correctAnswer: 2,
           passage: passageA,
         },
         {
-          id: "R9Q6",
+          id: "Reading-Part1-03-Q6",
           question: "What is the location of the property undergoing improvements?",
           options: [
             "100 Maple Avenue, Burlington",
@@ -546,7 +546,7 @@ Unit 1204, 245 Lakeshore Drive`;
           passage: passageA,
         },
         {
-          id: "R9Q7",
+          id: "Reading-Part1-03-Q7",
           question: "I am wondering whether the ___ could remain operational during this phase.",
           options: [
             "main lobby entrance",
@@ -558,7 +558,7 @@ Unit 1204, 245 Lakeshore Drive`;
           passage: passageB,
         },
         {
-          id: "R9Q8",
+          id: "Reading-Part1-03-Q8",
           question: "Could the new key fobs be ___ to residents who cannot pick them up in person?",
           options: [
             "emailed",
@@ -570,7 +570,7 @@ Unit 1204, 245 Lakeshore Drive`;
           passage: passageB,
         },
         {
-          id: "R9Q9",
+          id: "Reading-Part1-03-Q9",
           question: "I have a ___ that makes it very difficult to use the stairs.",
           options: [
             "back injury",
@@ -582,7 +582,7 @@ Unit 1204, 245 Lakeshore Drive`;
           passage: passageB,
         },
         {
-          id: "R9Q10",
+          id: "Reading-Part1-03-Q10",
           question: "Will management provide any ___?",
           options: [
             "financial compensation for the inconvenience",
@@ -594,7 +594,7 @@ Unit 1204, 245 Lakeshore Drive`;
           passage: passageB,
         },
         {
-          id: "R9Q11",
+          id: "Reading-Part1-03-Q11",
           question: "I would like to suggest that management hold ___.",
           options: [
             "a video conference for each floor",
@@ -609,8 +609,8 @@ Unit 1204, 245 Lakeshore Drive`;
     };
   })(),
   {
-    id: "R10",
-    title: "Part 10: Reading to Apply a Diagram",
+    id: "Reading-Part2-03",
+    title: "Reading-Part2-03",
     instruction:
       "Read the following guide and email. Then fill in each blank with the best word or phrase, or answer the question.",
     passage: `LAKEHEAD UNIVERSITY — COURSE REGISTRATION GUIDE FOR NEW STUDENTS
@@ -652,25 +652,25 @@ Let me know if you want to go to the advising office together!
 Nadia`,
     questions: [
       {
-        id: "R10Q1",
+        id: "Reading-Part2-03-Q1",
         question: "Our registration window opens on ___.",
         options: ["June 1st", "June 15th", "July 1st", "July 15th"],
         correctAnswer: 3,
       },
       {
-        id: "R10Q2",
+        id: "Reading-Part2-03-Q2",
         question: "Make sure you activate your student account at least ___ before that.",
         options: ["12 hours", "24 hours", "48 hours", "72 hours"],
         correctAnswer: 2,
       },
       {
-        id: "R10Q3",
+        id: "Reading-Part2-03-Q3",
         question: "Full-time students need at least ___ to keep their status.",
         options: ["2 courses", "3 courses", "4 courses", "5 courses"],
         correctAnswer: 1,
       },
       {
-        id: "R10Q4",
+        id: "Reading-Part2-03-Q4",
         question: "Walk-in hours are in ___.",
         options: [
           "Room 100 of the Library",
@@ -681,13 +681,13 @@ Nadia`,
         correctAnswer: 1,
       },
       {
-        id: "R10Q5",
+        id: "Reading-Part2-03-Q5",
         question: "We need to pay a ___ within 7 days.",
         options: ["$250 deposit", "$350 deposit", "$500 deposit", "$750 deposit"],
         correctAnswer: 2,
       },
       {
-        id: "R10Q6",
+        id: "Reading-Part2-03-Q6",
         question:
           "By what date must students withdraw from a class to avoid a negative mark on their transcript?",
         options: [
@@ -699,14 +699,14 @@ Nadia`,
         correctAnswer: 2,
       },
       {
-        id: "R10Q7",
+        id: "Reading-Part2-03-Q7",
         question:
           "What is the maximum number of courses a full-time student can take per semester?",
         options: ["3", "4", "5", "6"],
         correctAnswer: 2,
       },
       {
-        id: "R10Q8",
+        id: "Reading-Part2-03-Q8",
         question:
           "Nadia and Priya are most likely ___.",
         options: [
@@ -720,8 +720,8 @@ Nadia`,
     ],
   },
   {
-    id: "R11",
-    title: "Part 11: Reading for Information",
+    id: "Reading-Part3-03",
+    title: "Reading-Part3-03",
     instruction:
       "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
     passage: `A. A comprehensive study led by researchers at the University of Manitoba and Environment and Climate Change Canada has confirmed that the Arctic is warming nearly four times faster than the global average, with far-reaching consequences for northern communities, wildlife, and global weather patterns. The study, published in the journal Nature Climate Change, analyzed temperature data from 1979 to the present across the entire Arctic region. It found that average temperatures in the Arctic have risen by 3.1 degrees Celsius over this period, compared to 0.8 degrees globally. The most dramatic warming has occurred in the Barents Sea region north of Scandinavia, where temperatures have risen by as much as 5.2 degrees.
@@ -735,55 +735,55 @@ D. The study recommends that Canada invest $2.4 billion over the next ten years 
 E. Not in any of the paragraphs`,
     questions: [
       {
-        id: "R11Q1",
+        id: "Reading-Part3-03-Q1",
         question: "Average temperatures in the Arctic have risen by 3.1 degrees Celsius since 1979.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 0,
       },
       {
-        id: "R11Q2",
+        id: "Reading-Part3-03-Q2",
         question: "September sea ice coverage has been shrinking by about 13 percent every decade.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
       },
       {
-        id: "R11Q3",
+        id: "Reading-Part3-03-Q3",
         question: "Thawing permafrost has forced the relocation of homes in a northern Canadian town.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
-        id: "R11Q4",
+        id: "Reading-Part3-03-Q4",
         question: "Researchers recommend billions of dollars in investment for Arctic infrastructure.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 3,
       },
       {
-        id: "R11Q5",
+        id: "Reading-Part3-03-Q5",
         question: "The Barents Sea region has experienced the most extreme temperature increase.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 0,
       },
       {
-        id: "R11Q6",
+        id: "Reading-Part3-03-Q6",
         question: "An Inuit climate scientist stressed the importance of listening to Indigenous knowledge holders.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
-        id: "R11Q7",
+        id: "Reading-Part3-03-Q7",
         question: "Scientists predict the Arctic could have ice-free summers within the next two decades.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
       },
       {
-        id: "R11Q8",
+        id: "Reading-Part3-03-Q8",
         question: "Changing ice conditions have disrupted traditional Inuit hunting routes.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
-        id: "R11Q9",
+        id: "Reading-Part3-03-Q9",
         question: "The Canadian government has already approved the recommended funding for Arctic adaptation.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 4,
@@ -804,8 +804,8 @@ Viewpoint B — Trevor Makenzie, Senior Policy Advisor, Fraser Institute:
 While the idea of universal basic income sounds appealing, the economics simply do not add up. At $1,500 per month for every Canadian adult, the annual cost would exceed $85 billion — nearly a third of the entire federal budget. Even with cuts to existing programs, the funding gap would require massive tax increases that could drive businesses and investment out of the country. Furthermore, a guaranteed income risks reducing the incentive to work. The Ontario pilot project was too small and too short to draw meaningful conclusions; participants knew the program was temporary, which likely influenced their behaviour. Instead of UBI, Canada should invest in targeted programs: expanded employment insurance, affordable childcare, and skills retraining for workers displaced by automation. These approaches address specific problems without the enormous fiscal risk of handing money to every citizen, including those who do not need it.`;
 
     return {
-      id: "R12",
-      title: "Part 12: Reading for Viewpoints",
+      id: "Reading-Part4-03",
+      title: "Reading-Part4-03",
       instruction:
         "Read the following article and response. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
       passage: vpA + `
@@ -816,16 +816,16 @@ While the idea of universal basic income sounds appealing, the economics simply 
 
 As someone who lost their job during the pandemic, the idea of a universal basic income is very personal to me. Priya makes a compelling case, especially when she points out that existing social programs are ___ [6]. I was surprised to learn that the Ontario pilot showed participants experienced ___ [7]. However, Trevor raises a valid concern about the cost — $85 billion annually is ___ [8]. I think the best approach would be a compromise: rather than giving money to everyone, the government should ___ [9]. That way, the people who truly need help would receive it without the ___ [10] that Trevor warns about.`,
       questions: [
-        { id: "R12Q1", question: "What dollar amount per month does Priya propose as a guaranteed income for every adult?", options: ["$1,000", "$1,200", "$1,500", "$2,000"], correctAnswer: 2 },
-        { id: "R12Q2", question: "What flaw does Trevor point out regarding the trial program that ran in Ontario?", options: ["It was conducted in the wrong province", "It was too small and too short to draw meaningful conclusions", "It showed that participants stopped working entirely", "It was more expensive than projected"], correctAnswer: 1 },
-        { id: "R12Q3", question: "What beneficial results does Priya cite from the provincial trial program?", options: ["Higher employment rates and increased tax revenue", "Improved mental health, better nutrition, and pursuit of education", "Reduced crime rates and lower healthcare costs", "More home ownership and decreased personal debt"], correctAnswer: 1 },
-        { id: "R12Q4", question: "What alternative approaches does Trevor favour over a universal guaranteed income?", options: ["A smaller UBI payment of $500 per month", "Higher minimum wages across all provinces", "Expanded employment insurance, affordable childcare, and skills retraining", "Tax credits for low-income families"], correctAnswer: 2 },
-        { id: "R12Q5", question: "How many billions of dollars would the guaranteed income program cost the country each year?", options: ["$50", "$65", "$85", "$100"], correctAnswer: 2 },
-        { id: "R12Q6", question: "Existing social programs are ___.", options: ["well-funded and effective", "inefficient and stigmatizing", "only available in large cities", "too generous to recipients"], correctAnswer: 1 },
-        { id: "R12Q7", question: "The Ontario pilot showed participants experienced ___.", options: ["no significant changes in their lives", "improved mental health, better nutrition, and pursuit of education", "reduced motivation to find employment", "increased spending on non-essential items"], correctAnswer: 1 },
-        { id: "R12Q8", question: "$85 billion annually is ___.", options: ["a reasonable investment for such a large country", "an enormous amount that would be difficult to fund", "roughly equal to the current healthcare budget", "less than what is spent on existing social programs"], correctAnswer: 1 },
-        { id: "R12Q9", question: "The government should ___.", options: ["implement UBI for all citizens immediately", "target support to those who need it most", "eliminate all existing social assistance programs", "let private charities handle income support"], correctAnswer: 1 },
-        { id: "R12Q10", question: "The people who truly need help would receive it without the ___.", options: ["stigma of applying for welfare", "enormous fiscal risk", "need for government involvement", "burden of paying taxes"], correctAnswer: 1 },
+        { id: "Reading-Part4-03-Q1", question: "What dollar amount per month does Priya propose as a guaranteed income for every adult?", options: ["$1,000", "$1,200", "$1,500", "$2,000"], correctAnswer: 2 },
+        { id: "Reading-Part4-03-Q2", question: "What flaw does Trevor point out regarding the trial program that ran in Ontario?", options: ["It was conducted in the wrong province", "It was too small and too short to draw meaningful conclusions", "It showed that participants stopped working entirely", "It was more expensive than projected"], correctAnswer: 1 },
+        { id: "Reading-Part4-03-Q3", question: "What beneficial results does Priya cite from the provincial trial program?", options: ["Higher employment rates and increased tax revenue", "Improved mental health, better nutrition, and pursuit of education", "Reduced crime rates and lower healthcare costs", "More home ownership and decreased personal debt"], correctAnswer: 1 },
+        { id: "Reading-Part4-03-Q4", question: "What alternative approaches does Trevor favour over a universal guaranteed income?", options: ["A smaller UBI payment of $500 per month", "Higher minimum wages across all provinces", "Expanded employment insurance, affordable childcare, and skills retraining", "Tax credits for low-income families"], correctAnswer: 2 },
+        { id: "Reading-Part4-03-Q5", question: "How many billions of dollars would the guaranteed income program cost the country each year?", options: ["$50", "$65", "$85", "$100"], correctAnswer: 2 },
+        { id: "Reading-Part4-03-Q6", question: "Existing social programs are ___.", options: ["well-funded and effective", "inefficient and stigmatizing", "only available in large cities", "too generous to recipients"], correctAnswer: 1 },
+        { id: "Reading-Part4-03-Q7", question: "The Ontario pilot showed participants experienced ___.", options: ["no significant changes in their lives", "improved mental health, better nutrition, and pursuit of education", "reduced motivation to find employment", "increased spending on non-essential items"], correctAnswer: 1 },
+        { id: "Reading-Part4-03-Q8", question: "$85 billion annually is ___.", options: ["a reasonable investment for such a large country", "an enormous amount that would be difficult to fund", "roughly equal to the current healthcare budget", "less than what is spent on existing social programs"], correctAnswer: 1 },
+        { id: "Reading-Part4-03-Q9", question: "The government should ___.", options: ["implement UBI for all citizens immediately", "target support to those who need it most", "eliminate all existing social assistance programs", "let private charities handle income support"], correctAnswer: 1 },
+        { id: "Reading-Part4-03-Q10", question: "The people who truly need help would receive it without the ___.", options: ["stigma of applying for welfare", "enormous fiscal risk", "need for government involvement", "burden of paying taxes"], correctAnswer: 1 },
       ],
     };
   })(),
@@ -884,21 +884,21 @@ Meera Kapoor
 128 Trafalgar Road, Oakville`;
 
     return {
-      id: "R13",
-      title: "Part 13: Reading Correspondence",
+      id: "Reading-Part1-04",
+      title: "Reading-Part1-04",
       instruction:
         "Read the following email exchange. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
       passage: passageA,
       questions: [
         {
-          id: "R13Q1",
+          id: "Reading-Part1-04-Q1",
           question: "At what hour should helpers arrive for sign-in and a morning snack?",
           options: ["8:00 AM", "8:30 AM", "9:00 AM", "10:00 AM"],
           correctAnswer: 2,
           passage: passageA,
         },
         {
-          id: "R13Q2",
+          id: "Reading-Part1-04-Q2",
           question:
             "What types of goods will the special disposal vehicle accept from residents?",
           options: [
@@ -911,7 +911,7 @@ Meera Kapoor
           passage: passageA,
         },
         {
-          id: "R13Q3",
+          id: "Reading-Part1-04-Q3",
           question:
             "What bonus item is given to people who sign up ahead of time?",
           options: [
@@ -924,7 +924,7 @@ Meera Kapoor
           passage: passageA,
         },
         {
-          id: "R13Q4",
+          id: "Reading-Part1-04-Q4",
           question: "How many kilograms of trash were gathered during the previous year's neighbourhood tidy-up?",
           options: [
             "800",
@@ -936,7 +936,7 @@ Meera Kapoor
           passage: passageA,
         },
         {
-          id: "R13Q5",
+          id: "Reading-Part1-04-Q5",
           question:
             "How old must young people be to take part in the event on their own, without adult supervision?",
           options: ["10", "12", "14", "16"],
@@ -944,7 +944,7 @@ Meera Kapoor
           passage: passageA,
         },
         {
-          id: "R13Q6",
+          id: "Reading-Part1-04-Q6",
           question: "Which musical group will provide live entertainment at the afternoon gathering?",
           options: [
             "The Burlington Five",
@@ -956,7 +956,7 @@ Meera Kapoor
           passage: passageA,
         },
         {
-          id: "R13Q7",
+          id: "Reading-Part1-04-Q7",
           question: "My husband and I would like to register as ___.",
           options: [
             "volunteers for the BBQ",
@@ -968,7 +968,7 @@ Meera Kapoor
           passage: passageB,
         },
         {
-          id: "R13Q8",
+          id: "Reading-Part1-04-Q8",
           question: "We managed to fill ___ in just under two hours.",
           options: [
             "12 garbage bags",
@@ -980,7 +980,7 @@ Meera Kapoor
           passage: passageB,
         },
         {
-          id: "R13Q9",
+          id: "Reading-Part1-04-Q9",
           question: "I would love to donate ___ for the BBQ dessert table.",
           options: [
             "brownies and cupcakes",
@@ -992,7 +992,7 @@ Meera Kapoor
           passage: passageB,
         },
         {
-          id: "R13Q10",
+          id: "Reading-Part1-04-Q10",
           question: "Will there be a designated ___ at Coronation Park this year?",
           options: [
             "shaded rest area",
@@ -1004,7 +1004,7 @@ Meera Kapoor
           passage: passageB,
         },
         {
-          id: "R13Q11",
+          id: "Reading-Part1-04-Q11",
           question: "Could the association consider adding a brief ___?",
           options: [
             "raffle with gift card prizes",
@@ -1019,8 +1019,8 @@ Meera Kapoor
     };
   })(),
   {
-    id: "R14",
-    title: "Part 14: Reading to Apply a Diagram",
+    id: "Reading-Part2-04",
+    title: "Reading-Part2-04",
     instruction:
       "Read the following guide and email. Then fill in each blank with the best word or phrase, or answer the question.",
     passage: `MISSISSAUGA PUBLIC LIBRARY — MEMBERSHIP AND SERVICES GUIDE
@@ -1061,25 +1061,25 @@ Talk soon,
 Fatima`,
     questions: [
       {
-        id: "R14Q1",
+        id: "Reading-Part2-04-Q1",
         question: "You'd need to pay ___ for a non-resident annual membership.",
         options: ["$25", "$35", "$50", "$75"],
         correctAnswer: 2,
       },
       {
-        id: "R14Q2",
+        id: "Reading-Part2-04-Q2",
         question: "The loan period is only ___.",
         options: ["3 days", "5 days", "7 days", "14 days"],
         correctAnswer: 2,
       },
       {
-        id: "R14Q3",
+        id: "Reading-Part2-04-Q3",
         question: "The daily fee is ___.",
         options: ["$0.25", "$0.50", "$1.00", "$2.00"],
         correctAnswer: 2,
       },
       {
-        id: "R14Q4",
+        id: "Reading-Part2-04-Q4",
         question: "They run on ___.",
         options: [
           "Mondays and Wednesdays at 10:00 AM",
@@ -1090,13 +1090,13 @@ Fatima`,
         correctAnswer: 1,
       },
       {
-        id: "R14Q5",
+        id: "Reading-Part2-04-Q5",
         question: "You can reserve them up to ___ in advance.",
         options: ["1 day", "3 days", "5 days", "7 days"],
         correctAnswer: 3,
       },
       {
-        id: "R14Q6",
+        id: "Reading-Part2-04-Q6",
         question:
           "Above what outstanding fee amount does the system prevent cardholders from borrowing?",
         options: [
@@ -1108,14 +1108,14 @@ Fatima`,
         correctAnswer: 2,
       },
       {
-        id: "R14Q7",
+        id: "Reading-Part2-04-Q7",
         question:
           "What is the maximum number of print books a cardholder may borrow at one time?",
         options: ["10", "15", "20", "30"],
         correctAnswer: 3,
       },
       {
-        id: "R14Q8",
+        id: "Reading-Part2-04-Q8",
         question:
           "Fatima and Rosa are most likely ___.",
         options: [
@@ -1129,8 +1129,8 @@ Fatima`,
     ],
   },
   {
-    id: "R15",
-    title: "Part 15: Reading for Information",
+    id: "Reading-Part3-04",
+    title: "Reading-Part3-04",
     instruction:
       "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
     passage: `A. Canada's technology startup sector has seen remarkable growth over the past decade, with Toronto, Vancouver, and Montreal now recognized as top-tier global tech hubs. A new report from the Canadian Venture Capital and Private Equity Association (CVCA) reveals that Canadian startups raised a combined $9.7 billion in venture capital funding last year, a 22 percent increase from the year before. Toronto's tech corridor, sometimes called "Silicon Valley North," is home to more than 5,200 tech companies and employs approximately 350,000 workers in the Greater Toronto Area alone. The city's strengths lie in artificial intelligence and fintech, driven in part by the presence of the Vector Institute, a world-leading AI research centre co-founded by Geoffrey Hinton.
@@ -1144,55 +1144,55 @@ D. Despite these successes, challenges remain. A survey of 400 Canadian startup 
 E. Not in any of the paragraphs`,
     questions: [
       {
-        id: "R15Q1",
+        id: "Reading-Part3-04-Q1",
         question: "Canadian startups raised $9.7 billion in venture capital funding last year.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 0,
       },
       {
-        id: "R15Q2",
+        id: "Reading-Part3-04-Q2",
         question: "British Columbia offers a 30 percent tax credit for eligible tech companies.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
       },
       {
-        id: "R15Q3",
+        id: "Reading-Part3-04-Q3",
         question: "The majority of startup founders surveyed said access to late-stage funding was their biggest challenge.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 3,
       },
       {
-        id: "R15Q4",
+        id: "Reading-Part3-04-Q4",
         question: "Montreal has become a leading centre for AI research thanks to the Mila research institute.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
-        id: "R15Q5",
+        id: "Reading-Part3-04-Q5",
         question: "The federal government has allocated $4 billion to help businesses adopt new technologies.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 3,
       },
       {
-        id: "R15Q6",
+        id: "Reading-Part3-04-Q6",
         question: "Toronto's tech corridor is home to more than 5,200 tech companies.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 0,
       },
       {
-        id: "R15Q7",
+        id: "Reading-Part3-04-Q7",
         question: "Quebec offers R&D tax credits of up to 37.5 percent for small businesses.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
-        id: "R15Q8",
+        id: "Reading-Part3-04-Q8",
         question: "Nearly half of startup founders reported difficulty retaining senior talent.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 3,
       },
       {
-        id: "R15Q9",
+        id: "Reading-Part3-04-Q9",
         question: "The Canadian government plans to open a new national technology research centre in Ottawa.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 4,

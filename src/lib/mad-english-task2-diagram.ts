@@ -3,8 +3,8 @@ import { ReadingPart } from "./celpip-data";
 export const madEnglishTask2Parts: ReadingPart[] = [
   // ─── SET 1: Driving Lessons (Ian → Omar) ────────────────────────────────────
   {
-    id: "ME-T2-S1",
-    title: "Part 22: Reading to Apply a Diagram",
+    id: "Reading-Part2-05",
+    title: "Reading-Part2-05",
     paid: true,
     instruction:
       "Read the following advertisement and email. Then fill in each blank with the best word or phrase, or answer the question.",
@@ -42,7 +42,7 @@ All the best,
 Ian`,
     questions: [
       {
-        id: "ME-T2-S1-Q1",
+        id: "Reading-Part2-05-Q1",
         question: "You can take individual lessons or buy a bundle and ___.",
         options: [
           "get a discount.",
@@ -53,14 +53,14 @@ Ian`,
         correctAnswer: 1,
       },
       {
-        id: "ME-T2-S1-Q2",
+        id: "Reading-Part2-05-Q2",
         question:
           "I'm not sure if the ___ classes would work because Lena picks up the kids from school every day.",
         options: ["morning.", "afternoon.", "evening."],
         correctAnswer: 1,
       },
       {
-        id: "ME-T2-S1-Q3",
+        id: "Reading-Part2-05-Q3",
         question: "Maybe you could ___ on your way to work?",
         options: [
           "drop her off.",
@@ -71,7 +71,7 @@ Ian`,
         correctAnswer: 0,
       },
       {
-        id: "ME-T2-S1-Q4",
+        id: "Reading-Part2-05-Q4",
         question: "Evening classes would probably work the best, but they ___.",
         options: [
           "are the cheapest.",
@@ -82,7 +82,7 @@ Ian`,
         correctAnswer: 3,
       },
       {
-        id: "ME-T2-S1-Q5",
+        id: "Reading-Part2-05-Q5",
         question:
           "They also offer a parking class on Sunday morning which I think would be really helpful for her. It ___.",
         options: [
@@ -94,19 +94,19 @@ Ian`,
         correctAnswer: 2,
       },
       {
-        id: "ME-T2-S1-Q6",
+        id: "Reading-Part2-05-Q6",
         question: "Lena is Omar's ___.",
         options: ["baby sitter.", "cook.", "wife.", "sister."],
         correctAnswer: 2,
       },
       {
-        id: "ME-T2-S1-Q7",
+        id: "Reading-Part2-05-Q7",
         question: "Ian and Omar are ___.",
         options: ["coworkers.", "friends.", "neighbours.", "acquaintances."],
         correctAnswer: 1,
       },
       {
-        id: "ME-T2-S1-Q8",
+        id: "Reading-Part2-05-Q8",
         question: "Ian thinks Lena should ___.",
         options: [
           "pick up the kids.",
@@ -121,8 +121,8 @@ Ian`,
 
   // ─── SET 2: Birthday Cakes (Mom → Chloe) ────────────────────────────────────
   {
-    id: "ME-T2-S2",
-    title: "Part 23: Reading to Apply a Diagram",
+    id: "Reading-Part2-06",
+    title: "Reading-Part2-06",
     paid: true,
     instruction:
       "Read the following recipe list and email. Then fill in each blank with the best word or phrase, or answer the question.",
@@ -158,7 +158,7 @@ Love,
 Mom`,
     questions: [
       {
-        id: "ME-T2-S2-Q1",
+        id: "Reading-Part2-06-Q1",
         question:
           "The raspberries in our garden are looking great! My only concern with the recipe is that ___.",
         options: [
@@ -170,7 +170,7 @@ Mom`,
         correctAnswer: 2,
       },
       {
-        id: "ME-T2-S2-Q2",
+        id: "Reading-Part2-06-Q2",
         question:
           "It would definitely be big enough for everyone to get a piece, but ___.",
         options: [
@@ -182,7 +182,7 @@ Mom`,
         correctAnswer: 1,
       },
       {
-        id: "ME-T2-S2-Q3",
+        id: "Reading-Part2-06-Q3",
         question:
           "Arlene loves ice cream so I was thinking of ordering a custom-designed ice cream cake from Dairy Queen. My only concern with that option is that ___.",
         options: [
@@ -194,7 +194,7 @@ Mom`,
         correctAnswer: 3,
       },
       {
-        id: "ME-T2-S2-Q4",
+        id: "Reading-Part2-06-Q4",
         question:
           "I know they're not ___, but the recipe makes two dozen, so that would be enough for everyone to get seconds if they want.",
         options: [
@@ -206,7 +206,7 @@ Mom`,
         correctAnswer: 0,
       },
       {
-        id: "ME-T2-S2-Q5",
+        id: "Reading-Part2-06-Q5",
         question: "The only problem with this option is that ___.",
         options: [
           "cupcakes take too long to make.",
@@ -217,19 +217,19 @@ Mom`,
         correctAnswer: 1,
       },
       {
-        id: "ME-T2-S2-Q6",
+        id: "Reading-Part2-06-Q6",
         question: "Chloe and Arlene are ___.",
         options: ["friends.", "classmates.", "sisters.", "cousins."],
         correctAnswer: 2,
       },
       {
-        id: "ME-T2-S2-Q7",
+        id: "Reading-Part2-06-Q7",
         question: "Chloe is a ___.",
         options: ["party planner.", "student.", "chef.", "tourist."],
         correctAnswer: 1,
       },
       {
-        id: "ME-T2-S2-Q8",
+        id: "Reading-Part2-06-Q8",
         question: "Chloe and her mom ___.",
         options: [
           "always make Arlene's cake together.",
@@ -244,8 +244,8 @@ Mom`,
 
   // ─── SET 3: Bank Accounts (Sam → Jared) ─────────────────────────────────────
   {
-    id: "ME-T2-S3",
-    title: "Part 24: Reading to Apply a Diagram",
+    id: "Reading-Part2-07",
+    title: "Reading-Part2-07",
     paid: true,
     instruction:
       "Read the following bank account information and email. Then fill in each blank with the best word or phrase, or answer the question.",
@@ -290,7 +290,7 @@ Anyway, let me know if you need any more help getting set up! Take care,
 Sam`,
     questions: [
       {
-        id: "ME-T2-S3-Q1",
+        id: "Reading-Part2-07-Q1",
         question:
           "You probably don't have a lot of money left after your move, so I would recommend getting an account with ___.",
         options: [
@@ -302,7 +302,7 @@ Sam`,
         correctAnswer: 1,
       },
       {
-        id: "ME-T2-S3-Q2",
+        id: "Reading-Part2-07-Q2",
         question:
           "A student account would be good because there is no monthly fee. The downside, though, is that ___.",
         options: [
@@ -314,7 +314,7 @@ Sam`,
         correctAnswer: 0,
       },
       {
-        id: "ME-T2-S3-Q3",
+        id: "Reading-Part2-07-Q3",
         question:
           "Another problem with the student account is that you have ___.",
         options: [
@@ -326,7 +326,7 @@ Sam`,
         correctAnswer: 3,
       },
       {
-        id: "ME-T2-S3-Q4",
+        id: "Reading-Part2-07-Q4",
         question:
           "The simple checking account gives you 15 free transactions per month. Also, if you run into financial problems, you ___.",
         options: [
@@ -338,7 +338,7 @@ Sam`,
         correctAnswer: 2,
       },
       {
-        id: "ME-T2-S3-Q5",
+        id: "Reading-Part2-07-Q5",
         question:
           "The premier checking account wouldn't really give you any added benefits unless you want to ___.",
         options: [
@@ -350,7 +350,7 @@ Sam`,
         correctAnswer: 3,
       },
       {
-        id: "ME-T2-S3-Q6",
+        id: "Reading-Part2-07-Q6",
         question: "Jared initially wrote Sam ___.",
         options: [
           "asking for advice.",
@@ -361,7 +361,7 @@ Sam`,
         correctAnswer: 0,
       },
       {
-        id: "ME-T2-S3-Q7",
+        id: "Reading-Part2-07-Q7",
         question: "Sam ___.",
         options: [
           "thinks Jared will go to school.",
@@ -372,7 +372,7 @@ Sam`,
         correctAnswer: 3,
       },
       {
-        id: "ME-T2-S3-Q8",
+        id: "Reading-Part2-07-Q8",
         question: "Sam thinks ___.",
         options: [
           "Jared is rich.",
@@ -387,8 +387,8 @@ Sam`,
 
   // ─── SET 4: Markland Polytechnic (Julie → Anne) ──────────────────────────────
   {
-    id: "ME-T2-S4",
-    title: "Part 25: Reading to Apply a Diagram",
+    id: "Reading-Part2-08",
+    title: "Reading-Part2-08",
     paid: true,
     instruction:
       "Read the following college program information and email. Then fill in each blank with the best word or phrase, or answer the question.",
@@ -427,7 +427,7 @@ Anyway, let me know what your thoughts are!
 Julie`,
     questions: [
       {
-        id: "ME-T2-S4-Q1",
+        id: "Reading-Part2-08-Q1",
         question: "Being broke at the end of the trip is probably ___.",
         options: [
           "the biggest pro.",
@@ -438,7 +438,7 @@ Julie`,
         correctAnswer: 1,
       },
       {
-        id: "ME-T2-S4-Q2",
+        id: "Reading-Part2-08-Q2",
         question:
           "Remember when we were kids and I would come over to your house to play with dolls? You always wanted to give the dolls ___.",
         options: [
@@ -450,7 +450,7 @@ Julie`,
         correctAnswer: 1,
       },
       {
-        id: "ME-T2-S4-Q3",
+        id: "Reading-Part2-08-Q3",
         question:
           "The downside with that option is that the course is longer, it costs more money, and ___.",
         options: [
@@ -462,7 +462,7 @@ Julie`,
         correctAnswer: 2,
       },
       {
-        id: "ME-T2-S4-Q4",
+        id: "Reading-Part2-08-Q4",
         question:
           "The advantage photography has over hairdressing is that the program is shorter and ___.",
         options: [
@@ -474,7 +474,7 @@ Julie`,
         correctAnswer: 3,
       },
       {
-        id: "ME-T2-S4-Q5",
+        id: "Reading-Part2-08-Q5",
         question:
           "The problem with the photography option is that it's just online. Another issue is that ___.",
         options: [
@@ -486,7 +486,7 @@ Julie`,
         correctAnswer: 0,
       },
       {
-        id: "ME-T2-S4-Q6",
+        id: "Reading-Part2-08-Q6",
         question: "Markland Polytechnic is a ___.",
         options: [
           "post-secondary institution.",
@@ -497,7 +497,7 @@ Julie`,
         correctAnswer: 0,
       },
       {
-        id: "ME-T2-S4-Q7",
+        id: "Reading-Part2-08-Q7",
         question: "Julie and Anne are ___.",
         options: [
           "classmates.",
@@ -508,7 +508,7 @@ Julie`,
         correctAnswer: 1,
       },
       {
-        id: "ME-T2-S4-Q8",
+        id: "Reading-Part2-08-Q8",
         question: "Julie thinks ___.",
         options: [
           "money is important.",
@@ -523,8 +523,8 @@ Julie`,
 
   // ─── SET 5: Vancouver University Sports (Raymond → Paula) ────────────────────
   {
-    id: "ME-T2-S5",
-    title: "Part 26: Reading to Apply a Diagram",
+    id: "Reading-Part2-09",
+    title: "Reading-Part2-09",
     paid: true,
     instruction:
       "Read the following sports club information and email. Then fill in each blank with the best word or phrase, or answer the question.",
@@ -565,7 +565,7 @@ All the best,
 Raymond`,
     questions: [
       {
-        id: "ME-T2-S5-Q1",
+        id: "Reading-Part2-09-Q1",
         question:
           "They're just for recreation which means they're not too ___.",
         options: [
@@ -577,7 +577,7 @@ Raymond`,
         correctAnswer: 1,
       },
       {
-        id: "ME-T2-S5-Q2",
+        id: "Reading-Part2-09-Q2",
         question:
           "Hockey is pretty much the most Canadian thing you could do, but ___.",
         options: [
@@ -589,7 +589,7 @@ Raymond`,
         correctAnswer: 0,
       },
       {
-        id: "ME-T2-S5-Q3",
+        id: "Reading-Part2-09-Q3",
         question:
           "Skiing would be really awesome because you would go with a big group once a month. The only downside is that ___.",
         options: [
@@ -601,7 +601,7 @@ Raymond`,
         correctAnswer: 3,
       },
       {
-        id: "ME-T2-S5-Q4",
+        id: "Reading-Part2-09-Q4",
         question: "That being said, ___.",
         options: [
           "you can definitely afford it.",
@@ -612,7 +612,7 @@ Raymond`,
         correctAnswer: 2,
       },
       {
-        id: "ME-T2-S5-Q5",
+        id: "Reading-Part2-09-Q5",
         question:
           "It looks like a pretty boring sport, but it's actually a lot of fun! It is definitely ___.",
         options: [
@@ -624,7 +624,7 @@ Raymond`,
         correctAnswer: 1,
       },
       {
-        id: "ME-T2-S5-Q6",
+        id: "Reading-Part2-09-Q6",
         question: "Raymond is trying to ___.",
         options: [
           "flirt with Paula.",
@@ -635,7 +635,7 @@ Raymond`,
         correctAnswer: 3,
       },
       {
-        id: "ME-T2-S5-Q7",
+        id: "Reading-Part2-09-Q7",
         question: "Raymond thinks Paula ___.",
         options: [
           "is not used to cold weather.",
@@ -646,7 +646,7 @@ Raymond`,
         correctAnswer: 0,
       },
       {
-        id: "ME-T2-S5-Q8",
+        id: "Reading-Part2-09-Q8",
         question: "Raymond is offering to ___.",
         options: [
           "pay for the cost.",
