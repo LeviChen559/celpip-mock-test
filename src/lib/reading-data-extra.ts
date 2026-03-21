@@ -318,120 +318,70 @@ Tanya`,
     id: "R7",
     title: "Part 7: Reading for Information",
     instruction:
-      "Read the following article and answer the questions.",
-    passage: `CANADA INTRODUCES EXPRESS ENTRY CATEGORY-BASED SELECTION ROUNDS
+      "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
+    passage: `A. Immigration, Refugees and Citizenship Canada (IRCC) has announced significant changes to the Express Entry system, introducing category-based selection rounds designed to address specific labour market shortages across the country. Under the previous system, candidates were ranked solely by their Comprehensive Ranking System (CRS) score, which considers factors such as age, education, language proficiency, and work experience. While this approach was effective at selecting highly skilled immigrants, critics argued that it did not sufficiently target sectors facing acute shortages.
 
-Ottawa — Immigration, Refugees and Citizenship Canada (IRCC) has announced significant changes to the Express Entry system, introducing category-based selection rounds designed to address specific labour market shortages across the country.
+B. Beginning this year, IRCC will conduct targeted draws for candidates with experience in healthcare, STEM fields (science, technology, engineering, and mathematics), skilled trades, agriculture, and transport. Candidates in these categories may be selected even if their CRS score falls below the general cutoff, provided they meet a minimum threshold of 380 points. Dr. Amara Okafor, a policy analyst at the Conference Board of Canada, explained that the changes reflect a broader shift in immigration strategy. "Canada's aging population means we need workers in very specific fields. A software engineer and a nurse are both valuable, but the nurse addresses a more urgent gap in many communities," she said.
 
-Under the previous system, candidates were ranked solely by their Comprehensive Ranking System (CRS) score, which considers factors such as age, education, language proficiency, and work experience. While this approach was effective at selecting highly skilled immigrants, critics argued that it did not sufficiently target sectors facing acute shortages.
+C. The government has also increased the total number of permanent residence invitations for the year to 485,000, up from 465,000 the previous year. Of these, approximately 110,000 will be issued through Express Entry, with at least 40 percent allocated to category-based draws.
 
-Beginning this year, IRCC will conduct targeted draws for candidates with experience in healthcare, STEM fields (science, technology, engineering, and mathematics), skilled trades, agriculture, and transport. Candidates in these categories may be selected even if their CRS score falls below the general cutoff, provided they meet a minimum threshold of 380 points.
+D. Provincial Nominee Programs (PNPs) will continue to operate alongside Express Entry. Several provinces, including British Columbia and Ontario, have already aligned their PNP streams with the new federal categories to avoid duplication and improve processing times. Applicants are encouraged to update their Express Entry profiles to accurately reflect their work experience, as the system will now cross-reference occupation codes with the targeted categories during each draw.
 
-Dr. Amara Okafor, a policy analyst at the Conference Board of Canada, explained that the changes reflect a broader shift in immigration strategy. "Canada's aging population means we need workers in very specific fields. A software engineer and a nurse are both valuable, but the nurse addresses a more urgent gap in many communities," she said.
-
-The government has also increased the total number of permanent residence invitations for the year to 485,000, up from 465,000 the previous year. Of these, approximately 110,000 will be issued through Express Entry, with at least 40 percent allocated to category-based draws.
-
-Provincial Nominee Programs (PNPs) will continue to operate alongside Express Entry. Several provinces, including British Columbia and Ontario, have already aligned their PNP streams with the new federal categories to avoid duplication and improve processing times.
-
-Applicants are encouraged to update their Express Entry profiles to accurately reflect their work experience, as the system will now cross-reference occupation codes with the targeted categories during each draw.`,
+E. Not in any of the paragraphs`,
     questions: [
       {
         id: "R7Q1",
-        question:
-          "What is the lowest ranking score (in points) a candidate can have and still be eligible for a targeted draw?",
-        options: [
-          "350",
-          "380",
-          "400",
-          "420",
-        ],
+        question: "Candidates with experience in certain fields may be selected even if their general score is below the usual cutoff.",
+        options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
       },
       {
         id: "R7Q2",
-        question:
-          "Which sector is NOT among the occupational fields prioritized in the new selection rounds?",
-        options: ["Healthcare", "Skilled trades", "Finance", "Agriculture"],
-        correctAnswer: 2,
+        question: "The previous ranking system was criticized for not targeting sectors with the most urgent worker shortages.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 0,
       },
       {
         id: "R7Q3",
-        question:
-          "What is the total number of landed status offers the government intends to issue this year?",
-        options: ["410,000", "465,000", "485,000", "500,000"],
+        question: "The total number of permanent residence invitations has increased compared to the previous year.",
+        options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
         id: "R7Q4",
-        question:
-          "At minimum, what percentage of the federal skilled worker invitations will be reserved for occupation-specific rounds?",
-        options: [
-          "25%",
-          "30%",
-          "40%",
-          "50%",
-        ],
-        correctAnswer: 2,
+        question: "Some provinces have aligned their nominee programs with the new federal categories.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 3,
       },
       {
         id: "R7Q5",
-        question:
-          "What reason does the policy expert give for Canada's shift toward sector-focused newcomer selection?",
-        options: [
-          "To increase the total population quickly",
-          "To attract more investors from abroad",
-          "To address labour shortages caused by an aging population",
-          "To reduce the number of Express Entry applications",
-        ],
-        correctAnswer: 2,
+        question: "A policy expert explains that nurses address a more urgent gap than software engineers in many communities.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 1,
       },
       {
         id: "R7Q6",
-        question:
-          "Approximately how many permanent residency offers will come through the federal skilled immigration stream?",
-        options: [
-          "85,000",
-          "110,000",
-          "200,000",
-          "465,000",
-        ],
-        correctAnswer: 1,
+        question: "Applicants should update their profiles so the system can match their occupation to the targeted categories.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 3,
       },
       {
         id: "R7Q7",
-        question:
-          "Which factors does the points-based ranking system use to evaluate applicants?",
-        options: [
-          "Age, education, language proficiency, and work experience",
-          "Income, property ownership, and family size",
-          "Criminal record, health status, and travel history",
-          "Country of origin, religion, and marital status",
-        ],
-        correctAnswer: 0,
+        question: "At least 40 percent of Express Entry invitations will go to category-based draws.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 2,
       },
       {
         id: "R7Q8",
-        question:
-          "Which two provinces have already coordinated their nominee programs with the updated national priorities?",
-        options: [
-          "Alberta and Saskatchewan",
-          "British Columbia and Ontario",
-          "Manitoba and Quebec",
-          "Nova Scotia and New Brunswick",
-        ],
-        correctAnswer: 1,
+        question: "The government plans to create a new immigration stream specifically for international students graduating from Canadian universities.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 4,
       },
       {
         id: "R7Q9",
-        question:
-          "What action is recommended for candidates who already have an immigration profile in the system?",
-        options: [
-          "Submit new profiles from scratch",
-          "Update them to accurately reflect their work experience",
-          "Remove any previous work experience data",
-          "Wait until the next draw to make changes",
-        ],
-        correctAnswer: 1,
+        question: "The CRS score takes into account factors such as age, education, and language proficiency.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 0,
       },
     ],
   },
@@ -452,19 +402,25 @@ While remote work has clear benefits, making it permanent comes with serious dra
       id: "R8",
       title: "Part 8: Reading for Viewpoints",
       instruction:
-        "Read the two viewpoints and answer the questions. Each question shows the relevant viewpoint.",
-      passage: vpA,
+        "Read the following article and response. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
+      passage: vpA + `
+
+` + vpB + `
+
+---
+
+As a mid-career professional who has worked both remotely and in an office, I think this debate misses some important nuances. Marcus is right that productivity can ___ [6] when employees work from home, but Linda makes a fair point that ___ [7]. In my own experience, the biggest challenge of remote work was ___ [8]. I think the best solution is what Linda suggests — a hybrid model — because it ___ [9]. However, companies need to make sure that remote workers are not ___ [10] compared to those who come into the office every day.`,
       questions: [
-        { id: "R8Q1", question: "What productivity gain did Marcus's organization experience after staff began working from home?", options: ["8%", "10%", "12%", "15%"], correctAnswer: 2, passage: vpA },
-        { id: "R8Q2", question: "What challenge does Linda highlight for recently hired staff in a fully remote setting?", options: ["They lack technical skills for remote tools", "They struggle to build relationships and learn company culture", "They are less productive than experienced workers", "They demand higher salaries for remote positions"], correctAnswer: 1, passage: vpB },
-        { id: "R8Q3", question: "What yearly cost reduction did Marcus's firm achieve by reducing its physical workspace?", options: ["$100,000", "$150,000", "$200,000", "$250,000"], correctAnswer: 2, passage: vpA },
-        { id: "R8Q4", question: "What type of work arrangement does Linda propose as the ideal compromise?", options: ["Full-time remote work", "Full-time office work", "A hybrid model with three office days and two home days", "Alternating weeks between office and home"], correctAnswer: 2, passage: vpB },
-        { id: "R8Q5", question: "What equity problem does Linda identify with allowing some staff to always work from home?", options: ["Senior employees get preferential treatment", "Not every role can be done remotely, creating resentment", "Remote workers receive lower pay than office workers", "Managers cannot evaluate remote employees accurately"], correctAnswer: 1, passage: vpB },
-        { id: "R8Q6", question: "How does Marcus say that working from home helps with recruitment?", options: ["It allows companies to pay lower salaries", "It opens the door to hiring talented people from smaller communities", "It eliminates the need for HR departments", "It reduces the number of job applications"], correctAnswer: 1, passage: vpA },
-        { id: "R8Q7", question: "What psychological well-being issue does Linda link to employees never coming into the workplace?", options: ["Increased anxiety about job security", "Difficulty learning new software tools", "Feelings of isolation and difficulty separating work from personal life", "Pressure to work longer hours due to manager surveillance"], correctAnswer: 2, passage: vpB },
-        { id: "R8Q8", question: "What does Marcus think should be the standard policy for where employees do their jobs?", options: ["A hybrid model with equal office and home days", "Full-time office work with remote Fridays", "Permanent remote work with occasional in-person meetings", "Rotating shifts between office and home weekly"], correctAnswer: 2, passage: vpA },
-        { id: "R8Q9", question: "In which city does Marcus work?", options: ["Toronto", "Vancouver", "Calgary", "Halifax"], correctAnswer: 2, passage: vpA },
-        { id: "R8Q10", question: "In Linda's view, what is the key ingredient that helps organizations flourish?", options: ["Competitive salaries and bonuses", "Flexible scheduling software", "Human connections", "Strict performance management"], correctAnswer: 2, passage: vpB },
+        { id: "R8Q1", question: "What productivity gain did Marcus's organization experience after staff began working from home?", options: ["8%", "10%", "12%", "15%"], correctAnswer: 2 },
+        { id: "R8Q2", question: "What challenge does Linda highlight for recently hired staff in a fully remote setting?", options: ["They lack technical skills for remote tools", "They struggle to build relationships and learn company culture", "They are less productive than experienced workers", "They demand higher salaries for remote positions"], correctAnswer: 1 },
+        { id: "R8Q3", question: "What yearly cost reduction did Marcus's firm achieve by reducing its physical workspace?", options: ["$100,000", "$150,000", "$200,000", "$250,000"], correctAnswer: 2 },
+        { id: "R8Q4", question: "What type of work arrangement does Linda propose as the ideal compromise?", options: ["Full-time remote work", "Full-time office work", "A hybrid model with three office days and two home days", "Alternating weeks between office and home"], correctAnswer: 2 },
+        { id: "R8Q5", question: "What equity problem does Linda identify with allowing some staff to always work from home?", options: ["Senior employees get preferential treatment", "Not every role can be done remotely, creating resentment", "Remote workers receive lower pay than office workers", "Managers cannot evaluate remote employees accurately"], correctAnswer: 1 },
+        { id: "R8Q6", question: "Marcus is right that productivity can ___.", options: ["stay the same or improve with remote work", "only improve with strict monitoring", "decline without proper management", "be difficult to measure at home"], correctAnswer: 0 },
+        { id: "R8Q7", question: "Linda makes a fair point that ___.", options: ["remote work should be banned entirely", "new employees struggle to build relationships through a screen", "all workers prefer to be in the office", "technology cannot replace face-to-face meetings"], correctAnswer: 1 },
+        { id: "R8Q8", question: "The biggest challenge of remote work was ___.", options: ["learning new software tools", "dealing with slow internet", "feeling isolated and disconnected from colleagues", "managing household distractions"], correctAnswer: 2 },
+        { id: "R8Q9", question: "A hybrid model is best because it ___.", options: ["eliminates the need for office space entirely", "preserves flexibility while maintaining human connections", "allows managers to monitor employees more closely", "reduces the company's tax obligations"], correctAnswer: 1 },
+        { id: "R8Q10", question: "Companies need to make sure that remote workers are not ___.", options: ["paid more than office workers", "given too much flexibility", "overlooked for promotions and opportunities", "allowed to work on weekends"], correctAnswer: 2 },
       ],
     };
   })(),
@@ -502,13 +458,13 @@ Dear Mr. Park,
 
 Thank you for the detailed renovation notice. I have lived at 245 Lakeshore Drive for nearly nine years and I am glad to see the building finally receiving these upgrades. However, after reading the schedule carefully, I have several questions and concerns that I hope you can address.
 
-Regarding Phase 1, I work from home three days a week and rely on reliable building access. The side entrance on Maple Avenue is quite far from the underground parking garage, which means I will need to walk around the entire building every time I return from errands. Is there any possibility of keeping the garage-level entrance operational during this phase? Also, I was unable to visit the concierge desk during regular hours last week. Could the new key fobs be mailed to residents who cannot pick them up in person?
+Regarding Phase 1, the side entrance on Maple Avenue is quite far from the underground parking garage. Since I work from home three days a week and rely on reliable building access, I am wondering whether the ___ [7] could remain operational during this phase. Also, I was unable to visit the concierge desk during regular hours last week. Could the new key fobs be ___ [8] to residents who cannot pick them up in person?
 
-My biggest concern relates to Phase 2. I live on the 12th floor and I have a knee condition that makes it very difficult to use the stairs. I noticed the email mentions priority elevator access for residents with mobility concerns, but it does not explain how this would work in practice. Will there be a sign-up system or scheduled time slots? I would appreciate more specific details, as two months with only one working elevator serving a 15-storey building with over 200 units could create serious delays during morning rush hours.
+My biggest concern relates to Phase 2. I live on the 12th floor and I have a ___ [9] that makes it very difficult to use the stairs. I noticed the email mentions priority elevator access for residents with mobility concerns, but it does not explain how this would work in practice. I would appreciate more specific details, as two months with only one working elevator serving a 15-storey building with over 200 units could create serious delays.
 
-As for Phase 3, I have floor-to-ceiling windows in my living room and bedroom, and I own several large bookcases positioned directly against the window walls. Moving these heavy items one metre away on my own is not feasible. Will management provide any assistance with moving furniture, or can you recommend a moving service that other residents have used? Additionally, I have two cats, and I am worried about them escaping through open windows or doors during the installation. Could the work crew ensure that all entry points remain sealed while working in occupied units?
+As for Phase 3, I have floor-to-ceiling windows and several large bookcases positioned directly against the window walls. Moving these heavy items on my own is not feasible. Will management provide any ___ [10]? Additionally, I have two cats, and I am worried about them escaping through open windows or doors during the installation.
 
-Finally, I would like to suggest that management hold an in-person information session for residents before May 5th. Many of my neighbours on the 12th floor have similar questions, and a group meeting would be far more efficient than individual emails. The party room on the ground floor would be an ideal venue and could easily accommodate 40 to 50 people.
+Finally, I would like to suggest that management hold ___ [11] for residents before May 5th. Many of my neighbours have similar questions, and the party room on the ground floor would be an ideal venue.
 
 I appreciate your time and look forward to your response.
 
@@ -520,7 +476,7 @@ Unit 1204, 245 Lakeshore Drive`;
       id: "R9",
       title: "Part 9: Reading Correspondence",
       instruction:
-        "Read the following email exchange and answer the questions. Questions 1–6 are based on the first email from management. Questions 7–11 are based on the resident's response.",
+        "Read the following email exchange. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
       passage: passageA,
       questions: [
         {
@@ -591,60 +547,60 @@ Unit 1204, 245 Lakeshore Drive`;
         },
         {
           id: "R9Q7",
-          question: "How long has Anita Sharma been a resident at 245 Lakeshore Drive?",
+          question: "I am wondering whether the ___ could remain operational during this phase.",
           options: [
-            "About five years",
-            "About seven years",
-            "Nearly nine years",
-            "Over twelve years",
-          ],
-          correctAnswer: 2,
-          passage: passageB,
-        },
-        {
-          id: "R9Q8",
-          question: "Why is Anita concerned about using the side entrance during Phase 1?",
-          options: [
-            "It is not accessible to wheelchair users",
-            "It is far from the underground parking garage",
-            "It does not have a working key fob reader",
-            "It is only open during business hours",
+            "main lobby entrance",
+            "garage-level entrance",
+            "concierge desk",
+            "side entrance on Maple Avenue",
           ],
           correctAnswer: 1,
           passage: passageB,
         },
         {
-          id: "R9Q9",
-          question: "What health issue makes it difficult for Anita to take the stairs during Phase 2?",
+          id: "R9Q8",
+          question: "Could the new key fobs be ___ to residents who cannot pick them up in person?",
           options: [
-            "A back injury",
-            "A heart condition",
-            "A knee condition",
-            "A respiratory illness",
+            "emailed",
+            "delivered by a neighbour",
+            "mailed",
+            "left at the door",
+          ],
+          correctAnswer: 2,
+          passage: passageB,
+        },
+        {
+          id: "R9Q9",
+          question: "I have a ___ that makes it very difficult to use the stairs.",
+          options: [
+            "back injury",
+            "heart condition",
+            "knee condition",
+            "respiratory illness",
           ],
           correctAnswer: 2,
           passage: passageB,
         },
         {
           id: "R9Q10",
-          question: "What does Anita suggest management organize before renovations begin?",
+          question: "Will management provide any ___?",
           options: [
-            "A written FAQ document for all residents",
-            "A one-on-one meeting with each tenant",
-            "An in-person information session in the party room",
-            "A video conference call for each floor",
+            "financial compensation for the inconvenience",
+            "temporary storage units on each floor",
+            "assistance with moving furniture",
+            "replacement bookcases after the renovation",
           ],
           correctAnswer: 2,
           passage: passageB,
         },
         {
           id: "R9Q11",
-          question: "What concern does Anita raise about the window replacement work in her unit?",
+          question: "I would like to suggest that management hold ___.",
           options: [
-            "She is worried about noise levels during the installation",
-            "She cannot move heavy furniture by herself and fears her cats may escape",
-            "She is concerned the new windows will not match her interior decor",
-            "She does not want workers entering her unit without supervision",
+            "a video conference for each floor",
+            "an in-person information session",
+            "a written Q&A on the building website",
+            "one-on-one meetings with each resident",
           ],
           correctAnswer: 1,
           passage: passageB,
@@ -656,7 +612,7 @@ Unit 1204, 245 Lakeshore Drive`;
     id: "R10",
     title: "Part 10: Reading to Apply a Diagram",
     instruction:
-      "Read the following guide and answer the questions.",
+      "Read the following guide and email. Then fill in each blank with the best word or phrase, or answer the question.",
     passage: `LAKEHEAD UNIVERSITY — COURSE REGISTRATION GUIDE FOR NEW STUDENTS
 
 Welcome to Lakehead University! This guide will help you navigate the course registration process for the upcoming fall semester. Please read carefully and follow each step.
@@ -679,42 +635,59 @@ A non-refundable tuition deposit of $500 is required within 7 days of registrati
 Important Dates:
 - Last day to add courses: September 20th
 - Last day to drop courses without academic penalty: November 8th
-- Final exams: December 9th to 20th`,
+- Final exams: December 9th to 20th
+
+---
+
+Hey Priya,
+
+I just read through the registration guide for Lakehead and wanted to share what I found. Since we're both first-year students, our registration window opens on ___ [1]. Make sure you activate your student account at least ___ [2] before that so you don't get locked out!
+
+I'm planning to take 4 courses this semester. According to the guide, full-time students need at least ___ [3] to keep their status. I also want to visit an advisor to make sure I'm picking the right ones — walk-in hours are in ___ [4].
+
+One important thing — after we register, we need to pay a ___ [5] within 7 days or they might remove our courses. I'm going to pay mine by bank transfer right away.
+
+Let me know if you want to go to the advising office together!
+
+Nadia`,
     questions: [
       {
         id: "R10Q1",
-        question:
-          "What is the earliest date that incoming freshmen can sign up for classes?",
+        question: "Our registration window opens on ___.",
         options: ["June 1st", "June 15th", "July 1st", "July 15th"],
         correctAnswer: 3,
       },
       {
         id: "R10Q2",
-        question:
-          "What is the upper limit on how many classes a full-time learner may enrol in during one term?",
-        options: ["3", "4", "5", "6"],
+        question: "Make sure you activate your student account at least ___ before that.",
+        options: ["12 hours", "24 hours", "48 hours", "72 hours"],
         correctAnswer: 2,
       },
       {
         id: "R10Q3",
-        question: "What is the amount of the required upfront payment that cannot be returned?",
-        options: ["$250", "$350", "$500", "$750"],
-        correctAnswer: 2,
+        question: "Full-time students need at least ___ to keep their status.",
+        options: ["2 courses", "3 courses", "4 courses", "5 courses"],
+        correctAnswer: 1,
       },
       {
         id: "R10Q4",
-        question:
-          "In which room and building can students drop in to receive guidance on their course selections?",
+        question: "Walk-in hours are in ___.",
         options: [
           "Room 100 of the Library",
           "Room 214 of the Student Central building",
-          "The Registrar's Office",
+          "the Registrar's Office",
           "Room 310 of the Arts building",
         ],
         correctAnswer: 1,
       },
       {
         id: "R10Q5",
+        question: "We need to pay a ___ within 7 days.",
+        options: ["$250 deposit", "$350 deposit", "$500 deposit", "$750 deposit"],
+        correctAnswer: 2,
+      },
+      {
+        id: "R10Q6",
         question:
           "By what date must students withdraw from a class to avoid a negative mark on their transcript?",
         options: [
@@ -726,35 +699,23 @@ Important Dates:
         correctAnswer: 2,
       },
       {
-        id: "R10Q6",
-        question:
-          "How many hours in advance of their enrolment period do students need to set up their online portal?",
-        options: [
-          "12",
-          "24",
-          "48",
-          "72",
-        ],
-        correctAnswer: 2,
-      },
-      {
         id: "R10Q7",
         question:
-          "What is the fewest number of classes a full-time learner is required to take each term?",
-        options: ["2", "3", "4", "5"],
-        correctAnswer: 1,
+          "What is the maximum number of courses a full-time student can take per semester?",
+        options: ["3", "4", "5", "6"],
+        correctAnswer: 2,
       },
       {
         id: "R10Q8",
         question:
-          "How many days after signing up for classes is the payment deadline for the enrolment confirmation fee?",
+          "Nadia and Priya are most likely ___.",
         options: [
-          "3",
-          "5",
-          "7",
-          "14",
+          "professors planning next semester's courses",
+          "incoming first-year students at Lakehead University",
+          "academic advisors helping new students",
+          "fourth-year students mentoring freshmen",
         ],
-        correctAnswer: 2,
+        correctAnswer: 1,
       },
     ],
   },
@@ -762,128 +723,70 @@ Important Dates:
     id: "R11",
     title: "Part 11: Reading for Information",
     instruction:
-      "Read the following article and answer the questions.",
-    passage: `THE ARCTIC IS WARMING FOUR TIMES FASTER THAN THE REST OF THE PLANET
+      "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
+    passage: `A. A comprehensive study led by researchers at the University of Manitoba and Environment and Climate Change Canada has confirmed that the Arctic is warming nearly four times faster than the global average, with far-reaching consequences for northern communities, wildlife, and global weather patterns. The study, published in the journal Nature Climate Change, analyzed temperature data from 1979 to the present across the entire Arctic region. It found that average temperatures in the Arctic have risen by 3.1 degrees Celsius over this period, compared to 0.8 degrees globally. The most dramatic warming has occurred in the Barents Sea region north of Scandinavia, where temperatures have risen by as much as 5.2 degrees.
 
-A comprehensive study led by researchers at the University of Manitoba and Environment and Climate Change Canada has confirmed that the Arctic is warming nearly four times faster than the global average, with far-reaching consequences for northern communities, wildlife, and global weather patterns.
+B. One of the most visible effects of Arctic warming is the decline of sea ice. September sea ice extent — the month when ice reaches its annual minimum — has decreased by approximately 13 percent per decade since satellite measurements began in 1979. Scientists project that the Arctic could experience ice-free summers by the 2040s.
 
-The study, published in the journal Nature Climate Change, analyzed temperature data from 1979 to the present across the entire Arctic region. It found that average temperatures in the Arctic have risen by 3.1 degrees Celsius over this period, compared to 0.8 degrees globally. The most dramatic warming has occurred in the Barents Sea region north of Scandinavia, where temperatures have risen by as much as 5.2 degrees.
+C. For Canada's northern communities, the effects are already being felt. Permafrost thaw is destabilizing buildings and roads in towns like Tuktoyaktuk in the Northwest Territories, where several homes have had to be relocated. Changing ice conditions have also disrupted traditional hunting routes used by Inuit communities for generations, threatening food security and cultural practices. Dr. Siku Naqitarvik, a climate scientist and member of the Inuit community in Iqaluit, emphasized the human dimension. "Climate models are important, but we must also listen to Indigenous knowledge holders who have observed these changes firsthand over decades," she said.
 
-One of the most visible effects of Arctic warming is the decline of sea ice. September sea ice extent — the month when ice reaches its annual minimum — has decreased by approximately 13 percent per decade since satellite measurements began in 1979. Scientists project that the Arctic could experience ice-free summers by the 2040s.
+D. The study recommends that Canada invest $2.4 billion over the next ten years in Arctic infrastructure adaptation, including elevated building foundations, improved drainage systems, and expanded climate monitoring stations to track permafrost conditions.
 
-For Canada's northern communities, the effects are already being felt. Permafrost thaw is destabilizing buildings and roads in towns like Tuktoyaktuk in the Northwest Territories, where several homes have had to be relocated. Changing ice conditions have also disrupted traditional hunting routes used by Inuit communities for generations, threatening food security and cultural practices.
-
-Dr. Siku Naqitarvik, a climate scientist and member of the Inuit community in Iqaluit, emphasized the human dimension. "Climate models are important, but we must also listen to Indigenous knowledge holders who have observed these changes firsthand over decades," she said.
-
-The study recommends that Canada invest $2.4 billion over the next ten years in Arctic infrastructure adaptation, including elevated building foundations, improved drainage systems, and expanded climate monitoring stations to track permafrost conditions.`,
+E. Not in any of the paragraphs`,
     questions: [
       {
         id: "R11Q1",
-        question:
-          "How many times faster is the far north heating up compared to the worldwide temperature trend?",
-        options: [
-          "Two",
-          "Three",
-          "Nearly four",
-          "Five",
-        ],
-        correctAnswer: 2,
+        question: "Average temperatures in the Arctic have risen by 3.1 degrees Celsius since 1979.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 0,
       },
       {
         id: "R11Q2",
-        question:
-          "What is the total temperature increase (in degrees Celsius) recorded in the polar region over the study period?",
-        options: [
-          "0.8",
-          "2.1",
-          "3.1",
-          "5.2",
-        ],
-        correctAnswer: 2,
+        question: "September sea ice coverage has been shrinking by about 13 percent every decade.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 1,
       },
       {
         id: "R11Q3",
-        question:
-          "By which decade do researchers expect the northern polar waters to be completely open in warm months?",
-        options: [
-          "2030s",
-          "2040s",
-          "2050s",
-          "2060s",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R11Q4",
-        question:
-          "Which northern town has already seen homes relocated due to thawing frozen ground?",
-        options: [
-          "Iqaluit",
-          "Yellowknife",
-          "Tuktoyaktuk",
-          "Churchill",
-        ],
+        question: "Thawing permafrost has forced the relocation of homes in a northern Canadian town.",
+        options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
+        id: "R11Q4",
+        question: "Researchers recommend billions of dollars in investment for Arctic infrastructure.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 3,
+      },
+      {
         id: "R11Q5",
-        question:
-          "What level of spending do the researchers propose for upgrading buildings and systems in the far north?",
-        options: [
-          "$1.2 billion / five years",
-          "$2.4 billion / ten years",
-          "$3.6 billion / ten years",
-          "$5 billion / twenty years",
-        ],
-        correctAnswer: 1,
+        question: "The Barents Sea region has experienced the most extreme temperature increase.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 0,
       },
       {
         id: "R11Q6",
-        question:
-          "Which specific area has experienced the greatest temperature rise in the polar region?",
-        options: [
-          "The Canadian Arctic Archipelago",
-          "The Bering Strait region",
-          "The Barents Sea region north of Scandinavia",
-          "The Greenland ice sheet",
-        ],
+        question: "An Inuit climate scientist stressed the importance of listening to Indigenous knowledge holders.",
+        options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
         id: "R11Q7",
-        question:
-          "Approximately what percentage has the annual minimum frozen ocean coverage been shrinking every ten years?",
-        options: [
-          "7%",
-          "10%",
-          "13%",
-          "18%",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R11Q8",
-        question:
-          "What key point did the Inuit climate scientist stress in her remarks?",
-        options: [
-          "The need for more satellite technology",
-          "The importance of listening to Indigenous knowledge holders",
-          "The urgency of relocating all northern communities",
-          "The need to stop all industrial activity in the Arctic",
-        ],
+        question: "Scientists predict the Arctic could have ice-free summers within the next two decades.",
+        options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
       },
       {
-        id: "R11Q9",
-        question:
-          "What practical measures do the researchers suggest for protecting northern buildings and services?",
-        options: [
-          "Building underground cities",
-          "Relocating all northern communities southward",
-          "Elevated building foundations and improved drainage systems",
-          "Banning new construction in permafrost zones",
-        ],
+        id: "R11Q8",
+        question: "Changing ice conditions have disrupted traditional Inuit hunting routes.",
+        options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
+      },
+      {
+        id: "R11Q9",
+        question: "The Canadian government has already approved the recommended funding for Arctic adaptation.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 4,
       },
     ],
   },
@@ -904,19 +807,25 @@ While the idea of universal basic income sounds appealing, the economics simply 
       id: "R12",
       title: "Part 12: Reading for Viewpoints",
       instruction:
-        "Read the two viewpoints and answer the questions. Each question shows the relevant viewpoint.",
-      passage: vpA,
+        "Read the following article and response. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
+      passage: vpA + `
+
+` + vpB + `
+
+---
+
+As someone who lost their job during the pandemic, the idea of a universal basic income is very personal to me. Priya makes a compelling case, especially when she points out that existing social programs are ___ [6]. I was surprised to learn that the Ontario pilot showed participants experienced ___ [7]. However, Trevor raises a valid concern about the cost — $85 billion annually is ___ [8]. I think the best approach would be a compromise: rather than giving money to everyone, the government should ___ [9]. That way, the people who truly need help would receive it without the ___ [10] that Trevor warns about.`,
       questions: [
-        { id: "R12Q1", question: "What dollar amount per month does Priya propose as a guaranteed income for every adult?", options: ["$1,000", "$1,200", "$1,500", "$2,000"], correctAnswer: 2, passage: vpA },
-        { id: "R12Q2", question: "What flaw does Trevor point out regarding the trial program that ran in Ontario?", options: ["It was conducted in the wrong province", "It was too small and too short to draw meaningful conclusions", "It showed that participants stopped working entirely", "It was more expensive than projected"], correctAnswer: 1, passage: vpB },
-        { id: "R12Q3", question: "What beneficial results does Priya cite from the provincial trial program?", options: ["Higher employment rates and increased tax revenue", "Improved mental health, better nutrition, and pursuit of education", "Reduced crime rates and lower healthcare costs", "More home ownership and decreased personal debt"], correctAnswer: 1, passage: vpA },
-        { id: "R12Q4", question: "What alternative approaches does Trevor favour over a universal guaranteed income?", options: ["A smaller UBI payment of $500 per month", "Higher minimum wages across all provinces", "Expanded employment insurance, affordable childcare, and skills retraining", "Tax credits for low-income families"], correctAnswer: 2, passage: vpB },
-        { id: "R12Q5", question: "How many billions of dollars would the guaranteed income program cost the country each year, according to the writers?", options: ["$50", "$65", "$85", "$100"], correctAnswer: 2, passage: vpA },
-        { id: "R12Q6", question: "Which places around the world does Priya mention as examples where guaranteed income programs have been tested?", options: ["Germany, Japan, and Australia", "Finland, Kenya, and several U.S. cities", "Sweden, India, and the United Kingdom", "Norway, Brazil, and South Korea"], correctAnswer: 1, passage: vpA },
-        { id: "R12Q7", question: "According to Trevor, what would be the consequence of significantly raising taxes to fund this program?", options: ["They would primarily affect middle-class families", "They would have no measurable impact", "They could drive businesses and investment out of the country", "They would be offset by increased consumer spending"], correctAnswer: 2, passage: vpB },
-        { id: "R12Q8", question: "What is one funding source that Priya suggests could help pay for a guaranteed income?", options: ["Reducing military spending", "Eliminating redundant social assistance programs", "Introducing a national sales tax", "Borrowing from international organizations"], correctAnswer: 1, passage: vpA },
-        { id: "R12Q9", question: "During which years was the provincial guaranteed income trial conducted?", options: ["2014 to 2016", "2015 to 2017", "2017 to 2019", "2019 to 2021"], correctAnswer: 2, passage: vpA },
-        { id: "R12Q10", question: "What negative behavioural effect does Trevor worry would result from providing unconditional payments?", options: ["Increased inflation in housing markets", "Reducing the incentive to work", "Higher rates of substance abuse", "Declining birth rates"], correctAnswer: 1, passage: vpB },
+        { id: "R12Q1", question: "What dollar amount per month does Priya propose as a guaranteed income for every adult?", options: ["$1,000", "$1,200", "$1,500", "$2,000"], correctAnswer: 2 },
+        { id: "R12Q2", question: "What flaw does Trevor point out regarding the trial program that ran in Ontario?", options: ["It was conducted in the wrong province", "It was too small and too short to draw meaningful conclusions", "It showed that participants stopped working entirely", "It was more expensive than projected"], correctAnswer: 1 },
+        { id: "R12Q3", question: "What beneficial results does Priya cite from the provincial trial program?", options: ["Higher employment rates and increased tax revenue", "Improved mental health, better nutrition, and pursuit of education", "Reduced crime rates and lower healthcare costs", "More home ownership and decreased personal debt"], correctAnswer: 1 },
+        { id: "R12Q4", question: "What alternative approaches does Trevor favour over a universal guaranteed income?", options: ["A smaller UBI payment of $500 per month", "Higher minimum wages across all provinces", "Expanded employment insurance, affordable childcare, and skills retraining", "Tax credits for low-income families"], correctAnswer: 2 },
+        { id: "R12Q5", question: "How many billions of dollars would the guaranteed income program cost the country each year?", options: ["$50", "$65", "$85", "$100"], correctAnswer: 2 },
+        { id: "R12Q6", question: "Existing social programs are ___.", options: ["well-funded and effective", "inefficient and stigmatizing", "only available in large cities", "too generous to recipients"], correctAnswer: 1 },
+        { id: "R12Q7", question: "The Ontario pilot showed participants experienced ___.", options: ["no significant changes in their lives", "improved mental health, better nutrition, and pursuit of education", "reduced motivation to find employment", "increased spending on non-essential items"], correctAnswer: 1 },
+        { id: "R12Q8", question: "$85 billion annually is ___.", options: ["a reasonable investment for such a large country", "an enormous amount that would be difficult to fund", "roughly equal to the current healthcare budget", "less than what is spent on existing social programs"], correctAnswer: 1 },
+        { id: "R12Q9", question: "The government should ___.", options: ["implement UBI for all citizens immediately", "target support to those who need it most", "eliminate all existing social assistance programs", "let private charities handle income support"], correctAnswer: 1 },
+        { id: "R12Q10", question: "The people who truly need help would receive it without the ___.", options: ["stigma of applying for welfare", "enormous fiscal risk", "need for government involvement", "burden of paying taxes"], correctAnswer: 1 },
       ],
     };
   })(),
@@ -956,23 +865,19 @@ Dear Oakville Community Association,
 Thank you so much for organizing the Spring Clean-Up and BBQ again this year. My family and I have participated in the last three clean-ups and it is always a highlight of our spring. I am writing to confirm our attendance, volunteer for some additional tasks, and raise a few questions.
 
 Volunteering:
-My husband Arjun and I would like to register as team leaders for one of the clean-up zones, if possible. We are both familiar with the Sixteen Mile Creek trail area and would be happy to lead a group there. We led a team along that same stretch in 2024 and managed to fill 18 garbage bags in just under two hours. Our two children, ages 10 and 12, will also be joining us.
+My husband Arjun and I would like to register as ___ [7] for one of the clean-up zones, if possible. We are both familiar with the Sixteen Mile Creek trail area and would be happy to lead a group there. We led a team along that same stretch in 2024 and managed to fill ___ [8] in just under two hours. Our two children, ages 10 and 12, will also be joining us.
 
-I would also like to volunteer to help coordinate the plant swap table during the BBQ. I have been running a small community garden on Lakeshore Road for the past four years and could bring approximately 15 potted herb seedlings — basil, mint, rosemary, and cilantro — to contribute.
+I would also like to volunteer to help coordinate the plant swap table during the BBQ. I could bring approximately 15 potted herb seedlings to contribute.
 
 Food Donation Offer:
-Additionally, I run a small home baking business and would love to donate three dozen butter tarts and two dozen oatmeal raisin cookies for the BBQ dessert table. Would there be space for donated baked goods, and are there any food safety requirements I should be aware of? I carry a valid food handler's certificate from Halton Region, if that helps.
+Additionally, I run a small home baking business and would love to donate ___ [9] for the BBQ dessert table. I carry a valid food handler's certificate from Halton Region, if that helps.
 
 Questions and Suggestions:
-1. Will there be a designated first aid station at Coronation Park this year? Last year, one of the volunteers on our team got a minor cut from broken glass, and the nearest first aid kit was back at the pavilion, which was quite a walk from our zone.
+1. Will there be a designated ___ [10] at Coronation Park this year? Last year, one of the volunteers on our team got a minor cut from broken glass, and the nearest kit was back at the pavilion, which was quite a walk.
 
-2. I noticed the event runs from 9:00 AM to 3:00 PM. Would it be possible to set up a shaded rest area with water and sunscreen near the main registration point? April weather can be unpredictable, and I recall it was quite warm last year.
+2. Finally, could the association consider adding a brief ___ [11] this year to recognize top volunteer teams or individuals? I think a small gesture like that would encourage even more participation next year.
 
-3. My neighbour, Mrs. Dawson, uses a wheelchair and would love to attend the BBQ portion. Is the pavilion area fully accessible, including the washrooms?
-
-4. Finally, could the association consider adding a brief awards ceremony this year to recognize top volunteer teams or individuals? I think a small gesture like that would encourage even more participation next year.
-
-We are very excited about the event and look forward to another successful clean-up. Please let me know if you need anything else from me in advance.
+We are very excited about the event and look forward to another successful clean-up.
 
 Warm regards,
 Meera Kapoor
@@ -982,7 +887,7 @@ Meera Kapoor
       id: "R13",
       title: "Part 13: Reading Correspondence",
       instruction:
-        "Read the following two emails. Questions 1 to 6 are based on the first email (the community association notice). Questions 7 to 11 are based on the second email (the community member's response).",
+        "Read the following email exchange. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
       passage: passageA,
       questions: [
         {
@@ -1052,60 +957,60 @@ Meera Kapoor
         },
         {
           id: "R13Q7",
-          question: "Which trail area does Meera's family want to be assigned to for the clean-up?",
+          question: "My husband and I would like to register as ___.",
           options: [
-            "Coronation Park loop",
-            "Lakeshore Road pathway",
-            "Sixteen Mile Creek trail",
-            "Bronte Creek trail",
+            "volunteers for the BBQ",
+            "team leaders",
+            "event coordinators",
+            "safety monitors",
           ],
-          correctAnswer: 2,
+          correctAnswer: 1,
           passage: passageB,
         },
         {
           id: "R13Q8",
-          question: "How many garbage bags did Meera's team fill during the previous year's clean-up?",
+          question: "We managed to fill ___ in just under two hours.",
           options: [
-            "12",
-            "15",
-            "18",
-            "22",
+            "12 garbage bags",
+            "15 garbage bags",
+            "18 garbage bags",
+            "22 garbage bags",
           ],
           correctAnswer: 2,
           passage: passageB,
         },
         {
           id: "R13Q9",
-          question: "What does Meera offer to donate for the BBQ dessert table?",
+          question: "I would love to donate ___ for the BBQ dessert table.",
           options: [
-            "Brownies and cupcakes",
-            "Butter tarts and oatmeal raisin cookies",
-            "Banana bread and scones",
-            "Lemon squares and sugar cookies",
+            "brownies and cupcakes",
+            "butter tarts and oatmeal raisin cookies",
+            "banana bread and scones",
+            "lemon squares and sugar cookies",
           ],
           correctAnswer: 1,
           passage: passageB,
         },
         {
           id: "R13Q10",
-          question: "Why does Meera suggest setting up a first aid station at the park this year?",
+          question: "Will there be a designated ___ at Coronation Park this year?",
           options: [
-            "A child fell and injured their knee during the BBQ",
-            "A volunteer got a minor cut from broken glass and the nearest kit was far away",
-            "Several volunteers experienced heat exhaustion",
-            "The association received complaints from the local health authority",
+            "shaded rest area",
+            "recycling station",
+            "first aid station",
+            "lost and found table",
           ],
-          correctAnswer: 1,
+          correctAnswer: 2,
           passage: passageB,
         },
         {
           id: "R13Q11",
-          question: "What new addition does Meera suggest to encourage greater volunteer participation in future years?",
+          question: "Could the association consider adding a brief ___?",
           options: [
-            "A raffle with gift card prizes",
-            "A social media photo contest",
-            "A brief awards ceremony to recognize top volunteers",
-            "Free memberships to the community association",
+            "raffle with gift card prizes",
+            "social media photo contest",
+            "awards ceremony",
+            "community survey",
           ],
           correctAnswer: 2,
           passage: passageB,
@@ -1117,7 +1022,7 @@ Meera Kapoor
     id: "R14",
     title: "Part 14: Reading to Apply a Diagram",
     instruction:
-      "Read the following guide and answer the questions.",
+      "Read the following guide and email. Then fill in each blank with the best word or phrase, or answer the question.",
     passage: `MISSISSAUGA PUBLIC LIBRARY — MEMBERSHIP AND SERVICES GUIDE
 
 Membership:
@@ -1138,31 +1043,62 @@ Programs and Services:
 - Settlement services for newcomers to Canada, including help with resumes, language classes, and government form assistance, are offered at the Central Library, Meadowvale, and Malton branches.
 - Children's storytime programs run weekly at every branch, Tuesdays and Thursdays at 10:30 AM.
 
-The library is open Monday to Thursday 9:00 AM to 9:00 PM, Friday 9:00 AM to 6:00 PM, Saturday 9:00 AM to 5:00 PM, and Sunday 1:00 PM to 5:00 PM.`,
+The library is open Monday to Thursday 9:00 AM to 9:00 PM, Friday 9:00 AM to 6:00 PM, Saturday 9:00 AM to 5:00 PM, and Sunday 1:00 PM to 5:00 PM.
+
+---
+
+Hi Rosa,
+
+I just got my Mississauga Library card and wanted to tell you about it! Since you live in Oakville, you'd need to pay ___ [1] for a non-resident annual membership, but honestly it's worth it.
+
+I borrowed a few DVDs for the kids, but we need to return them quickly — the loan period is only ___ [2]. If we're late, the daily fee is ___ [3], which adds up fast!
+
+I also found out they have storytime programs for the kids. They run on ___ [4], which works perfectly since we're usually free those mornings. And I booked a study room for Saturday — you can reserve them up to ___ [5] in advance.
+
+Let me know if you want to come check it out this weekend. The library closes at 5:00 PM on Saturdays, so we should get there early.
+
+Talk soon,
+Fatima`,
     questions: [
       {
         id: "R14Q1",
-        question:
-          "What is the yearly fee for people who live outside the city to obtain a borrowing card?",
+        question: "You'd need to pay ___ for a non-resident annual membership.",
         options: ["$25", "$35", "$50", "$75"],
         correctAnswer: 2,
       },
       {
         id: "R14Q2",
-        question: "What is the maximum number of physical books a cardholder may have checked out simultaneously?",
-        options: ["10", "15", "20", "30"],
-        correctAnswer: 3,
+        question: "The loan period is only ___.",
+        options: ["3 days", "5 days", "7 days", "14 days"],
+        correctAnswer: 2,
       },
       {
         id: "R14Q3",
-        question: "How much is the daily charge for returning video discs after the due date?",
+        question: "The daily fee is ___.",
         options: ["$0.25", "$0.50", "$1.00", "$2.00"],
         correctAnswer: 2,
       },
       {
         id: "R14Q4",
+        question: "They run on ___.",
+        options: [
+          "Mondays and Wednesdays at 10:00 AM",
+          "Tuesdays and Thursdays at 10:30 AM",
+          "Wednesdays and Fridays at 11:00 AM",
+          "Saturdays and Sundays at 2:00 PM",
+        ],
+        correctAnswer: 1,
+      },
+      {
+        id: "R14Q5",
+        question: "You can reserve them up to ___ in advance.",
+        options: ["1 day", "3 days", "5 days", "7 days"],
+        correctAnswer: 3,
+      },
+      {
+        id: "R14Q6",
         question:
-          "Above what outstanding fee amount does the system prevent cardholders from taking out more items?",
+          "Above what outstanding fee amount does the system prevent cardholders from borrowing?",
         options: [
           "$5.00",
           "$10.00",
@@ -1172,35 +1108,21 @@ The library is open Monday to Thursday 9:00 AM to 9:00 PM, Friday 9:00 AM to 6:0
         correctAnswer: 2,
       },
       {
-        id: "R14Q5",
-        question:
-          "How many days ahead of time can patrons reserve a private workspace?",
-        options: ["1", "3", "5", "7"],
-        correctAnswer: 3,
-      },
-      {
-        id: "R14Q6",
-        question:
-          "How many days may periodicals be kept before they must be returned?",
-        options: ["7", "14", "21", "30"],
-        correctAnswer: 1,
-      },
-      {
         id: "R14Q7",
         question:
-          "How many locations does this city's library system operate across?",
-        options: ["12", "15", "18", "22"],
-        correctAnswer: 2,
+          "What is the maximum number of print books a cardholder may borrow at one time?",
+        options: ["10", "15", "20", "30"],
+        correctAnswer: 3,
       },
       {
         id: "R14Q8",
         question:
-          "On which days and at what time do the read-aloud sessions for kids take place?",
+          "Fatima and Rosa are most likely ___.",
         options: [
-          "Mondays and Wednesdays at 10:00 AM",
-          "Tuesdays and Thursdays at 10:30 AM",
-          "Wednesdays and Fridays at 11:00 AM",
-          "Saturdays and Sundays at 2:00 PM",
+          "library employees discussing a new policy",
+          "friends, with Fatima living in Mississauga and Rosa in Oakville",
+          "students working on a group project together",
+          "newcomers attending a settlement services workshop",
         ],
         correctAnswer: 1,
       },
@@ -1210,118 +1132,70 @@ The library is open Monday to Thursday 9:00 AM to 9:00 PM, Friday 9:00 AM to 6:0
     id: "R15",
     title: "Part 15: Reading for Information",
     instruction:
-      "Read the following article and answer the questions.",
-    passage: `CANADA'S TECH STARTUP ECOSYSTEM RANKS AMONG THE WORLD'S BEST
+      "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
+    passage: `A. Canada's technology startup sector has seen remarkable growth over the past decade, with Toronto, Vancouver, and Montreal now recognized as top-tier global tech hubs. A new report from the Canadian Venture Capital and Private Equity Association (CVCA) reveals that Canadian startups raised a combined $9.7 billion in venture capital funding last year, a 22 percent increase from the year before. Toronto's tech corridor, sometimes called "Silicon Valley North," is home to more than 5,200 tech companies and employs approximately 350,000 workers in the Greater Toronto Area alone. The city's strengths lie in artificial intelligence and fintech, driven in part by the presence of the Vector Institute, a world-leading AI research centre co-founded by Geoffrey Hinton.
 
-Canada's technology startup sector has seen remarkable growth over the past decade, with Toronto, Vancouver, and Montreal now recognized as top-tier global tech hubs. A new report from the Canadian Venture Capital and Private Equity Association (CVCA) reveals that Canadian startups raised a combined $9.7 billion in venture capital funding last year, a 22 percent increase from the year before.
+B. Vancouver has carved out a niche in video game development, visual effects, and clean technology. Major studios like Electronic Arts and Sony Pictures Imageworks maintain large operations in the city, and the clean-tech sector has attracted over $1.3 billion in investment since 2020. The province of British Columbia offers a 30 percent tax credit for eligible tech companies, making it one of the most attractive jurisdictions in North America.
 
-Toronto's tech corridor, sometimes called "Silicon Valley North," is home to more than 5,200 tech companies and employs approximately 350,000 workers in the Greater Toronto Area alone. The city's strengths lie in artificial intelligence and fintech, driven in part by the presence of the Vector Institute, a world-leading AI research centre co-founded by Geoffrey Hinton.
+C. Montreal, meanwhile, has become a powerhouse in AI research, largely due to the work of Yoshua Bengio and the Mila research institute. The city benefits from relatively low operating costs compared to Toronto and Vancouver, as well as a deep talent pool from four major universities. Quebec's generous R&D tax credits — up to 37.5 percent for small businesses — have attracted companies like Google, Microsoft, and Samsung to establish AI labs there.
 
-Vancouver has carved out a niche in video game development, visual effects, and clean technology. Major studios like Electronic Arts and Sony Pictures Imageworks maintain large operations in the city, and the clean-tech sector has attracted over $1.3 billion in investment since 2020. The province of British Columbia offers a 30 percent tax credit for eligible tech companies, making it one of the most attractive jurisdictions in North America.
+D. Despite these successes, challenges remain. A survey of 400 Canadian startup founders found that 62 percent identified access to late-stage funding as their biggest obstacle, as many companies still turn to U.S. investors for Series B and C rounds. Additionally, 45 percent of respondents cited difficulty retaining senior talent, who are often recruited by larger American firms offering higher salaries. The federal government's Canada Digital Adoption Program has allocated $4 billion to help small and medium-sized businesses adopt new technologies, and the Strategic Innovation Fund continues to provide grants to high-potential startups.
 
-Montreal, meanwhile, has become a powerhouse in AI research, largely due to the work of Yoshua Bengio and the Mila research institute. The city benefits from relatively low operating costs compared to Toronto and Vancouver, as well as a deep talent pool from four major universities. Quebec's generous R&D tax credits — up to 37.5 percent for small businesses — have attracted companies like Google, Microsoft, and Samsung to establish AI labs there.
-
-Despite these successes, challenges remain. A survey of 400 Canadian startup founders found that 62 percent identified access to late-stage funding as their biggest obstacle, as many companies still turn to U.S. investors for Series B and C rounds. Additionally, 45 percent of respondents cited difficulty retaining senior talent, who are often recruited by larger American firms offering higher salaries.
-
-The federal government's Canada Digital Adoption Program has allocated $4 billion to help small and medium-sized businesses adopt new technologies, and the Strategic Innovation Fund continues to provide grants to high-potential startups.`,
+E. Not in any of the paragraphs`,
     questions: [
       {
         id: "R15Q1",
-        question:
-          "How many billions of dollars in investment funding did new Canadian tech companies secure in the most recent year?",
-        options: [
-          "$6.3",
-          "$7.9",
-          "$9.7",
-          "$11.2",
-        ],
-        correctAnswer: 2,
+        question: "Canadian startups raised $9.7 billion in venture capital funding last year.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 0,
       },
       {
         id: "R15Q2",
-        question:
-          "What percentage of costs can qualifying technology firms in the westernmost province claim back through a provincial incentive?",
-        options: ["20%", "25%", "30%", "37.5%"],
-        correctAnswer: 2,
+        question: "British Columbia offers a 30 percent tax credit for eligible tech companies.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 1,
       },
       {
         id: "R15Q3",
-        question:
-          "What challenge did the majority of new business leaders in the survey name as their greatest hurdle?",
-        options: [
-          "Finding office space",
-          "Government regulations",
-          "Access to late-stage funding",
-          "Hiring entry-level developers",
-        ],
-        correctAnswer: 2,
+        question: "The majority of startup founders surveyed said access to late-stage funding was their biggest challenge.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 3,
       },
       {
         id: "R15Q4",
-        question:
-          "Which Canadian city has emerged as a leading centre for artificial intelligence, thanks to a prominent research lab?",
-        options: ["Toronto", "Vancouver", "Montreal", "Ottawa"],
+        question: "Montreal has become a leading centre for AI research thanks to the Mila research institute.",
+        options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
         id: "R15Q5",
-        question:
-          "How many billions of dollars has the federal government set aside in its program to help businesses embrace new technology?",
-        options: [
-          "$1",
-          "$2.5",
-          "$4",
-          "$5",
-        ],
-        correctAnswer: 2,
+        question: "The federal government has allocated $4 billion to help businesses adopt new technologies.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 3,
       },
       {
         id: "R15Q6",
-        question:
-          "Roughly how many technology firms operate in the Toronto area?",
-        options: [
-          "2,500",
-          "3,800",
-          "5,200",
-          "7,000",
-        ],
-        correctAnswer: 2,
+        question: "Toronto's tech corridor is home to more than 5,200 tech companies.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 0,
       },
       {
         id: "R15Q7",
-        question:
-          "What proportion of new company leaders reported trouble keeping experienced employees from leaving?",
-        options: [
-          "35%",
-          "45%",
-          "55%",
-          "62%",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R15Q8",
-        question:
-          "What is the maximum research and development incentive rate that Quebec provides to smaller enterprises?",
-        options: [
-          "22%",
-          "30%",
-          "37.5%",
-          "45%",
-        ],
+        question: "Quebec offers R&D tax credits of up to 37.5 percent for small businesses.",
+        options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
+        id: "R15Q8",
+        question: "Nearly half of startup founders reported difficulty retaining senior talent.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 3,
+      },
+      {
         id: "R15Q9",
-        question:
-          "Approximately how much funding has flowed into the environmentally focused technology industry in Vancouver over recent years?",
-        options: [
-          "$800 million",
-          "$1.3 billion",
-          "$2.1 billion",
-          "$4 billion",
-        ],
-        correctAnswer: 1,
+        question: "The Canadian government plans to open a new national technology research centre in Ottawa.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 4,
       },
     ],
   },
