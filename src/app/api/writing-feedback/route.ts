@@ -34,12 +34,12 @@ export async function POST(req: NextRequest) {
     messages: [
       {
         role: "user",
-        content: `You are a PugPIP writing examiner. Analyze the following writing task response and provide specific, actionable feedback.
+        content: `You are a CELPIP writing examiner. Analyze the following writing task response and provide specific, actionable feedback.
 
 **Task:** ${taskTitle}
 **Prompt:** ${taskPrompt}
 **Word count:** ${wordCount} words (target: ${minWords}–${maxWords} words)
-**Estimated PugPIP Score:** ${score}/12
+**Estimated CELPIP Score:** ${score}/12
 
 **Student's Response:**
 ${userResponse}

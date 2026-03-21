@@ -325,7 +325,7 @@ export default function StudyPlan() {
             {/* Goal score */}
             <div>
               <label className="block text-sm font-medium text-[#1a1a2e] mb-1">
-                Goal Score (PugPIP 2–12)
+                Goal Score (CELPIP 2–12)
               </label>
               <div className="flex items-center gap-3">
                 <input

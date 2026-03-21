@@ -24,15 +24,18 @@ const dmSerif = DM_Serif_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: "PugPIP – Free Mock Tests & Practice for English Proficiency",
+    default: "PugPIP – Free CELPIP Mock Tests & Practice",
     template: "%s | PugPIP",
   },
   description:
-    "Prepare for your English proficiency test with PugPIP. Full-length mock tests covering Listening, Reading, Writing, and Speaking with instant scoring and detailed feedback.",
+    "Prepare for the CELPIP General Test with PugPIP. Full-length mock tests covering Listening, Reading, Writing, and Speaking with instant scoring and detailed feedback.",
   keywords: [
     "PugPIP",
+    "CELPIP",
+    "CELPIP mock test",
+    "CELPIP practice test",
+    "CELPIP General",
     "English proficiency test",
-    "mock test",
     "listening practice",
     "reading practice",
     "writing practice",
@@ -41,18 +44,18 @@ export const metadata: Metadata = {
     "free practice test",
   ],
   openGraph: {
-    title: "PugPIP – Free Mock Tests & Practice for English Proficiency",
+    title: "PugPIP – Free CELPIP Mock Tests & Practice",
     description:
-      "Full-length mock tests covering Listening, Reading, Writing, and Speaking with instant scoring and detailed feedback.",
+      "Prepare for the CELPIP General Test with full-length mock tests covering Listening, Reading, Writing, and Speaking with instant scoring and detailed feedback.",
     type: "website",
     locale: "en_US",
     siteName: "PugPIP",
   },
   twitter: {
     card: "summary_large_image",
-    title: "PugPIP – Free Mock Tests & Practice for English Proficiency",
+    title: "PugPIP – Free CELPIP Mock Tests & Practice",
     description:
-      "Full-length mock tests covering Listening, Reading, Writing, and Speaking with instant scoring and detailed feedback.",
+      "Prepare for the CELPIP General Test with full-length mock tests covering Listening, Reading, Writing, and Speaking with instant scoring and detailed feedback.",
   },
   robots: {
     index: true,

@@ -237,7 +237,7 @@ export default function WritingSpeakingQuiz({
                 {score}
               </p>
               <p className="text-sm mb-4" style={{ color: "var(--muted-foreground)" }}>
-                Estimated PugPIP Score (out of 12)
+                Estimated CELPIP Score (out of 12)
               </p>
               <Progress value={(score / 12) * 100} className="h-3 max-w-xs mx-auto mb-6" />
               <div className="flex justify-center gap-3">
