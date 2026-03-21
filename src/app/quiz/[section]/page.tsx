@@ -921,6 +921,7 @@ export default function QuizPractice({
           </div>
         ) : (
           /* Reading: two-column on desktop, fixed header+passage with scrollable options on mobile */
+          <>
           <div className="hidden lg:grid lg:grid-cols-[1fr_420px] gap-6 lg:gap-10">
             {/* Left: Passage / Context */}
             <div className="lg:sticky lg:top-28 lg:self-start">
@@ -1141,6 +1142,7 @@ export default function QuizPractice({
               </div>
             </div>
           </div>
+          </>
         )}
       </div>
     </main>
