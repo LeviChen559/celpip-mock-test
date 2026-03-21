@@ -4,7 +4,7 @@ export const madEnglishTask4Parts: ReadingPart[] = [
   // ─── SET 1: UTUC Cancer Drug ──────────────────────────────────────────────────
   {
     id: "Reading-Part4-05",
-    title: "Reading-Part4-05",
+    title: "05 | 10 Questions | Reading for Viewpoints",
     paid: true,
     instruction:
       "Read the following article and response. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
@@ -133,7 +133,7 @@ Having taken this drug as part of a clinical trial, I can say that the drug has 
   // ─── SET 2: Financial Resolutions ────────────────────────────────────────────
   {
     id: "Reading-Part4-06",
-    title: "Reading-Part4-06",
+    title: "06 | 10 Questions | Reading for Viewpoints",
     paid: true,
     instruction:
       "Read the following article and response. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
@@ -263,7 +263,7 @@ I agree that paying attention to finances will improve a person's financial heal
   // ─── SET 3: BFGoodrich Tires / Timely Performance Driving ────────────────────
   {
     id: "Reading-Part4-07",
-    title: "Reading-Part4-07",
+    title: "07 | 10 Questions | Reading for Viewpoints",
     paid: true,
     instruction:
       "Read the following article and response. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
@@ -393,7 +393,7 @@ This is an important article because ___ [6]. So many people are guilty of texti
   // ─── SET 4: Healthcare Benefits ──────────────────────────────────────────────
   {
     id: "Reading-Part4-08",
-    title: "Reading-Part4-08",
+    title: "08 | 10 Questions | Reading for Viewpoints",
     paid: true,
     instruction:
       "Read the following article and response. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
@@ -533,7 +533,7 @@ As a victim of identity theft myself, I wish I had looked more into ___ [6]. I h
   // ─── SET 5: Wedding Costs ─────────────────────────────────────────────────────
   {
     id: "Reading-Part4-09",
-    title: "Reading-Part4-09",
+    title: "09 | 10 Questions | Reading for Viewpoints",
     paid: true,
     instruction:
       "Read the following article and response. Choose the best answer to each question, or fill in each blank with the best word or phrase.",

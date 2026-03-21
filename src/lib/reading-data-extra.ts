@@ -56,7 +56,7 @@ Northern Digital Solutions`;
 
     return {
       id: "Reading-Part1-02",
-      title: "Reading-Part1-02",
+      title: "02 | 11 Questions | Reading Correspondence",
       instruction:
         "Read the following email exchange. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
       passage: passageA,
@@ -185,7 +185,7 @@ Northern Digital Solutions`;
   })(),
   {
     id: "Reading-Part2-02",
-    title: "Reading-Part2-02",
+    title: "02 | 8 Questions | Reading to Apply a Diagram",
     instruction:
       "Read the following transit information and email. Then fill in each blank with the best word or phrase, or answer the question.",
     passage: `CITY OF EDMONTON — VALLEY LINE LRT RIDER GUIDE
@@ -316,7 +316,7 @@ Tanya`,
   },
   {
     id: "Reading-Part3-02",
-    title: "Reading-Part3-02",
+    title: "02 | 9 Questions | Reading for Information",
     instruction:
       "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
     passage: `A. Immigration, Refugees and Citizenship Canada (IRCC) has announced significant changes to the Express Entry system, introducing category-based selection rounds designed to address specific labour market shortages across the country. Under the previous system, candidates were ranked solely by their Comprehensive Ranking System (CRS) score, which considers factors such as age, education, language proficiency, and work experience. While this approach was effective at selecting highly skilled immigrants, critics argued that it did not sufficiently target sectors facing acute shortages.
@@ -400,7 +400,7 @@ While remote work has clear benefits, making it permanent comes with serious dra
 
     return {
       id: "Reading-Part4-02",
-      title: "Reading-Part4-02",
+      title: "02 | 10 Questions | Reading for Viewpoints",
       instruction:
         "Read the following article and response. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
       passage: vpA + `
@@ -474,7 +474,7 @@ Unit 1204, 245 Lakeshore Drive`;
 
     return {
       id: "Reading-Part1-03",
-      title: "Reading-Part1-03",
+      title: "03 | 11 Questions | Reading Correspondence",
       instruction:
         "Read the following email exchange. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
       passage: passageA,
@@ -610,7 +610,7 @@ Unit 1204, 245 Lakeshore Drive`;
   })(),
   {
     id: "Reading-Part2-03",
-    title: "Reading-Part2-03",
+    title: "03 | 8 Questions | Reading to Apply a Diagram",
     instruction:
       "Read the following guide and email. Then fill in each blank with the best word or phrase, or answer the question.",
     passage: `LAKEHEAD UNIVERSITY — COURSE REGISTRATION GUIDE FOR NEW STUDENTS
@@ -721,7 +721,7 @@ Nadia`,
   },
   {
     id: "Reading-Part3-03",
-    title: "Reading-Part3-03",
+    title: "03 | 9 Questions | Reading for Information",
     instruction:
       "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
     passage: `A. A comprehensive study led by researchers at the University of Manitoba and Environment and Climate Change Canada has confirmed that the Arctic is warming nearly four times faster than the global average, with far-reaching consequences for northern communities, wildlife, and global weather patterns. The study, published in the journal Nature Climate Change, analyzed temperature data from 1979 to the present across the entire Arctic region. It found that average temperatures in the Arctic have risen by 3.1 degrees Celsius over this period, compared to 0.8 degrees globally. The most dramatic warming has occurred in the Barents Sea region north of Scandinavia, where temperatures have risen by as much as 5.2 degrees.
@@ -805,7 +805,7 @@ While the idea of universal basic income sounds appealing, the economics simply 
 
     return {
       id: "Reading-Part4-03",
-      title: "Reading-Part4-03",
+      title: "03 | 10 Questions | Reading for Viewpoints",
       instruction:
         "Read the following article and response. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
       passage: vpA + `
@@ -885,7 +885,7 @@ Meera Kapoor
 
     return {
       id: "Reading-Part1-04",
-      title: "Reading-Part1-04",
+      title: "04 | 11 Questions | Reading Correspondence",
       instruction:
         "Read the following email exchange. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
       passage: passageA,
@@ -1020,7 +1020,7 @@ Meera Kapoor
   })(),
   {
     id: "Reading-Part2-04",
-    title: "Reading-Part2-04",
+    title: "04 | 8 Questions | Reading to Apply a Diagram",
     instruction:
       "Read the following guide and email. Then fill in each blank with the best word or phrase, or answer the question.",
     passage: `MISSISSAUGA PUBLIC LIBRARY — MEMBERSHIP AND SERVICES GUIDE
@@ -1130,7 +1130,7 @@ Fatima`,
   },
   {
     id: "Reading-Part3-04",
-    title: "Reading-Part3-04",
+    title: "04 | 9 Questions | Reading for Information",
     instruction:
       "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
     passage: `A. Canada's technology startup sector has seen remarkable growth over the past decade, with Toronto, Vancouver, and Montreal now recognized as top-tier global tech hubs. A new report from the Canadian Venture Capital and Private Equity Association (CVCA) reveals that Canadian startups raised a combined $9.7 billion in venture capital funding last year, a 22 percent increase from the year before. Toronto's tech corridor, sometimes called "Silicon Valley North," is home to more than 5,200 tech companies and employs approximately 350,000 workers in the Greater Toronto Area alone. The city's strengths lie in artificial intelligence and fintech, driven in part by the presence of the Vector Institute, a world-leading AI research centre co-founded by Geoffrey Hinton.

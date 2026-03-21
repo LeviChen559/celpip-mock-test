@@ -4,7 +4,7 @@ export const madEnglishTask3Parts: ReadingPart[] = [
   // ─── SET 1: Head-Smashed-In Buffalo Jump ─────────────────────────────────────
   {
     id: "Reading-Part3-05",
-    title: "Reading-Part3-05",
+    title: "05 | 9 Questions | Reading for Information",
     paid: true,
     instruction:
       "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
@@ -83,7 +83,7 @@ E. Not in any of the paragraphs`,
   // ─── SET 2: Trans-Canada Highway ─────────────────────────────────────────────
   {
     id: "Reading-Part3-06",
-    title: "Reading-Part3-06",
+    title: "06 | 9 Questions | Reading for Information",
     paid: true,
     instruction:
       "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
@@ -165,7 +165,7 @@ E. Not in any of the paragraphs`,
   // ─── SET 3: The Loonie ────────────────────────────────────────────────────────
   {
     id: "Reading-Part3-07",
-    title: "Reading-Part3-07",
+    title: "07 | 9 Questions | Reading for Information",
     paid: true,
     instruction:
       "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
@@ -243,7 +243,7 @@ E. Not in any of the paragraphs`,
   // ─── SET 4: Maple Syrup ───────────────────────────────────────────────────────
   {
     id: "Reading-Part3-08",
-    title: "Reading-Part3-08",
+    title: "08 | 9 Questions | Reading for Information",
     paid: true,
     instruction:
       "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
@@ -323,7 +323,7 @@ E. Not in any of the paragraphs`,
   // ─── SET 5: Banff National Park ───────────────────────────────────────────────
   {
     id: "Reading-Part3-09",
-    title: "Reading-Part3-09",
+    title: "09 | 9 Questions | Reading for Information",
     paid: true,
     instruction:
       "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",

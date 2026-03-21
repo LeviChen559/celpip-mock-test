@@ -4,7 +4,7 @@ export const madEnglishTask2Parts: ReadingPart[] = [
   // ─── SET 1: Driving Lessons (Ian → Omar) ────────────────────────────────────
   {
     id: "Reading-Part2-05",
-    title: "Reading-Part2-05",
+    title: "05 | 8 Questions | Reading to Apply a Diagram",
     paid: true,
     instruction:
       "Read the following advertisement and email. Then fill in each blank with the best word or phrase, or answer the question.",
@@ -122,7 +122,7 @@ Ian`,
   // ─── SET 2: Birthday Cakes (Mom → Chloe) ────────────────────────────────────
   {
     id: "Reading-Part2-06",
-    title: "Reading-Part2-06",
+    title: "06 | 8 Questions | Reading to Apply a Diagram",
     paid: true,
     instruction:
       "Read the following recipe list and email. Then fill in each blank with the best word or phrase, or answer the question.",
@@ -245,7 +245,7 @@ Mom`,
   // ─── SET 3: Bank Accounts (Sam → Jared) ─────────────────────────────────────
   {
     id: "Reading-Part2-07",
-    title: "Reading-Part2-07",
+    title: "07 | 8 Questions | Reading to Apply a Diagram",
     paid: true,
     instruction:
       "Read the following bank account information and email. Then fill in each blank with the best word or phrase, or answer the question.",
@@ -388,7 +388,7 @@ Sam`,
   // ─── SET 4: Markland Polytechnic (Julie → Anne) ──────────────────────────────
   {
     id: "Reading-Part2-08",
-    title: "Reading-Part2-08",
+    title: "08 | 8 Questions | Reading to Apply a Diagram",
     paid: true,
     instruction:
       "Read the following college program information and email. Then fill in each blank with the best word or phrase, or answer the question.",
@@ -524,7 +524,7 @@ Julie`,
   // ─── SET 5: Vancouver University Sports (Raymond → Paula) ────────────────────
   {
     id: "Reading-Part2-09",
-    title: "Reading-Part2-09",
+    title: "09 | 8 Questions | Reading to Apply a Diagram",
     paid: true,
     instruction:
       "Read the following sports club information and email. Then fill in each blank with the best word or phrase, or answer the question.",

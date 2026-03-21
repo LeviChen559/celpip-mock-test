@@ -4,7 +4,7 @@ export const madEnglishTask1Parts: ReadingPart[] = [
   // ─── SET 1: Ryan & Charlie (Albania) ───────────────────────────────────────
   {
     id: "Reading-Part1-05",
-    title: "Reading-Part1-05",
+    title: "05 | 11 Questions | Reading Correspondence",
     paid: true,
     instruction:
       "Read the following emails between two friends. Select the best word or phrase to fill in each blank.",
@@ -114,7 +114,7 @@ Charlie`,
   // ─── SET 2: Brad & Uncle Denis (Motorbike Trip) ────────────────────────────
   {
     id: "Reading-Part1-06",
-    title: "Reading-Part1-06",
+    title: "06 | 11 Questions | Reading Correspondence",
     paid: true,
     instruction:
       "Read the following emails between Brad and his Uncle Denis. Select the best word or phrase to fill in each blank.",
@@ -263,7 +263,7 @@ Uncle Denis`,
   // ─── SET 3: Jim Baker & Cpl. John Bradley (Police Report) ──────────────────
   {
     id: "Reading-Part1-07",
-    title: "Reading-Part1-07",
+    title: "07 | 11 Questions | Reading Correspondence",
     paid: true,
     instruction:
       "Read the following police report and the officer's response. Select the best word or phrase to fill in each blank.",
@@ -427,7 +427,7 @@ Cpl. John Bradley`,
   // ─── SET 4: Tony & Professor Johnson (Late Assignment) ─────────────────────
   {
     id: "Reading-Part1-08",
-    title: "Reading-Part1-08",
+    title: "08 | 11 Questions | Reading Correspondence",
     paid: true,
     instruction:
       "Read the following student email and professor's response. Select the best word or phrase to fill in each blank.",
@@ -581,7 +581,7 @@ Professor Johnson`,
   // ─── SET 5: Greg & John (Wedding / Thailand) ───────────────────────────────
   {
     id: "Reading-Part1-09",
-    title: "Reading-Part1-09",
+    title: "09 | 11 Questions | Reading Correspondence",
     paid: true,
     instruction:
       "Read the following emails between two old colleagues. Select the best word or phrase to fill in each blank.",

@@ -682,7 +682,7 @@ Senior Marketing Manager`;
 
     return {
       id: "Reading-Part1-01",
-      title: "Reading-Part1-01",
+      title: "01 | 11 Questions | Reading Correspondence",
       instruction:
         "Read the following email exchange. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
       passage: passageA,
@@ -815,7 +815,7 @@ Senior Marketing Manager`;
   })(),
   {
     id: "Reading-Part2-01",
-    title: "Reading-Part2-01",
+    title: "01 | 8 Questions | Reading to Apply a Diagram",
     instruction:
       "Read the following schedule and email. Then fill in each blank with the best word or phrase, or answer the question.",
     passage: `MAPLEWOOD COMMUNITY CENTRE — WINTER PROGRAM SCHEDULE
@@ -950,7 +950,7 @@ Megan`,
   },
   {
     id: "Reading-Part3-01",
-    title: "Reading-Part3-01",
+    title: "01 | 9 Questions | Reading for Information",
     instruction: "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
     passage: `A. Urban farming — growing food in cities — is no longer a fringe movement. Across Canada, municipalities, non-profits, and everyday citizens are turning empty lots, rooftops, and even parking garages into productive green spaces. The trend has accelerated since 2020, driven by concerns about food security, environmental sustainability, and community well-being.
 
@@ -1020,7 +1020,7 @@ E. Not in any of the paragraphs`,
   },
   {
     id: "Reading-Part4-01",
-    title: "Reading-Part4-01",
+    title: "01 | 10 Questions | Reading for Viewpoints",
     instruction:
       "Read the following article and response. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
     passage: `SHOULD CANADA ADOPT A FOUR-DAY WORK WEEK?
