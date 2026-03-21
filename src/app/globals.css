@@ -403,11 +403,17 @@
 .quiz-card {
   background: #ffffff;
   border: 1px solid var(--quiz-border);
-  border-radius: 16px;
+  border-radius: 10px;
   box-shadow: var(--quiz-shadow);
   transition: box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
+}
+.quiz-card.quiz-card-flush {
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+  box-shadow: none;
 }
 .quiz-card::before {
   content: '';
