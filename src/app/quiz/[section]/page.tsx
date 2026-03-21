@@ -453,7 +453,7 @@ export default function QuizPractice({
         </div>
 
         {/* Question-by-question review */}
-        <div className="max-w-3xl mx-auto px-3 sm:px-6 py-8 sm:py-10 space-y-5">
+        <div className="max-w-3xl mx-auto px-2 sm:px-6 py-8 sm:py-10 space-y-5">
           {questions.map((qq, idx) => {
             const userAnswer = answers[idx] ?? -1;
             const isCorrect = userAnswer === qq.question.correctAnswer;
@@ -703,7 +703,7 @@ export default function QuizPractice({
         </div>
 
         {/* Centered audio player */}
-        <div className="mx-auto px-3 sm:px-6 py-12 sm:py-20" style={{ maxWidth: "768px" }}>
+        <div className="mx-auto px-2 sm:px-6 py-12 sm:py-20" style={{ maxWidth: "768px" }}>
           <div className="quiz-card">
             <div className="h-1 bg-gradient-to-r from-[var(--quiz-copper)] via-[var(--quiz-copper-light)] to-transparent" />
             <div className="p-6 sm:p-8">
@@ -808,7 +808,7 @@ export default function QuizPractice({
       </div>
 
       {/* ── Main content ───────────────────────────────── */}
-      <div className={`max-w-screen-xl mx-auto lg:px-10 lg:py-12 ${section === "reading" ? "px-0 py-0" : "px-3 sm:px-6 py-8"}`}>
+      <div className={`max-w-screen-xl mx-auto lg:px-10 lg:py-12 ${section === "reading" ? "px-0 py-0" : "px-2 sm:px-6 py-8"}`}>
         {section === "listening" ? (
           /* Listening: single-column questions (no sidebar — audio already played) */
           <div className="mx-auto" style={{ maxWidth: "768px" }}>
@@ -1034,7 +1034,7 @@ export default function QuizPractice({
           {/* Mobile reading layout: fixed passage + scrollable questions */}
           <div className="flex flex-col lg:hidden" style={{ height: "calc(100vh - 52px)" }}>
             {/* Fixed passage area */}
-            <div className="shrink-0 px-2 sm:px-4 pt-4 pb-2">
+            <div className="shrink-0 px-1 sm:px-4 pt-2 pb-1">
               <div className="quiz-card">
                 <div className="h-1 bg-gradient-to-r from-[var(--quiz-copper)] via-[var(--quiz-copper-light)] to-transparent" />
                 <div className="p-4">
@@ -1054,7 +1054,7 @@ export default function QuizPractice({
             </div>
 
             {/* Scrollable question + options area */}
-            <div className="flex-1 overflow-y-auto px-2 sm:px-4 pb-4">
+            <div className="flex-1 overflow-y-auto px-1 sm:px-4 pb-4">
               <div className="flex flex-col gap-4">
                 <div className="quiz-card quiz-slide-in" key={slideKey}>
                   <div className="p-4">

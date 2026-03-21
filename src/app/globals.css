@@ -403,7 +403,7 @@
 .quiz-card {
   background: #ffffff;
   border: 1px solid var(--quiz-border);
-  border-radius: 16px;
+  border-radius: 10px;
   box-shadow: var(--quiz-shadow);
   transition: box-shadow 0.3s ease;
   position: relative;
