@@ -313,28 +313,28 @@ export default function AdminPage() {
     return (
       <main className="min-h-screen bg-grid" style={{ backgroundColor: "var(--background)" }}>
         <div className="sticky top-0 z-10 bg-white border-b px-4 py-3">
-          <div className="max-w-screen-xl mx-auto flex items-center justify-between">
-            <div className="flex items-center gap-3">
+          <div className="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            <div className="flex items-center gap-2 sm:gap-3 min-w-0">
               <Button
                 size="sm"
                 variant="outline"
                 onClick={() => setSelectedUser(null)}
-                className="rounded-full"
+                className="rounded-full shrink-0"
               >
                 <ChevronLeft className="w-4 h-4 mr-1" /> Back
               </Button>
-              <span className="text-lg font-bold text-[#1a1a2e]">{p.name}</span>
-              <Badge className={
+              <span className="text-base sm:text-lg font-bold text-[#1a1a2e] truncate">{p.name}</span>
+              <Badge className={`shrink-0 ${
                 p.role === "admin" ? "bg-purple-100 text-purple-700 border-purple-200" :
                 p.role === "teacher" ? "bg-blue-100 text-blue-700 border-blue-200" :
                 p.role === "user" ? "bg-green-100 text-green-700 border-green-200" :
                 "bg-gray-100 text-gray-600 border-gray-200"
-              }>
+              }`}>
                 {p.role}
               </Badge>
             </div>
             {isViewerAdmin && (
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 <select
                   value={p.role}
                   onChange={(e) => requestRoleChange(p.id, e.target.value)}
@@ -346,10 +346,10 @@ export default function AdminPage() {
                   <option value="subscriber">Subscriber</option>
                 </select>
                 <Button size="sm" variant="outline" onClick={() => deleteUserRecords(p.id)} className="rounded-full text-red-600 border-red-300 hover:bg-red-50">
-                  <Trash2 className="w-4 h-4 mr-1" /> Clear Data
+                  <Trash2 className="w-4 h-4 sm:mr-1" /> <span className="hidden sm:inline">Clear Data</span>
                 </Button>
                 <Button size="sm" variant="outline" onClick={() => deleteUser(p.id)} className="rounded-full text-red-600 bg-red-50 border-red-400 hover:bg-red-100">
-                  <Trash2 className="w-4 h-4 mr-1" /> Delete User
+                  <Trash2 className="w-4 h-4 sm:mr-1" /> <span className="hidden sm:inline">Delete User</span>
                 </Button>
               </div>
             )}
@@ -358,7 +358,7 @@ export default function AdminPage() {
 
         <div className="max-w-screen-xl mx-auto px-4 py-8">
           {/* User info */}
-          <div className="grid md:grid-cols-4 gap-4 mb-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-6">
             <Card className="border-2 border-[#e2ddd5] rounded-2xl">
               <CardContent className="pt-5 text-center">
                 <p className="text-xs text-muted-foreground mb-1">Email</p>
@@ -439,7 +439,7 @@ export default function AdminPage() {
   return (
     <main className="min-h-screen bg-grid" style={{ backgroundColor: "var(--background)" }}>
       <div className="sticky top-0 z-10 bg-white border-b px-4 py-3">
-        <div className="max-w-screen-xl mx-auto flex items-center justify-between">
+        <div className="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between gap-2">
           <h1 className="text-xl font-bold text-[#1a1a2e] flex items-center gap-2">
             <Users className="w-5 h-5 text-[#6b4c9a]" /> User Management
           </h1>
@@ -453,7 +453,8 @@ export default function AdminPage() {
               Red Flags
             </Button>
             <Button size="sm" onClick={() => router.push("/dashboard")} className="rounded-full bg-[#6b4c9a] hover:bg-[#5a3d85] text-white">
-              Back to Dashboard
+              <span className="hidden sm:inline">Back to Dashboard</span>
+              <span className="sm:hidden">Dashboard</span>
             </Button>
           </div>
         </div>
@@ -499,9 +500,9 @@ export default function AdminPage() {
                   <th className="text-left px-4 py-3 font-medium text-[#1a1a2e]">User</th>
                   <th className="text-left px-4 py-3 font-medium text-[#1a1a2e]">Role</th>
                   <th className="text-center px-4 py-3 font-medium text-[#1a1a2e]">Tests</th>
-                  <th className="text-center px-4 py-3 font-medium text-[#1a1a2e]">Avg Score</th>
-                  <th className="text-left px-4 py-3 font-medium text-[#1a1a2e]">Last Active</th>
-                  <th className="text-left px-4 py-3 font-medium text-[#1a1a2e]">Joined</th>
+                  <th className="text-center px-4 py-3 font-medium text-[#1a1a2e] hidden md:table-cell">Avg Score</th>
+                  <th className="text-left px-4 py-3 font-medium text-[#1a1a2e] hidden lg:table-cell">Last Active</th>
+                  <th className="text-left px-4 py-3 font-medium text-[#1a1a2e] hidden lg:table-cell">Joined</th>
                   <th className="text-right px-4 py-3 font-medium text-[#1a1a2e]">Actions</th>
                 </tr>
               </thead>
@@ -519,23 +520,23 @@ export default function AdminPage() {
                       <Badge className="bg-purple-100 text-purple-700 border-purple-200 border">{u.role}</Badge>
                     </td>
                     <td className="px-4 py-3 text-center font-medium">{u.testCount}</td>
-                    <td className="px-4 py-3 text-center">
+                    <td className="px-4 py-3 text-center hidden md:table-cell">
                       {u.testCount > 0 ? (
                         <span className={`font-bold ${scoreColor(u.avgScore)}`}>{u.avgScore}</span>
                       ) : (
                         <span className="text-muted-foreground">—</span>
                       )}
                     </td>
-                    <td className="px-4 py-3">
+                    <td className="px-4 py-3 hidden lg:table-cell">
                       <span className="text-xs text-muted-foreground">{timeAgo(u.lastActive)}</span>
                     </td>
-                    <td className="px-4 py-3">
+                    <td className="px-4 py-3 hidden lg:table-cell">
                       <span className="text-xs text-muted-foreground">
                         {new Intl.DateTimeFormat("en-CA", { dateStyle: "medium" }).format(new Date(u.created_at))}
                       </span>
                     </td>
                     <td className="px-4 py-3 text-right">
-                      <div className="flex gap-1 justify-end">
+                      <div className="flex flex-wrap gap-1 justify-end">
                         <Button size="sm" variant="outline" onClick={() => fetchUserDetail(u.id)} className="rounded-full text-xs px-3">
                           View
                         </Button>
@@ -592,23 +593,23 @@ export default function AdminPage() {
                           <Badge className="bg-blue-100 text-blue-700 border-blue-200 border">{t.role}</Badge>
                         </td>
                         <td className="px-4 py-3 text-center font-medium">{t.testCount}</td>
-                        <td className="px-4 py-3 text-center">
+                        <td className="px-4 py-3 text-center hidden md:table-cell">
                           {t.testCount > 0 ? (
                             <span className={`font-bold ${scoreColor(t.avgScore)}`}>{t.avgScore}</span>
                           ) : (
                             <span className="text-muted-foreground">—</span>
                           )}
                         </td>
-                        <td className="px-4 py-3">
+                        <td className="px-4 py-3 hidden lg:table-cell">
                           <span className="text-xs text-muted-foreground">{timeAgo(t.lastActive)}</span>
                         </td>
-                        <td className="px-4 py-3">
+                        <td className="px-4 py-3 hidden lg:table-cell">
                           <span className="text-xs text-muted-foreground">
                             {new Intl.DateTimeFormat("en-CA", { dateStyle: "medium" }).format(new Date(t.created_at))}
                           </span>
                         </td>
                         <td className="px-4 py-3 text-right">
-                          <div className="flex gap-1 justify-end">
+                          <div className="flex flex-wrap gap-1 justify-end">
                             <Button size="sm" variant="outline" onClick={() => fetchUserDetail(t.id)} className="rounded-full text-xs px-3">
                               View
                             </Button>
@@ -646,23 +647,23 @@ export default function AdminPage() {
                             </Badge>
                           </td>
                           <td className="px-4 py-3 text-center font-medium">{s.testCount}</td>
-                          <td className="px-4 py-3 text-center">
+                          <td className="px-4 py-3 text-center hidden md:table-cell">
                             {s.testCount > 0 ? (
                               <span className={`font-bold ${scoreColor(s.avgScore)}`}>{s.avgScore}</span>
                             ) : (
                               <span className="text-muted-foreground">—</span>
                             )}
                           </td>
-                          <td className="px-4 py-3">
+                          <td className="px-4 py-3 hidden lg:table-cell">
                             <span className="text-xs text-muted-foreground">{timeAgo(s.lastActive)}</span>
                           </td>
-                          <td className="px-4 py-3">
+                          <td className="px-4 py-3 hidden lg:table-cell">
                             <span className="text-xs text-muted-foreground">
                               {new Intl.DateTimeFormat("en-CA", { dateStyle: "medium" }).format(new Date(s.created_at))}
                             </span>
                           </td>
                           <td className="px-4 py-3 text-right">
-                            <div className="flex gap-1 justify-end">
+                            <div className="flex flex-wrap gap-1 justify-end">
                               <Button size="sm" variant="outline" onClick={() => fetchUserDetail(s.id)} className="rounded-full text-xs px-3">
                                 View
                               </Button>
@@ -723,23 +724,23 @@ export default function AdminPage() {
                       </Badge>
                     </td>
                     <td className="px-4 py-3 text-center font-medium">{u.testCount}</td>
-                    <td className="px-4 py-3 text-center">
+                    <td className="px-4 py-3 text-center hidden md:table-cell">
                       {u.testCount > 0 ? (
                         <span className={`font-bold ${scoreColor(u.avgScore)}`}>{u.avgScore}</span>
                       ) : (
                         <span className="text-muted-foreground">—</span>
                       )}
                     </td>
-                    <td className="px-4 py-3">
+                    <td className="px-4 py-3 hidden lg:table-cell">
                       <span className="text-xs text-muted-foreground">{timeAgo(u.lastActive)}</span>
                     </td>
-                    <td className="px-4 py-3">
+                    <td className="px-4 py-3 hidden lg:table-cell">
                       <span className="text-xs text-muted-foreground">
                         {new Intl.DateTimeFormat("en-CA", { dateStyle: "medium" }).format(new Date(u.created_at))}
                       </span>
                     </td>
                     <td className="px-4 py-3 text-right">
-                      <div className="flex gap-1 justify-end">
+                      <div className="flex flex-wrap gap-1 justify-end">
                         <Button size="sm" variant="outline" onClick={() => fetchUserDetail(u.id)} className="rounded-full text-xs px-3">
                           View
                         </Button>
