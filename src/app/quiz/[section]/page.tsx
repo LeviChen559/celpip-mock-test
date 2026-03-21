@@ -751,7 +751,7 @@ export default function QuizPractice({
 
       {/* ── Header ─────────────────────────────────────── */}
       <div className="sticky top-0 z-20 bg-white/90 backdrop-blur-md quiz-header-line">
-        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 py-2.5">
+        <div className="max-w-screen-xl mx-auto px-3 sm:px-4 py-2.5">
           {/* Single row: all items inline */}
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">
             {/* Section dot + label */}
@@ -808,7 +808,7 @@ export default function QuizPractice({
       </div>
 
       {/* ── Main content ───────────────────────────────── */}
-      <div className={`max-w-screen-xl mx-auto lg:px-10 lg:py-12 ${section === "reading" ? "px-0 py-0" : "px-2 sm:px-6 py-8"}`}>
+      <div className={`max-w-screen-xl mx-auto lg:px-10 lg:py-12 ${section === "reading" ? "px-0 py-0" : "px-3 sm:px-3 py-8"}`}>
         {section === "listening" ? (
           /* Listening: single-column questions (no sidebar — audio already played) */
           <div className="mx-auto" style={{ maxWidth: "768px" }}>
