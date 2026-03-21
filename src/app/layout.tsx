@@ -23,7 +23,7 @@ const dmSerif = DM_Serif_Display({
 });
 
 export const metadata: Metadata = {
-  title: "CELPIP ACE",
+  title: "PugPIP",
   description: "Practice for the CELPIP General Test with full-length mock tests",
 };
 

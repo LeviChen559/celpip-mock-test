@@ -198,8 +198,7 @@ export default function Home() {
           className="text-xs sm:text-sm font-semibold tracking-wider sm:tracking-widest uppercase shrink-0"
           style={{ color: "var(--hp-accent)" }}
         >
-          CELPIP
-          <span className="hidden sm:inline"> ACE</span>
+          PugPIP
         </span>
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           {!loading && currentUser ? (
@@ -838,7 +837,7 @@ export default function Home() {
             className="text-xs tracking-widest uppercase"
             style={{ color: "var(--hp-text-muted)" }}
           >
-            CELPIP ACE
+            PugPIP
           </span>
           <span className="text-xs" style={{ color: "var(--hp-text-muted)" }}>
             &copy; {new Date().getFullYear()}

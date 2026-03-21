@@ -115,7 +115,7 @@ export default function LoginPage() {
             (e.currentTarget.style.color = "var(--hp-accent)")
           }
         >
-          &larr; CELPIP ACE
+          &larr; PugPIP
         </button>
 
         {/* Card */}
