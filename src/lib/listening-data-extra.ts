@@ -3,7 +3,7 @@ import { ListeningPart } from "./celpip-data";
 export const listeningPartsExtra: ListeningPart[] = [
   {
     id: "L7",
-    title: "Part 7: Listening to Problem Solving",
+    title: "02 | 8 Questions | Listening to Problem Solving",
     instruction:
       "You will hear a conversation between two coworkers trying to resolve a workplace issue. Listen carefully and answer the questions.",
     transcript: `Angela: Hey Rob, do you have a minute? I need to talk to you about what happened at the team meeting yesterday.
@@ -120,7 +120,7 @@ Angela: Good advice. Thanks, Rob.`,
   },
   {
     id: "L8",
-    title: "Part 8: Listening to a Daily Life Conversation",
+    title: "02 | 5 Questions | Listening to a Daily Life Conversation",
     instruction:
       "You will hear a conversation about booking a home repair service. Listen and answer the questions.",
     transcript: `Dispatcher: Good afternoon, Northern Star Plumbing and Heating. How can I help you?
@@ -201,7 +201,7 @@ Homeowner: Perfect. Thank you so much.`,
   },
   {
     id: "L9",
-    title: "Part 9: Listening to Information",
+    title: "02 | 6 Questions | Listening to Information",
     instruction:
       "You will hear a university orientation presentation. Listen carefully and answer the questions.",
     transcript: `Good morning, everyone, and welcome to the University of Northern Ontario. I'm Dean Margaret Sullivan, and on behalf of the entire faculty, congratulations on your admission.
@@ -288,7 +288,7 @@ Enjoy your time here. This is the beginning of an incredible journey.`,
   },
   {
     id: "L10",
-    title: "Part 10: Listening to a News Item",
+    title: "02 | 5 Questions | Listening to a News Item",
     instruction:
       "You will hear a news report about a technology company. Listen and answer the questions.",
     transcript: `This is Global News Toronto. I'm Priya Sharma with your business update.
@@ -349,7 +349,7 @@ The mayor of Waterloo, Cynthia Tran, called the announcement "transformative" fo
   },
   {
     id: "L11",
-    title: "Part 11: Listening to a Discussion",
+    title: "02 | 8 Questions | Listening to a Discussion",
     instruction:
       "You will hear a team meeting about planning an event. Listen and answer the questions.",
     transcript: `Jessica: Alright, team, let's get started. We have exactly six weeks until the company's 25th anniversary gala, and there's a lot to finalize. Raj, can you give us an update on the venue?
@@ -443,7 +443,7 @@ Jessica: Perfect. Let's reconvene next Tuesday to check progress.`,
   },
   {
     id: "L12",
-    title: "Part 12: Listening to Viewpoints",
+    title: "02 | 6 Questions | Listening to Viewpoints",
     instruction:
       "You will hear a debate about public transit versus cars. Listen and answer the questions.",
     transcript: `Moderator: Welcome to City Forum. Tonight's topic: should the city invest more in public transit or road infrastructure for cars? We have two panellists. First, Carla Mendes, a transit advocate and urban planner. Second, Greg Harrison, a suburban councillor and commuter.
@@ -505,7 +505,7 @@ Moderator: Thank you both. Clearly, this debate is far from settled.`,
   },
   {
     id: "L13",
-    title: "Part 13: Listening to Problem Solving",
+    title: "03 | 8 Questions | Listening to Problem Solving",
     instruction:
       "You will hear a couple planning a vacation. Listen carefully and answer the questions.",
     transcript: `Nina: Okay, so we finally have two weeks off in July. I've been looking at options, and I'm really torn between two ideas. What do you think about going to the East Coast — like Nova Scotia and Prince Edward Island?
@@ -602,7 +602,7 @@ Nina: Perfect. I'll book the camper van tonight before the July spots fill up.`,
   },
   {
     id: "L14",
-    title: "Part 14: Listening to a News Item",
+    title: "03 | 5 Questions | Listening to a News Item",
     instruction:
       "You will hear a news report about healthcare policy changes. Listen and answer the questions.",
     transcript: `This is CTV News. I'm Michael Park with a special report on healthcare.
@@ -675,7 +675,7 @@ Provincial premiers are expected to respond at next week's Council of the Federa
   },
   {
     id: "L15",
-    title: "Part 15: Listening to a Discussion",
+    title: "03 | 8 Questions | Listening to a Discussion",
     instruction:
       "You will hear a panel discussion about artificial intelligence in education. Listen and answer the questions.",
     transcript: `Host: Welcome to Education Matters. Today we're discussing AI in education. Our panellists are Professor Yuki Tanaka from the University of British Columbia, high school teacher Sam Okonkwo from Calgary, and edtech entrepreneur Laura Bianchi from Montreal.

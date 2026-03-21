@@ -83,7 +83,7 @@ Woman: Okay, I'd better hurry then. Thanks for your help!`,
   },
   {
     id: "L1",
-    title: "Part 1: Listening to Problem Solving",
+    title: "01 | 8 Questions | Listening to Problem Solving",
     instruction:
       "You will hear a conversation between two people discussing a problem. Listen carefully and answer the questions.",
     transcript: `Sarah: Hey Mike, I just got an email from the landlord. He says our lease is up next month and he wants to increase the rent by $300.
@@ -182,7 +182,7 @@ Mike: Sure. I'll have it ready by tonight.`,
   },
   {
     id: "L2",
-    title: "Part 2: Listening to a Daily Life Conversation",
+    title: "01 | 5 Questions | Listening to a Daily Life Conversation",
     instruction:
       "You will hear a conversation in a daily life context. Listen and answer the questions.",
     transcript: `Receptionist: Good morning, Greenfield Medical Clinic. How can I help you?
@@ -263,7 +263,7 @@ Receptionist: Got it. You're all set for Thursday, October 12th at 10:15 AM with
   },
   {
     id: "L3",
-    title: "Part 3: Listening to Information",
+    title: "01 | 6 Questions | Listening to Information",
     instruction:
       "You will hear an informational presentation. Listen carefully and answer the questions.",
     transcript: `Welcome to the City of Maplewood's annual community update. I'm Mayor Linda Park, and I'm here to share some exciting developments for the coming year.
@@ -341,7 +341,7 @@ Thank you for being engaged citizens. Questions can be directed to our new commu
   },
   {
     id: "L4",
-    title: "Part 4: Listening to a News Item",
+    title: "01 | 5 Questions | Listening to a News Item",
     instruction: "You will hear a news report. Listen and answer the questions.",
     transcript: `This is CBC News at Six. I'm Rachel Nguyen.
 
@@ -405,7 +405,7 @@ Environment Canada forecaster David Liu says this could be the most significant 
   },
   {
     id: "L5",
-    title: "Part 5: Listening to a Discussion",
+    title: "01 | 8 Questions | Listening to a Discussion",
     instruction:
       "You will hear a discussion between colleagues. Listen and answer the questions.",
     transcript: `Manager (Karen): Thanks for coming in, everyone. As you know, our quarterly sales numbers are in, and we need to talk about the results and plan for next quarter.
@@ -508,7 +508,7 @@ Lisa: Sounds good.`,
   },
   {
     id: "L6",
-    title: "Part 6: Listening to Viewpoints",
+    title: "01 | 6 Questions | Listening to Viewpoints",
     instruction:
       "You will hear a discussion presenting different viewpoints. Listen and answer the questions.",
     transcript: `Host: Welcome to Community Voices. Today we're discussing whether the city should ban single-use plastics. I have two guests: Dr. Amy Foster, an environmental scientist, and Mark Sullivan, who represents the local restaurant association.
@@ -1060,7 +1060,7 @@ export const readingPartsOfficial: ReadingPart[] = readingPartsBase;
 const writingTasksBase: WritingTask[] = [
   {
     id: "W1",
-    title: "Task 1: Writing an Email",
+    title: "01 | Writing an Email",
     instruction:
       "Read the following situation and write an email of about 150–200 words.",
     prompt: `You recently moved into a new apartment. After the first week, you noticed several problems: the kitchen faucet leaks constantly, the heating system doesn't work properly in the bedroom, and there is a crack in the bathroom window.
@@ -1074,7 +1074,7 @@ Write an email to your landlord. In your email:
   },
   {
     id: "W2",
-    title: "Task 2: Responding to Survey Questions",
+    title: "01 | Responding to Survey Questions",
     instruction:
       "Read the following information and write a response of about 150–200 words.",
     prompt: `Your city council is considering two options for developing an empty lot in your neighbourhood:
@@ -1107,7 +1107,7 @@ const speakingTasksBase: SpeakingTask[] = [
   },
   {
     id: "S1",
-    title: "Task 1: Giving Advice",
+    title: "01 | Giving Advice",
     instruction:
       "A friend is asking you for advice. Respond as if you are speaking to them.",
     prompt:
@@ -1117,7 +1117,7 @@ const speakingTasksBase: SpeakingTask[] = [
   },
   {
     id: "S2",
-    title: "Task 2: Talking About a Personal Experience",
+    title: "01 | Talking About a Personal Experience",
     instruction: "Describe a personal experience based on the prompt below.",
     prompt:
       "Talk about a time when you had to learn something new quickly. What was the situation? What did you do? How did it turn out?",
@@ -1126,7 +1126,7 @@ const speakingTasksBase: SpeakingTask[] = [
   },
   {
     id: "S3",
-    title: "Task 3: Describing a Scene",
+    title: "01 | Describing a Scene",
     instruction:
       "Describe the scene below in as much detail as possible. Imagine you are describing it to someone who cannot see it.",
     prompt:
@@ -1136,7 +1136,7 @@ const speakingTasksBase: SpeakingTask[] = [
   },
   {
     id: "S4",
-    title: "Task 4: Making Predictions",
+    title: "01 | Making Predictions",
     instruction: "Make predictions about the situation described below.",
     prompt:
       "A major technology company has just announced that it will open a large office in a small Canadian town of 15,000 people. The office will employ 2,000 workers. What do you think will happen to the town? Discuss both positive and negative effects.",
@@ -1145,7 +1145,7 @@ const speakingTasksBase: SpeakingTask[] = [
   },
   {
     id: "S5",
-    title: "Task 5: Comparing and Persuading",
+    title: "01 | Comparing and Persuading",
     instruction:
       "Compare the two options below and persuade your friend to choose the one you prefer.",
     prompt:
@@ -1155,7 +1155,7 @@ const speakingTasksBase: SpeakingTask[] = [
   },
   {
     id: "S6",
-    title: "Task 6: Dealing with a Difficult Situation",
+    title: "01 | Dealing with a Difficult Situation",
     instruction: "Respond to the difficult situation described below.",
     prompt:
       "You are a team leader at work. One of your team members, who is usually very reliable, has been arriving late and missing deadlines for the past two weeks. Other team members are starting to complain. How would you handle this situation? What would you say to the team member?",
@@ -1164,7 +1164,7 @@ const speakingTasksBase: SpeakingTask[] = [
   },
   {
     id: "S7",
-    title: "Task 7: Expressing Opinions",
+    title: "01 | Expressing Opinions",
     instruction: "Express your opinion on the topic below.",
     prompt:
       "Some people believe that social media has made people more connected, while others think it has made people more isolated. What is your opinion? Give reasons and examples to support your view.",
@@ -1173,7 +1173,7 @@ const speakingTasksBase: SpeakingTask[] = [
   },
   {
     id: "S8",
-    title: "Task 8: Describing an Unusual Situation",
+    title: "01 | Describing an Unusual Situation",
     instruction:
       "Describe what is happening in the unusual situation below and explain what you think might have led to it.",
     prompt:

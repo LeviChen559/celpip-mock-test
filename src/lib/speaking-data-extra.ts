@@ -3,7 +3,7 @@ import { SpeakingTask } from "./celpip-data";
 export const speakingTasksExtra: SpeakingTask[] = [
   {
     id: "S9",
-    title: "Task 9: Giving Advice",
+    title: "02 | Giving Advice",
     instruction:
       "A friend is asking you for advice. Respond as if you are speaking to them.",
     prompt:
@@ -13,7 +13,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
   },
   {
     id: "S10",
-    title: "Task 10: Talking About a Personal Experience",
+    title: "02 | Talking About a Personal Experience",
     instruction:
       "Talk about a personal experience related to the topic below.",
     prompt:
@@ -23,7 +23,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
   },
   {
     id: "S11",
-    title: "Task 11: Describing a Scene",
+    title: "02 | Describing a Scene",
     instruction:
       "Describe what you see in as much detail as possible.",
     prompt:
@@ -33,7 +33,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
   },
   {
     id: "S12",
-    title: "Task 12: Making Predictions",
+    title: "02 | Making Predictions",
     instruction:
       "Make predictions about the topic described below.",
     prompt:
@@ -43,7 +43,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
   },
   {
     id: "S13",
-    title: "Task 13: Comparing and Persuading",
+    title: "02 | Comparing and Persuading",
     instruction:
       "Compare the two options below and persuade your listener to choose one.",
     prompt:
@@ -53,7 +53,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
   },
   {
     id: "S14",
-    title: "Task 14: Dealing with a Difficult Situation",
+    title: "02 | Dealing with a Difficult Situation",
     instruction:
       "Respond to the situation as if you are speaking to the person involved.",
     prompt:
@@ -63,7 +63,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
   },
   {
     id: "S15",
-    title: "Task 15: Expressing Opinions",
+    title: "02 | Expressing Opinions",
     instruction:
       "Express and support your opinion on the topic below.",
     prompt:
@@ -73,7 +73,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
   },
   {
     id: "S16",
-    title: "Task 16: Describing an Unusual Situation",
+    title: "02 | Describing an Unusual Situation",
     instruction:
       "Describe the unusual situation and explain how you would react.",
     prompt:
@@ -83,7 +83,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
   },
   {
     id: "S17",
-    title: "Task 17: Giving Advice",
+    title: "03 | Giving Advice",
     instruction:
       "A friend is asking you for advice. Respond as if you are speaking to them.",
     prompt:
@@ -93,7 +93,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
   },
   {
     id: "S18",
-    title: "Task 18: Talking About a Personal Experience",
+    title: "03 | Talking About a Personal Experience",
     instruction:
       "Talk about a personal experience related to the topic below.",
     prompt:
@@ -103,7 +103,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
   },
   {
     id: "S19",
-    title: "Task 19: Describing a Scene",
+    title: "03 | Describing a Scene",
     instruction:
       "Describe what you see in as much detail as possible.",
     prompt:
@@ -113,7 +113,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
   },
   {
     id: "S20",
-    title: "Task 20: Making Predictions",
+    title: "03 | Making Predictions",
     instruction:
       "Make predictions about the topic described below.",
     prompt:
@@ -123,7 +123,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
   },
   {
     id: "S21",
-    title: "Task 21: Comparing and Persuading",
+    title: "03 | Comparing and Persuading",
     instruction:
       "Compare the two options below and persuade your listener to choose one.",
     prompt:
@@ -133,7 +133,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
   },
   {
     id: "S22",
-    title: "Task 22: Dealing with a Difficult Situation",
+    title: "03 | Dealing with a Difficult Situation",
     instruction:
       "Respond to the situation as if you are speaking to the person involved.",
     prompt:
@@ -143,7 +143,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
   },
   {
     id: "S23",
-    title: "Task 23: Expressing Opinions",
+    title: "03 | Expressing Opinions",
     instruction:
       "Express and support your opinion on the topic below.",
     prompt:
