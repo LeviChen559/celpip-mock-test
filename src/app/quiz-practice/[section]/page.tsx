@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import { useHistory } from "@/lib/hooks/use-history";
+import RedFlagButton from "@/components/RedFlagButton";
 import { estimateWritingScore, estimateSpeakingScore } from "@/lib/celpip-data";
 
 interface WritingFeedback {
@@ -426,7 +427,10 @@ export default function WritingSpeakingQuiz({
         {/* Prompt */}
         <Card className="border-2 border-[#e2ddd5] rounded-2xl">
           <CardHeader className="pb-2">
-            <CardTitle className="text-base">{current.title}</CardTitle>
+            <div className="flex items-center gap-2">
+              <CardTitle className="text-base">{current.title}</CardTitle>
+              <RedFlagButton questionId={current.id} section={section} />
+            </div>
             <p className="text-xs uppercase tracking-wide" style={{ color: "var(--muted-foreground)" }}>
               {current.instruction}
             </p>

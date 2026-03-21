@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { useAuth } from "@/lib/hooks/use-auth";
-import { Users, Activity, Trophy, Trash2, ChevronLeft, ChevronDown, ChevronRight, Search } from "lucide-react";
+import { Users, Activity, Trophy, Trash2, ChevronLeft, ChevronDown, ChevronRight, Search, Flag } from "lucide-react";
 
 interface AdminUser {
   id: string;
@@ -443,9 +443,19 @@ export default function AdminPage() {
           <h1 className="text-xl font-bold text-[#1a1a2e] flex items-center gap-2">
             <Users className="w-5 h-5 text-[#6b4c9a]" /> User Management
           </h1>
-          <Button size="sm" onClick={() => router.push("/dashboard")} className="rounded-full bg-[#6b4c9a] hover:bg-[#5a3d85] text-white">
-            Back to Dashboard
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button
+              size="sm"
+              onClick={() => router.push("/admin/red-flags")}
+              className="rounded-full bg-red-50 hover:bg-red-100 text-red-600 border border-red-200"
+            >
+              <Flag className="w-4 h-4 mr-1" />
+              Red Flags
+            </Button>
+            <Button size="sm" onClick={() => router.push("/dashboard")} className="rounded-full bg-[#6b4c9a] hover:bg-[#5a3d85] text-white">
+              Back to Dashboard
+            </Button>
+          </div>
         </div>
       </div>
 
