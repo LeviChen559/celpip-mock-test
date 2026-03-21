@@ -997,57 +997,37 @@ E. Not in any of the paragraphs`,
       },
     ],
   },
-  (() => {
-    const vpA = `SHOULD CANADA ADOPT A FOUR-DAY WORK WEEK?
+  {
+    id: "R4",
+    title: "Part 4: Reading for Viewpoints",
+    instruction:
+      "Read the following article and response. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
+    passage: `SHOULD CANADA ADOPT A FOUR-DAY WORK WEEK?
 
-VIEWPOINT A — By Rachel Kim, Management Consultant
-
-The four-day work week is not just a feel-good idea — it's an evidence-based productivity strategy. Pilot programs in Iceland, the UK, and Japan have consistently shown that when employees work four days instead of five, productivity stays the same or even improves. In Iceland's landmark trial involving over 2,500 workers, productivity remained steady while employee well-being scores increased dramatically.
+The four-day work week is gaining momentum worldwide, and Canada is paying attention. Pilot programs in Iceland, the UK, and Japan have consistently shown that when employees work four days instead of five, productivity stays the same or even improves. In Iceland's landmark trial involving over 2,500 workers, productivity remained steady while employee well-being scores increased dramatically.
 
 The benefits extend beyond individual well-being. Reduced commuting means lower carbon emissions. Fewer office days mean lower operational costs for businesses. And in a tight labour market, offering a four-day week can be a powerful recruitment and retention tool. A recent survey by Indeed Canada found that 67% of Canadian workers would consider taking a pay cut of up to 5% for a four-day schedule.
 
-Canada should launch a nationwide pilot program, starting with the public sector. The data is compelling, and we can't afford to fall behind other nations that are already making this shift.`;
+However, critics argue the model is impractical for many industries. David Chen, a logistics company owner with 45 employees, points out that his clients expect deliveries six days a week. If his drivers worked only four days, he would need to hire 20% more staff to maintain the same service level. The pilot programs cited by advocates mostly involved office-based, knowledge-economy workers and don't represent the reality of manufacturing, healthcare, retail, or logistics.
 
-    const vpB = `SHOULD CANADA ADOPT A FOUR-DAY WORK WEEK?
+Labour economist Dr. Sandra Okafor suggests that the goal shouldn't be a mandated four-day week but rather a framework that empowers businesses and employees to negotiate arrangements suited to their context. In her research, the most successful work-time reduction models are sector-specific: hospitals use compressed shifts, tech companies offer flexible Fridays, and retail businesses rotate shorter weeks among staff. She argues that legislation should protect workers who negotiate alternative schedules from discrimination, noting that requesting reduced hours can currently signal a lack of commitment, especially for women and caregivers.
 
-VIEWPOINT B — By David Chen, Small Business Owner
+---
 
-As the owner of a logistics company with 45 employees, I can tell you that a four-day work week sounds wonderful in theory but is impractical for many industries. Our clients expect deliveries six days a week. If my drivers work only four days, I'd need to hire 20% more staff to maintain the same service level. That cost would either cut into our already thin margins or be passed on to consumers.
-
-The pilot programs cited by advocates mostly involved office-based, knowledge-economy workers. They don't represent the reality of manufacturing, healthcare, retail, or logistics. A cashier at a grocery store can't compress five days of customer interactions into four.
-
-Instead of mandating a shorter work week, the government should focus on improving working conditions across the board — better overtime pay, stronger mental health supports, and more affordable childcare. These changes would benefit all workers, not just those in desk jobs.`;
-
-    const vpC = `SHOULD CANADA ADOPT A FOUR-DAY WORK WEEK?
-
-VIEWPOINT C — By Dr. Sandra Okafor, Labour Economist
-
-Both sides make valid points, but the debate often ignores a crucial nuance: flexibility versus uniformity. Not every business can operate on the same schedule, and that's fine. The goal shouldn't be a mandated four-day week but rather a framework that empowers businesses and employees to negotiate arrangements that work for their specific context.
-
-In my research, the most successful work-time reduction models are sector-specific. Hospitals use compressed shifts. Tech companies offer flexible Fridays. Retail businesses rotate shorter weeks among staff. A one-size-fits-all policy would create more problems than it solves.
-
-What we do need is legislation that protects workers who negotiate alternative schedules from discrimination or penalization. Currently, requesting reduced hours can signal a lack of commitment, especially for women and caregivers. A legal framework that normalizes work-time flexibility without stigma would be the most effective approach.`;
-
-    return {
-      id: "R4",
-      title: "Part 4: Reading for Viewpoints",
-      instruction:
-        "Read the opinion pieces and answer the questions. Each question shows the relevant viewpoint.",
-      passage: vpA,
-      questions: [
-        { id: "R4Q1", question: "What research does the management consultant reference to back up her position?", options: ["A Canadian government study", "Pilot programs in Iceland, the UK, and Japan", "Research from Harvard University", "A survey by the World Health Organization"], correctAnswer: 1, passage: vpA },
-        { id: "R4Q2", question: "Based on a national employment survey, what trade-off would a majority of Canadian employees be willing to accept?", options: ["Quitting their current job", "Moving to a different city for better hours", "Taking a pay cut of up to 5% for a four-day week", "Working longer hours for higher pay"], correctAnswer: 2, passage: vpA },
-        { id: "R4Q3", question: "What is the primary objection raised by the logistics company owner?", options: ["It would reduce employee morale", "It's impractical for industries like logistics", "It would increase carbon emissions", "It would require too much government spending"], correctAnswer: 1, passage: vpB },
-        { id: "R4Q4", question: "What alternative measures does the small business owner propose to help workers?", options: ["Higher minimum wages", "More vacation time", "Better overtime pay, mental health supports, and affordable childcare", "Tax cuts for businesses"], correctAnswer: 2, passage: vpB },
-        { id: "R4Q5", question: "According to the labour economist, what outcome should policymakers prioritize?", options: ["A mandatory three-day weekend for all", "A framework for flexible negotiations, not a uniform mandate", "Eliminating overtime entirely", "Letting the market decide without any regulation"], correctAnswer: 1, passage: vpC },
-        { id: "R4Q6", question: "What stigma does the economist say employees encounter when seeking a lighter schedule?", options: ["They lose benefits", "They are paid less per hour", "They may be seen as less committed, especially women and caregivers", "Their contracts are automatically terminated"], correctAnswer: 2, passage: vpC },
-        { id: "R4Q7", question: "By what percentage would the logistics company owner need to expand his workforce?", options: ["10%", "15%", "20%", "25%"], correctAnswer: 2, passage: vpB },
-        { id: "R4Q8", question: "Which author is most in favour of the public sector taking the lead on this change?", options: ["Viewpoint A (Rachel Kim)", "Viewpoint B (David Chen)", "Viewpoint C (Dr. Okafor)", "All three equally"], correctAnswer: 0, passage: vpA },
-        { id: "R4Q9", question: "Which approach to shortening working hours does the labour economist find most effective?", options: ["Universal four-day weeks", "Sector-specific models", "Individual negotiations without any framework", "Government-mandated schedules"], correctAnswer: 1, passage: vpC },
-        { id: "R4Q10", question: "How many participants took part in the major Icelandic experiment with a reduced-day schedule?", options: ["1,000", "1,500", "2,500", "5,000"], correctAnswer: 2, passage: vpA },
-      ],
-    };
-  })(),
+As someone who has worked in logistics for 15 years, I think this article raises some important points. The Iceland trial sounds impressive, but I doubt the results would ___ [6]. David Chen is right that in our industry, switching to four days would ___ [7]. I've seen companies try compressed schedules before, and the result was ___ [8]. Dr. Okafor's idea about sector-specific models makes the most sense to me. What we really need is ___ [9]. The article mentions that 67% of workers would accept a pay cut, but I suspect most of those people are already ___ [10].`,
+    questions: [
+      { id: "R4Q1", question: "What did the Iceland trial demonstrate about the four-day work week?", options: ["Productivity declined slightly but was acceptable", "Productivity stayed the same or improved while well-being increased", "Workers were less satisfied with their jobs", "Companies saved money but workers were unhappy"], correctAnswer: 1 },
+      { id: "R4Q2", question: "What trade-off would a majority of Canadian workers be willing to accept for a four-day schedule?", options: ["Quitting their current job", "Moving to a different city for better hours", "Taking a pay cut of up to 5%", "Working longer hours for higher pay"], correctAnswer: 2 },
+      { id: "R4Q3", question: "Why does David Chen believe the four-day work week is impractical for his business?", options: ["His employees don't want shorter weeks", "His clients expect deliveries six days a week and he would need 20% more staff", "His company has already tried it and failed", "Government regulations prevent him from changing schedules"], correctAnswer: 1 },
+      { id: "R4Q4", question: "What does Dr. Okafor believe is the most effective approach to work-time reduction?", options: ["A mandatory four-day week for all industries", "Sector-specific models with legal protections for workers", "Letting each company decide without any government involvement", "Eliminating overtime pay entirely"], correctAnswer: 1 },
+      { id: "R4Q5", question: "According to Dr. Okafor, what stigma do workers face when requesting reduced hours?", options: ["They lose health benefits", "They are paid less per hour", "They may be seen as less committed, especially women and caregivers", "Their contracts are automatically terminated"], correctAnswer: 2 },
+      { id: "R4Q6", question: "I doubt the results would ___.", options: ["apply to physically demanding jobs like logistics", "be repeated in any other country", "impress Canadian politicians", "change the way people think about work"], correctAnswer: 0 },
+      { id: "R4Q7", question: "Switching to four days would ___.", options: ["improve driver morale immediately", "have no effect on our operations", "force us to hire more people and raise costs", "make our clients switch to competitors"], correctAnswer: 2 },
+      { id: "R4Q8", question: "I've seen companies try compressed schedules before, and the result was ___.", options: ["a huge success for everyone involved", "employee burnout from longer daily shifts", "an increase in company profits", "better customer satisfaction"], correctAnswer: 1 },
+      { id: "R4Q9", question: "What we really need is ___.", options: ["a law requiring all companies to adopt a four-day week", "flexible arrangements that fit different types of work", "higher wages instead of shorter hours", "more government-funded research on the topic"], correctAnswer: 1 },
+      { id: "R4Q10", question: "I suspect most of those people are already ___.", options: ["working in physically demanding jobs", "unhappy with their current employers", "earning enough to afford a small pay cut", "planning to quit their jobs"], correctAnswer: 2 },
+    ],
+  },
 ];
 
 export const readingParts: ReadingPart[] = [...readingPartsBase, ...readingPartsExtra, ...madEnglishTask1Parts, ...madEnglishTask2Parts, ...madEnglishTask3Parts, ...madEnglishTask4Parts];
