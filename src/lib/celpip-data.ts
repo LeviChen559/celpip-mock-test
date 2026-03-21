@@ -930,114 +930,70 @@ NOTES:
   {
     id: "R3",
     title: "Part 3: Reading for Information",
-    instruction: "Read the following article and answer the questions.",
-    passage: `THE RISE OF URBAN FARMING IN CANADA
+    instruction: "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
+    passage: `A. Urban farming — growing food in cities — is no longer a fringe movement. Across Canada, municipalities, non-profits, and everyday citizens are turning empty lots, rooftops, and even parking garages into productive green spaces. The trend has accelerated since 2020, driven by concerns about food security, environmental sustainability, and community well-being.
 
-Urban farming — growing food in cities — is no longer a fringe movement. Across Canada, municipalities, non-profits, and everyday citizens are turning empty lots, rooftops, and even parking garages into productive green spaces. The trend has accelerated since 2020, driven by concerns about food security, environmental sustainability, and community well-being.
+B. In Montreal, the Lufa Farms network operates the world's largest commercial rooftop greenhouse, spanning over 163,000 square feet across four locations. They deliver fresh vegetables to over 20,000 subscribers weekly, reducing food transportation distances dramatically. Their model proves that urban agriculture can be commercially viable at scale. Vancouver has taken a different approach, focusing on community gardens. The city now has over 100 community garden sites, with a waiting list of more than 3,000 people. In 2023, the city council approved a rezoning bylaw that allows urban farming on any residentially zoned lot, removing a significant regulatory barrier. Toronto's approach combines technology with tradition. Several vertical farming startups have set up operations in former industrial buildings in the city's east end. These facilities use LED lighting and hydroponic systems to grow leafy greens year-round, using 95% less water than conventional farming.
 
-In Montreal, the Lufa Farms network operates the world's largest commercial rooftop greenhouse, spanning over 163,000 square feet across four locations. They deliver fresh vegetables to over 20,000 subscribers weekly, reducing food transportation distances dramatically. Their model proves that urban agriculture can be commercially viable at scale.
+C. Critics argue that urban farming can never replace traditional agriculture at the scale needed to feed growing cities. Dr. Helena Marchetti, an agricultural economist at the University of Guelph, points out that "urban farms excel at growing leafy greens and herbs, but staple crops like wheat, corn, and potatoes still require vast tracts of rural farmland." However, proponents counter that urban farming addresses food deserts — neighbourhoods with limited access to fresh, affordable food. A 2023 report by Food Secure Canada found that 4.4 million Canadians live in food-insecure households. Community gardens and local farms can improve access and reduce reliance on long supply chains that are vulnerable to disruption.
 
-Vancouver has taken a different approach, focusing on community gardens. The city now has over 100 community garden sites, with a waiting list of more than 3,000 people. In 2023, the city council approved a rezoning bylaw that allows urban farming on any residentially zoned lot, removing a significant regulatory barrier.
+D. The economic potential is also significant. The Canadian Urban Farm Association estimates that the urban agriculture sector in Canada is now worth $2.8 billion annually and supports approximately 14,000 full-time jobs. As cities continue to grow, the integration of food production into urban planning is likely to become not just desirable but necessary.
 
-Toronto's approach combines technology with tradition. Several vertical farming startups have set up operations in former industrial buildings in the city's east end. These facilities use LED lighting and hydroponic systems to grow leafy greens year-round, using 95% less water than conventional farming.
-
-Critics argue that urban farming can never replace traditional agriculture at the scale needed to feed growing cities. Dr. Helena Marchetti, an agricultural economist at the University of Guelph, points out that "urban farms excel at growing leafy greens and herbs, but staple crops like wheat, corn, and potatoes still require vast tracts of rural farmland."
-
-However, proponents counter that urban farming addresses food deserts — neighbourhoods with limited access to fresh, affordable food. A 2023 report by Food Secure Canada found that 4.4 million Canadians live in food-insecure households. Community gardens and local farms can improve access and reduce reliance on long supply chains that are vulnerable to disruption.
-
-The economic potential is also significant. The Canadian Urban Farm Association estimates that the urban agriculture sector in Canada is now worth $2.8 billion annually and supports approximately 14,000 full-time jobs.
-
-As cities continue to grow, the integration of food production into urban planning is likely to become not just desirable but necessary.`,
+E. Not in any of the paragraphs`,
     questions: [
       {
         id: "R3Q1",
-        question: "What type of agricultural facility is the Montreal-based company known for running?",
-        options: [
-          "Underground growing facilities",
-          "The world's largest commercial rooftop greenhouse",
-          "A chain of farmers' markets",
-          "A vertical farming startup",
-        ],
+        question: "A commercial farm delivers fresh vegetables to thousands of customers on a weekly basis.",
+        options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
       },
       {
         id: "R3Q2",
-        question: "Approximately how many shared growing plots are available in Vancouver?",
-        options: ["50", "75", "100", "150"],
-        correctAnswer: 2,
-      },
-      {
-        id: "R3Q3",
-        question:
-          "What growing method allows indoor farms in Toronto to dramatically reduce their water consumption?",
-        options: [
-          "Drip irrigation",
-          "Rainwater collection",
-          "Hydroponic systems",
-          "Desalination",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R3Q4",
-        question:
-          "What shortcoming of city-based agriculture does the Guelph economist highlight?",
-        options: [
-          "It's too expensive",
-          "It can't grow staple crops at scale",
-          "It uses too much water",
-          "It requires too many workers",
-        ],
+        question: "A city government changed its land-use regulations to remove a barrier to urban agriculture.",
+        options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
       },
       {
+        id: "R3Q3",
+        question: "Indoor growing facilities use significantly less water than conventional farming methods.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 1,
+      },
+      {
+        id: "R3Q4",
+        question: "An expert questions whether urban farms can produce essential staple crops at a large enough scale.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 2,
+      },
+      {
         id: "R3Q5",
-        question:
-          "According to the Food Secure Canada study, how many million people in the country lack reliable access to adequate nutrition?",
-        options: [
-          "2.2",
-          "3.5",
-          "4.4",
-          "5.8",
-        ],
+        question: "Millions of Canadians live in households that do not have reliable access to adequate food.",
+        options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
         id: "R3Q6",
-        question:
-          "How many billions of dollars in revenue does city-based food production generate across the country each year?",
-        options: [
-          "$1.5",
-          "$2.8",
-          "$3.6",
-          "$4.4",
-        ],
-        correctAnswer: 1,
+        question: "The growth of urban farming has been driven by worries about food security and the environment.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 0,
       },
       {
         id: "R3Q7",
-        question: "How does the article define areas referred to as 'food deserts'?",
-        options: [
-          "Areas where farming is impossible due to climate",
-          "Neighbourhoods with limited access to fresh, affordable food",
-          "Regions affected by drought",
-          "Countries that import most of their food",
-        ],
+        question: "High demand for shared growing spaces in one city has resulted in a long waiting list.",
+        options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
       },
       {
         id: "R3Q8",
-        question:
-          "By what percentage do the indoor growing operations in Toronto cut water usage compared to traditional agriculture?",
-        options: ["75%", "85%", "90%", "95%"],
+        question: "The urban agriculture sector provides a significant number of full-time employment opportunities.",
+        options: ["A", "B", "C", "D", "E"],
         correctAnswer: 3,
       },
       {
         id: "R3Q9",
-        question:
-          "Roughly how many permanent positions does city-based food production sustain nationwide?",
-        options: ["8,000", "10,000", "14,000", "20,000"],
-        correctAnswer: 2,
+        question: "The Canadian government has announced a national strategy to fund urban farming initiatives.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 4,
       },
     ],
   },
