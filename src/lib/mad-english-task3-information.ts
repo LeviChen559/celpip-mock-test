@@ -3,8 +3,8 @@ import { ReadingPart } from "./celpip-data";
 export const madEnglishTask3Parts: ReadingPart[] = [
   // ─── SET 1: Head-Smashed-In Buffalo Jump ─────────────────────────────────────
   {
-    id: "ME-T3-S1",
-    title: "Part 27: Reading for Information",
+    id: "Reading-Part3-05",
+    title: "05 | 9 Questions | Reading for Information",
     paid: true,
     instruction:
       "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
@@ -19,60 +19,60 @@ D. Head-Smashed-In was abandoned in the 19th century after European contact. The
 E. Not in any of the paragraphs`,
     questions: [
       {
-        id: "ME-T3-S1-Q1",
+        id: "Reading-Part3-05-Q1",
         question:
           "The site was named after someone who was killed by falling buffalo.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
-        id: "ME-T3-S1-Q2",
+        id: "Reading-Part3-05-Q2",
         question:
           "The buffalo jump was designated a World Heritage Site because it reveals the historic culture and way of the indigenous people.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 3,
       },
       {
-        id: "ME-T3-S1-Q3",
+        id: "Reading-Part3-05-Q3",
         question: "An indigenous elder helped develop the site.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 0,
       },
       {
-        id: "ME-T3-S1-Q4",
+        id: "Reading-Part3-05-Q4",
         question:
           "Some hunters waited at the bottom of the cliff to kill the injured buffalo.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
       },
       {
-        id: "ME-T3-S1-Q5",
+        id: "Reading-Part3-05-Q5",
         question:
           "Indigenous people killed buffalo for thousands of years by chasing them off a cliff.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
       },
       {
-        id: "ME-T3-S1-Q6",
+        id: "Reading-Part3-05-Q6",
         question: "Europeans were the first foreigners to discover the site.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 3,
       },
       {
-        id: "ME-T3-S1-Q7",
+        id: "Reading-Part3-05-Q7",
         question:
           "An indigenous leader received an award for helping to preserve the knowledge of the Blackfoot people.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 0,
       },
       {
-        id: "ME-T3-S1-Q8",
+        id: "Reading-Part3-05-Q8",
         question: "The site is located near the Rocky Mountains.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 0,
       },
       {
-        id: "ME-T3-S1-Q9",
+        id: "Reading-Part3-05-Q9",
         question: "The warriors chased the buffalo on horseback.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 4,
@@ -82,8 +82,8 @@ E. Not in any of the paragraphs`,
 
   // ─── SET 2: Trans-Canada Highway ─────────────────────────────────────────────
   {
-    id: "ME-T3-S2",
-    title: "Part 28: Reading for Information",
+    id: "Reading-Part3-06",
+    title: "06 | 9 Questions | Reading for Information",
     paid: true,
     instruction:
       "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
@@ -98,62 +98,62 @@ D. Although there does not appear to be any nationally sanctioned "starting poin
 E. Not in any of the paragraphs`,
     questions: [
       {
-        id: "ME-T3-S2-Q1",
+        id: "Reading-Part3-06-Q1",
         question:
           "St. John's considers \"Mile One\" as the starting point of the highway.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 3,
       },
       {
-        id: "ME-T3-S2-Q2",
+        id: "Reading-Part3-06-Q2",
         question: "The highway can be identified by white and green signs.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 0,
       },
       {
-        id: "ME-T3-S2-Q3",
+        id: "Reading-Part3-06-Q3",
         question:
           "The Trans-Canada Highway is made up of sections of provincial highway.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
-        id: "ME-T3-S2-Q4",
+        id: "Reading-Part3-06-Q4",
         question:
           "The provinces themselves make decisions about their part of the highway.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
-        id: "ME-T3-S2-Q5",
+        id: "Reading-Part3-06-Q5",
         question:
           "The Trans-Canada Highway changed from miles to kilometres in 1977.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 3,
       },
       {
-        id: "ME-T3-S2-Q6",
+        id: "Reading-Part3-06-Q6",
         question:
           "Canada's three territories do not contain any sections of the Trans-Canada Highway.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
       },
       {
-        id: "ME-T3-S2-Q7",
+        id: "Reading-Part3-06-Q7",
         question:
           "The Trans-Canada Highway follows the same route as the Canadian Pacific Railway.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 4,
       },
       {
-        id: "ME-T3-S2-Q8",
+        id: "Reading-Part3-06-Q8",
         question:
           "The Trans-Canada Highway is part of Canada's overall highway network.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
       },
       {
-        id: "ME-T3-S2-Q9",
+        id: "Reading-Part3-06-Q9",
         question:
           "The Trans-Canada Highway spans the continent from east to west.",
         options: ["A", "B", "C", "D", "E"],
@@ -164,8 +164,8 @@ E. Not in any of the paragraphs`,
 
   // ─── SET 3: The Loonie ────────────────────────────────────────────────────────
   {
-    id: "ME-T3-S3",
-    title: "Part 29: Reading for Information",
+    id: "Reading-Part3-07",
+    title: "07 | 9 Questions | Reading for Information",
     paid: true,
     instruction:
       "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
@@ -180,59 +180,59 @@ D. The coin has become the symbol of the Canadian dollar: media often discuss th
 E. Not in any of the paragraphs`,
     questions: [
       {
-        id: "ME-T3-S3-Q1",
+        id: "Reading-Part3-07-Q1",
         question:
           "Canada celebrated King George's reign by making a silver dollar coin.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
-        id: "ME-T3-S3-Q2",
+        id: "Reading-Part3-07-Q2",
         question:
           "The loonie is the most common coin used in vending machines.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 4,
       },
       {
-        id: "ME-T3-S3-Q3",
+        id: "Reading-Part3-07-Q3",
         question:
           "The name of the two dollar coin was influenced by the loonie.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 3,
       },
       {
-        id: "ME-T3-S3-Q4",
+        id: "Reading-Part3-07-Q4",
         question:
           "The loonie has a bird on one side and Queen Elizabeth II on the other side.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 0,
       },
       {
-        id: "ME-T3-S3-Q5",
+        id: "Reading-Part3-07-Q5",
         question: "The original silver dollar coin had a canoe on the back.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
-        id: "ME-T3-S3-Q6",
+        id: "Reading-Part3-07-Q6",
         question: "Nickel replaced silver as the main substance of the $1 coin.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
-        id: "ME-T3-S3-Q7",
+        id: "Reading-Part3-07-Q7",
         question: "Loonies are produced in Winnipeg.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 0,
       },
       {
-        id: "ME-T3-S3-Q8",
+        id: "Reading-Part3-07-Q8",
         question: "The loonie and the Anthony dollar were different colours.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
       },
       {
-        id: "ME-T3-S3-Q9",
+        id: "Reading-Part3-07-Q9",
         question: "Two British coins have similar features to the loonie.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
@@ -242,8 +242,8 @@ E. Not in any of the paragraphs`,
 
   // ─── SET 4: Maple Syrup ───────────────────────────────────────────────────────
   {
-    id: "ME-T3-S4",
-    title: "Part 30: Reading for Information",
+    id: "Reading-Part3-08",
+    title: "08 | 9 Questions | Reading for Information",
     paid: true,
     instruction:
       "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
@@ -258,61 +258,61 @@ D. Maple syrup is often used as a condiment for pancakes, waffles, French toast,
 E. Not in any of the paragraphs`,
     questions: [
       {
-        id: "ME-T3-S4-Q1",
+        id: "Reading-Part3-08-Q1",
         question: "The maple leaf is a national symbol of Canada.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 4,
       },
       {
-        id: "ME-T3-S4-Q2",
+        id: "Reading-Part3-08-Q2",
         question:
           "Several types of maple trees produce the sap to make maple syrup.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 0,
       },
       {
-        id: "ME-T3-S4-Q3",
+        id: "Reading-Part3-08-Q3",
         question:
           "The taste of maple syrup is greatly admired even though its composition has not been completely ascertained.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 3,
       },
       {
-        id: "ME-T3-S4-Q4",
+        id: "Reading-Part3-08-Q4",
         question:
           "In order to be classified as maple syrup in Canada, the syrup must be made only from maple sap.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
-        id: "ME-T3-S4-Q5",
+        id: "Reading-Part3-08-Q5",
         question: "Many people put maple syrup on their breakfast foods.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 3,
       },
       {
-        id: "ME-T3-S4-Q6",
+        id: "Reading-Part3-08-Q6",
         question:
           "Maple syrup is heated which results in a thick syrup.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 0,
       },
       {
-        id: "ME-T3-S4-Q7",
+        id: "Reading-Part3-08-Q7",
         question:
           "Canada exported nearly half a billion dollars of maple syrup in 2016.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
       },
       {
-        id: "ME-T3-S4-Q8",
+        id: "Reading-Part3-08-Q8",
         question:
           "The state of Vermont produces the most maple syrup in the United States.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
       },
       {
-        id: "ME-T3-S4-Q9",
+        id: "Reading-Part3-08-Q9",
         question: "Maple sap is starch which has been converted to sugar.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 0,
@@ -322,8 +322,8 @@ E. Not in any of the paragraphs`,
 
   // ─── SET 5: Banff National Park ───────────────────────────────────────────────
   {
-    id: "ME-T3-S5",
-    title: "Part 31: Reading for Information",
+    id: "Reading-Part3-09",
+    title: "09 | 9 Questions | Reading for Information",
     paid: true,
     instruction:
       "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
@@ -338,58 +338,58 @@ D. Throughout its history, Banff National Park has been shaped by tension betwee
 E. Not in any of the paragraphs`,
     questions: [
       {
-        id: "ME-T3-S5-Q1",
+        id: "Reading-Part3-09-Q1",
         question: "Canada's oldest national park is in Alberta.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 0,
       },
       {
-        id: "ME-T3-S5-Q2",
+        id: "Reading-Part3-09-Q2",
         question: "Banff is significantly smaller than Jasper.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 4,
       },
       {
-        id: "ME-T3-S5-Q3",
+        id: "Reading-Part3-09-Q3",
         question: "There is mainly rocks and ice above the treeline.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
-        id: "ME-T3-S5-Q4",
+        id: "Reading-Part3-09-Q4",
         question:
           "In the past, several different parties wanted to claim the park for financial interests.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 3,
       },
       {
-        id: "ME-T3-S5-Q5",
+        id: "Reading-Part3-09-Q5",
         question:
           "Not many reptiles and amphibians have been found in the park.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
-        id: "ME-T3-S5-Q6",
+        id: "Reading-Part3-09-Q6",
         question:
           "Banff's ecosystem has been threatened by the high number of visitors.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
       },
       {
-        id: "ME-T3-S5-Q7",
+        id: "Reading-Part3-09-Q7",
         question: "Banff's development was greatly impacted by the railway.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
       },
       {
-        id: "ME-T3-S5-Q8",
+        id: "Reading-Part3-09-Q8",
         question: "Climate change is threatening the Columbia Icefield.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 4,
       },
       {
-        id: "ME-T3-S5-Q9",
+        id: "Reading-Part3-09-Q9",
         question: "Banff is connected to several other national parks.",
         options: ["A", "B", "C", "D", "E"],
         correctAnswer: 0,

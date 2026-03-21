@@ -3,8 +3,8 @@ import { ReadingPart } from "./celpip-data";
 export const madEnglishTask4Parts: ReadingPart[] = [
   // ─── SET 1: UTUC Cancer Drug ──────────────────────────────────────────────────
   {
-    id: "ME-T4-S1",
-    title: "Part 32: Reading for Viewpoints",
+    id: "Reading-Part4-05",
+    title: "05 | 10 Questions | Reading for Viewpoints",
     paid: true,
     instruction:
       "Read the following article and response. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
@@ -15,7 +15,7 @@ export const madEnglishTask4Parts: ReadingPart[] = [
 Having taken this drug as part of a clinical trial, I can say that the drug has had a positive effect on my health. I'm excited about the possibility of ___ [6]. I hope Karim Chamie is right in believing that ___ [7]. It feels strange to be diagnosed with a disease that is so ___ [8]. Having low-grade UTUC, I'm a bit nervous about the ___ [9]. The Food and Drug Administration ___ [10].`,
     questions: [
       {
-        id: "ME-T4-S1-Q1",
+        id: "Reading-Part4-05-Q1",
         question: "Clinical trials are ___.",
         options: [
           "only undertaken when a person's life is at risk.",
@@ -26,7 +26,7 @@ Having taken this drug as part of a clinical trial, I can say that the drug has 
         correctAnswer: 1,
       },
       {
-        id: "ME-T4-S1-Q2",
+        id: "Reading-Part4-05-Q2",
         question: "UTUC is ___.",
         options: [
           "an investigational drug.",
@@ -37,7 +37,7 @@ Having taken this drug as part of a clinical trial, I can say that the drug has 
         correctAnswer: 1,
       },
       {
-        id: "ME-T4-S1-Q3",
+        id: "Reading-Part4-05-Q3",
         question: "UTUC is challenging to treat because ___.",
         options: [
           "it is rooted in homeopathic medicine.",
@@ -48,7 +48,7 @@ Having taken this drug as part of a clinical trial, I can say that the drug has 
         correctAnswer: 1,
       },
       {
-        id: "ME-T4-S1-Q4",
+        id: "Reading-Part4-05-Q4",
         question: "Karim Chamie ___.",
         options: [
           "has a positive outlook on the drug.",
@@ -59,7 +59,7 @@ Having taken this drug as part of a clinical trial, I can say that the drug has 
         correctAnswer: 0,
       },
       {
-        id: "ME-T4-S1-Q5",
+        id: "Reading-Part4-05-Q5",
         question: "People diagnosed with high-grade UTUC ___.",
         options: [
           "will experience benefits from the new drug.",
@@ -70,7 +70,7 @@ Having taken this drug as part of a clinical trial, I can say that the drug has 
         correctAnswer: 3,
       },
       {
-        id: "ME-T4-S1-Q6",
+        id: "Reading-Part4-05-Q6",
         question:
           "I'm excited about the possibility of ___.",
         options: [
@@ -82,7 +82,7 @@ Having taken this drug as part of a clinical trial, I can say that the drug has 
         correctAnswer: 0,
       },
       {
-        id: "ME-T4-S1-Q7",
+        id: "Reading-Part4-05-Q7",
         question: "I hope Karim Chamie is right in believing that ___.",
         options: [
           "the drug will save those with high-grade UTUC.",
@@ -93,7 +93,7 @@ Having taken this drug as part of a clinical trial, I can say that the drug has 
         correctAnswer: 1,
       },
       {
-        id: "ME-T4-S1-Q8",
+        id: "Reading-Part4-05-Q8",
         question:
           "It feels strange to be diagnosed with a disease that is so ___.",
         options: [
@@ -105,7 +105,7 @@ Having taken this drug as part of a clinical trial, I can say that the drug has 
         correctAnswer: 2,
       },
       {
-        id: "ME-T4-S1-Q9",
+        id: "Reading-Part4-05-Q9",
         question:
           "Having low-grade UTUC, I'm a bit nervous about the ___.",
         options: [
@@ -117,7 +117,7 @@ Having taken this drug as part of a clinical trial, I can say that the drug has 
         correctAnswer: 3,
       },
       {
-        id: "ME-T4-S1-Q10",
+        id: "Reading-Part4-05-Q10",
         question: "The Food and Drug Administration ___.",
         options: [
           "will introduce a new drug next year.",
@@ -132,8 +132,8 @@ Having taken this drug as part of a clinical trial, I can say that the drug has 
 
   // ─── SET 2: Financial Resolutions ────────────────────────────────────────────
   {
-    id: "ME-T4-S2",
-    title: "Part 33: Reading for Viewpoints",
+    id: "Reading-Part4-06",
+    title: "06 | 10 Questions | Reading for Viewpoints",
     paid: true,
     instruction:
       "Read the following article and response. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
@@ -144,7 +144,7 @@ Having taken this drug as part of a clinical trial, I can say that the drug has 
 I agree that paying attention to finances will improve a person's financial health, but people ___ [6]. It's funny that the senior vice president uses a growth rate of 7% in his example. Since when has a Fidelity investment actually ___ [7]? My grandpa had mutual funds with Fidelity and only averaged 3%. Sure, the individual investments in the fund might perform well, but after the ridiculous mutual fund fees, the final return is ___ [8]. Hevert's solution to a medical emergency is laughable. Does he really think a person will be able to prepare for an event like that by ___ [9]? Sure, maybe in 20 years if I break my toe, I'll be able to pay for a doctor's visit, but I definitely won't be able to afford a major surgery. To me it seems like this article is just a ___ [10].`,
     questions: [
       {
-        id: "ME-T4-S2-Q1",
+        id: "Reading-Part4-06-Q1",
         question: "A medical emergency can ___.",
         options: [
           "drive you to save more money.",
@@ -155,7 +155,7 @@ I agree that paying attention to finances will improve a person's financial heal
         correctAnswer: 3,
       },
       {
-        id: "ME-T4-S2-Q2",
+        id: "Reading-Part4-06-Q2",
         question: "According to Fidelity ___.",
         options: [
           "people who made resolutions felt more secure.",
@@ -166,7 +166,7 @@ I agree that paying attention to finances will improve a person's financial heal
         correctAnswer: 0,
       },
       {
-        id: "ME-T4-S2-Q3",
+        id: "Reading-Part4-06-Q3",
         question: "Consumer education can help ___.",
         options: [
           "derail financial security.",
@@ -177,7 +177,7 @@ I agree that paying attention to finances will improve a person's financial heal
         correctAnswer: 2,
       },
       {
-        id: "ME-T4-S2-Q4",
+        id: "Reading-Part4-06-Q4",
         question: "Fidelity's online guide ___.",
         options: [
           "warns of potential losses in the market.",
@@ -188,7 +188,7 @@ I agree that paying attention to finances will improve a person's financial heal
         correctAnswer: 1,
       },
       {
-        id: "ME-T4-S2-Q5",
+        id: "Reading-Part4-06-Q5",
         question: "Saving $43 in bank fees could result in ___.",
         options: [
           "a net loss of $22,000 in 20 years.",
@@ -199,7 +199,7 @@ I agree that paying attention to finances will improve a person's financial heal
         correctAnswer: 2,
       },
       {
-        id: "ME-T4-S2-Q6",
+        id: "Reading-Part4-06-Q6",
         question:
           "I agree that paying attention to finances will improve a person's financial health, but people ___.",
         options: [
@@ -211,7 +211,7 @@ I agree that paying attention to finances will improve a person's financial heal
         correctAnswer: 1,
       },
       {
-        id: "ME-T4-S2-Q7",
+        id: "Reading-Part4-06-Q7",
         question:
           "Since when has a Fidelity investment actually ___?",
         options: [
@@ -223,7 +223,7 @@ I agree that paying attention to finances will improve a person's financial heal
         correctAnswer: 3,
       },
       {
-        id: "ME-T4-S2-Q8",
+        id: "Reading-Part4-06-Q8",
         question:
           "After the ridiculous mutual fund fees, the final return is ___.",
         options: [
@@ -235,7 +235,7 @@ I agree that paying attention to finances will improve a person's financial heal
         correctAnswer: 0,
       },
       {
-        id: "ME-T4-S2-Q9",
+        id: "Reading-Part4-06-Q9",
         question:
           "Does he really think a person will be able to prepare for an event like that by ___?",
         options: [
@@ -247,7 +247,7 @@ I agree that paying attention to finances will improve a person's financial heal
         correctAnswer: 2,
       },
       {
-        id: "ME-T4-S2-Q10",
+        id: "Reading-Part4-06-Q10",
         question: "To me it seems like this article is just a ___.",
         options: [
           "way to make people save money.",
@@ -262,8 +262,8 @@ I agree that paying attention to finances will improve a person's financial heal
 
   // ─── SET 3: BFGoodrich Tires / Timely Performance Driving ────────────────────
   {
-    id: "ME-T4-S3",
-    title: "Part 34: Reading for Viewpoints",
+    id: "Reading-Part4-07",
+    title: "07 | 10 Questions | Reading for Viewpoints",
     paid: true,
     instruction:
       "Read the following article and response. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
@@ -274,7 +274,7 @@ I agree that paying attention to finances will improve a person's financial heal
 This is an important article because ___ [6]. So many people are guilty of texting while driving. It's crucial that drivers ___ [7]. It's also important that drivers take care of their vehicles. Comrie-Picard is right in that ___ [8]. Especially in bad weather, people should pay attention to their ___ [9]. The reason people generally drive better in dangerous conditions is because ___ [10].`,
     questions: [
       {
-        id: "ME-T4-S3-Q1",
+        id: "Reading-Part4-07-Q1",
         question: "Over half of drivers believe that ___.",
         options: [
           "having good tires increases driving safety.",
@@ -285,7 +285,7 @@ This is an important article because ___ [6]. So many people are guilty of texti
         correctAnswer: 2,
       },
       {
-        id: "ME-T4-S3-Q2",
+        id: "Reading-Part4-07-Q2",
         question: "Timely Performance means ___.",
         options: [
           "focusing on your current situation.",
@@ -296,7 +296,7 @@ This is an important article because ___ [6]. So many people are guilty of texti
         correctAnswer: 0,
       },
       {
-        id: "ME-T4-S3-Q3",
+        id: "Reading-Part4-07-Q3",
         question: "Comrie-Picard believes that ___.",
         options: [
           "people under 18 years old should practice Timely Performance.",
@@ -307,7 +307,7 @@ This is an important article because ___ [6]. So many people are guilty of texti
         correctAnswer: 3,
       },
       {
-        id: "ME-T4-S3-Q4",
+        id: "Reading-Part4-07-Q4",
         question:
           "Most drivers reported needing to become Timely Performance drivers ___.",
         options: [
@@ -319,7 +319,7 @@ This is an important article because ___ [6]. So many people are guilty of texti
         correctAnswer: 1,
       },
       {
-        id: "ME-T4-S3-Q5",
+        id: "Reading-Part4-07-Q5",
         question:
           "An ambassador of BFGoodrich says that Timely Performance should be practiced ___.",
         options: [
@@ -331,7 +331,7 @@ This is an important article because ___ [6]. So many people are guilty of texti
         correctAnswer: 2,
       },
       {
-        id: "ME-T4-S3-Q6",
+        id: "Reading-Part4-07-Q6",
         question: "This is an important article because ___.",
         options: [
           "too many people are distracted on the road these days.",
@@ -342,7 +342,7 @@ This is an important article because ___ [6]. So many people are guilty of texti
         correctAnswer: 0,
       },
       {
-        id: "ME-T4-S3-Q7",
+        id: "Reading-Part4-07-Q7",
         question: "It's crucial that drivers ___.",
         options: [
           "turn off the radio when they drive.",
@@ -353,7 +353,7 @@ This is an important article because ___ [6]. So many people are guilty of texti
         correctAnswer: 3,
       },
       {
-        id: "ME-T4-S3-Q8",
+        id: "Reading-Part4-07-Q8",
         question: "Comrie-Picard is right in that ___.",
         options: [
           "Timely Performance should be practiced 6 times per week.",
@@ -364,7 +364,7 @@ This is an important article because ___ [6]. So many people are guilty of texti
         correctAnswer: 2,
       },
       {
-        id: "ME-T4-S3-Q9",
+        id: "Reading-Part4-07-Q9",
         question:
           "Especially in bad weather, people should pay attention to their ___.",
         options: [
@@ -376,7 +376,7 @@ This is an important article because ___ [6]. So many people are guilty of texti
         correctAnswer: 0,
       },
       {
-        id: "ME-T4-S3-Q10",
+        id: "Reading-Part4-07-Q10",
         question:
           "The reason people generally drive better in dangerous conditions is because ___.",
         options: [
@@ -392,8 +392,8 @@ This is an important article because ___ [6]. So many people are guilty of texti
 
   // ─── SET 4: Healthcare Benefits ──────────────────────────────────────────────
   {
-    id: "ME-T4-S4",
-    title: "Part 35: Reading for Viewpoints",
+    id: "Reading-Part4-08",
+    title: "08 | 10 Questions | Reading for Viewpoints",
     paid: true,
     instruction:
       "Read the following article and response. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
@@ -414,7 +414,7 @@ Consumers who are concerned about expenses should investigate these options furt
 As a victim of identity theft myself, I wish I had looked more into ___ [6]. I had never heard of holistic support being offered in a ___ [7]. The thing about a benefits package is that ___ [8]. Now that I understand the value of holistic support, I know how to use it to care for myself and my family. Instead of spending hours waiting to see a doctor in an emergency room, I can now ___ [9]. I really support the growing trend of companies offering ___ [10].`,
     questions: [
       {
-        id: "ME-T4-S4-Q1",
+        id: "Reading-Part4-08-Q1",
         question: "Most Americans ___.",
         options: [
           "do not trust telemedicine.",
@@ -425,7 +425,7 @@ As a victim of identity theft myself, I wish I had looked more into ___ [6]. I h
         correctAnswer: 2,
       },
       {
-        id: "ME-T4-S4-Q2",
+        id: "Reading-Part4-08-Q2",
         question: "According to the article ___.",
         options: [
           "more and more healthcare costs are being passed on to the consumer.",
@@ -436,7 +436,7 @@ As a victim of identity theft myself, I wish I had looked more into ___ [6]. I h
         correctAnswer: 0,
       },
       {
-        id: "ME-T4-S4-Q3",
+        id: "Reading-Part4-08-Q3",
         question: "Holistic coverage includes ___.",
         options: [
           "people under 18 years old.",
@@ -447,7 +447,7 @@ As a victim of identity theft myself, I wish I had looked more into ___ [6]. I h
         correctAnswer: 3,
       },
       {
-        id: "ME-T4-S4-Q4",
+        id: "Reading-Part4-08-Q4",
         question: "Many employers are ___.",
         options: [
           "moving away from telemedicine to a more traditional approach.",
@@ -458,7 +458,7 @@ As a victim of identity theft myself, I wish I had looked more into ___ [6]. I h
         correctAnswer: 3,
       },
       {
-        id: "ME-T4-S4-Q5",
+        id: "Reading-Part4-08-Q5",
         question: "Consumers should ___.",
         options: [
           "rely on their own intuition to protect themselves from fraud.",
@@ -469,7 +469,7 @@ As a victim of identity theft myself, I wish I had looked more into ___ [6]. I h
         correctAnswer: 1,
       },
       {
-        id: "ME-T4-S4-Q6",
+        id: "Reading-Part4-08-Q6",
         question:
           "As a victim of identity theft myself, I wish I had looked more into ___.",
         options: [
@@ -481,7 +481,7 @@ As a victim of identity theft myself, I wish I had looked more into ___ [6]. I h
         correctAnswer: 1,
       },
       {
-        id: "ME-T4-S4-Q7",
+        id: "Reading-Part4-08-Q7",
         question:
           "I had never heard of holistic support being offered in a ___.",
         options: [
@@ -493,7 +493,7 @@ As a victim of identity theft myself, I wish I had looked more into ___ [6]. I h
         correctAnswer: 0,
       },
       {
-        id: "ME-T4-S4-Q8",
+        id: "Reading-Part4-08-Q8",
         question: "The thing about a benefits package is that ___.",
         options: [
           "you'll never need to use most of the services.",
@@ -504,7 +504,7 @@ As a victim of identity theft myself, I wish I had looked more into ___ [6]. I h
         correctAnswer: 3,
       },
       {
-        id: "ME-T4-S4-Q9",
+        id: "Reading-Part4-08-Q9",
         question:
           "Instead of spending hours waiting to see a doctor in an emergency room, I can now ___.",
         options: [
@@ -516,7 +516,7 @@ As a victim of identity theft myself, I wish I had looked more into ___ [6]. I h
         correctAnswer: 0,
       },
       {
-        id: "ME-T4-S4-Q10",
+        id: "Reading-Part4-08-Q10",
         question:
           "I really support the growing trend of companies offering ___.",
         options: [
@@ -532,8 +532,8 @@ As a victim of identity theft myself, I wish I had looked more into ___ [6]. I h
 
   // ─── SET 5: Wedding Costs ─────────────────────────────────────────────────────
   {
-    id: "ME-T4-S5",
-    title: "Part 36: Reading for Viewpoints",
+    id: "Reading-Part4-09",
+    title: "09 | 10 Questions | Reading for Viewpoints",
     paid: true,
     instruction:
       "Read the following article and response. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
@@ -552,7 +552,7 @@ The wedding venue. "When couples get married, they're really looking for interes
 I completely agree that weddings do not need to be outrageously expensive. I like the growing trend of ___ [6]. That being said, I don't think ___ [7]. Before I got married, I decided to break with tradition on the engagement ring because I wanted to be unique and also save my boyfriend money. It's completely outrageous that ___ [8]! Rings aren't even the worst part. I can't believe people spend tens of thousands of dollars on ___ [9]! Why not just pick a simple place to tie the knot and spend the money on your honeymoon — a time you can actually relax and enjoy being together! In terms of the drinks, I don't know why couples think they have to pay for everyone to get drunk at their wedding. Probably the easiest way a couple can save money on their wedding is just to ___ [10].`,
     questions: [
       {
-        id: "ME-T4-S5-Q1",
+        id: "Reading-Part4-09-Q1",
         question: "Kim Kardashian and Kanye West ___.",
         options: [
           "did not follow tradition with engagement rings.",
@@ -563,7 +563,7 @@ I completely agree that weddings do not need to be outrageously expensive. I lik
         correctAnswer: 2,
       },
       {
-        id: "ME-T4-S5-Q2",
+        id: "Reading-Part4-09-Q2",
         question: "Engagement rings are ___.",
         options: [
           "becoming more expensive.",
@@ -574,7 +574,7 @@ I completely agree that weddings do not need to be outrageously expensive. I lik
         correctAnswer: 3,
       },
       {
-        id: "ME-T4-S5-Q3",
+        id: "Reading-Part4-09-Q3",
         question: "A trend that could save you money is ___.",
         options: [
           "personalization.",
@@ -585,7 +585,7 @@ I completely agree that weddings do not need to be outrageously expensive. I lik
         correctAnswer: 0,
       },
       {
-        id: "ME-T4-S5-Q4",
+        id: "Reading-Part4-09-Q4",
         question: "Elizabeth Hurley's ring was related to ___.",
         options: [
           "Kim Kardashian's.",
@@ -596,7 +596,7 @@ I completely agree that weddings do not need to be outrageously expensive. I lik
         correctAnswer: 1,
       },
       {
-        id: "ME-T4-S5-Q5",
+        id: "Reading-Part4-09-Q5",
         question: "To have the wedding of your dreams, you ___.",
         options: [
           "need to pay a lot of money.",
@@ -607,7 +607,7 @@ I completely agree that weddings do not need to be outrageously expensive. I lik
         correctAnswer: 2,
       },
       {
-        id: "ME-T4-S5-Q6",
+        id: "Reading-Part4-09-Q6",
         question:
           "I completely agree that weddings do not need to be outrageously expensive. I like the growing trend of ___.",
         options: [
@@ -619,7 +619,7 @@ I completely agree that weddings do not need to be outrageously expensive. I lik
         correctAnswer: 2,
       },
       {
-        id: "ME-T4-S5-Q7",
+        id: "Reading-Part4-09-Q7",
         question: "That being said, I don't think ___.",
         options: [
           "people should just follow trends all the time.",
@@ -630,7 +630,7 @@ I completely agree that weddings do not need to be outrageously expensive. I lik
         correctAnswer: 0,
       },
       {
-        id: "ME-T4-S5-Q8",
+        id: "Reading-Part4-09-Q8",
         question: "It's completely outrageous that ___!",
         options: [
           "rings are so cheap these days.",
@@ -641,7 +641,7 @@ I completely agree that weddings do not need to be outrageously expensive. I lik
         correctAnswer: 3,
       },
       {
-        id: "ME-T4-S5-Q9",
+        id: "Reading-Part4-09-Q9",
         question:
           "I can't believe people spend tens of thousands of dollars on ___!",
         options: [
@@ -653,7 +653,7 @@ I completely agree that weddings do not need to be outrageously expensive. I lik
         correctAnswer: 0,
       },
       {
-        id: "ME-T4-S5-Q10",
+        id: "Reading-Part4-09-Q10",
         question:
           "Probably the easiest way a couple can save money on their wedding is just to ___.",
         options: [

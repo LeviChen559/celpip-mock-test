@@ -83,7 +83,7 @@ Woman: Okay, I'd better hurry then. Thanks for your help!`,
   },
   {
     id: "L1",
-    title: "Part 1: Listening to Problem Solving",
+    title: "01 | 8 Questions | Listening to Problem Solving",
     instruction:
       "You will hear a conversation between two people discussing a problem. Listen carefully and answer the questions.",
     transcript: `Sarah: Hey Mike, I just got an email from the landlord. He says our lease is up next month and he wants to increase the rent by $300.
@@ -182,7 +182,7 @@ Mike: Sure. I'll have it ready by tonight.`,
   },
   {
     id: "L2",
-    title: "Part 2: Listening to a Daily Life Conversation",
+    title: "01 | 5 Questions | Listening to a Daily Life Conversation",
     instruction:
       "You will hear a conversation in a daily life context. Listen and answer the questions.",
     transcript: `Receptionist: Good morning, Greenfield Medical Clinic. How can I help you?
@@ -263,7 +263,7 @@ Receptionist: Got it. You're all set for Thursday, October 12th at 10:15 AM with
   },
   {
     id: "L3",
-    title: "Part 3: Listening to Information",
+    title: "01 | 6 Questions | Listening to Information",
     instruction:
       "You will hear an informational presentation. Listen carefully and answer the questions.",
     transcript: `Welcome to the City of Maplewood's annual community update. I'm Mayor Linda Park, and I'm here to share some exciting developments for the coming year.
@@ -341,7 +341,7 @@ Thank you for being engaged citizens. Questions can be directed to our new commu
   },
   {
     id: "L4",
-    title: "Part 4: Listening to a News Item",
+    title: "01 | 5 Questions | Listening to a News Item",
     instruction: "You will hear a news report. Listen and answer the questions.",
     transcript: `This is CBC News at Six. I'm Rachel Nguyen.
 
@@ -405,7 +405,7 @@ Environment Canada forecaster David Liu says this could be the most significant 
   },
   {
     id: "L5",
-    title: "Part 5: Listening to a Discussion",
+    title: "01 | 8 Questions | Listening to a Discussion",
     instruction:
       "You will hear a discussion between colleagues. Listen and answer the questions.",
     transcript: `Manager (Karen): Thanks for coming in, everyone. As you know, our quarterly sales numbers are in, and we need to talk about the results and plan for next quarter.
@@ -508,7 +508,7 @@ Lisa: Sounds good.`,
   },
   {
     id: "L6",
-    title: "Part 6: Listening to Viewpoints",
+    title: "01 | 6 Questions | Listening to Viewpoints",
     instruction:
       "You will hear a discussion presenting different viewpoints. Listen and answer the questions.",
     transcript: `Host: Welcome to Community Voices. Today we're discussing whether the city should ban single-use plastics. I have two guests: Dr. Amy Foster, an environmental scientist, and Mark Sullivan, who represents the local restaurant association.
@@ -606,7 +606,7 @@ export const listeningPartsOfficial: ListeningPart[] = listeningPartsBase;
 
 const readingPartsBase: ReadingPart[] = [
   {
-    id: "R0",
+    id: "Reading-Practice",
     title: "Practice Task (unscored)",
     instruction:
       "This is a practice task to help you get familiar with the reading test format. Your answer will not be scored.",
@@ -619,7 +619,7 @@ Book returns can be made at any time using the outdoor drop box located to the l
 If you need to renew items, please use our online portal at www.greenfieldlibrary.ca or call 905-555-0142 during regular business hours.`,
     questions: [
       {
-        id: "R0Q1",
+        id: "Reading-Practice-Q1",
         question: "How can you bring back a borrowed item on the day the library is closed for the holiday?",
         options: [
           "Wait until the library reopens on February 18",
@@ -666,13 +666,13 @@ Dear Jennifer,
 
 Thank you for sharing the updated remote work policy. I appreciate the effort that went into gathering employee feedback and consulting with department heads. I have a few questions and concerns that I would like to raise on behalf of the Marketing Department.
 
-First, regarding the mandatory in-office days, our team frequently collaborates with external clients who are based in the Pacific Time Zone. Having our in-office days fixed by the department could conflict with key client meetings that are typically scheduled on Tuesday and Thursday afternoons. Would it be possible for individual teams within a department to negotiate their in-office schedules based on client-facing obligations?
+First, regarding the mandatory in-office days, our team frequently collaborates with external clients who are based in the Pacific Time Zone. Having our in-office days fixed by the department could ___ [7] with key client meetings. Would it be possible for individual teams within a department to negotiate their in-office schedules based on client-facing obligations?
 
-Second, I wanted to ask about the home office stipend. Several members of my team already invested in home office equipment during the previous remote work arrangement in 2022. Will employees who purchased equipment at their own expense before this policy be eligible for any retroactive reimbursement, or does the $500 stipend apply only to new purchases made after January 15th?
+Second, I wanted to ask about the home office stipend. Several members of my team already invested in home office equipment during the previous remote work arrangement in 2022. Will employees who purchased equipment at their own expense before this policy be eligible for any ___ [8], or does the $500 stipend apply only to new purchases made after January 15th?
 
-Third, I am concerned about the quarterly performance review process for remote work eligibility. Our department's major campaigns typically launch in Q1 and Q3, which means our workload and measurable output vary significantly throughout the year. Could you clarify what specific metrics will be used to evaluate remote work eligibility, and whether seasonal variations in productivity will be taken into account?
+Third, I am concerned about the quarterly performance review process for remote work eligibility. Our department's major campaigns typically launch in Q1 and Q3, which means our workload and measurable output vary significantly throughout the year. Could you clarify whether ___ [9] will be taken into account when evaluating remote work eligibility?
 
-Finally, regarding the monthly all-hands meetings, the first Monday of the month often coincides with our campaign launch preparation days. Would it be feasible to provide at least two weeks' advance notice of the meeting agenda so that teams can plan accordingly? Additionally, for employees who travel for business, will virtual attendance be accepted as an alternative when travel conflicts arise?
+Finally, regarding the monthly all-hands meetings, the first Monday of the month often coincides with our campaign launch preparation days. Would it be feasible to provide at least ___ [10] of the meeting agenda so that teams can plan accordingly? Additionally, for employees who travel for business, will ___ [11] be accepted as an alternative when travel conflicts arise?
 
 I look forward to your response and any additional guidance on these matters.
 
@@ -681,21 +681,21 @@ David Park
 Senior Marketing Manager`;
 
     return {
-      id: "R1",
-      title: "Part 1: Reading Correspondence",
+      id: "Reading-Part1-01",
+      title: "01 | 11 Questions | Reading Correspondence",
       instruction:
-        "Read the following email exchange and answer the questions. Questions 1–6 are based on the first email from HR. Questions 7–11 are based on the response from David Park.",
+        "Read the following email exchange. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
       passage: passageA,
       questions: [
         {
-          id: "R1Q1",
+          id: "Reading-Part1-01-Q1",
           question: "How often are staff permitted to work from home each week?",
           options: ["1 day", "2 days", "3 days", "4 days"],
           correctAnswer: 2,
           passage: passageA,
         },
         {
-          id: "R1Q2",
+          id: "Reading-Part1-01-Q2",
           question: "During which mandatory availability window must all staff be reachable?",
           options: [
             "8:00 AM to 4:00 PM",
@@ -707,14 +707,14 @@ Senior Marketing Manager`;
           passage: passageA,
         },
         {
-          id: "R1Q3",
+          id: "Reading-Part1-01-Q3",
           question: "What is the financial allowance provided for setting up a workspace at home?",
           options: ["$250", "$400", "$500", "$750"],
           correctAnswer: 2,
           passage: passageA,
         },
         {
-          id: "R1Q4",
+          id: "Reading-Part1-01-Q4",
           question:
             "What consequence may follow if a worker fails to achieve their productivity goals?",
           options: [
@@ -727,7 +727,7 @@ Senior Marketing Manager`;
           passage: passageA,
         },
         {
-          id: "R1Q5",
+          id: "Reading-Part1-01-Q5",
           question: "How frequently do company-wide gatherings take place, and on what schedule?",
           options: [
             "Every Friday",
@@ -739,7 +739,7 @@ Senior Marketing Manager`;
           passage: passageA,
         },
         {
-          id: "R1Q6",
+          id: "Reading-Part1-01-Q6",
           question: "On what date do the new telecommuting guidelines come into force?",
           options: [
             "December 1",
@@ -751,61 +751,61 @@ Senior Marketing Manager`;
           passage: passageA,
         },
         {
-          id: "R1Q7",
-          question: "Why does David believe fixed in-office days could be problematic for his team?",
+          id: "Reading-Part1-01-Q7",
+          question: "Having our in-office days fixed by the department could ___ with key client meetings.",
           options: [
-            "His team members live far from the office",
-            "His team collaborates with clients in the Pacific Time Zone",
-            "His team prefers to work from home every day",
-            "His team has members in different provinces",
+            "interfere",
+            "conflict",
+            "compete",
+            "overlap",
           ],
           correctAnswer: 1,
           passage: passageB,
         },
         {
-          id: "R1Q8",
-          question: "What does David ask about regarding the home office stipend?",
+          id: "Reading-Part1-01-Q8",
+          question: "Will employees who purchased equipment at their own expense before this policy be eligible for any ___?",
           options: [
-            "Whether the amount can be increased to $750",
-            "Whether employees can choose their own equipment",
-            "Whether employees who bought equipment in 2022 can receive retroactive reimbursement",
-            "Whether the stipend can be split into monthly payments",
+            "tax deduction",
+            "bonus payment",
+            "retroactive reimbursement",
+            "equipment exchange",
           ],
           correctAnswer: 2,
           passage: passageB,
         },
         {
-          id: "R1Q9",
-          question: "What concern does David raise about the quarterly performance reviews?",
+          id: "Reading-Part1-01-Q9",
+          question: "Could you clarify whether ___ will be taken into account when evaluating remote work eligibility?",
           options: [
-            "The reviews are too frequent and time-consuming",
-            "Seasonal workload variations may affect measurable output unfairly",
-            "The Marketing Department should be exempt from reviews",
-            "Performance reviews should be conducted by external consultants",
+            "employee seniority",
+            "seasonal variations in productivity",
+            "department budgets",
+            "client satisfaction scores",
           ],
           correctAnswer: 1,
           passage: passageB,
         },
         {
-          id: "R1Q10",
-          question: "What does David request regarding the monthly all-hands meetings?",
+          id: "Reading-Part1-01-Q10",
+          question: "Would it be feasible to provide at least ___ of the meeting agenda so that teams can plan accordingly?",
           options: [
-            "That they be moved to a different day of the week",
-            "That they be held virtually instead of in person",
-            "That at least two weeks' advance notice of the agenda be provided",
-            "That the Marketing Department be excused from attending",
+            "one week's advance notice",
+            "two weeks' advance notice",
+            "three days' advance notice",
+            "one month's advance notice",
           ],
-          correctAnswer: 2,
+          correctAnswer: 1,
           passage: passageB,
         },
         {
-          id: "R1Q11",
-          question: "What alternative does David suggest for employees who have business travel conflicts with the all-hands meetings?",
+          id: "Reading-Part1-01-Q11",
+          question: "For employees who travel for business, will ___ be accepted as an alternative when travel conflicts arise?",
           options: [
-            "Rescheduling the meeting to accommodate travellers",
-            "Sending a written summary instead of attending",
-            "Having a colleague attend on their behalf",
-            "Allowing virtual attendance as an alternative",
+            "sending a delegate",
+            "submitting a written report",
+            "rescheduling their trip",
+            "virtual attendance",
           ],
           correctAnswer: 3,
           passage: passageB,
@@ -814,10 +814,10 @@ Senior Marketing Manager`;
     };
   })(),
   {
-    id: "R2",
-    title: "Part 2: Reading to Apply a Diagram",
+    id: "Reading-Part2-01",
+    title: "01 | 8 Questions | Reading to Apply a Diagram",
     instruction:
-      "Study the following schedule and information, then answer the questions.",
+      "Read the following schedule and email. Then fill in each blank with the best word or phrase, or answer the question.",
     passage: `MAPLEWOOD COMMUNITY CENTRE — WINTER PROGRAM SCHEDULE
 
 Registration opens: November 15 | Programs begin: January 8
@@ -844,57 +844,28 @@ FEES (per 12-week session):
 NOTES:
 - All swimmers must pass a swim test before registering for Level 3 lessons.
 - Children under 8 must be accompanied by an adult during public swim.
-- Locker rentals: $25/session. Limited availability — first come, first served.`,
+- Locker rentals: $25/session. Limited availability — first come, first served.
+
+---
+
+Hi Karen,
+
+I just picked up the new winter schedule from Maplewood Community Centre. I think we should sign the kids up for swimming lessons! Registration opens on ___ [1], so we need to act fast.
+
+I was looking at the schedule and I think Level 2 lessons would work best. They're offered on ___ [2], which means I could drop the kids off on my way to my Saturday errands. The weekday afternoon Level 2 sessions are on Monday and Wednesday, but those conflict with Emma's piano lessons.
+
+I also noticed they have an Aqua Fit class in the early mornings. I know you've been looking for an exercise class — it runs on ___ [3] at 6:00 AM. The cost for the full session would be ___ [4].
+
+One more thing — since Mom is visiting in January, she might enjoy the seniors program. The good news is that since she's 70 and lives here, ___ [5]. I think she'd love the weekday morning sessions.
+
+Let me know what you think and I'll register everyone online.
+
+Talk soon,
+Megan`,
     questions: [
       {
-        id: "R2Q1",
-        question: "Which days of the week feature the water aerobics class during the early time slot?",
-        options: [
-          "Monday and Wednesday",
-          "Tuesday and Thursday",
-          "Wednesday and Friday",
-          "Monday and Friday",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R2Q2",
-        question: "What is the reason the swimming facility is unavailable at the end of the week?",
-        options: [
-          "Staff training",
-          "Private bookings",
-          "Maintenance",
-          "Low demand",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R2Q3",
-        question: "What is the price for a multi-visit bundle for open swim sessions?",
-        options: ["$35", "$40", "$45", "$50"],
-        correctAnswer: 2,
-      },
-      {
-        id: "R2Q4",
-        question: "What prerequisite must swimmers fulfill to enroll in the most advanced lesson tier?",
-        options: [
-          "A doctor's note",
-          "Completion of Level 2",
-          "A swim test",
-          "Parental consent",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R2Q5",
-        question:
-          "What fee would a local person over 65 pay to attend the morning session on a weekday?",
-        options: ["$3", "$5", "$45", "Free"],
-        correctAnswer: 3,
-      },
-      {
-        id: "R2Q6",
-        question: "On what date can people begin signing up for the seasonal activities?",
+        id: "Reading-Part2-01-Q1",
+        question: "Registration opens on ___.",
         options: [
           "October 15",
           "November 1",
@@ -904,194 +875,180 @@ NOTES:
         correctAnswer: 2,
       },
       {
-        id: "R2Q7",
-        question: "What would a household of two parents and two kids be charged for the weekend morning pool session?",
+        id: "Reading-Part2-01-Q2",
+        question: "They're offered on ___.",
         options: [
-          "$5 per person",
-          "$8 for the whole family",
-          "$10 for the whole family",
-          "$16 for the whole family",
+          "Tuesday and Thursday mornings",
+          "Saturday mornings",
+          "Monday and Wednesday afternoons",
+          "Friday mornings",
         ],
         correctAnswer: 1,
       },
       {
-        id: "R2Q8",
-        question: "What safety requirement is in place for younger children during open swim times?",
+        id: "Reading-Part2-01-Q3",
+        question: "It runs on ___ at 6:00 AM.",
         options: [
-          "They must wear a life jacket",
-          "They are not allowed in the pool",
-          "They must be accompanied by an adult",
-          "They can only swim in the shallow end",
+          "Monday and Wednesday",
+          "Monday through Friday",
+          "Tuesday and Thursday",
+          "Saturday and Sunday",
+        ],
+        correctAnswer: 2,
+      },
+      {
+        id: "Reading-Part2-01-Q4",
+        question: "The cost for the full session would be ___.",
+        options: ["$85", "$120", "$150", "$45"],
+        correctAnswer: 1,
+      },
+      {
+        id: "Reading-Part2-01-Q5",
+        question: "Since she's 70 and lives here, ___.",
+        options: [
+          "she would pay $3 per visit",
+          "she would need a doctor's note",
+          "it would be free for her",
+          "she could get a 10-visit pass for $45",
+        ],
+        correctAnswer: 2,
+      },
+      {
+        id: "Reading-Part2-01-Q6",
+        question: "Why did Megan rule out the weekday afternoon Level 2 sessions?",
+        options: [
+          "They are too expensive",
+          "They conflict with Emma's piano lessons",
+          "The pool is closed for maintenance",
+          "Karen works on those days",
+        ],
+        correctAnswer: 1,
+      },
+      {
+        id: "Reading-Part2-01-Q7",
+        question: "What requirement would the children need to meet before moving to Level 3?",
+        options: [
+          "A doctor's note",
+          "Completion of Level 2",
+          "A swim test",
+          "Parental consent",
+        ],
+        correctAnswer: 2,
+      },
+      {
+        id: "Reading-Part2-01-Q8",
+        question: "Megan and Karen are most likely ___.",
+        options: [
+          "coworkers",
+          "neighbours",
+          "sisters or partners who share a family",
+          "friends from the community centre",
         ],
         correctAnswer: 2,
       },
     ],
   },
   {
-    id: "R3",
-    title: "Part 3: Reading for Information",
-    instruction: "Read the following article and answer the questions.",
-    passage: `THE RISE OF URBAN FARMING IN CANADA
+    id: "Reading-Part3-01",
+    title: "01 | 9 Questions | Reading for Information",
+    instruction: "Read the following article. For each statement below, identify which paragraph (A, B, C, or D) the information is found in. If the information is not found in any paragraph, choose E.",
+    passage: `A. Urban farming — growing food in cities — is no longer a fringe movement. Across Canada, municipalities, non-profits, and everyday citizens are turning empty lots, rooftops, and even parking garages into productive green spaces. The trend has accelerated since 2020, driven by concerns about food security, environmental sustainability, and community well-being.
 
-Urban farming — growing food in cities — is no longer a fringe movement. Across Canada, municipalities, non-profits, and everyday citizens are turning empty lots, rooftops, and even parking garages into productive green spaces. The trend has accelerated since 2020, driven by concerns about food security, environmental sustainability, and community well-being.
+B. In Montreal, the Lufa Farms network operates the world's largest commercial rooftop greenhouse, spanning over 163,000 square feet across four locations. They deliver fresh vegetables to over 20,000 subscribers weekly, reducing food transportation distances dramatically. Their model proves that urban agriculture can be commercially viable at scale. Vancouver has taken a different approach, focusing on community gardens. The city now has over 100 community garden sites, with a waiting list of more than 3,000 people. In 2023, the city council approved a rezoning bylaw that allows urban farming on any residentially zoned lot, removing a significant regulatory barrier. Toronto's approach combines technology with tradition. Several vertical farming startups have set up operations in former industrial buildings in the city's east end. These facilities use LED lighting and hydroponic systems to grow leafy greens year-round, using 95% less water than conventional farming.
 
-In Montreal, the Lufa Farms network operates the world's largest commercial rooftop greenhouse, spanning over 163,000 square feet across four locations. They deliver fresh vegetables to over 20,000 subscribers weekly, reducing food transportation distances dramatically. Their model proves that urban agriculture can be commercially viable at scale.
+C. Critics argue that urban farming can never replace traditional agriculture at the scale needed to feed growing cities. Dr. Helena Marchetti, an agricultural economist at the University of Guelph, points out that "urban farms excel at growing leafy greens and herbs, but staple crops like wheat, corn, and potatoes still require vast tracts of rural farmland." However, proponents counter that urban farming addresses food deserts — neighbourhoods with limited access to fresh, affordable food. A 2023 report by Food Secure Canada found that 4.4 million Canadians live in food-insecure households. Community gardens and local farms can improve access and reduce reliance on long supply chains that are vulnerable to disruption.
 
-Vancouver has taken a different approach, focusing on community gardens. The city now has over 100 community garden sites, with a waiting list of more than 3,000 people. In 2023, the city council approved a rezoning bylaw that allows urban farming on any residentially zoned lot, removing a significant regulatory barrier.
+D. The economic potential is also significant. The Canadian Urban Farm Association estimates that the urban agriculture sector in Canada is now worth $2.8 billion annually and supports approximately 14,000 full-time jobs. As cities continue to grow, the integration of food production into urban planning is likely to become not just desirable but necessary.
 
-Toronto's approach combines technology with tradition. Several vertical farming startups have set up operations in former industrial buildings in the city's east end. These facilities use LED lighting and hydroponic systems to grow leafy greens year-round, using 95% less water than conventional farming.
-
-Critics argue that urban farming can never replace traditional agriculture at the scale needed to feed growing cities. Dr. Helena Marchetti, an agricultural economist at the University of Guelph, points out that "urban farms excel at growing leafy greens and herbs, but staple crops like wheat, corn, and potatoes still require vast tracts of rural farmland."
-
-However, proponents counter that urban farming addresses food deserts — neighbourhoods with limited access to fresh, affordable food. A 2023 report by Food Secure Canada found that 4.4 million Canadians live in food-insecure households. Community gardens and local farms can improve access and reduce reliance on long supply chains that are vulnerable to disruption.
-
-The economic potential is also significant. The Canadian Urban Farm Association estimates that the urban agriculture sector in Canada is now worth $2.8 billion annually and supports approximately 14,000 full-time jobs.
-
-As cities continue to grow, the integration of food production into urban planning is likely to become not just desirable but necessary.`,
+E. Not in any of the paragraphs`,
     questions: [
       {
-        id: "R3Q1",
-        question: "What type of agricultural facility is the Montreal-based company known for running?",
-        options: [
-          "Underground growing facilities",
-          "The world's largest commercial rooftop greenhouse",
-          "A chain of farmers' markets",
-          "A vertical farming startup",
-        ],
+        id: "Reading-Part3-01-Q1",
+        question: "A commercial farm delivers fresh vegetables to thousands of customers on a weekly basis.",
+        options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
       },
       {
-        id: "R3Q2",
-        question: "Approximately how many shared growing plots are available in Vancouver?",
-        options: ["50", "75", "100", "150"],
+        id: "Reading-Part3-01-Q2",
+        question: "A city government changed its land-use regulations to remove a barrier to urban agriculture.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 1,
+      },
+      {
+        id: "Reading-Part3-01-Q3",
+        question: "Indoor growing facilities use significantly less water than conventional farming methods.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 1,
+      },
+      {
+        id: "Reading-Part3-01-Q4",
+        question: "An expert questions whether urban farms can produce essential staple crops at a large enough scale.",
+        options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
-        id: "R3Q3",
-        question:
-          "What growing method allows indoor farms in Toronto to dramatically reduce their water consumption?",
-        options: [
-          "Drip irrigation",
-          "Rainwater collection",
-          "Hydroponic systems",
-          "Desalination",
-        ],
+        id: "Reading-Part3-01-Q5",
+        question: "Millions of Canadians live in households that do not have reliable access to adequate food.",
+        options: ["A", "B", "C", "D", "E"],
         correctAnswer: 2,
       },
       {
-        id: "R3Q4",
-        question:
-          "What shortcoming of city-based agriculture does the Guelph economist highlight?",
-        options: [
-          "It's too expensive",
-          "It can't grow staple crops at scale",
-          "It uses too much water",
-          "It requires too many workers",
-        ],
+        id: "Reading-Part3-01-Q6",
+        question: "The growth of urban farming has been driven by worries about food security and the environment.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 0,
+      },
+      {
+        id: "Reading-Part3-01-Q7",
+        question: "High demand for shared growing spaces in one city has resulted in a long waiting list.",
+        options: ["A", "B", "C", "D", "E"],
         correctAnswer: 1,
       },
       {
-        id: "R3Q5",
-        question:
-          "According to the Food Secure Canada study, how many million people in the country lack reliable access to adequate nutrition?",
-        options: [
-          "2.2",
-          "3.5",
-          "4.4",
-          "5.8",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R3Q6",
-        question:
-          "How many billions of dollars in revenue does city-based food production generate across the country each year?",
-        options: [
-          "$1.5",
-          "$2.8",
-          "$3.6",
-          "$4.4",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R3Q7",
-        question: "How does the article define areas referred to as 'food deserts'?",
-        options: [
-          "Areas where farming is impossible due to climate",
-          "Neighbourhoods with limited access to fresh, affordable food",
-          "Regions affected by drought",
-          "Countries that import most of their food",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R3Q8",
-        question:
-          "By what percentage do the indoor growing operations in Toronto cut water usage compared to traditional agriculture?",
-        options: ["75%", "85%", "90%", "95%"],
+        id: "Reading-Part3-01-Q8",
+        question: "The urban agriculture sector provides a significant number of full-time employment opportunities.",
+        options: ["A", "B", "C", "D", "E"],
         correctAnswer: 3,
       },
       {
-        id: "R3Q9",
-        question:
-          "Roughly how many permanent positions does city-based food production sustain nationwide?",
-        options: ["8,000", "10,000", "14,000", "20,000"],
-        correctAnswer: 2,
+        id: "Reading-Part3-01-Q9",
+        question: "The Canadian government has announced a national strategy to fund urban farming initiatives.",
+        options: ["A", "B", "C", "D", "E"],
+        correctAnswer: 4,
       },
     ],
   },
-  (() => {
-    const vpA = `SHOULD CANADA ADOPT A FOUR-DAY WORK WEEK?
+  {
+    id: "Reading-Part4-01",
+    title: "01 | 10 Questions | Reading for Viewpoints",
+    instruction:
+      "Read the following article and response. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
+    passage: `SHOULD CANADA ADOPT A FOUR-DAY WORK WEEK?
 
-VIEWPOINT A — By Rachel Kim, Management Consultant
-
-The four-day work week is not just a feel-good idea — it's an evidence-based productivity strategy. Pilot programs in Iceland, the UK, and Japan have consistently shown that when employees work four days instead of five, productivity stays the same or even improves. In Iceland's landmark trial involving over 2,500 workers, productivity remained steady while employee well-being scores increased dramatically.
+The four-day work week is gaining momentum worldwide, and Canada is paying attention. Pilot programs in Iceland, the UK, and Japan have consistently shown that when employees work four days instead of five, productivity stays the same or even improves. In Iceland's landmark trial involving over 2,500 workers, productivity remained steady while employee well-being scores increased dramatically.
 
 The benefits extend beyond individual well-being. Reduced commuting means lower carbon emissions. Fewer office days mean lower operational costs for businesses. And in a tight labour market, offering a four-day week can be a powerful recruitment and retention tool. A recent survey by Indeed Canada found that 67% of Canadian workers would consider taking a pay cut of up to 5% for a four-day schedule.
 
-Canada should launch a nationwide pilot program, starting with the public sector. The data is compelling, and we can't afford to fall behind other nations that are already making this shift.`;
+However, critics argue the model is impractical for many industries. David Chen, a logistics company owner with 45 employees, points out that his clients expect deliveries six days a week. If his drivers worked only four days, he would need to hire 20% more staff to maintain the same service level. The pilot programs cited by advocates mostly involved office-based, knowledge-economy workers and don't represent the reality of manufacturing, healthcare, retail, or logistics.
 
-    const vpB = `SHOULD CANADA ADOPT A FOUR-DAY WORK WEEK?
+Labour economist Dr. Sandra Okafor suggests that the goal shouldn't be a mandated four-day week but rather a framework that empowers businesses and employees to negotiate arrangements suited to their context. In her research, the most successful work-time reduction models are sector-specific: hospitals use compressed shifts, tech companies offer flexible Fridays, and retail businesses rotate shorter weeks among staff. She argues that legislation should protect workers who negotiate alternative schedules from discrimination, noting that requesting reduced hours can currently signal a lack of commitment, especially for women and caregivers.
 
-VIEWPOINT B — By David Chen, Small Business Owner
+---
 
-As the owner of a logistics company with 45 employees, I can tell you that a four-day work week sounds wonderful in theory but is impractical for many industries. Our clients expect deliveries six days a week. If my drivers work only four days, I'd need to hire 20% more staff to maintain the same service level. That cost would either cut into our already thin margins or be passed on to consumers.
-
-The pilot programs cited by advocates mostly involved office-based, knowledge-economy workers. They don't represent the reality of manufacturing, healthcare, retail, or logistics. A cashier at a grocery store can't compress five days of customer interactions into four.
-
-Instead of mandating a shorter work week, the government should focus on improving working conditions across the board — better overtime pay, stronger mental health supports, and more affordable childcare. These changes would benefit all workers, not just those in desk jobs.`;
-
-    const vpC = `SHOULD CANADA ADOPT A FOUR-DAY WORK WEEK?
-
-VIEWPOINT C — By Dr. Sandra Okafor, Labour Economist
-
-Both sides make valid points, but the debate often ignores a crucial nuance: flexibility versus uniformity. Not every business can operate on the same schedule, and that's fine. The goal shouldn't be a mandated four-day week but rather a framework that empowers businesses and employees to negotiate arrangements that work for their specific context.
-
-In my research, the most successful work-time reduction models are sector-specific. Hospitals use compressed shifts. Tech companies offer flexible Fridays. Retail businesses rotate shorter weeks among staff. A one-size-fits-all policy would create more problems than it solves.
-
-What we do need is legislation that protects workers who negotiate alternative schedules from discrimination or penalization. Currently, requesting reduced hours can signal a lack of commitment, especially for women and caregivers. A legal framework that normalizes work-time flexibility without stigma would be the most effective approach.`;
-
-    return {
-      id: "R4",
-      title: "Part 4: Reading for Viewpoints",
-      instruction:
-        "Read the opinion pieces and answer the questions. Each question shows the relevant viewpoint.",
-      passage: vpA,
-      questions: [
-        { id: "R4Q1", question: "What research does the management consultant reference to back up her position?", options: ["A Canadian government study", "Pilot programs in Iceland, the UK, and Japan", "Research from Harvard University", "A survey by the World Health Organization"], correctAnswer: 1, passage: vpA },
-        { id: "R4Q2", question: "Based on a national employment survey, what trade-off would a majority of Canadian employees be willing to accept?", options: ["Quitting their current job", "Moving to a different city for better hours", "Taking a pay cut of up to 5% for a four-day week", "Working longer hours for higher pay"], correctAnswer: 2, passage: vpA },
-        { id: "R4Q3", question: "What is the primary objection raised by the logistics company owner?", options: ["It would reduce employee morale", "It's impractical for industries like logistics", "It would increase carbon emissions", "It would require too much government spending"], correctAnswer: 1, passage: vpB },
-        { id: "R4Q4", question: "What alternative measures does the small business owner propose to help workers?", options: ["Higher minimum wages", "More vacation time", "Better overtime pay, mental health supports, and affordable childcare", "Tax cuts for businesses"], correctAnswer: 2, passage: vpB },
-        { id: "R4Q5", question: "According to the labour economist, what outcome should policymakers prioritize?", options: ["A mandatory three-day weekend for all", "A framework for flexible negotiations, not a uniform mandate", "Eliminating overtime entirely", "Letting the market decide without any regulation"], correctAnswer: 1, passage: vpC },
-        { id: "R4Q6", question: "What stigma does the economist say employees encounter when seeking a lighter schedule?", options: ["They lose benefits", "They are paid less per hour", "They may be seen as less committed, especially women and caregivers", "Their contracts are automatically terminated"], correctAnswer: 2, passage: vpC },
-        { id: "R4Q7", question: "By what percentage would the logistics company owner need to expand his workforce?", options: ["10%", "15%", "20%", "25%"], correctAnswer: 2, passage: vpB },
-        { id: "R4Q8", question: "Which author is most in favour of the public sector taking the lead on this change?", options: ["Viewpoint A (Rachel Kim)", "Viewpoint B (David Chen)", "Viewpoint C (Dr. Okafor)", "All three equally"], correctAnswer: 0, passage: vpA },
-        { id: "R4Q9", question: "Which approach to shortening working hours does the labour economist find most effective?", options: ["Universal four-day weeks", "Sector-specific models", "Individual negotiations without any framework", "Government-mandated schedules"], correctAnswer: 1, passage: vpC },
-        { id: "R4Q10", question: "How many participants took part in the major Icelandic experiment with a reduced-day schedule?", options: ["1,000", "1,500", "2,500", "5,000"], correctAnswer: 2, passage: vpA },
-      ],
-    };
-  })(),
+As someone who has worked in logistics for 15 years, I think this article raises some important points. The Iceland trial sounds impressive, but I doubt the results would ___ [6]. David Chen is right that in our industry, switching to four days would ___ [7]. I've seen companies try compressed schedules before, and the result was ___ [8]. Dr. Okafor's idea about sector-specific models makes the most sense to me. What we really need is ___ [9]. The article mentions that 67% of workers would accept a pay cut, but I suspect most of those people are already ___ [10].`,
+    questions: [
+      { id: "Reading-Part4-01-Q1", question: "What did the Iceland trial demonstrate about the four-day work week?", options: ["Productivity declined slightly but was acceptable", "Productivity stayed the same or improved while well-being increased", "Workers were less satisfied with their jobs", "Companies saved money but workers were unhappy"], correctAnswer: 1 },
+      { id: "Reading-Part4-01-Q2", question: "What trade-off would a majority of Canadian workers be willing to accept for a four-day schedule?", options: ["Quitting their current job", "Moving to a different city for better hours", "Taking a pay cut of up to 5%", "Working longer hours for higher pay"], correctAnswer: 2 },
+      { id: "Reading-Part4-01-Q3", question: "Why does David Chen believe the four-day work week is impractical for his business?", options: ["His employees don't want shorter weeks", "His clients expect deliveries six days a week and he would need 20% more staff", "His company has already tried it and failed", "Government regulations prevent him from changing schedules"], correctAnswer: 1 },
+      { id: "Reading-Part4-01-Q4", question: "What does Dr. Okafor believe is the most effective approach to work-time reduction?", options: ["A mandatory four-day week for all industries", "Sector-specific models with legal protections for workers", "Letting each company decide without any government involvement", "Eliminating overtime pay entirely"], correctAnswer: 1 },
+      { id: "Reading-Part4-01-Q5", question: "According to Dr. Okafor, what stigma do workers face when requesting reduced hours?", options: ["They lose health benefits", "They are paid less per hour", "They may be seen as less committed, especially women and caregivers", "Their contracts are automatically terminated"], correctAnswer: 2 },
+      { id: "Reading-Part4-01-Q6", question: "I doubt the results would ___.", options: ["apply to physically demanding jobs like logistics", "be repeated in any other country", "impress Canadian politicians", "change the way people think about work"], correctAnswer: 0 },
+      { id: "Reading-Part4-01-Q7", question: "Switching to four days would ___.", options: ["improve driver morale immediately", "have no effect on our operations", "force us to hire more people and raise costs", "make our clients switch to competitors"], correctAnswer: 2 },
+      { id: "Reading-Part4-01-Q8", question: "I've seen companies try compressed schedules before, and the result was ___.", options: ["a huge success for everyone involved", "employee burnout from longer daily shifts", "an increase in company profits", "better customer satisfaction"], correctAnswer: 1 },
+      { id: "Reading-Part4-01-Q9", question: "What we really need is ___.", options: ["a law requiring all companies to adopt a four-day week", "flexible arrangements that fit different types of work", "higher wages instead of shorter hours", "more government-funded research on the topic"], correctAnswer: 1 },
+      { id: "Reading-Part4-01-Q10", question: "I suspect most of those people are already ___.", options: ["working in physically demanding jobs", "unhappy with their current employers", "earning enough to afford a small pay cut", "planning to quit their jobs"], correctAnswer: 2 },
+    ],
+  },
 ];
 
 export const readingParts: ReadingPart[] = [...readingPartsBase, ...readingPartsExtra, ...madEnglishTask1Parts, ...madEnglishTask2Parts, ...madEnglishTask3Parts, ...madEnglishTask4Parts];
@@ -1103,7 +1060,7 @@ export const readingPartsOfficial: ReadingPart[] = readingPartsBase;
 const writingTasksBase: WritingTask[] = [
   {
     id: "W1",
-    title: "Task 1: Writing an Email",
+    title: "01 | Writing an Email",
     instruction:
       "Read the following situation and write an email of about 150–200 words.",
     prompt: `You recently moved into a new apartment. After the first week, you noticed several problems: the kitchen faucet leaks constantly, the heating system doesn't work properly in the bedroom, and there is a crack in the bathroom window.
@@ -1117,7 +1074,7 @@ Write an email to your landlord. In your email:
   },
   {
     id: "W2",
-    title: "Task 2: Responding to Survey Questions",
+    title: "01 | Responding to Survey Questions",
     instruction:
       "Read the following information and write a response of about 150–200 words.",
     prompt: `Your city council is considering two options for developing an empty lot in your neighbourhood:
@@ -1150,7 +1107,7 @@ const speakingTasksBase: SpeakingTask[] = [
   },
   {
     id: "S1",
-    title: "Task 1: Giving Advice",
+    title: "01 | Giving Advice",
     instruction:
       "A friend is asking you for advice. Respond as if you are speaking to them.",
     prompt:
@@ -1160,7 +1117,7 @@ const speakingTasksBase: SpeakingTask[] = [
   },
   {
     id: "S2",
-    title: "Task 2: Talking About a Personal Experience",
+    title: "01 | Talking About a Personal Experience",
     instruction: "Describe a personal experience based on the prompt below.",
     prompt:
       "Talk about a time when you had to learn something new quickly. What was the situation? What did you do? How did it turn out?",
@@ -1169,7 +1126,7 @@ const speakingTasksBase: SpeakingTask[] = [
   },
   {
     id: "S3",
-    title: "Task 3: Describing a Scene",
+    title: "01 | Describing a Scene",
     instruction:
       "Describe the scene below in as much detail as possible. Imagine you are describing it to someone who cannot see it.",
     prompt:
@@ -1179,7 +1136,7 @@ const speakingTasksBase: SpeakingTask[] = [
   },
   {
     id: "S4",
-    title: "Task 4: Making Predictions",
+    title: "01 | Making Predictions",
     instruction: "Make predictions about the situation described below.",
     prompt:
       "A major technology company has just announced that it will open a large office in a small Canadian town of 15,000 people. The office will employ 2,000 workers. What do you think will happen to the town? Discuss both positive and negative effects.",
@@ -1188,7 +1145,7 @@ const speakingTasksBase: SpeakingTask[] = [
   },
   {
     id: "S5",
-    title: "Task 5: Comparing and Persuading",
+    title: "01 | Comparing and Persuading",
     instruction:
       "Compare the two options below and persuade your friend to choose the one you prefer.",
     prompt:
@@ -1198,7 +1155,7 @@ const speakingTasksBase: SpeakingTask[] = [
   },
   {
     id: "S6",
-    title: "Task 6: Dealing with a Difficult Situation",
+    title: "01 | Dealing with a Difficult Situation",
     instruction: "Respond to the difficult situation described below.",
     prompt:
       "You are a team leader at work. One of your team members, who is usually very reliable, has been arriving late and missing deadlines for the past two weeks. Other team members are starting to complain. How would you handle this situation? What would you say to the team member?",
@@ -1207,7 +1164,7 @@ const speakingTasksBase: SpeakingTask[] = [
   },
   {
     id: "S7",
-    title: "Task 7: Expressing Opinions",
+    title: "01 | Expressing Opinions",
     instruction: "Express your opinion on the topic below.",
     prompt:
       "Some people believe that social media has made people more connected, while others think it has made people more isolated. What is your opinion? Give reasons and examples to support your view.",
@@ -1216,7 +1173,7 @@ const speakingTasksBase: SpeakingTask[] = [
   },
   {
     id: "S8",
-    title: "Task 8: Describing an Unusual Situation",
+    title: "01 | Describing an Unusual Situation",
     instruction:
       "Describe what is happening in the unusual situation below and explain what you think might have led to it.",
     prompt:
