@@ -12,6 +12,7 @@ import { useHistory } from "@/lib/hooks/use-history";
 import { useAuth } from "@/lib/hooks/use-auth";
 import TranscriptAudioPlayer from "@/components/TranscriptAudioPlayer";
 import ReadingPassageRenderer from "@/components/ReadingPassageRenderer";
+import RedFlagButton from "@/components/RedFlagButton";
 
 interface QuizQuestion {
   question: Question;
@@ -835,6 +836,7 @@ export default function QuizPractice({
                     <span className="text-xs text-[var(--quiz-ink)]/40 font-medium">
                       Question {currentIndex + 1} of {questions.length}
                     </span>
+                    <RedFlagButton questionId={q.id} section={section} />
                   </div>
 
                   {isSpeakingQuestion ? (
@@ -954,6 +956,7 @@ export default function QuizPractice({
                     <span className="text-xs text-[var(--quiz-ink)]/40 font-medium">
                       Question {currentIndex + 1} of {questions.length}
                     </span>
+                    <RedFlagButton questionId={q.id} section={section} />
                   </div>
 
                   <p className="text-sm leading-relaxed text-[var(--quiz-ink)] mb-5">{q.question}</p>
@@ -1065,6 +1068,7 @@ export default function QuizPractice({
                       <span className="text-xs text-[var(--quiz-ink)]/40 font-medium">
                         Question {currentIndex + 1} of {questions.length}
                       </span>
+                      <RedFlagButton questionId={q.id} section={section} />
                     </div>
 
                     <p className="text-sm leading-relaxed text-[var(--quiz-ink)] mb-4">{q.question}</p>

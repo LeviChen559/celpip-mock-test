@@ -197,6 +197,16 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(enriched);
   }
 
+  if (action === "red-flags") {
+    const { data, error } = await supabase
+      .from("red_flags")
+      .select("*, profiles!red_flags_user_id_fkey(name, email)")
+      .order("created_at", { ascending: false });
+
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json(data || []);
+  }
+
   return NextResponse.json({ error: "Unknown action" }, { status: 400 });
 }
 
@@ -206,7 +216,19 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
   }
 
-  const { action, userId, role, teacherId, studentId, studentIds } = await req.json();
+  const { action, userId, role, teacherId, studentId, studentIds, flagId } = await req.json();
+
+  if (action === "solve-red-flag") {
+    if (!flagId) return NextResponse.json({ error: "flagId required" }, { status: 400 });
+    const adminId = await getAuthUserId(supabase);
+    const { error } = await supabase
+      .from("red_flags")
+      .update({ solved: true, solved_by: adminId, solved_at: new Date().toISOString() })
+      .eq("id", flagId);
+
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ success: true });
+  }
 
   if (action === "update-role") {
     if (!userId || !role) return NextResponse.json({ error: "userId and role required" }, { status: 400 });
