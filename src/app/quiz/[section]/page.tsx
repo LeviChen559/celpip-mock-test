@@ -1034,10 +1034,10 @@ export default function QuizPractice({
           {/* Mobile reading layout: fixed passage + scrollable questions */}
           <div className="flex flex-col lg:hidden" style={{ height: "calc(100vh - 52px)" }}>
             {/* Fixed passage area */}
-            <div className="shrink-0 px-0 sm:px-4 pt-2 pb-1">
-              <div className="quiz-card !rounded-none sm:!rounded-[10px] !border-x-0 sm:!border-x">
+            <div className="shrink-0 px-0 sm:px-4 pt-0 sm:pt-2 pb-1">
+              <div className="quiz-card quiz-card-flush sm:!rounded-[10px] sm:!border">
                 <div className="h-1 bg-gradient-to-r from-[var(--quiz-copper)] via-[var(--quiz-copper-light)] to-transparent" />
-                <div className="px-2 py-3 sm:p-4">
+                <div className="px-3 py-3 sm:p-4">
                   <div className="flex items-center gap-2 mb-1">
                     <h2 className="font-serif text-base font-bold text-[var(--quiz-ink)]">{current.partTitle}</h2>
                     {current.contextLabel && (
@@ -1056,8 +1056,8 @@ export default function QuizPractice({
             {/* Scrollable question + options area */}
             <div className="flex-1 overflow-y-auto px-0 sm:px-4 pb-4">
               <div className="flex flex-col gap-4">
-                <div className="quiz-card quiz-slide-in !rounded-none sm:!rounded-[10px] !border-x-0 sm:!border-x" key={slideKey}>
-                  <div className="px-2 py-3 sm:p-4">
+                <div className="quiz-card quiz-card-flush quiz-slide-in sm:!rounded-[10px] sm:!border" key={slideKey}>
+                  <div className="px-3 py-3 sm:p-4">
                     <div className="flex items-center gap-3 mb-3">
                       <span className="w-7 h-7 rounded-lg bg-[var(--quiz-copper)]/10 flex items-center justify-center text-sm font-bold text-[var(--quiz-copper)]">
                         {currentIndex + 1}

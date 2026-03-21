@@ -409,6 +409,12 @@
   position: relative;
   overflow: hidden;
 }
+.quiz-card.quiz-card-flush {
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+  box-shadow: none;
+}
 .quiz-card::before {
   content: '';
   position: absolute;
