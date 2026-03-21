@@ -263,7 +263,7 @@ Receptionist: Got it. You're all set for Thursday, October 12th at 10:15 AM with
   },
   {
     id: "L3",
-    title: "01 | 6 Questions | Listening to Information",
+    title: "01 | 6 Questions | Listening for Information",
     instruction:
       "You will hear an informational presentation. Listen carefully and answer the questions.",
     transcript: `Welcome to the City of Maplewood's annual community update. I'm Mayor Linda Park, and I'm here to share some exciting developments for the coming year.
@@ -508,7 +508,7 @@ Lisa: Sounds good.`,
   },
   {
     id: "L6",
-    title: "01 | 6 Questions | Listening to Viewpoints",
+    title: "01 | 6 Questions | Listening for Viewpoints",
     instruction:
       "You will hear a discussion presenting different viewpoints. Listen and answer the questions.",
     transcript: `Host: Welcome to Community Voices. Today we're discussing whether the city should ban single-use plastics. I have two guests: Dr. Amy Foster, an environmental scientist, and Mark Sullivan, who represents the local restaurant association.
