@@ -333,7 +333,7 @@ export default function Dashboard() {
       <nav className="max-w-screen-xl mx-auto px-4 sm:px-6 pt-6 flex items-center gap-2 relative z-10">
         <button
           onClick={() => router.push("/")}
-          className="text-xs font-semibold tracking-widest uppercase mr-auto transition-colors shrink-0"
+          className="text-xs font-semibold tracking-widest mr-auto transition-colors shrink-0"
           style={{ color: "var(--hp-accent)" }}
           onMouseEnter={(e) =>
             (e.currentTarget.style.color = "var(--hp-accent-light)")

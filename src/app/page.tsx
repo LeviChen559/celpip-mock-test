@@ -195,7 +195,7 @@ export default function Home() {
       {/* ── Nav ─────────────────────────────────────── */}
       <nav className="max-w-screen-xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8 flex justify-between items-center relative z-10 hp-reveal">
         <span
-          className="text-xs sm:text-sm font-semibold tracking-wider sm:tracking-widest uppercase shrink-0"
+          className="text-xs sm:text-sm font-semibold tracking-wider sm:tracking-widest shrink-0"
           style={{ color: "var(--hp-accent)" }}
         >
           PugPIP
@@ -834,7 +834,7 @@ export default function Home() {
           }}
         >
           <span
-            className="text-xs tracking-widest uppercase"
+            className="text-xs tracking-widest"
             style={{ color: "var(--hp-text-muted)" }}
           >
             PugPIP
