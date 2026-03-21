@@ -39,13 +39,13 @@ Dear Ms. Nguyen,
 
 Thank you for the detailed announcement regarding the merger. I have been with Northern Digital Solutions in the Thunder Bay office for over seven years, and I appreciate the transparency in your message. However, I do have a few questions and concerns that I hope can be addressed.
 
-First, while I understand that the Thunder Bay office will remain open as a regional hub, I am wondering whether the scope of our work here will change. Currently, our team of 14 developers handles all back-end infrastructure for Northern Digital's client projects. Will the Thunder Bay team continue to manage these projects independently, or will responsibilities be redistributed to the Winnipeg office after the merger?
+First, while I understand that the Thunder Bay office will remain open as a regional hub, I am wondering whether the scope of our work here will change. Currently, our team of 14 developers handles all back-end infrastructure for Northern Digital's client projects. Will the Thunder Bay team continue to ___ [7], or will responsibilities be redistributed to the Winnipeg office after the merger?
 
-Second, regarding the new benefits package, several colleagues and I are currently enrolled in Northern Digital's extended health plan, which includes coverage for physiotherapy and mental health counselling up to $3,000 per year. We would like to know whether these specific benefits will be preserved or reduced under the new combined package.
+Second, regarding the new benefits package, several colleagues and I are currently enrolled in Northern Digital's extended health plan, which includes coverage for physiotherapy and mental health counselling up to $3,000 per year. We would like to know whether these specific benefits will be ___ [8] under the new combined package.
 
-Third, I noticed that the Culture Integration Committee will be made up of volunteers. I would like to put my name forward for this committee. Could you let me know when and how the selection process will take place? I believe representation from the Thunder Bay office is essential to ensure our team's perspective is included.
+Third, I noticed that the Culture Integration Committee will be made up of volunteers. I would like to ___ [9] for this committee. I believe representation from the Thunder Bay office is essential to ensure our team's perspective is included.
 
-Finally, I want to raise a practical concern about communication. Since the merger announcement, there has been a great deal of uncertainty among staff here. Many of my colleagues feel that most of the planning discussions have been centred in Winnipeg, and they worry that decisions affecting our office may be made without sufficient input from Thunder Bay employees. Would it be possible to schedule a dedicated town hall meeting — either in person or via video conference — specifically for Thunder Bay staff before March 25th?
+Finally, I want to raise a practical concern about communication. Since the merger announcement, there has been a great deal of ___ [10] among staff here. Many of my colleagues feel that most of the planning discussions have been centred in Winnipeg, and they worry that decisions affecting our office may be made without ___ [11] from Thunder Bay employees.
 
 I appreciate your openness to questions and look forward to hearing back from the transition team.
 
@@ -58,7 +58,7 @@ Northern Digital Solutions`;
       id: "R5",
       title: "Part 5: Reading Correspondence",
       instruction:
-        "Read the following email exchange and answer the questions. Questions 1–6 are based on the first email from the CEO. Questions 7–11 are based on the employee's response.",
+        "Read the following email exchange. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
       passage: passageA,
       questions: [
         {
@@ -122,60 +122,60 @@ Northern Digital Solutions`;
         },
         {
           id: "R5Q7",
-          question: "How many developers currently work in the Thunder Bay office?",
+          question: "Will the Thunder Bay team continue to ___?",
           options: [
-            "7",
-            "10",
-            "14",
-            "18",
+            "report to the same manager",
+            "manage these projects independently",
+            "work on front-end development",
+            "hire new staff from Winnipeg",
+          ],
+          correctAnswer: 1,
+          passage: passageB,
+        },
+        {
+          id: "R5Q8",
+          question: "We would like to know whether these specific benefits will be ___ under the new combined package.",
+          options: [
+            "expanded or improved",
+            "eliminated entirely",
+            "preserved or reduced",
+            "transferred to a private plan",
           ],
           correctAnswer: 2,
           passage: passageB,
         },
         {
-          id: "R5Q8",
-          question: "What specific type of work does the Thunder Bay development team currently handle?",
+          id: "R5Q9",
+          question: "I would like to ___ for this committee.",
           options: [
-            "Front-end design for marketing websites",
-            "Back-end infrastructure for client projects",
-            "Quality assurance testing for mobile apps",
-            "Customer support and technical documentation",
+            "nominate a colleague",
+            "put my name forward",
+            "submit an application form",
+            "request an interview",
           ],
           correctAnswer: 1,
-          passage: passageB,
-        },
-        {
-          id: "R5Q9",
-          question: "How much annual coverage does Northern Digital's current extended health plan provide for physiotherapy and mental health counselling?",
-          options: [
-            "$1,200",
-            "$1,500",
-            "$2,000",
-            "$3,000",
-          ],
-          correctAnswer: 3,
           passage: passageB,
         },
         {
           id: "R5Q10",
-          question: "What does James request be arranged specifically for Thunder Bay employees before March 25th?",
+          question: "There has been a great deal of ___ among staff here.",
           options: [
-            "A salary review meeting",
-            "A dedicated town hall meeting",
-            "A visit from the CEO to the Thunder Bay office",
-            "A written summary of all planned changes",
+            "excitement",
+            "frustration",
+            "uncertainty",
+            "resistance",
           ],
-          correctAnswer: 1,
+          correctAnswer: 2,
           passage: passageB,
         },
         {
           id: "R5Q11",
-          question: "What is the main concern James raises about communication during the merger process?",
+          question: "They worry that decisions affecting our office may be made without ___ from Thunder Bay employees.",
           options: [
-            "That emails are not being delivered to Thunder Bay staff",
-            "That the transition team has not responded to previous inquiries",
-            "That planning discussions have been centred in Winnipeg without sufficient input from Thunder Bay",
-            "That the merger announcement was sent too late for staff to prepare",
+            "written approval",
+            "financial support",
+            "sufficient input",
+            "formal consent",
           ],
           correctAnswer: 2,
           passage: passageB,
@@ -187,7 +187,7 @@ Northern Digital Solutions`;
     id: "R6",
     title: "Part 6: Reading to Apply a Diagram",
     instruction:
-      "Read the following transit information and answer the questions.",
+      "Read the following transit information and email. Then fill in each blank with the best word or phrase, or answer the question.",
     passage: `CITY OF EDMONTON — VALLEY LINE LRT RIDER GUIDE
 
 Route Overview:
@@ -213,87 +213,104 @@ Service Hours:
 - Sunday and Holidays: 7:00 AM to 11:00 PM, with trains every 15 minutes.
 
 Accessibility:
-All stations are fully accessible, with elevators, tactile guide paths, and priority seating on every train. Service animals are welcome at all times.`,
+All stations are fully accessible, with elevators, tactile guide paths, and priority seating on every train. Service animals are welcome at all times.
+
+---
+
+Hey Marcus,
+
+Great news — the new Valley Line LRT is finally open! I looked into it for our family trip to West Edmonton Mall this Sunday. We can catch the train at Mill Woods and get off right at the mall. The whole trip takes about ___ [1], so it's way faster than driving in traffic.
+
+I checked the fares and since we're bringing the kids (ages 6 and 9), they would ___ [2] as long as one of us pays. I think a day pass would be worth it at ___ [3] each, since we'll probably want to hop on and off if we visit the museum near Government Centre too.
+
+One thing to keep in mind — on Sundays the trains only run every ___ [4], so we should check the schedule and not cut it too close. Also, when we get to the mall station, we don't even need to go outside — there's ___ [5] that takes you right into the building.
+
+Let me know if Sunday works for you!
+
+Tanya`,
     questions: [
       {
         id: "R6Q1",
-        question:
-          "How many minutes does a complete trip across the entire light rail route take?",
+        question: "The whole trip takes about ___.",
         options: [
-          "42",
-          "47",
-          "52",
-          "60",
+          "27 minutes",
+          "42 minutes",
+          "52 minutes",
+          "90 minutes",
         ],
         correctAnswer: 2,
       },
       {
         id: "R6Q2",
-        question:
-          "Where should passengers get off to connect to the north-south rail line?",
+        question: "They would ___ as long as one of us pays.",
         options: [
-          "Bonnie Doon",
-          "Churchill",
-          "Government Centre",
-          "Mill Woods",
+          "need a youth pass",
+          "each pay $3.50",
+          "ride free",
+          "need their own day pass",
         ],
-        correctAnswer: 1,
+        correctAnswer: 2,
       },
       {
         id: "R6Q3",
-        question: "What is the price of a 30-day transit pass for a teenager?",
-        options: ["$50.00", "$75.00", "$100.00", "$10.25"],
-        correctAnswer: 1,
+        question: "I think a day pass would be worth it at ___ each.",
+        options: ["$3.50", "$7.00", "$10.25", "$75.00"],
+        correctAnswer: 2,
       },
       {
         id: "R6Q4",
-        question:
-          "What is the maximum number of young riders who travel at no cost when accompanied by a paying grown-up?",
-        options: ["1", "2", "3", "4"],
+        question: "On Sundays the trains only run every ___.",
+        options: [
+          "5 minutes",
+          "10 minutes",
+          "15 minutes",
+          "20 minutes",
+        ],
         correctAnswer: 2,
       },
       {
         id: "R6Q5",
-        question:
-          "How often (in minutes) does service run on weekends' second day?",
+        question: "There's ___ that takes you right into the building.",
         options: [
-          "5",
-          "10",
-          "15",
-          "20",
+          "a shuttle bus",
+          "an underground pedway from the platform",
+          "a sky bridge",
+          "a street-level entrance",
+        ],
+        correctAnswer: 1,
+      },
+      {
+        id: "R6Q6",
+        question: "Where would Tanya and Marcus need to transfer if they wanted to visit the Royal Alberta Museum?",
+        options: [
+          "Churchill",
+          "Bonnie Doon",
+          "Government Centre",
+          "Lewis Farms",
         ],
         correctAnswer: 2,
       },
       {
-        id: "R6Q6",
-        question:
-          "How many vehicle spots does the drive-and-ride facility at the southeast terminal offer?",
-        options: ["200", "350", "450", "500"],
-        correctAnswer: 2,
-      },
-      {
         id: "R6Q7",
-        question:
-          "What is the connection between the train stop and the large shopping centre?",
+        question: "Why does Tanya suggest they check the schedule carefully on Sunday?",
         options: [
-          "By taking a shuttle bus",
-          "Through an underground pedway from the platform",
-          "By walking across a sky bridge",
-          "Through the mall's main entrance on street level",
+          "The trains stop running early in the evening",
+          "The trains run less frequently on Sundays",
+          "Some stations are closed on weekends",
+          "The park-and-ride lot fills up quickly",
         ],
         correctAnswer: 1,
       },
       {
         id: "R6Q8",
-        question:
-          "How many minutes can a passenger use one individual ticket to make connections?",
+        question: "Tanya and Marcus are most likely ___.",
         options: [
-          "60",
-          "90",
-          "120",
-          "No limit — the entire day",
+          "coworkers planning a team outing",
+          "tourists visiting Edmonton for the first time",
+          "a couple or family members planning a day trip",
+          "neighbours who commute together",
         ],
-        correctAnswer: 1,
+        correctAnswer: 2,
       },
     ],
   },
