@@ -224,7 +224,7 @@ export default function Results() {
               {getScoreLabel(overallScore)}
             </p>
             <p className="text-xs text-muted-foreground mt-2">
-              CELPIP scores range from M (minimal) to 12 (advanced)
+              PugPIP scores range from M (minimal) to 12 (advanced)
             </p>
           </CardContent>
         </Card>
@@ -293,7 +293,7 @@ export default function Results() {
           <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-8">
             <p className="text-sm text-blue-800 dark:text-blue-200">
               <strong>Note:</strong> Writing and speaking scores are estimated
-              based on response length only. In the actual CELPIP test, these
+              based on response length only. In the actual PugPIP test, these
               sections are scored by trained raters who evaluate content,
               coherence, vocabulary, and grammar.
             </p>

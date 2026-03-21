@@ -23,8 +23,41 @@ const dmSerif = DM_Serif_Display({
 });
 
 export const metadata: Metadata = {
-  title: "PugPIP",
-  description: "Practice for the CELPIP General Test with full-length mock tests",
+  title: {
+    default: "PugPIP – Free Mock Tests & Practice for English Proficiency",
+    template: "%s | PugPIP",
+  },
+  description:
+    "Prepare for your English proficiency test with PugPIP. Full-length mock tests covering Listening, Reading, Writing, and Speaking with instant scoring and detailed feedback.",
+  keywords: [
+    "PugPIP",
+    "English proficiency test",
+    "mock test",
+    "listening practice",
+    "reading practice",
+    "writing practice",
+    "speaking practice",
+    "English test preparation",
+    "free practice test",
+  ],
+  openGraph: {
+    title: "PugPIP – Free Mock Tests & Practice for English Proficiency",
+    description:
+      "Full-length mock tests covering Listening, Reading, Writing, and Speaking with instant scoring and detailed feedback.",
+    type: "website",
+    locale: "en_US",
+    siteName: "PugPIP",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "PugPIP – Free Mock Tests & Practice for English Proficiency",
+    description:
+      "Full-length mock tests covering Listening, Reading, Writing, and Speaking with instant scoring and detailed feedback.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

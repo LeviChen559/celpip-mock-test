@@ -256,7 +256,7 @@ export default function Home() {
                 }}
               >
                 <Sparkles className="w-3.5 h-3.5" />
-                CELPIP Preparation
+                PugPIP Preparation
               </span>
             </div>
             <h1
@@ -269,7 +269,7 @@ export default function Home() {
                 className="hp-accent-line"
                 style={{ color: "var(--hp-accent)" }}
               >
-                CELPIP
+                PugPIP
               </span>{" "}
               exam.
             </h1>
@@ -664,7 +664,7 @@ export default function Home() {
             className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 hp-reveal"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            CELPIP General
+            PugPIP General
             <br />
             <span style={{ color: "var(--hp-accent)" }}>Test Format</span>
           </h2>
@@ -672,7 +672,7 @@ export default function Home() {
             className="text-base hp-reveal hp-reveal-d1"
             style={{ color: "var(--hp-text-muted)" }}
           >
-            Our mock test mirrors the official CELPIP structure
+            Our mock test mirrors the official PugPIP structure
           </p>
         </div>
 

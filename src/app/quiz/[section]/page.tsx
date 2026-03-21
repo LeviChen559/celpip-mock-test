@@ -615,7 +615,7 @@ export default function QuizPractice({
               <div className="w-px h-8 bg-black/5" />
               <div className="text-center">
                 <div className="font-bold text-[var(--quiz-copper)]">{score}</div>
-                <div className="text-[var(--quiz-ink)]/40 text-xs">CELPIP</div>
+                <div className="text-[var(--quiz-ink)]/40 text-xs">PugPIP</div>
               </div>
             </div>
 
