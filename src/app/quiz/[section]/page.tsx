@@ -745,7 +745,7 @@ export default function QuizPractice({
 
   // ── Questions Page (reading always, listening after audio ends) ──
   return (
-    <main className="min-h-screen quiz-page" style={{ backgroundColor: "var(--quiz-parchment)" }}>
+    <main className={`min-h-screen quiz-page ${section === "reading" ? "max-lg:h-screen max-lg:overflow-hidden" : ""}`} style={{ backgroundColor: "var(--quiz-parchment)" }}>
       {/* Subtle grain overlay */}
       <div className="hp-grain" style={{ opacity: 0.08 }} />
 
@@ -808,7 +808,7 @@ export default function QuizPractice({
       </div>
 
       {/* ── Main content ───────────────────────────────── */}
-      <div className="max-w-screen-xl mx-auto px-6 lg:px-10 py-8 lg:py-12">
+      <div className={`max-w-screen-xl mx-auto lg:px-10 lg:py-12 ${section === "reading" ? "px-0 py-0" : "px-6 py-8"}`}>
         {section === "listening" ? (
           /* Listening: single-column questions (no sidebar — audio already played) */
           <div className="mx-auto" style={{ maxWidth: "768px" }}>
@@ -920,8 +920,8 @@ export default function QuizPractice({
             </div>
           </div>
         ) : (
-          /* Reading: two-column layout with passage sidebar */
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-6 lg:gap-10">
+          /* Reading: two-column on desktop, fixed header+passage with scrollable options on mobile */
+          <div className="hidden lg:grid lg:grid-cols-[1fr_420px] gap-6 lg:gap-10">
             {/* Left: Passage / Context */}
             <div className="lg:sticky lg:top-28 lg:self-start">
               <div className="quiz-card">
@@ -1026,6 +1026,118 @@ export default function QuizPractice({
                     </svg>
                   </button>
                 )}
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile reading layout: fixed passage + scrollable questions */}
+          <div className="flex flex-col lg:hidden" style={{ height: "calc(100vh - 52px)" }}>
+            {/* Fixed passage area */}
+            <div className="shrink-0 px-4 pt-4 pb-2">
+              <div className="quiz-card">
+                <div className="h-1 bg-gradient-to-r from-[var(--quiz-copper)] via-[var(--quiz-copper-light)] to-transparent" />
+                <div className="p-4">
+                  <div className="flex items-center gap-2 mb-1">
+                    <h2 className="font-serif text-base font-bold text-[var(--quiz-ink)]">{current.partTitle}</h2>
+                    {current.contextLabel && (
+                      <span className="text-[10px] uppercase tracking-[0.2em] text-[var(--quiz-ink)]/35 font-semibold">
+                        {current.contextLabel}
+                      </span>
+                    )}
+                  </div>
+                  <div className="bg-[var(--quiz-warm)] rounded-xl p-4 max-h-[30vh] overflow-y-auto quiz-passage-scroll">
+                    <ReadingPassageRenderer passage={current.context || ""} />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Scrollable question + options area */}
+            <div className="flex-1 overflow-y-auto px-4 pb-4">
+              <div className="flex flex-col gap-4">
+                <div className="quiz-card quiz-slide-in" key={slideKey}>
+                  <div className="p-4">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="w-7 h-7 rounded-lg bg-[var(--quiz-copper)]/10 flex items-center justify-center text-sm font-bold text-[var(--quiz-copper)]">
+                        {currentIndex + 1}
+                      </span>
+                      <span className="text-xs text-[var(--quiz-ink)]/40 font-medium">
+                        Question {currentIndex + 1} of {questions.length}
+                      </span>
+                    </div>
+
+                    <p className="text-sm leading-relaxed text-[var(--quiz-ink)] mb-4">{q.question}</p>
+
+                    <div className="space-y-2">
+                      {q.options.map((option, idx) => {
+                        const isSelected = answers[currentIndex] === idx;
+                        return (
+                          <button
+                            key={idx}
+                            onClick={() => setAnswers((prev) => ({ ...prev, [currentIndex]: idx }))}
+                            className={`quiz-option w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border text-left text-sm ${
+                              isSelected
+                                ? "quiz-option-selected border-[var(--quiz-copper)]"
+                                : "border-[var(--quiz-border)] hover:border-[var(--quiz-copper)]/30 bg-white"
+                            }`}
+                          >
+                            <span className={`w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold shrink-0 transition-colors ${
+                              isSelected
+                                ? "bg-[var(--quiz-copper)] text-white"
+                                : "bg-black/[0.04] text-[var(--quiz-ink)]/40"
+                            }`}>
+                              {String.fromCharCode(65 + idx)}
+                            </span>
+                            <span className={`flex-1 ${isSelected ? "text-[var(--quiz-ink)] font-medium" : "text-[var(--quiz-ink)]/80"}`}>
+                              {option}
+                            </span>
+                            {isSelected && (
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--quiz-copper)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
+                                <polyline points="20 6 9 17 4 12" />
+                              </svg>
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Navigation */}
+                <div className="flex items-center justify-between pb-2">
+                  <button
+                    disabled={currentIndex === 0}
+                    onClick={() => goToQuestion(currentIndex - 1)}
+                    className="flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium rounded-lg border border-[var(--quiz-border)] text-[var(--quiz-ink)] hover:bg-[var(--quiz-warm)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="15 18 9 12 15 6" />
+                    </svg>
+                    Previous
+                  </button>
+
+                  {currentIndex < questions.length - 1 ? (
+                    <button
+                      onClick={() => goToQuestion(currentIndex + 1)}
+                      className="flex items-center gap-1.5 px-5 py-2.5 text-sm font-semibold rounded-lg bg-[var(--quiz-copper)] text-white hover:bg-[var(--quiz-copper-light)] transition-colors"
+                    >
+                      Next
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="9 18 15 12 9 6" />
+                      </svg>
+                    </button>
+                  ) : (
+                    <button
+                      onClick={finishQuiz}
+                      className="flex items-center gap-1.5 px-5 py-2.5 text-sm font-semibold rounded-lg bg-[var(--quiz-copper)] text-white hover:bg-[var(--quiz-copper-light)] transition-colors"
+                    >
+                      Finish Quiz
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           </div>
