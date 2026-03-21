@@ -123,6 +123,11 @@ const sections = [
 // Group parts/tasks by their CELPIP category
 function extractCategoryKey(title: string): string {
   if (title.startsWith("Practice")) return "Practice Task";
+  // New format: "01 | 8 Questions | Listening to Problem Solving"
+  // or "01 | 1 Task | Writing an Email"
+  const pipeMatch = title.match(/\d+\s*\|\s*(?:\d+\s*(?:Questions?|Tasks?)\s*\|\s*)?(.+)/);
+  if (pipeMatch) return pipeMatch[1];
+  // Legacy format: "Part 1: Listening to Problem Solving"
   const match = title.match(/(?:Part|Task)\s+\d+:\s+(.+)/);
   return match ? match[1] : title;
 }
@@ -143,14 +148,14 @@ interface QuizCategory {
 function groupByCategory(
   parts: { id: string; title: string; topic?: string; questionCount: number; paid?: boolean }[]
 ): QuizCategory[] {
-  const map = new Map<string, { label: string; items: QuizItem[] }>();
+  const map = new Map<string, { items: QuizItem[] }>();
   parts.forEach((p, idx) => {
     const key = extractCategoryKey(p.title);
-    if (!map.has(key)) map.set(key, { label: p.title, items: [] });
+    if (!map.has(key)) map.set(key, { items: [] });
     map.get(key)!.items.push({ ...p, originalIndex: idx });
   });
-  return Array.from(map.values()).map(({ label, items }) => ({
-    category: label,
+  return Array.from(map.entries()).map(([key, { items }]) => ({
+    category: key,
     items,
   }));
 }
@@ -767,7 +772,7 @@ export default function Dashboard() {
                           All
                         </button>
                         {qs.categories.map((cat) => {
-                          const label = cat.category.replace(/^Part \d+:\s*/, "");
+                          const label = cat.category;
                           const isActive = quizCategoryFilter === cat.category;
                           return (
                             <button
