@@ -666,13 +666,13 @@ Dear Jennifer,
 
 Thank you for sharing the updated remote work policy. I appreciate the effort that went into gathering employee feedback and consulting with department heads. I have a few questions and concerns that I would like to raise on behalf of the Marketing Department.
 
-First, regarding the mandatory in-office days, our team frequently collaborates with external clients who are based in the Pacific Time Zone. Having our in-office days fixed by the department could conflict with key client meetings that are typically scheduled on Tuesday and Thursday afternoons. Would it be possible for individual teams within a department to negotiate their in-office schedules based on client-facing obligations?
+First, regarding the mandatory in-office days, our team frequently collaborates with external clients who are based in the Pacific Time Zone. Having our in-office days fixed by the department could ___ [7] with key client meetings. Would it be possible for individual teams within a department to negotiate their in-office schedules based on client-facing obligations?
 
-Second, I wanted to ask about the home office stipend. Several members of my team already invested in home office equipment during the previous remote work arrangement in 2022. Will employees who purchased equipment at their own expense before this policy be eligible for any retroactive reimbursement, or does the $500 stipend apply only to new purchases made after January 15th?
+Second, I wanted to ask about the home office stipend. Several members of my team already invested in home office equipment during the previous remote work arrangement in 2022. Will employees who purchased equipment at their own expense before this policy be eligible for any ___ [8], or does the $500 stipend apply only to new purchases made after January 15th?
 
-Third, I am concerned about the quarterly performance review process for remote work eligibility. Our department's major campaigns typically launch in Q1 and Q3, which means our workload and measurable output vary significantly throughout the year. Could you clarify what specific metrics will be used to evaluate remote work eligibility, and whether seasonal variations in productivity will be taken into account?
+Third, I am concerned about the quarterly performance review process for remote work eligibility. Our department's major campaigns typically launch in Q1 and Q3, which means our workload and measurable output vary significantly throughout the year. Could you clarify whether ___ [9] will be taken into account when evaluating remote work eligibility?
 
-Finally, regarding the monthly all-hands meetings, the first Monday of the month often coincides with our campaign launch preparation days. Would it be feasible to provide at least two weeks' advance notice of the meeting agenda so that teams can plan accordingly? Additionally, for employees who travel for business, will virtual attendance be accepted as an alternative when travel conflicts arise?
+Finally, regarding the monthly all-hands meetings, the first Monday of the month often coincides with our campaign launch preparation days. Would it be feasible to provide at least ___ [10] of the meeting agenda so that teams can plan accordingly? Additionally, for employees who travel for business, will ___ [11] be accepted as an alternative when travel conflicts arise?
 
 I look forward to your response and any additional guidance on these matters.
 
@@ -684,7 +684,7 @@ Senior Marketing Manager`;
       id: "R1",
       title: "Part 1: Reading Correspondence",
       instruction:
-        "Read the following email exchange and answer the questions. Questions 1–6 are based on the first email from HR. Questions 7–11 are based on the response from David Park.",
+        "Read the following email exchange. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
       passage: passageA,
       questions: [
         {
@@ -752,60 +752,60 @@ Senior Marketing Manager`;
         },
         {
           id: "R1Q7",
-          question: "Why does David believe fixed in-office days could be problematic for his team?",
+          question: "Having our in-office days fixed by the department could ___ with key client meetings.",
           options: [
-            "His team members live far from the office",
-            "His team collaborates with clients in the Pacific Time Zone",
-            "His team prefers to work from home every day",
-            "His team has members in different provinces",
+            "interfere",
+            "conflict",
+            "compete",
+            "overlap",
           ],
           correctAnswer: 1,
           passage: passageB,
         },
         {
           id: "R1Q8",
-          question: "What does David ask about regarding the home office stipend?",
+          question: "Will employees who purchased equipment at their own expense before this policy be eligible for any ___?",
           options: [
-            "Whether the amount can be increased to $750",
-            "Whether employees can choose their own equipment",
-            "Whether employees who bought equipment in 2022 can receive retroactive reimbursement",
-            "Whether the stipend can be split into monthly payments",
+            "tax deduction",
+            "bonus payment",
+            "retroactive reimbursement",
+            "equipment exchange",
           ],
           correctAnswer: 2,
           passage: passageB,
         },
         {
           id: "R1Q9",
-          question: "What concern does David raise about the quarterly performance reviews?",
+          question: "Could you clarify whether ___ will be taken into account when evaluating remote work eligibility?",
           options: [
-            "The reviews are too frequent and time-consuming",
-            "Seasonal workload variations may affect measurable output unfairly",
-            "The Marketing Department should be exempt from reviews",
-            "Performance reviews should be conducted by external consultants",
+            "employee seniority",
+            "seasonal variations in productivity",
+            "department budgets",
+            "client satisfaction scores",
           ],
           correctAnswer: 1,
           passage: passageB,
         },
         {
           id: "R1Q10",
-          question: "What does David request regarding the monthly all-hands meetings?",
+          question: "Would it be feasible to provide at least ___ of the meeting agenda so that teams can plan accordingly?",
           options: [
-            "That they be moved to a different day of the week",
-            "That they be held virtually instead of in person",
-            "That at least two weeks' advance notice of the agenda be provided",
-            "That the Marketing Department be excused from attending",
+            "one week's advance notice",
+            "two weeks' advance notice",
+            "three days' advance notice",
+            "one month's advance notice",
           ],
-          correctAnswer: 2,
+          correctAnswer: 1,
           passage: passageB,
         },
         {
           id: "R1Q11",
-          question: "What alternative does David suggest for employees who have business travel conflicts with the all-hands meetings?",
+          question: "For employees who travel for business, will ___ be accepted as an alternative when travel conflicts arise?",
           options: [
-            "Rescheduling the meeting to accommodate travellers",
-            "Sending a written summary instead of attending",
-            "Having a colleague attend on their behalf",
-            "Allowing virtual attendance as an alternative",
+            "sending a delegate",
+            "submitting a written report",
+            "rescheduling their trip",
+            "virtual attendance",
           ],
           correctAnswer: 3,
           passage: passageB,
