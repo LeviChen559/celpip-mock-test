@@ -817,7 +817,7 @@ Senior Marketing Manager`;
     id: "R2",
     title: "Part 2: Reading to Apply a Diagram",
     instruction:
-      "Study the following schedule and information, then answer the questions.",
+      "Read the following schedule and email. Then fill in each blank with the best word or phrase, or answer the question.",
     passage: `MAPLEWOOD COMMUNITY CENTRE — WINTER PROGRAM SCHEDULE
 
 Registration opens: November 15 | Programs begin: January 8
@@ -844,57 +844,28 @@ FEES (per 12-week session):
 NOTES:
 - All swimmers must pass a swim test before registering for Level 3 lessons.
 - Children under 8 must be accompanied by an adult during public swim.
-- Locker rentals: $25/session. Limited availability — first come, first served.`,
+- Locker rentals: $25/session. Limited availability — first come, first served.
+
+---
+
+Hi Karen,
+
+I just picked up the new winter schedule from Maplewood Community Centre. I think we should sign the kids up for swimming lessons! Registration opens on ___ [1], so we need to act fast.
+
+I was looking at the schedule and I think Level 2 lessons would work best. They're offered on ___ [2], which means I could drop the kids off on my way to my Saturday errands. The weekday afternoon Level 2 sessions are on Monday and Wednesday, but those conflict with Emma's piano lessons.
+
+I also noticed they have an Aqua Fit class in the early mornings. I know you've been looking for an exercise class — it runs on ___ [3] at 6:00 AM. The cost for the full session would be ___ [4].
+
+One more thing — since Mom is visiting in January, she might enjoy the seniors program. The good news is that since she's 70 and lives here, ___ [5]. I think she'd love the weekday morning sessions.
+
+Let me know what you think and I'll register everyone online.
+
+Talk soon,
+Megan`,
     questions: [
       {
         id: "R2Q1",
-        question: "Which days of the week feature the water aerobics class during the early time slot?",
-        options: [
-          "Monday and Wednesday",
-          "Tuesday and Thursday",
-          "Wednesday and Friday",
-          "Monday and Friday",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        id: "R2Q2",
-        question: "What is the reason the swimming facility is unavailable at the end of the week?",
-        options: [
-          "Staff training",
-          "Private bookings",
-          "Maintenance",
-          "Low demand",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R2Q3",
-        question: "What is the price for a multi-visit bundle for open swim sessions?",
-        options: ["$35", "$40", "$45", "$50"],
-        correctAnswer: 2,
-      },
-      {
-        id: "R2Q4",
-        question: "What prerequisite must swimmers fulfill to enroll in the most advanced lesson tier?",
-        options: [
-          "A doctor's note",
-          "Completion of Level 2",
-          "A swim test",
-          "Parental consent",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        id: "R2Q5",
-        question:
-          "What fee would a local person over 65 pay to attend the morning session on a weekday?",
-        options: ["$3", "$5", "$45", "Free"],
-        correctAnswer: 3,
-      },
-      {
-        id: "R2Q6",
-        question: "On what date can people begin signing up for the seasonal activities?",
+        question: "Registration opens on ___.",
         options: [
           "October 15",
           "November 1",
@@ -904,24 +875,74 @@ NOTES:
         correctAnswer: 2,
       },
       {
-        id: "R2Q7",
-        question: "What would a household of two parents and two kids be charged for the weekend morning pool session?",
+        id: "R2Q2",
+        question: "They're offered on ___.",
         options: [
-          "$5 per person",
-          "$8 for the whole family",
-          "$10 for the whole family",
-          "$16 for the whole family",
+          "Tuesday and Thursday mornings",
+          "Saturday mornings",
+          "Monday and Wednesday afternoons",
+          "Friday mornings",
         ],
         correctAnswer: 1,
       },
       {
-        id: "R2Q8",
-        question: "What safety requirement is in place for younger children during open swim times?",
+        id: "R2Q3",
+        question: "It runs on ___ at 6:00 AM.",
         options: [
-          "They must wear a life jacket",
-          "They are not allowed in the pool",
-          "They must be accompanied by an adult",
-          "They can only swim in the shallow end",
+          "Monday and Wednesday",
+          "Monday through Friday",
+          "Tuesday and Thursday",
+          "Saturday and Sunday",
+        ],
+        correctAnswer: 2,
+      },
+      {
+        id: "R2Q4",
+        question: "The cost for the full session would be ___.",
+        options: ["$85", "$120", "$150", "$45"],
+        correctAnswer: 1,
+      },
+      {
+        id: "R2Q5",
+        question: "Since she's 70 and lives here, ___.",
+        options: [
+          "she would pay $3 per visit",
+          "she would need a doctor's note",
+          "it would be free for her",
+          "she could get a 10-visit pass for $45",
+        ],
+        correctAnswer: 2,
+      },
+      {
+        id: "R2Q6",
+        question: "Why did Megan rule out the weekday afternoon Level 2 sessions?",
+        options: [
+          "They are too expensive",
+          "They conflict with Emma's piano lessons",
+          "The pool is closed for maintenance",
+          "Karen works on those days",
+        ],
+        correctAnswer: 1,
+      },
+      {
+        id: "R2Q7",
+        question: "What requirement would the children need to meet before moving to Level 3?",
+        options: [
+          "A doctor's note",
+          "Completion of Level 2",
+          "A swim test",
+          "Parental consent",
+        ],
+        correctAnswer: 2,
+      },
+      {
+        id: "R2Q8",
+        question: "Megan and Karen are most likely ___.",
+        options: [
+          "coworkers",
+          "neighbours",
+          "sisters or partners who share a family",
+          "friends from the community centre",
         ],
         correctAnswer: 2,
       },
