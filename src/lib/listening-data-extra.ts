@@ -201,7 +201,7 @@ Homeowner: Perfect. Thank you so much.`,
   },
   {
     id: "L9",
-    title: "02 | 6 Questions | Listening to Information",
+    title: "02 | 6 Questions | Listening for Information",
     instruction:
       "You will hear a university orientation presentation. Listen carefully and answer the questions.",
     transcript: `Good morning, everyone, and welcome to the University of Northern Ontario. I'm Dean Margaret Sullivan, and on behalf of the entire faculty, congratulations on your admission.
@@ -443,7 +443,7 @@ Jessica: Perfect. Let's reconvene next Tuesday to check progress.`,
   },
   {
     id: "L12",
-    title: "02 | 6 Questions | Listening to Viewpoints",
+    title: "02 | 6 Questions | Listening for Viewpoints",
     instruction:
       "You will hear a debate about public transit versus cars. Listen and answer the questions.",
     transcript: `Moderator: Welcome to City Forum. Tonight's topic: should the city invest more in public transit or road infrastructure for cars? We have two panellists. First, Carla Mendes, a transit advocate and urban planner. Second, Greg Harrison, a suburban councillor and commuter.
