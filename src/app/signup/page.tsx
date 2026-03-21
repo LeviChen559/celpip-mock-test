@@ -109,7 +109,7 @@ export default function SignupPage() {
             (e.currentTarget.style.color = "var(--hp-accent)")
           }
         >
-          &larr; CELPIP Mock Test
+          &larr; CELPIP ACE
         </button>
 
         {/* Card */}

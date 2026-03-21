@@ -115,7 +115,7 @@ export default function LoginPage() {
             (e.currentTarget.style.color = "var(--hp-accent)")
           }
         >
-          &larr; CELPIP Mock Test
+          &larr; CELPIP ACE
         </button>
 
         {/* Card */}
