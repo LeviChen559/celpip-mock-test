@@ -808,7 +808,7 @@ export default function QuizPractice({
       </div>
 
       {/* ── Main content ───────────────────────────────── */}
-      <div className={`max-w-screen-xl mx-auto lg:px-10 lg:py-12 ${section === "reading" ? "px-0 py-0" : "px-3 sm:px-3 py-8"}`}>
+      <div className={`max-w-screen-xl mx-auto lg:px-10 lg:py-12 ${section === "reading" ? "px-0 py-0" : "px-2 sm:px-3 py-8"}`}>
         {section === "listening" ? (
           /* Listening: single-column questions (no sidebar — audio already played) */
           <div className="mx-auto" style={{ maxWidth: "768px" }}>
@@ -1034,8 +1034,8 @@ export default function QuizPractice({
           {/* Mobile reading layout: fixed passage + scrollable questions */}
           <div className="flex flex-col lg:hidden" style={{ height: "calc(100vh - 52px)" }}>
             {/* Fixed passage area */}
-            <div className="shrink-0 px-0 sm:px-4 pt-0 sm:pt-2 pb-1">
-              <div className="quiz-card quiz-card-flush sm:!rounded-[10px] sm:!border">
+            <div className="shrink-0 px-2 sm:px-4 pt-0 sm:pt-2 pb-1">
+              <div className="quiz-card sm:!rounded-[10px]">
                 <div className="h-1 bg-gradient-to-r from-[var(--quiz-copper)] via-[var(--quiz-copper-light)] to-transparent" />
                 <div className="px-3 py-3 sm:p-4">
                   <div className="flex items-center gap-2 mb-1">
@@ -1054,9 +1054,9 @@ export default function QuizPractice({
             </div>
 
             {/* Scrollable question + options area */}
-            <div className="flex-1 overflow-y-auto px-0 sm:px-4 pb-4">
+            <div className="flex-1 overflow-y-auto px-2 sm:px-4 pb-4">
               <div className="flex flex-col gap-4">
-                <div className="quiz-card quiz-card-flush quiz-slide-in sm:!rounded-[10px] sm:!border" key={slideKey}>
+                <div className="quiz-card quiz-slide-in sm:!rounded-[10px]" key={slideKey}>
                   <div className="px-3 py-3 sm:p-4">
                     <div className="flex items-center gap-3 mb-3">
                       <span className="w-7 h-7 rounded-lg bg-[var(--quiz-copper)]/10 flex items-center justify-center text-sm font-bold text-[var(--quiz-copper)]">
