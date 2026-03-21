@@ -342,7 +342,7 @@ export default function Dashboard() {
             (e.currentTarget.style.color = "var(--hp-accent)")
           }
         >
-          CELPIP ACE
+          PugPIP
         </button>
 
         {/* Desktop-only nav tabs */}

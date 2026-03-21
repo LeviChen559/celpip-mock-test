@@ -206,7 +206,7 @@ export default function Results() {
           <p className="text-muted-foreground">
             {isPractice
               ? "Single section practice score"
-              : "CELPIP ACE Score Report"}
+              : "PugPIP Score Report"}
           </p>
         </div>
 
