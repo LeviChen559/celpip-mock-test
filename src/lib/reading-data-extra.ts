@@ -1199,4 +1199,43 @@ E. Not in any of the paragraphs`,
       },
     ],
   },
+  (() => {
+    const vpA = `SHOULD CANADIAN CITIES BAN SINGLE-USE PLASTICS?
+
+Viewpoint A — Dr. Alicia Chen, Environmental Policy Researcher, University of British Columbia:
+
+Canadian cities must take bold action and ban single-use plastics entirely. Every year, Canadians throw away over 3 million tonnes of plastic waste, and only 9 percent is actually recycled. The rest ends up in landfills, waterways, and oceans, where it takes hundreds of years to decompose and harms marine life. The federal government's ban on certain items like checkout bags, straws, and cutlery was a good start, but it did not go far enough. Cities like Vancouver and Montreal have already introduced additional restrictions, and the results are encouraging — Vancouver reported a 52 percent reduction in plastic bag litter within the first year of its ban. Critics argue that alternatives like paper and compostable materials are more expensive, but studies show the cost difference is minimal — about 2 to 4 cents per item — and decreases as demand grows. Furthermore, the healthcare costs associated with microplastic pollution are estimated at $3.7 billion annually in Canada. We cannot afford to wait. A comprehensive ban, combined with investment in reusable packaging infrastructure, is the responsible path forward.`;
+
+    const vpB = `SHOULD CANADIAN CITIES BAN SINGLE-USE PLASTICS?
+
+Viewpoint B — Mark Sullivan, President, Canadian Plastics Industry Association:
+
+While the environmental concerns are valid, an outright ban on single-use plastics is not the right solution. The plastics industry employs over 93,000 Canadians and contributes $35 billion to the national economy each year. A blanket ban would devastate communities that depend on plastics manufacturing, particularly in Ontario and Alberta. Moreover, many so-called alternatives are not as environmentally friendly as they appear. Paper bags require four times more energy to produce than plastic bags and generate 70 percent more air pollution during manufacturing. Compostable plastics often end up in landfills anyway because most Canadian municipalities lack the industrial composting facilities needed to process them. Instead of bans, we should invest in better recycling infrastructure. Canada currently has the capacity to recycle only about 14 percent of its plastic waste, but with $2 billion in targeted investment, we could raise that to 60 percent within five years. Extended producer responsibility programs, which make manufacturers financially responsible for the end-of-life management of their products, have shown excellent results in Europe and should be expanded here.`;
+
+    return {
+      id: "Reading-Part4-04",
+      title: "04 | 10 Questions | Reading for Viewpoints",
+      instruction:
+        "Read the following article and response. Choose the best answer to each question, or fill in each blank with the best word or phrase.",
+      passage: vpA + `
+
+` + vpB + `
+
+---
+
+As a parent of two young children, I have become increasingly aware of how much plastic waste our household produces. Dr. Chen's point about only 9 percent of plastic being recycled is ___ [6]. I had no idea the number was that low. However, Mark raises an important concern about the ___ [7] who depend on the plastics industry for their livelihoods. I think the best approach would be to ___ [8] rather than imposing an outright ban. The government should also require companies to ___ [9] for the packaging they produce. If we combine better recycling with gradual restrictions, we can protect the environment without causing the ___ [10] that Mark warns about.`,
+      questions: [
+        { id: "Reading-Part4-04-Q1", question: "According to Dr. Chen, what percentage of plastic waste in Canada is actually recycled?", options: ["5 percent", "9 percent", "14 percent", "21 percent"], correctAnswer: 1 },
+        { id: "Reading-Part4-04-Q2", question: "What evidence does Dr. Chen use to show that municipal bans are effective?", options: ["Montreal eliminated all plastic packaging within two years", "Vancouver reported a 52 percent reduction in plastic bag litter in the first year", "Toronto saw a 30 percent decrease in ocean pollution", "Ottawa recycled 60 percent of its plastic waste after the ban"], correctAnswer: 1 },
+        { id: "Reading-Part4-04-Q3", question: "How many Canadians does Mark say are employed by the plastics industry?", options: ["35,000", "60,000", "93,000", "120,000"], correctAnswer: 2 },
+        { id: "Reading-Part4-04-Q4", question: "What alternative solution does Mark propose instead of a ban on single-use plastics?", options: ["Switching entirely to paper products", "Investing in better recycling infrastructure", "Importing biodegradable plastics from Europe", "Taxing consumers who purchase plastic items"], correctAnswer: 1 },
+        { id: "Reading-Part4-04-Q5", question: "How much does Dr. Chen estimate microplastic pollution costs Canada's healthcare system each year?", options: ["$1.2 billion", "$2 billion", "$3.7 billion", "$5.4 billion"], correctAnswer: 2 },
+        { id: "Reading-Part4-04-Q6", question: "Dr. Chen's point about only 9 percent of plastic being recycled is ___.", options: ["not surprising given the current infrastructure", "shocking and deeply concerning", "likely exaggerated according to other reports", "consistent with what I learned at school"], correctAnswer: 1 },
+        { id: "Reading-Part4-04-Q7", question: "Mark raises an important concern about the ___.", options: ["health effects of microplastics on children", "93,000 Canadians who depend on the plastics industry", "lack of composting facilities in rural areas", "cost of switching to paper alternatives"], correctAnswer: 1 },
+        { id: "Reading-Part4-04-Q8", question: "The best approach would be to ___.", options: ["ban all plastics immediately across the country", "invest in recycling and introduce gradual restrictions", "let each province decide its own policy", "focus only on reducing ocean pollution"], correctAnswer: 1 },
+        { id: "Reading-Part4-04-Q9", question: "The government should also require companies to ___.", options: ["move their factories outside of Canada", "take financial responsibility for their packaging", "stop producing plastic products entirely", "donate a portion of their profits to environmental groups"], correctAnswer: 1 },
+        { id: "Reading-Part4-04-Q10", question: "We can protect the environment without causing the ___.", options: ["inconvenience to consumers who prefer plastic", "economic devastation to communities dependent on the industry", "need for government involvement in recycling", "delay in implementing the federal ban"], correctAnswer: 1 },
+      ],
+    };
+  })(),
 ];
