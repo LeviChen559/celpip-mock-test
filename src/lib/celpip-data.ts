@@ -1060,7 +1060,7 @@ export const readingPartsOfficial: ReadingPart[] = readingPartsBase;
 const writingTasksBase: WritingTask[] = [
   {
     id: "W1",
-    title: "01 | Writing an Email",
+    title: "01 | 1 Task | Writing an Email",
     instruction:
       "Read the following situation and write an email of about 150–200 words.",
     prompt: `You recently moved into a new apartment. After the first week, you noticed several problems: the kitchen faucet leaks constantly, the heating system doesn't work properly in the bedroom, and there is a crack in the bathroom window.
@@ -1074,7 +1074,7 @@ Write an email to your landlord. In your email:
   },
   {
     id: "W2",
-    title: "01 | Responding to Survey Questions",
+    title: "01 | 1 Task | Responding to Survey Questions",
     instruction:
       "Read the following information and write a response of about 150–200 words.",
     prompt: `Your city council is considering two options for developing an empty lot in your neighbourhood:
@@ -1107,7 +1107,7 @@ const speakingTasksBase: SpeakingTask[] = [
   },
   {
     id: "S1",
-    title: "01 | Giving Advice",
+    title: "01 | 1 Task | Giving Advice",
     instruction:
       "A friend is asking you for advice. Respond as if you are speaking to them.",
     prompt:
@@ -1117,7 +1117,7 @@ const speakingTasksBase: SpeakingTask[] = [
   },
   {
     id: "S2",
-    title: "01 | Talking About a Personal Experience",
+    title: "01 | 1 Task | Talking About a Personal Experience",
     instruction: "Describe a personal experience based on the prompt below.",
     prompt:
       "Talk about a time when you had to learn something new quickly. What was the situation? What did you do? How did it turn out?",
@@ -1126,7 +1126,7 @@ const speakingTasksBase: SpeakingTask[] = [
   },
   {
     id: "S3",
-    title: "01 | Describing a Scene",
+    title: "01 | 1 Task | Describing a Scene",
     instruction:
       "Describe the scene below in as much detail as possible. Imagine you are describing it to someone who cannot see it.",
     prompt:
@@ -1136,7 +1136,7 @@ const speakingTasksBase: SpeakingTask[] = [
   },
   {
     id: "S4",
-    title: "01 | Making Predictions",
+    title: "01 | 1 Task | Making Predictions",
     instruction: "Make predictions about the situation described below.",
     prompt:
       "A major technology company has just announced that it will open a large office in a small Canadian town of 15,000 people. The office will employ 2,000 workers. What do you think will happen to the town? Discuss both positive and negative effects.",
@@ -1145,7 +1145,7 @@ const speakingTasksBase: SpeakingTask[] = [
   },
   {
     id: "S5",
-    title: "01 | Comparing and Persuading",
+    title: "01 | 1 Task | Comparing and Persuading",
     instruction:
       "Compare the two options below and persuade your friend to choose the one you prefer.",
     prompt:
@@ -1155,7 +1155,7 @@ const speakingTasksBase: SpeakingTask[] = [
   },
   {
     id: "S6",
-    title: "01 | Dealing with a Difficult Situation",
+    title: "01 | 1 Task | Dealing with a Difficult Situation",
     instruction: "Respond to the difficult situation described below.",
     prompt:
       "You are a team leader at work. One of your team members, who is usually very reliable, has been arriving late and missing deadlines for the past two weeks. Other team members are starting to complain. How would you handle this situation? What would you say to the team member?",
@@ -1164,7 +1164,7 @@ const speakingTasksBase: SpeakingTask[] = [
   },
   {
     id: "S7",
-    title: "01 | Expressing Opinions",
+    title: "01 | 1 Task | Expressing Opinions",
     instruction: "Express your opinion on the topic below.",
     prompt:
       "Some people believe that social media has made people more connected, while others think it has made people more isolated. What is your opinion? Give reasons and examples to support your view.",
@@ -1173,7 +1173,7 @@ const speakingTasksBase: SpeakingTask[] = [
   },
   {
     id: "S8",
-    title: "01 | Describing an Unusual Situation",
+    title: "01 | 1 Task | Describing an Unusual Situation",
     instruction:
       "Describe what is happening in the unusual situation below and explain what you think might have led to it.",
     prompt:
