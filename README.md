@@ -22,9 +22,10 @@ A comprehensive web-based practice platform for the **CELPIP (Canadian English L
 ### Full-Length Mock Tests (Timed)
 - **Listening** (~47 min) — Problem solving, conversations, information gathering, news, discussions, viewpoints
 - **Reading** (~55 min) — Correspondence, diagrams, information, viewpoints
-- **Writing** (~53 min) — Email writing & survey response tasks
-- **Speaking** (~20 min) — 8 task types including advice, descriptions, comparisons, opinions
+- **Writing** (~53 min) — Email writing & survey response tasks (9 complete test sets, 18 tasks)
+- **Speaking** (~20 min) — 8 task types including advice, descriptions, comparisons, opinions (3 complete test sets, 25 tasks)
 - Automatic submission when timer expires, simulating real CELPIP test conditions
+- Answer options are randomly shuffled each visit to encourage genuine comprehension
 
 ### Section Practice Mode
 - Practice individual sections with full timing simulation
@@ -33,6 +34,7 @@ A comprehensive web-based practice platform for the **CELPIP (Canadian English L
 ### Quiz Practice (Untimed)
 - Question-by-question practice with instant feedback
 - Available for Listening and Reading sections
+- Answer options are randomly shuffled on every visit to prevent memorization
 
 ### AI-Powered Writing Feedback
 - Claude API evaluates writing responses with detailed scoring
@@ -168,6 +170,7 @@ src/
 ├── lib/                    # Utilities & business logic
 │   ├── celpip-data.ts      # Main test content
 │   ├── *-data-extra.ts     # Additional practice content
+│   ├── shuffle-options.ts   # Answer option randomization utility
 │   ├── store.ts            # Zustand stores
 │   ├── test-store.ts       # Test state management
 │   ├── hooks/              # Custom React hooks
