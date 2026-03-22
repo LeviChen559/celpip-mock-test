@@ -367,6 +367,10 @@ export default function QuizPractice({
   // In the real CELPIP, ALL reading parts show all questions at once with dropdown selects
   const isReadingAllAtOnce = section === "reading" && questions.length > 0;
 
+  // In the real CELPIP, listening Parts 4-6 use fill-in-blank dropdowns (all questions at once)
+  const isListeningDropdown = section === "listening" && questions.length > 0
+    && questions.every(qq => qq.question.question.includes("___"));
+
   // Gather all unique passages for the reading section (e.g. Part 1 has two emails)
   const readingPassages = useMemo(() => {
     if (!isReadingAllAtOnce) return [];
@@ -781,7 +785,7 @@ export default function QuizPractice({
             </span>
 
             {/* Question counter / answered count */}
-            {isReadingAllAtOnce ? (
+            {(isReadingAllAtOnce || isListeningDropdown) ? (
               <span className="text-sm text-[var(--quiz-ink)] shrink-0">
                 <span className="font-bold">{answeredCount}</span>
                 <span className="text-[var(--quiz-ink)]/40">/{questions.length} answered</span>
@@ -798,9 +802,9 @@ export default function QuizPractice({
               </>
             )}
 
-            {/* Flexible spacer + progress dots (hidden for reading all-at-once) */}
+            {/* Flexible spacer + progress dots (hidden for all-at-once layouts) */}
             <div className="flex-1 flex justify-center min-w-0 overflow-hidden px-1">
-              {!isReadingAllAtOnce && (
+              {!isReadingAllAtOnce && !isListeningDropdown && (
                 <ProgressDots
                   total={questions.length}
                   current={currentIndex}
@@ -838,8 +842,87 @@ export default function QuizPractice({
 
       {/* ── Main content ───────────────────────────────── */}
       <div className={`max-w-screen-xl mx-auto lg:px-10 lg:py-12 ${section === "reading" ? "px-0 py-0" : "px-2 sm:px-3 py-8"}`}>
-        {section === "listening" ? (
-          /* Listening: single-column questions (no sidebar — audio already played) */
+        {isListeningDropdown ? (
+          /* Listening Parts 4-6: all questions at once with dropdown selects */
+          <div className="mx-auto" style={{ maxWidth: "768px" }}>
+            <div className="flex flex-col gap-5">
+              {/* Part title reminder */}
+              <div className="flex items-center gap-3 mb-1">
+                <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgb(59,130,246)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+                    <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
+                  </svg>
+                </div>
+                <span className="font-serif text-sm font-bold text-[var(--quiz-ink)]">{current.partTitle}</span>
+                <span className="text-[10px] uppercase tracking-widest text-[var(--quiz-ink)]/35 font-semibold">Complete the statements</span>
+              </div>
+
+              <div className="quiz-card !rounded-none sm:!rounded-[10px] !border-x-0 sm:!border-x">
+                <div className="px-2 py-4 sm:p-6">
+                  <p className="text-xs text-[var(--quiz-ink)]/50 mb-4 leading-relaxed italic">
+                    Using the drop-down menu, choose the best option to complete each statement.
+                  </p>
+                  <div className="space-y-3">
+                    {questions.map((qq, idx) => (
+                      <div
+                        key={idx}
+                        className={`flex items-start gap-3 p-3 rounded-xl border transition-colors ${
+                          answers[idx] !== undefined
+                            ? "border-[var(--quiz-copper)]/30 bg-[var(--quiz-copper)]/[0.04]"
+                            : "border-[var(--quiz-border)] bg-white"
+                        }`}
+                      >
+                        <span className="w-7 h-7 rounded-lg bg-[var(--quiz-copper)]/10 flex items-center justify-center text-xs font-bold text-[var(--quiz-copper)] shrink-0 mt-0.5">
+                          {idx + 1}
+                        </span>
+                        <p className="flex-1 text-sm leading-relaxed text-[var(--quiz-ink)]">{qq.question.question}</p>
+                        <select
+                          value={answers[idx] !== undefined ? answers[idx] : ""}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            setAnswers((prev) => {
+                              if (val === "") {
+                                const next = { ...prev };
+                                delete next[idx];
+                                return next;
+                              }
+                              return { ...prev, [idx]: Number(val) };
+                            });
+                          }}
+                          className={`shrink-0 min-w-[70px] max-w-[220px] h-9 px-2 rounded-lg border text-sm font-medium text-center cursor-pointer transition-colors ${
+                            answers[idx] !== undefined
+                              ? "border-[var(--quiz-copper)] bg-[var(--quiz-copper)] text-white"
+                              : "border-[var(--quiz-border)] bg-white text-[var(--quiz-ink)]/50 hover:border-[var(--quiz-copper)]/50"
+                          }`}
+                        >
+                          <option value="">—</option>
+                          {qq.question.options.map((opt, optIdx) => (
+                            <option key={optIdx} value={optIdx}>{opt}</option>
+                          ))}
+                        </select>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Finish button */}
+                  <div className="flex justify-end mt-5">
+                    <button
+                      onClick={finishQuiz}
+                      className="flex items-center gap-1.5 px-5 py-2.5 text-sm font-semibold rounded-lg bg-[var(--quiz-copper)] text-white hover:bg-[var(--quiz-copper-light)] transition-colors"
+                    >
+                      Finish Quiz
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : section === "listening" ? (
+          /* Listening Parts 1-3: single-column questions one at a time */
           <div className="mx-auto" style={{ maxWidth: "768px" }}>
             <div className="flex flex-col gap-5">
               {/* Part title reminder */}
