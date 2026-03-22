@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Zap } from "lucide-react";
+import { Zap, Coins } from "lucide-react";
 
 interface UsageData {
   current: number;
@@ -51,9 +51,10 @@ export default function ApiUsageCounter() {
       <div className="flex-1 min-w-0">
         <div className="flex items-baseline justify-between gap-2 mb-1">
           <span
-            className="text-xs font-medium"
+            className="text-xs font-medium flex items-center gap-1"
             style={{ color: "var(--hp-text)" }}
           >
+            <Coins className="w-3.5 h-3.5" style={{ color: barColor }} />
             Credits
           </span>
           <span
