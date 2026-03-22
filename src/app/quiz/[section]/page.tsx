@@ -10,6 +10,7 @@ import {
 } from "@/lib/celpip-data";
 import { useHistory } from "@/lib/hooks/use-history";
 import { useAuth } from "@/lib/hooks/use-auth";
+import { useShuffleMap, shuffledOptions, toOriginalIndex, toShuffledIndex } from "@/lib/shuffle-options";
 import TranscriptAudioPlayer from "@/components/TranscriptAudioPlayer";
 import ReadingPassageRenderer from "@/components/ReadingPassageRenderer";
 import RedFlagButton from "@/components/RedFlagButton";
@@ -167,6 +168,12 @@ export default function QuizPractice({
     () => buildQuestions(section, partParam),
     [section, partParam]
   );
+
+  const allQuestionsFlat = useMemo(
+    () => questions.map((qq) => qq.question),
+    [questions]
+  );
+  const shuffleMap = useShuffleMap(allQuestionsFlat);
 
   // Check if this part is paid content and user lacks access
   const isPaidContent = useMemo(() => {
@@ -897,8 +904,8 @@ export default function QuizPractice({
                           }`}
                         >
                           <option value="">—</option>
-                          {qq.question.options.map((opt, optIdx) => (
-                            <option key={optIdx} value={optIdx}>{opt}</option>
+                          {shuffledOptions(qq.question, shuffleMap).map((opt, optIdx) => (
+                            <option key={optIdx} value={toOriginalIndex(qq.question.id, optIdx, shuffleMap)}>{opt}</option>
                           ))}
                         </select>
                       </div>
@@ -960,12 +967,13 @@ export default function QuizPractice({
 
                   {/* Options */}
                   <div className="space-y-2.5">
-                    {q.options.map((option, idx) => {
-                      const isSelected = answers[currentIndex] === idx;
+                    {shuffledOptions(q, shuffleMap).map((option, idx) => {
+                      const originalIdx = toOriginalIndex(q.id, idx, shuffleMap);
+                      const isSelected = answers[currentIndex] === originalIdx;
                       return (
                         <button
                           key={idx}
-                          onClick={() => setAnswers((prev) => ({ ...prev, [currentIndex]: idx }))}
+                          onClick={() => setAnswers((prev) => ({ ...prev, [currentIndex]: originalIdx }))}
                           className={`quiz-option w-full flex items-center gap-3 px-4 py-3 rounded-xl border text-left text-sm ${
                             isSelected
                               ? "quiz-option-selected border-[var(--quiz-copper)]"
@@ -1103,8 +1111,8 @@ export default function QuizPractice({
                           }`}
                         >
                           <option value="">—</option>
-                          {qq.question.options.map((opt, optIdx) => (
-                            <option key={optIdx} value={optIdx}>{opt}</option>
+                          {shuffledOptions(qq.question, shuffleMap).map((opt, optIdx) => (
+                            <option key={optIdx} value={toOriginalIndex(qq.question.id, optIdx, shuffleMap)}>{opt}</option>
                           ))}
                         </select>
                       </div>
@@ -1197,8 +1205,8 @@ export default function QuizPractice({
                           }`}
                         >
                           <option value="">—</option>
-                          {qq.question.options.map((opt, optIdx) => (
-                            <option key={optIdx} value={optIdx}>{opt}</option>
+                          {shuffledOptions(qq.question, shuffleMap).map((opt, optIdx) => (
+                            <option key={optIdx} value={toOriginalIndex(qq.question.id, optIdx, shuffleMap)}>{opt}</option>
                           ))}
                         </select>
                       </div>

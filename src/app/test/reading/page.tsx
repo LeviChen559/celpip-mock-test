@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { readingPartsOfficial as readingParts } from "@/lib/celpip-data";
 import { getTestState, saveTestState } from "@/lib/test-store";
+import { useShuffleMap } from "@/lib/shuffle-options";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
@@ -25,8 +26,9 @@ export default function ReadingTest() {
     return getTestState().readingTimeLeft;
   });
 
-  const allQuestions = readingParts.flatMap((p) => p.questions);
+  const allQuestions = useMemo(() => readingParts.flatMap((p) => p.questions), []);
   const totalQuestions = allQuestions.length;
+  const shuffleMap = useShuffleMap(allQuestions);
 
   let flatIndex = 0;
   for (let i = 0; i < currentPart; i++) {
@@ -138,10 +140,12 @@ export default function ReadingTest() {
           <div className="flex flex-col gap-4">
             <QuestionCard
               questionNumber={flatIndex + 1}
+              questionId={question.id}
               question={question.question}
               options={question.options}
               selectedAnswer={answers[question.id]}
               onAnswer={handleAnswer}
+              shuffleMap={shuffleMap}
             />
 
             <TestNavigation

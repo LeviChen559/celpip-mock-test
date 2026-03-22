@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { listeningPartsOfficial as listeningParts } from "@/lib/celpip-data";
 import { getTestState, saveTestState } from "@/lib/test-store";
+import { useShuffleMap, shuffledOptions, toOriginalIndex, toShuffledIndex } from "@/lib/shuffle-options";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
@@ -25,8 +26,9 @@ export default function ListeningTest() {
     return getTestState().listeningTimeLeft;
   });
 
-  const allQuestions = listeningParts.flatMap((p) => p.questions);
+  const allQuestions = useMemo(() => listeningParts.flatMap((p) => p.questions), []);
   const totalQuestions = allQuestions.length;
+  const shuffleMap = useShuffleMap(allQuestions);
 
   // Compute flat index
   let flatIndex = 0;
@@ -184,8 +186,8 @@ export default function ListeningTest() {
                           }`}
                         >
                           <option value="">—</option>
-                          {q.options.map((opt, optIdx) => (
-                            <option key={optIdx} value={optIdx}>{opt}</option>
+                          {shuffledOptions(q, shuffleMap).map((opt, optIdx) => (
+                            <option key={optIdx} value={toOriginalIndex(q.id, optIdx, shuffleMap)}>{opt}</option>
                           ))}
                         </select>
                       </div>
@@ -225,10 +227,12 @@ export default function ListeningTest() {
           <>
             <QuestionCard
               questionNumber={flatIndex + 1}
+              questionId={question.id}
               question={question.question}
               options={question.options}
               selectedAnswer={answers[question.id]}
               onAnswer={handleAnswer}
+              shuffleMap={shuffleMap}
             />
 
             <TestNavigation
