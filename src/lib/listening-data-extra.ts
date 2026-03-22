@@ -6,27 +6,27 @@ export const listeningPartsExtra: ListeningPart[] = [
     title: "02 | 8 Questions | Listening to Problem Solving",
     instruction:
       "You will hear a conversation between two coworkers trying to resolve a workplace issue. Listen carefully and answer the questions.",
-    transcript: `Angela: Hey Rob, do you have a minute? I need to talk to you about what happened at the team meeting yesterday.
+    transcript: `Angela: Hey Rob, do you have a minute? I really need to talk to someone about what happened at the team meeting yesterday, and I trust your judgment on these things.
 
-Rob: Sure, Angela. Is this about the disagreement between you and Kevin over the project timeline?
+Rob: Of course, Angela. Grab a seat. Is this about the disagreement between you and Kevin over the project timeline? I could tell things got pretty tense toward the end.
 
-Angela: Exactly. He completely dismissed my concerns in front of everyone. I said we needed at least three extra weeks to do proper quality assurance testing, and he just rolled his eyes and said we couldn't afford to delay the launch.
+Angela: Exactly. He completely dismissed my concerns in front of the entire team — there were probably twelve people in that room. I presented data showing that we needed at least three extra weeks to do proper quality assurance testing on the payment processing module. I had benchmarks, test case estimates, everything prepared. And Kevin just rolled his eyes, cut me off mid-sentence, and said we couldn't afford any delay to the launch because the marketing team had already committed to the September 15th date with our retail partners.
 
-Rob: I noticed that. It was uncomfortable for everyone in the room. Have you tried talking to him one-on-one about it?
+Rob: I noticed that, and I could see how frustrated you were. Honestly, it was uncomfortable for everyone in the room. I think a couple of people from the design team looked really surprised by how he handled it. Have you tried talking to him one-on-one about it since then?
 
-Angela: I sent him an email this morning, but he hasn't responded. Honestly, this isn't the first time. Last month he overrode my recommendations on the database migration without even consulting me.
+Angela: I sent him a detailed email this morning explaining my position and asking if we could discuss it over coffee, but he hasn't responded. And honestly, Rob, this isn't the first time something like this has happened. Last month, he completely overrode my recommendations on the database migration strategy without even consulting me or the two other senior developers who had concerns. He just went ahead and approved the vendor's proposal at the budget meeting. When I found out, the contract had already been signed.
 
-Rob: That's frustrating. I think you should bring this up with our manager, Patricia. Not as a complaint, but as a request for clearer decision-making guidelines. If roles and responsibilities are defined better, these clashes won't keep happening.
+Rob: That's really frustrating, especially since database architecture is literally your area of expertise. I think you should bring this up with our manager, Patricia. But I'd frame it carefully — not as a personal complaint about Kevin, but as a request for clearer decision-making guidelines and a more structured approval process. If roles, responsibilities, and sign-off authority are defined better and documented in writing, these kinds of clashes won't keep happening. It protects everyone on the team, not just you.
 
-Angela: That's actually a good idea. I don't want it to seem personal. I just want my expertise to be respected in the process.
+Angela: That's actually a really good idea. I definitely don't want it to seem like a personal conflict or like I'm just venting. I respect Kevin's skills as a project manager. I just want my technical expertise to be genuinely respected and factored into the process, not dismissed or bypassed when it's inconvenient for the schedule.
 
-Rob: Absolutely. Why don't we set up a meeting with Patricia together? I can back you up since I witnessed both incidents. How about Thursday afternoon?
+Rob: Absolutely, and I think Patricia will understand that. Why don't we set up a meeting with her together? I can attend as well, since I witnessed both the meeting incident and I was aware of the database migration situation. Having a second perspective might make the conversation more productive. How about Thursday afternoon?
 
-Angela: That would be great. Let's book it for 2:00 PM if she's available.
+Angela: That would be great. Let's try to book it for 2:00 PM if she's available. That gives me a day to organize my thoughts and put together a summary of both incidents with dates and specifics.
 
-Rob: I'll send the invite right now. In the meantime, maybe hold off on replying to any more of Kevin's emails until we've had that chat.
+Rob: Smart approach. I'll send the calendar invite right now and cc you. In the meantime, I'd suggest holding off on replying to any more of Kevin's emails about the timeline until we've had that conversation with Patricia. You don't want to say anything in writing that could be taken out of context.
 
-Angela: Good advice. Thanks, Rob.`,
+Angela: Good advice. I'll focus on my regular tasks and wait until after Thursday. Thanks, Rob — I feel a lot better already just having talked this through.`,
     questions: [
       {
         id: "L7Q1",
@@ -204,19 +204,21 @@ Homeowner: Perfect. Thank you so much.`,
     title: "02 | 6 Questions | Listening for Information",
     instruction:
       "You will hear a university orientation presentation. Listen carefully and answer the questions.",
-    transcript: `Good morning, everyone, and welcome to the University of Northern Ontario. I'm Dean Margaret Sullivan, and on behalf of the entire faculty, congratulations on your admission.
+    transcript: `Good morning, everyone, and welcome to the University of Northern Ontario. I'm Dean Margaret Sullivan, and on behalf of the entire faculty and administration, I'd like to offer my sincere congratulations on your admission. We reviewed over 14,000 applications this year, and each of you earned your place here through hard work and dedication.
 
-Let me walk you through a few key things you need to know for your first semester. First, registration. Online course registration opens this Friday, September 1st, at 8:00 AM through the student portal. First-year students have priority registration until September 5th. After that, upper-year students can also register, and popular courses fill up fast.
+Let me walk you through several key things you'll need to know as you prepare for your first semester. I'll try to cover the essentials, but please don't worry about writing everything down — this entire presentation, along with all the links and resources I'll mention, will be emailed to you by the end of today.
 
-Second, academic advising. Every first-year student is assigned an academic advisor. You'll find your advisor's name in your student portal under the Academics tab. I strongly recommend booking your first meeting before classes begin on September 11th. Your advisor can help you choose courses that align with your degree requirements.
+First, let's talk about registration. Online course registration opens this Friday, September 1st, at 8:00 AM through the student portal. You'll access it at portal.uno.ca using the login credentials that were mailed to you with your acceptance package. First-year students have priority registration from September 1st through September 5th — this is a significant advantage, because once priority registration ends and upper-year students can also register, popular courses fill up extremely fast. I'd particularly recommend registering early if you're interested in any of the introductory science labs or the first-year writing seminars, as those tend to reach capacity within hours.
 
-Third, campus services. The Northwind Library is open seven days a week, from 7:00 AM to midnight on weekdays and 9:00 AM to 10:00 PM on weekends. The Writing Centre on the second floor of McLaughlin Hall offers free tutoring — you can book up to two sessions per week.
+Second, academic advising. Every incoming first-year student is automatically assigned an academic advisor based on your declared program of study. You'll find your advisor's name and contact information in your student portal under the Academics tab. I strongly recommend booking your first advising meeting before classes begin on September 11th. Your advisor can help you choose courses that align with your degree requirements, plan your four-year course map, and make sure you're not missing any prerequisites.
 
-Fourth, student wellness. The campus health clinic is located in Birch Hall and is open Monday through Friday. Counselling services are free and confidential. You can book appointments online or walk in during open hours, which are Tuesdays and Thursdays from 1:00 to 4:00 PM.
+Third, campus services. The Northwind Library is open seven days a week — 7:00 AM to midnight on weekdays and 9:00 AM to 10:00 PM on weekends. It houses over 1.2 million volumes and has 400 individual study carrels and 35 group study rooms that can be booked online. The Writing Centre, located on the second floor of McLaughlin Hall, offers free one-on-one tutoring with graduate student mentors who can help you with essays, lab reports, and research papers. You can book up to two sessions per week, and I highly recommend taking advantage of this service early and often — students who use the Writing Centre regularly see an average grade improvement of half a letter grade.
 
-Finally, get involved. We have over 150 student clubs and organizations. The clubs fair is happening next Wednesday, September 6th, in the Student Centre gymnasium from 10:00 AM to 3:00 PM.
+Fourth, student wellness. Mental and physical health are priorities for us. The campus health clinic is located in Birch Hall, Room 105, and is open Monday through Friday from 8:30 AM to 5:00 PM. You can see a doctor or nurse practitioner for non-emergency medical needs at no additional cost with your student health plan. Counselling services are also free and completely confidential. You can book appointments online through the wellness portal, or you can walk in during open counselling hours, which are Tuesdays and Thursdays from 1:00 to 4:00 PM.
 
-Enjoy your time here. This is the beginning of an incredible journey.`,
+Finally, I encourage every one of you to get involved in campus life beyond the classroom. We have over 150 student clubs and organizations covering everything from debate and Model United Nations to rock climbing and competitive gaming. The annual clubs fair is happening next Wednesday, September 6th, in the Student Centre gymnasium from 10:00 AM to 3:00 PM. It's a fantastic opportunity to meet upper-year students, find your community, and explore new interests.
+
+Enjoy your time here. This is truly the beginning of an incredible journey, and we're proud to have you as part of the UNO family.`,
     questions: [
       {
         id: "L9Q1",
@@ -293,17 +295,17 @@ Enjoy your time here. This is the beginning of an incredible journey.`,
       "You will hear a news report about a technology company. Listen and answer the questions.",
     transcript: `This is Global News Toronto. I'm Priya Sharma with your business update.
 
-Canadian tech sector celebrations are in order today as NovaTech Solutions, a leading artificial intelligence company headquartered in San Francisco, has announced plans to open a major research and development centre in Waterloo, Ontario. The new facility, which will be located in the David Johnston Research and Technology Park, is expected to create 1,200 high-paying jobs over the next three years.
+There's major news for Canada's tech sector today. NovaTech Solutions, a leading artificial intelligence company headquartered in San Francisco with offices in London and Singapore, has announced plans to open a major research and development centre in Waterloo, Ontario. The new facility, which will be located in the David Johnston Research and Technology Park adjacent to the University of Waterloo campus, is expected to create 1,200 high-paying jobs over the next three years, with average salaries estimated at over $95,000 per year.
 
-NovaTech CEO Richard Alvarez made the announcement at a press conference this morning alongside Ontario Premier Doug Morrison. Alvarez cited Canada's strong talent pipeline and competitive research tax credits as key reasons for choosing Waterloo.
+NovaTech CEO Richard Alvarez made the announcement at a press conference this morning alongside Ontario Premier Doug Morrison and federal Innovation Minister Helena Park. Alvarez cited Canada's strong talent pipeline and competitive research tax credits as the two key reasons for choosing Waterloo over competing bids from Austin, Texas and Dublin, Ireland.
 
-"The University of Waterloo produces some of the best computer science and engineering graduates in the world," Alvarez said. "Combined with Ontario's Scientific Research and Experimental Development tax credit, this was an easy decision."
+"The University of Waterloo produces some of the best computer science and engineering graduates in the world," Alvarez told reporters. "Our company already employs over 200 Waterloo alumni in our San Francisco headquarters. Combined with Ontario's Scientific Research and Experimental Development tax credit, which is one of the most generous in the G7, this was an easy decision for our board."
 
-The provincial government has committed $45 million in incentives to support the project, including infrastructure upgrades to the research park and a workforce training partnership with Conestoga College and Wilfrid Laurier University.
+The provincial government has committed $45 million in incentives to support the project, including infrastructure upgrades to the research park, improved transit connections, and a workforce training partnership with Conestoga College and Wilfrid Laurier University designed to ensure local graduates have the skills NovaTech needs.
 
-Construction on the 200,000-square-foot facility is set to begin in the spring, with the first phase expected to be operational by December of next year. Initial hiring will focus on machine learning engineers, data scientists, and software developers. The company says at least 30% of positions will be reserved for new graduates.
+Construction on the 200,000-square-foot facility is set to begin in the spring, with the first phase expected to be fully operational by December of next year. Initial hiring, which begins in January, will focus on machine learning engineers, data scientists, and senior software developers. The company has committed that at least 30% of all positions will be reserved for recent graduates and co-op students.
 
-The mayor of Waterloo, Cynthia Tran, called the announcement "transformative" for the region, predicting it will attract additional tech investment and boost the local housing market.`,
+The mayor of Waterloo, Cynthia Tran, called the announcement "transformative" for the region, predicting it will attract additional tech investment from other companies and further boost the already competitive local housing market.`,
     questions: [
       {
         id: "L10Q1",
@@ -352,29 +354,29 @@ The mayor of Waterloo, Cynthia Tran, called the announcement "transformative" fo
     title: "02 | 8 Questions | Listening to a Discussion",
     instruction:
       "You will hear a team meeting about planning an event. Listen and answer the questions.",
-    transcript: `Jessica: Alright, team, let's get started. We have exactly six weeks until the company's 25th anniversary gala, and there's a lot to finalize. Raj, can you give us an update on the venue?
+    transcript: `Jessica: Alright, team, let's get started. I know we're all juggling a lot right now, so I want to make sure we use this time efficiently. We have exactly six weeks until the company's 25th anniversary gala, and there are several major items we still need to finalize. Raj, can you kick us off with an update on the venue situation?
 
-Raj: Sure. We've confirmed the booking at the Fairmont Royal York in downtown Toronto. The Grand Ballroom holds up to 400 guests. We've negotiated a package rate of $185 per person, which includes a three-course dinner, open bar for four hours, and audiovisual equipment.
+Raj: Sure thing. So, after visiting four different venues over the past two weeks, we've confirmed the booking at the Fairmont Royal York in downtown Toronto. The Grand Ballroom is a beautiful space — it holds up to 400 guests with round table seating, and it has its own private entrance from the lobby, which is nice for a high-profile event. We've negotiated a package rate of $185 per person, which includes a three-course dinner with two entrée options, an open bar for four hours featuring domestic and imported selections, and full audiovisual equipment including a projector, screen, wireless microphones, and a dedicated AV technician for the evening. I'm pretty happy with the rate — the standard price was $220, so we saved quite a bit.
 
-Jessica: Great. How are we looking on the guest list, Megan?
+Jessica: That's excellent work, Raj. A $35 per person saving really adds up. Okay, how are we looking on the guest list, Megan?
 
-Megan: We've sent out 350 invitations so far. As of this morning, we have 210 confirmed RSVPs, 45 declines, and the rest haven't responded yet. The RSVP deadline is two weeks from today. I'll send a reminder email next Monday.
+Megan: So, we've sent out 350 invitations in total — that includes current employees, board members, retired executives, and about 40 key clients and partners. As of this morning, we have 210 confirmed RSVPs, 45 formal declines, and the remaining 95 people haven't responded yet. The RSVP deadline is two weeks from today. I'm planning to send a follow-up reminder email next Monday, and for anyone who still hasn't responded by the following Wednesday, I'll make personal phone calls.
 
-Jessica: Good. We need a minimum of 250 to make the economics work with the venue. Raj, what about entertainment?
+Jessica: Good, that's a solid approach. We need a minimum of 250 confirmed guests to make the economics work with the venue's minimum spend requirement. If we drop below that, we'd still owe the full amount. So let's push hard on those outstanding RSVPs. Raj, what about entertainment?
 
-Raj: I've got two options. Option one is a jazz quartet from Montreal — they charge $3,500 for a four-hour set. Option two is a DJ service from Toronto at $2,200 for the full evening, including lighting and sound.
+Raj: I've narrowed it down to two options. Option one is the Laurent Ensemble, a jazz quartet based in Montreal. They specialize in corporate events and have excellent reviews. They charge $3,500 for a four-hour set, and they can learn two or three custom songs if we want them to play something specific to the company. Option two is a professional DJ service from Toronto called SoundWave Events. They charge $2,200 for the full evening, and that includes lighting effects, a sound system, and a fog machine.
 
-Jessica: What does everyone think?
+Jessica: Interesting. What does everyone think? Which one fits the vibe better?
 
-Megan: I think the jazz quartet fits the formal tone better. It's a milestone anniversary, after all.
+Megan: Honestly, I think the jazz quartet is the way to go. This is a formal, milestone anniversary for the company — 25 years is a big deal. Live jazz would set a really elegant, sophisticated tone, especially during dinner. A DJ feels more like a holiday party to me.
 
-Raj: I agree. And the $1,300 difference is worth it for the atmosphere.
+Raj: I agree completely. And when you think about it, the $1,300 difference is absolutely worth it for the quality of the atmosphere and the impression it makes on our clients and partners.
 
-Jessica: Alright, let's go with the jazz quartet. Now, Megan, I need you to coordinate with the marketing team on a commemorative video. We want a five-minute highlight reel of the company's history to play during dinner. Can you have a draft ready in three weeks?
+Jessica: Alright, that settles it — let's go with the jazz quartet. Raj, please confirm the booking with them by end of day tomorrow. Now, one more thing. Megan, I need you to coordinate with the marketing team on a commemorative video. We want a five-minute highlight reel of the company's history — key milestones, founding story, major product launches — to play during the dinner service. Can you have a rough draft ready for review in three weeks?
 
-Megan: Absolutely. I'll set up a meeting with marketing this week.
+Megan: Absolutely. I've actually already spoken with two people on the marketing team who are excited about it. I'll set up a formal kickoff meeting with them this week to go over the timeline and content outline.
 
-Jessica: Perfect. Let's reconvene next Tuesday to check progress.`,
+Jessica: Perfect. This is all coming together nicely. Let's reconvene next Tuesday at the same time to check progress on all fronts.`,
     questions: [
       {
         id: "L11Q1",
@@ -446,19 +448,19 @@ Jessica: Perfect. Let's reconvene next Tuesday to check progress.`,
     title: "02 | 6 Questions | Listening for Viewpoints",
     instruction:
       "You will hear a debate about public transit versus cars. Listen and answer the questions.",
-    transcript: `Moderator: Welcome to City Forum. Tonight's topic: should the city invest more in public transit or road infrastructure for cars? We have two panellists. First, Carla Mendes, a transit advocate and urban planner. Second, Greg Harrison, a suburban councillor and commuter.
+    transcript: `Moderator: Welcome to City Forum. I'm David Chen, and tonight we're tackling one of the most hotly debated infrastructure questions facing our region: should the city prioritize investment in public transit or road infrastructure for cars? This question is especially timely, as city council will be voting on the proposed $2.4 billion light rail transit expansion next month. We have two panellists with strong but very different views. First, Carla Mendes, a transit advocate and certified urban planner who has consulted for three Canadian municipalities. And second, Greg Harrison, a councillor representing Ward 7 in the eastern suburbs and a daily car commuter.
 
-Carla: Thank you. The evidence is overwhelming. Cities that invest in public transit see reduced traffic congestion, lower carbon emissions, and more equitable access to jobs and services. Our city's bus ridership has grown 15% in the last two years, even with outdated routes. Imagine what we could do with a modern rapid transit network. The proposed LRT expansion would serve 80,000 daily riders and take 25,000 cars off the road.
+Carla: Thank you, David. I'm glad we're having this conversation, because the evidence supporting transit investment is truly overwhelming at this point. Research from cities around the world consistently shows that communities that invest in public transit see reduced traffic congestion, lower carbon emissions, improved air quality, and — importantly — more equitable access to jobs, healthcare, and educational opportunities for people who can't afford to own a car. Right here in our own city, bus ridership has grown by 15% in just the last two years, and that's with an outdated route network that hasn't been redesigned since the 1990s. Imagine what we could achieve with a modern rapid transit system. The proposed LRT expansion would serve an estimated 80,000 daily riders within its first three years of operation and would take approximately 25,000 cars off the road during peak hours.
 
-Greg: I appreciate Carla's enthusiasm, but let's be realistic. Seventy-two percent of commuters in our region drive to work. That's not going to change overnight. The roads in the eastern suburbs are crumbling. Potholes are causing accidents and damaging vehicles. Before we spend $2.4 billion on an LRT, we should fix what we already have. The road repair backlog alone is estimated at $600 million.
+Greg: I appreciate Carla's enthusiasm and her expertise, but I think we need to be realistic about the situation on the ground. Seventy-two percent of commuters in our region drive to work every day. That's nearly three quarters of the workforce. That reality isn't going to change overnight, no matter how good the transit system is. Meanwhile, the roads in the eastern suburbs are literally crumbling. I drive through my ward every day, and the potholes aren't just an inconvenience — they're a genuine safety hazard that's causing accidents and costing residents hundreds of dollars in vehicle repairs. Before we commit $2.4 billion of taxpayer money to an LRT that primarily benefits the downtown core, we should invest in fixing the infrastructure we already have. The road repair backlog alone across the region is estimated at $600 million, and it grows every year we delay.
 
-Carla: I understand the need for road maintenance, but widening roads has never solved congestion — it actually induces more traffic. Every dollar we invest in transit returns $4 in economic benefit. That's from a federal infrastructure study published last year.
+Carla: Greg raises a fair point about road maintenance, and I'm not suggesting we completely ignore roads. But I want to challenge the idea that building and widening roads solves congestion, because decades of transportation research tells us it doesn't — it actually induces more traffic. It's called induced demand. People see a wider road, they decide to drive instead of taking transit, and within a few years you're right back to gridlock. What does work is giving people attractive alternatives. And the economic case is strong: every dollar we invest in public transit returns $4 in economic benefit through job creation, increased property values, and reduced healthcare costs from cleaner air. That figure comes from a federal infrastructure study published just last year.
 
-Greg: That study was based on dense urban cores, not suburban communities where people live 20 kilometres from the nearest bus stop. We need both, but right now the priority should be safety. Last winter, 340 accidents in our district were directly linked to poor road conditions.
+Greg: I've read that study, and it's important to note that it was primarily based on data from dense urban cores like Toronto, Montreal, and Vancouver — not suburban communities like mine, where many residents live 15 to 20 kilometres from the nearest bus stop and there's simply no practical transit route to their workplace. In those areas, cars aren't a luxury; they're a necessity. I agree we need both roads and transit, but the immediate priority has to be safety. Last winter alone, 340 accidents in my district were directly linked to poor road conditions — cracked asphalt, missing signage, and inadequate snow clearing. That's 340 families affected.
 
-Carla: And I'd argue that giving people a reliable transit alternative would reduce the number of cars on those roads in the first place, making them safer for everyone.
+Carla: And I would argue that one of the best ways to make those suburban roads safer is to give people a reliable, fast transit alternative so that fewer cars are on those roads in the first place. If even 15% of current drivers switched to the proposed LRT for their daily commute, that's a meaningful reduction in wear and tear on suburban roads and a significant improvement in safety for everyone who still needs to drive.
 
-Moderator: Thank you both. Clearly, this debate is far from settled.`,
+Moderator: Thank you both for such a substantive discussion. It's clear that this is a complex issue with legitimate arguments on both sides. City council will have a lot to consider when they vote next month.`,
     questions: [
       {
         id: "L12Q1",
@@ -508,27 +510,27 @@ Moderator: Thank you both. Clearly, this debate is far from settled.`,
     title: "03 | 8 Questions | Listening to Problem Solving",
     instruction:
       "You will hear a couple planning a vacation. Listen carefully and answer the questions.",
-    transcript: `Nina: Okay, so we finally have two weeks off in July. I've been looking at options, and I'm really torn between two ideas. What do you think about going to the East Coast — like Nova Scotia and Prince Edward Island?
+    transcript: `Nina: Okay, so we finally have two weeks off in July — July 8th through the 21st — and I've been spending the last few evenings researching vacation options. I'm really torn between two ideas, and I'd love to talk them through with you. What would you think about going to the East Coast — specifically Nova Scotia and Prince Edward Island?
 
-Derek: That could be fun. I've always wanted to see Peggy's Cove and try fresh lobster. What's the other option?
+Derek: That could be really fun, actually. I've always wanted to see Peggy's Cove and try fresh lobster right on the wharf. My coworker went last summer and said the seafood alone was worth the trip. He also mentioned the Cabot Trail in Cape Breton, which is supposed to be one of the most scenic drives in the country. What's the other option you're thinking about?
 
-Nina: A road trip through the Canadian Rockies — Banff, Jasper, and Lake Louise. We could rent a camper van and do some hiking.
+Nina: A road trip through the Canadian Rockies — Banff, Jasper, and Lake Louise. We could rent a camper van from a company in Calgary and spend two weeks driving through the mountains, hiking, and camping. I've been looking at photos online, and the scenery is absolutely unreal — turquoise lakes, glacier-fed waterfalls, wildlife everywhere.
 
-Derek: Both sound amazing, honestly. What's the budget looking like?
+Derek: Honestly, both options sound amazing to me. I could go either way. What's the budget looking like for each one? Because that might be the deciding factor.
 
-Nina: Well, the East Coast trip would be cheaper. I found round-trip flights from Toronto to Halifax for $380 each. Hotels would run about $150 a night. For two weeks, including food and activities, I estimate around $4,500 total for both of us.
+Nina: Well, the East Coast trip would definitely be the cheaper option. I found round-trip flights from Toronto to Halifax for $380 each through WestJet, and I checked availability at several bed and breakfasts along our planned route. Hotels and B&Bs would average about $150 a night, some more, some less. For the full two weeks, including food, whale-watching tours, ferry tickets to PEI, and other activities, I estimate around $4,500 total for both of us. That's a pretty reasonable budget.
 
-Derek: And the Rockies?
+Derek: Not bad at all. And the Rockies trip?
 
-Nina: More expensive. The camper van rental alone is $175 a day, so that's $2,450 for 14 days. Plus gas, campground fees, park passes, and food — I'd estimate $6,200 total.
+Nina: Significantly more expensive, I'm not going to lie. The camper van rental alone from Rocky Mountain Campers is $175 a day, and that's for a mid-size van with a double bed, a small kitchen, and a propane heater. For 14 days, the rental comes to $2,450. Then you add gas — and gas prices in Alberta and BC aren't cheap — plus campground reservation fees, which average about $35 a night at the national parks, Parks Canada discovery passes at $140 per person, and food and supplies. All in, I'd estimate roughly $6,200 total for the two of us.
 
-Derek: That's a $1,700 difference. But think about it — no flights, no hotel check-ins. Just open road and mountains. And we've been saying for years we want to do more outdoor adventures.
+Derek: So that's about a $1,700 difference. That's not trivial. But think about it this way — with the camper van, there are no flights to catch, no hotel check-in times to worry about, no packing and unpacking at different places every night. It's just open road and mountains and total freedom to go wherever we want, whenever we want. And we've been saying for literally years that we want to do more outdoor adventure travel instead of just sitting on a beach somewhere.
 
-Nina: True. And the camper van has a kitchen, so we'd save on restaurant meals. What if we cut it down to 10 days instead of 14? That would bring the van rental to $1,750 and the total closer to $4,800.
+Nina: You make a really compelling case. And the camper van has a fully equipped kitchen, so we'd save quite a bit on restaurant meals — we could cook most of our own dinners and just pack lunches for the trail. What if we shortened the trip a bit to bring the cost down? Say 10 days instead of 14? That would bring the van rental down to $1,750 and the total budget closer to $4,800. That's only $300 more than the East Coast option.
 
-Derek: I like that compromise. Ten days in the Rockies and then four days at home to relax before going back to work. Let's do it.
+Derek: I really like that compromise. Ten days in the Rockies, and then we'd have four days at home to unpack, do laundry, rest up, and mentally prepare before going back to work on the 22nd. I always hate going straight from vacation to the office with no buffer. Let's do it — I'm sold on the Rockies.
 
-Nina: Perfect. I'll book the camper van tonight before the July spots fill up.`,
+Nina: Perfect. I'm going to book the camper van tonight before the July availability is completely gone. They told me on the phone that July is their busiest month, and the mid-size vans usually sell out by early May.`,
     questions: [
       {
         id: "L13Q1",
@@ -607,19 +609,19 @@ Nina: Perfect. I'll book the camper van tonight before the July spots fill up.`,
       "You will hear a news report about healthcare policy changes. Listen and answer the questions.",
     transcript: `This is CTV News. I'm Michael Park with a special report on healthcare.
 
-The federal government today announced a landmark $6.8 billion investment in Canada's healthcare system, focused on three key areas: reducing surgical wait times, expanding access to mental health services, and improving rural healthcare delivery.
+The federal government today announced what it's calling a landmark $6.8 billion investment in Canada's healthcare system, the largest single federal health funding commitment in over a decade. The plan focuses on three key areas that have been at the centre of public concern for years: reducing surgical wait times, expanding access to mental health services, and improving healthcare delivery in rural and remote communities.
 
-Health Minister Diane Tremblay unveiled the plan at a press conference in Ottawa. Under the new program, called the Canadian Health Acceleration Plan, provinces will receive targeted funding over the next five years, tied to measurable performance benchmarks.
+Health Minister Diane Tremblay unveiled the details of the plan at a press conference in Ottawa this morning, flanked by the chief public health officer and representatives from several provincial health authorities. Under the new program, officially called the Canadian Health Acceleration Plan or CHAP, provinces and territories will receive targeted funding over the next five years. However, the funding comes with strings attached — it's tied to measurable performance benchmarks, and provinces that fail to meet agreed-upon targets could see their allocations reduced in subsequent years.
 
-The largest portion — $3.2 billion — will go toward surgical backlogs. Canada currently has an estimated 900,000 patients waiting for surgeries, with average wait times reaching 27 weeks in some provinces. The funding will support the hiring of 5,000 additional nurses and 800 surgeons across the country.
+The largest portion of the funding — $3.2 billion — will go directly toward addressing surgical backlogs, which have ballooned since the pandemic. Canada currently has an estimated 900,000 patients on waiting lists for surgeries ranging from hip replacements to cardiac procedures, with average wait times reaching 27 weeks in some provinces, well above the medically recommended benchmarks. The funding will support the hiring of 5,000 additional nurses and 800 surgeons across the country, as well as the creation of dedicated surgical centres in eight cities to handle high-volume procedures like cataract surgeries and knee replacements.
 
-Mental health services will receive $2.1 billion. The plan includes the creation of 200 new community mental health clinics, with a focus on underserved areas in Northern Ontario, rural Saskatchewan, and Atlantic Canada. The government is also committing to a national mental health crisis hotline, operational by next March.
+Mental health services will receive $2.1 billion, the second-largest allocation. The plan includes the creation of 200 new community mental health clinics, with a particular focus on underserved areas in Northern Ontario, rural Saskatchewan, and Atlantic Canada — regions where residents currently have to travel hours to access a psychiatrist or counsellor. The government is also committing to launching a national mental health crisis hotline, staffed by trained counsellors 24 hours a day, seven days a week, which is expected to be fully operational by next March.
 
-The remaining $1.5 billion targets rural healthcare. This includes incentives for doctors and nurse practitioners to work in remote communities, mobile health units for Indigenous communities, and telemedicine infrastructure upgrades.
+The remaining $1.5 billion targets rural and remote healthcare infrastructure. This includes financial incentives and student loan forgiveness programs for doctors, nurses, and nurse practitioners who commit to working in remote communities for a minimum of three years. It also funds mobile health units for Indigenous communities and significant telemedicine infrastructure upgrades to improve virtual care access in areas with limited broadband connectivity.
 
-The Canadian Medical Association has cautiously welcomed the plan, with president Dr. Alisha Kapoor calling it "a significant step, but one that must be followed by sustained commitment, not just a one-time injection of funds."
+The Canadian Medical Association has cautiously welcomed the plan. CMA president Dr. Alisha Kapoor told reporters it represents "a significant step forward, but one that must be followed by sustained, long-term commitment from Ottawa, not just a one-time injection of funds that fades with the next election cycle."
 
-Provincial premiers are expected to respond at next week's Council of the Federation meeting in Halifax.`,
+Provincial premiers are expected to formally respond to the plan at next week's Council of the Federation meeting in Halifax.`,
     questions: [
       {
         id: "L14Q1",

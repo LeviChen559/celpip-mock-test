@@ -86,21 +86,27 @@ Woman: Okay, I'd better hurry then. Thanks for your help!`,
     title: "01 | 8 Questions | Listening to Problem Solving",
     instruction:
       "You will hear a conversation between two people discussing a problem. Listen carefully and answer the questions.",
-    transcript: `Sarah: Hey Mike, I just got an email from the landlord. He says our lease is up next month and he wants to increase the rent by $300.
+    transcript: `Sarah: Hey Mike, I just got an email from the landlord. He says our lease is up at the end of next month and he wants to increase the rent by $300. I honestly couldn't believe it when I read it.
 
-Mike: Three hundred dollars? That's a huge jump. We're already paying $1,800 a month. Can he even do that legally?
+Mike: Three hundred dollars? That's a huge jump. We're already paying $1,800 a month. That would bring us up to $2,100, which is way more than we budgeted for when we moved in. Can he even do that legally?
 
-Sarah: I looked it up. In our province, there's a rent increase guideline of about 2.5% per year, which would only be around $45. But he's claiming he did major renovations to the building.
+Sarah: I spent about an hour looking it up last night. In our province, there's an annual rent increase guideline of about 2.5% per year, which would only be around $45 on our current rent. But he's claiming he did major renovations to the building, and apparently landlords can apply for an above-guideline increase if they've made significant capital improvements.
 
-Mike: What renovations? They fixed the elevator and painted the hallway. That hardly seems major.
+Mike: Major renovations? Come on. They fixed the elevator that had been broken for six months — which they were legally obligated to do anyway — and they painted the lobby and the hallway on our floor. That hardly qualifies as a capital improvement. They didn't upgrade the plumbing, the heating system, or anything structural.
 
-Sarah: I agree. I think we should write back and mention the provincial guidelines. If he insists, we can file a complaint with the Landlord and Tenant Board.
+Sarah: Exactly what I was thinking. I also checked the Residential Tenancies Act, and it says the landlord has to give us at least 90 days' written notice for any increase, and the notice has to be on the proper government form. The email he sent definitely doesn't meet those requirements. I think we have solid grounds to push back.
 
-Mike: That's a good plan. But maybe we should also start looking at other options, just in case. My colleague mentioned there are some new apartments near the subway station that are in our budget.
+Mike: That's reassuring. So what do you think our next step should be?
 
-Sarah: True. Let's do both — respond to the landlord and also check out those apartments this weekend. Can you draft the letter?
+Sarah: I think we should write back and formally mention the provincial guidelines and the notice requirements. We should keep it professional but firm. If he insists on the $300 increase after that, we can file a complaint with the Landlord and Tenant Board. They have an online portal now, so the process is actually pretty straightforward.
 
-Mike: Sure. I'll have it ready by tonight.`,
+Mike: That's a good plan. But maybe we should also start looking at other options, just in case things don't go our way. My colleague David mentioned there are some new apartment buildings that just opened near the Bloor subway station. He said the one-bedrooms start at $1,750, and they include parking and a gym membership.
+
+Sarah: Really? That's actually less than what we're paying now, and we'd get more amenities. It might be worth checking out even if we resolve things with our landlord. Let's do both — respond to the landlord this week and also visit those apartments this weekend. Can you draft the letter?
+
+Mike: Sure. I'll have a draft ready by tonight so you can review it before we send it. I'll also look up the specific section of the Tenancies Act about above-guideline increases so we can reference it.
+
+Sarah: Perfect. And I'll call the Landlord and Tenant Board's information line tomorrow during my lunch break to make sure we're not missing anything. Better to be thorough about this.`,
     questions: [
       {
         id: "L1Q1",
@@ -187,21 +193,25 @@ Mike: Sure. I'll have it ready by tonight.`,
       "You will hear a conversation in a daily life context. Listen and answer the questions.",
     transcript: `Receptionist: Good morning, Greenfield Medical Clinic. How can I help you?
 
-Patient: Hi, I'd like to book an appointment with Dr. Chen. I've been having some persistent headaches.
+Patient: Hi, I'd like to book an appointment with Dr. Chen, if possible. I've been having some persistent headaches for the past couple of weeks, and they seem to be getting worse. I usually get them in the afternoon, and over-the-counter painkillers aren't really helping anymore.
 
-Receptionist: I'm sorry to hear that. Dr. Chen is quite booked this week. The earliest I can offer is next Tuesday at 2:30 PM. Would that work?
+Receptionist: I'm sorry to hear that. Dr. Chen is quite booked this week, unfortunately. She's been seeing a lot of patients with seasonal issues, and her schedule is completely full until next week. The earliest I can offer with Dr. Chen is next Tuesday at 2:30 PM. Would that work for you?
 
-Patient: That's almost a week away. Is there anything sooner? The headaches are getting worse.
+Patient: That's almost a week away, and these headaches are really affecting my work. I've had to leave the office early twice this week already. Is there anything sooner, even with a different doctor?
 
-Receptionist: Let me check... Actually, we had a cancellation. I can fit you in this Thursday at 10:15 AM. But it would be with Dr. Patel instead of Dr. Chen. Dr. Patel is also excellent with neurological concerns.
+Receptionist: Let me check the system... Actually, we had a cancellation just this morning. I can fit you in this Thursday, October 12th, at 10:15 AM. But it would be with Dr. Patel instead of Dr. Chen. Dr. Patel has been with our clinic for over eight years and is also excellent with neurological concerns. He completed his residency at Toronto General Hospital and regularly handles referrals for headaches and migraines.
 
-Patient: That works better. I'll take the Thursday appointment. Do I need to bring anything?
+Patient: That sounds great, actually. I'll take the Thursday appointment with Dr. Patel. Do I need to bring anything specific?
 
-Receptionist: Please bring your health card and a list of any medications you're currently taking. Also, since this is your first visit, please arrive 15 minutes early to fill out the new patient forms.
+Receptionist: Yes, please bring your provincial health card and a list of any medications you're currently taking, including dosages and how often you take them. If you've had any recent blood work or imaging done at another clinic, it would be helpful to bring those results as well. Also, since this is your first visit to our clinic, please arrive 15 minutes early to fill out the new patient forms. There's a registration package that covers your medical history, allergies, and emergency contact information.
 
-Patient: Great. My name is James Morrison. M-O-R-R-I-S-O-N.
+Patient: Got it. Fifteen minutes early with my health card and medication list. My name is James Morrison. That's M-O-R-R-I-S-O-N.
 
-Receptionist: Got it. You're all set for Thursday, October 12th at 10:15 AM with Dr. Patel.`,
+Receptionist: Thank you, Mr. Morrison. You're all confirmed for Thursday, October 12th at 10:15 AM with Dr. Patel. If anything changes or you need to reschedule, please give us at least 24 hours' notice so we can offer the slot to another patient. Is there anything else I can help you with?
+
+Patient: No, that's everything. Thank you so much for fitting me in.
+
+Receptionist: You're welcome. We'll see you Thursday. Take care.`,
     questions: [
       {
         id: "L2Q1",
@@ -266,17 +276,17 @@ Receptionist: Got it. You're all set for Thursday, October 12th at 10:15 AM with
     title: "01 | 6 Questions | Listening for Information",
     instruction:
       "You will hear an informational presentation. Listen carefully and answer the questions.",
-    transcript: `Welcome to the City of Maplewood's annual community update. I'm Mayor Linda Park, and I'm here to share some exciting developments for the coming year.
+    transcript: `Welcome to the City of Maplewood's annual community update. I'm Mayor Linda Park, and I'm delighted to be here this evening to share some exciting developments and important changes that are coming to our community in the year ahead.
 
-First, transportation. Our new light rail transit line connecting downtown to the eastern suburbs will begin construction in April. The project is expected to take 18 months to complete and will feature six new stations. During construction, bus routes 14, 22, and 31 will be temporarily rerouted.
+First, let me talk about transportation, which I know is a priority for many of you. After three years of planning and environmental assessments, our new light rail transit line connecting downtown to the eastern suburbs will officially begin construction in April. The project, which carries a budget of $1.2 billion, is expected to take approximately 18 months to complete and will feature six new stations, including a major transfer hub at Maplewood Centre. The line will run from Union Station East all the way to Riverside Terminal, with trains operating every eight minutes during peak hours. During the construction phase, bus routes 14, 22, and 31 will be temporarily rerouted, and we'll be posting detailed detour maps on the city website by the end of this month. I encourage all commuters to check the transit authority's app for real-time updates.
 
-Second, parks and recreation. We're investing $4.2 million to renovate Riverside Park. The plan includes a new splash pad for children, upgraded walking trails, and an outdoor amphitheater for community events. Work begins in June.
+Second, parks and recreation. We're investing $4.2 million to completely renovate Riverside Park, which hasn't seen a major upgrade since 2008. The plan includes a new splash pad and playground for children, upgraded walking and cycling trails with improved lighting for evening use, and an outdoor amphitheater that will seat up to 500 people for community events and summer concerts. We're also adding 120 new parking spaces along the southern entrance. Work begins in June and should be completed by the following spring.
 
-Third, I'd like to address housing. We've approved the development of 350 new affordable housing units in the Westgate neighbourhood. Priority will go to families with children and seniors. Applications open on March 1st through the city's housing portal.
+Third, I'd like to address housing, which remains one of our most pressing challenges. The city council has approved the development of 350 new affordable housing units in the Westgate neighbourhood, in partnership with the Maplewood Housing Corporation. Priority will be given to families with children under 12 and seniors over 65 who have been on the waiting list for more than two years. Applications open on March 1st through the city's online housing portal, and information sessions will be held at the Westgate Community Centre on February 15th and 22nd.
 
-Finally, a note on public safety. We're hiring 40 additional firefighters and opening a new fire station on Oak Street. This will reduce response times in the northern district by approximately 4 minutes.
+Finally, a note on public safety. We're hiring 40 additional firefighters and paramedics, and we're opening a brand-new fire station on Oak Street in the northern district. This station will house two engine companies and an ambulance unit, and it will reduce emergency response times in that area by approximately 4 minutes — from an average of 11 minutes down to 7.
 
-Thank you for being engaged citizens. Questions can be directed to our new community hotline at 311.`,
+Thank you for being engaged citizens. Questions and comments can be directed to our new community hotline at 311, which is staffed Monday through Saturday from 8 AM to 8 PM.`,
     questions: [
       {
         id: "L3Q1",
@@ -345,15 +355,15 @@ Thank you for being engaged citizens. Questions can be directed to our new commu
     instruction: "You will hear a news report. Listen and answer the questions.",
     transcript: `This is CBC News at Six. I'm Rachel Nguyen.
 
-A major winter storm is bearing down on southern British Columbia, and Environment Canada has issued warnings for the Greater Vancouver area and the Fraser Valley. The storm, which originated in the Gulf of Alaska, is expected to bring 25 to 40 centimetres of snow between tonight and Saturday morning.
+A major winter storm is bearing down on southern British Columbia tonight, and Environment Canada has issued severe weather warnings for the Greater Vancouver area, the Fraser Valley, and the Sea-to-Sky corridor. The storm system, which originated in the Gulf of Alaska and has been intensifying as it moves southeast, is expected to bring between 25 and 40 centimetres of snow to lower elevations between tonight and Saturday morning, with even heavier accumulations possible in the North Shore mountains and higher terrain.
 
-TransLink has announced that SkyTrain service may be reduced to 15-minute intervals if conditions worsen. BC Ferries has already cancelled all sailings between Tsawwassen and Swartz Bay for tomorrow. Vancouver International Airport is advising travellers to check their flight status before heading to the airport, as delays and cancellations are expected.
+The storm is already affecting transportation across the region. TransLink has announced that SkyTrain service on the Expo and Millennium lines may be reduced to 15-minute intervals if conditions worsen overnight, and several bus routes in the hillier parts of Burnaby and North Vancouver have already been suspended. BC Ferries has cancelled all sailings between Tsawwassen and Swartz Bay for tomorrow and says it will reassess conditions on Saturday morning before making a decision about weekend service. Vancouver International Airport is advising all travellers to check their flight status online or through their airline's app before heading to the airport, as significant delays and cancellations are expected throughout the day tomorrow. As of this evening, 47 flights have already been cancelled.
 
-The City of Vancouver has activated its emergency response plan and opened three additional warming centres for people experiencing homelessness. The centres are located at the Vancouver Convention Centre, the Roundhouse Community Centre, and Britannia Secondary School.
+On the ground, the City of Vancouver has activated its emergency response plan. Three additional warming centres have been opened for people experiencing homelessness, bringing the total to seven across the city. The new centres are located at the Vancouver Convention Centre, the Roundhouse Community Centre, and Britannia Secondary School, and they will remain open around the clock until the storm passes.
 
-Residents are advised to stock up on essentials, keep their phones charged, and avoid unnecessary travel. Power outages are possible, particularly in the North Shore mountains.
+City officials are urging residents to stock up on essentials, keep their mobile phones charged, and avoid all unnecessary travel until at least Saturday afternoon. BC Hydro has warned that power outages are likely, particularly in the North Shore mountains and parts of the Fraser Valley where heavy wet snow could bring down power lines and tree branches. Crews have been placed on standby across the region.
 
-Environment Canada forecaster David Liu says this could be the most significant snowfall event in Vancouver since 2017.`,
+Environment Canada senior forecaster David Liu told reporters this afternoon that this could be the most significant snowfall event in the Vancouver area since the major storm of December 2017, which dumped 34 centimetres on the city and caused widespread disruptions for nearly a week.`,
     questions: [
       {
         id: "L4Q1",
@@ -407,23 +417,23 @@ Environment Canada forecaster David Liu says this could be the most significant 
     title: "01 | 8 Questions | Listening to a Discussion",
     instruction:
       "You will hear a discussion between colleagues. Listen and answer the questions.",
-    transcript: `Manager (Karen): Thanks for coming in, everyone. As you know, our quarterly sales numbers are in, and we need to talk about the results and plan for next quarter.
+    transcript: `Manager (Karen): Thanks for coming in, everyone. I know we're all busy, so I appreciate you making the time. As you know, our quarterly sales numbers came in last Friday, and I've had a chance to go through them in detail. There's some good news and some areas of concern, so I want to talk through the results and start planning our strategy for next quarter.
 
-Tom: I can start. Our online sales grew by 12% this quarter, which is solid. But our in-store numbers dropped by 8%. I think that's partly due to the road construction on Main Street. Foot traffic has been way down.
+Tom: I can start with the overview. Our online sales grew by 12% this quarter compared to the same period last year, which is solid and actually ahead of our target of 10%. We saw particularly strong performance in the home accessories and seasonal décor categories. However, our in-store numbers tell a different story — they dropped by 8%, which is the second consecutive quarter of decline. I think that's partly due to the road construction on Main Street that's been going on since July. Foot traffic at the storefront has been way down, and several of our regular customers have told me they're shopping online instead of coming in because parking has been so difficult.
 
-Lisa: I agree with Tom on that. But I also think we need to look at our product mix. Our premium line isn't selling as well as it used to. Customers are asking for more mid-range options.
+Lisa: I agree with Tom on the construction issue — it's definitely a factor. But I also think we need to take a hard look at our product mix. Our premium line, which used to account for about 30% of in-store revenue, isn't selling as well as it used to. I've been tracking customer feedback, and a lot of people are saying our premium items are nice but overpriced for what they are. Customers are consistently asking for more mid-range options — quality products in the $40 to $80 range, rather than the $120 to $200 pieces we're currently pushing.
 
-Karen: That's a valid point. What about the loyalty program? We launched that in September.
+Karen: That's a really valid point, and it aligns with what I've been seeing in the industry reports. The mid-range segment is growing across the retail sector right now. What about the loyalty program? We launched that in September, and I'm curious how it's performing.
 
-Tom: Actually, the loyalty program has been a bright spot. We've signed up 2,300 members in just two months, and repeat purchases from members are up 18%.
+Tom: Actually, the loyalty program has been one of our real bright spots this quarter. We've signed up 2,300 members in just two months, which exceeded our initial projection of 1,500. Even more encouraging, repeat purchases from loyalty members are up 18% compared to non-members, and their average order value is about $15 higher.
 
-Lisa: The problem is the sign-up process. It's too complicated. I've had customers abandon it at the register. If we simplify it to just an email address, I think we'll get even more sign-ups.
+Lisa: Those numbers are impressive, but I do want to flag an issue with the sign-up process. It's too complicated. Right now, customers have to fill out a form with their name, address, phone number, and email, and then create a password. I've personally watched customers abandon the process at the register because it takes too long, especially when there's a line behind them. If we could simplify it to just an email address — or even a phone number — I think we'd see significantly more sign-ups and fewer abandoned registrations.
 
-Karen: Good feedback. Let's do this — Tom, can you pull together a proposal for expanding the mid-range product line? Lisa, work with IT to simplify the loyalty sign-up. I want both proposals by next Friday.
+Karen: That's excellent feedback, and I think you're right. Let's do this — Tom, can you pull together a proposal for expanding the mid-range product line? I want to see a list of potential suppliers, price points, and a projected timeline for getting new inventory in. Lisa, work with the IT team to simplify the loyalty sign-up process. See if we can get it down to a single step. I want both proposals on my desk by next Friday so we can review them at our Monday meeting.
 
-Tom: Will do.
+Tom: Will do. I've actually already been in touch with a couple of suppliers, so I should be able to move quickly on that.
 
-Lisa: Sounds good.`,
+Lisa: Sounds good. I'll set up a meeting with IT first thing tomorrow morning.`,
     questions: [
       {
         id: "L5Q1",
@@ -505,19 +515,19 @@ Lisa: Sounds good.`,
     title: "01 | 6 Questions | Listening for Viewpoints",
     instruction:
       "You will hear a discussion presenting different viewpoints. Listen and answer the questions.",
-    transcript: `Host: Welcome to Community Voices. Today we're discussing whether the city should ban single-use plastics. I have two guests: Dr. Amy Foster, an environmental scientist, and Mark Sullivan, who represents the local restaurant association.
+    transcript: `Host: Welcome to Community Voices. I'm your host, Patricia Wong. Today we're tackling a controversial topic that's been generating a lot of debate at city hall: should our municipality follow the lead of other Canadian cities and implement a ban on single-use plastics? I have two guests with very different perspectives on this issue. First, Dr. Amy Foster, an environmental scientist at the University of British Columbia who specializes in marine pollution research. And second, Mark Sullivan, the president of the Greater Vancouver Restaurant Association, which represents over 3,400 food service businesses in the region.
 
-Dr. Foster: Thank you for having me. The case is clear. Single-use plastics are clogging our waterways, harming wildlife, and filling our landfills. Over 80% of ocean plastic comes from land-based sources, and cities that have implemented bans have seen measurable reductions in plastic pollution. We need to act now.
+Dr. Foster: Thank you for having me, Patricia. I think the scientific case for action is overwhelming at this point. Single-use plastics are clogging our waterways, killing marine wildlife, and filling our landfills at an alarming rate. Our research team at UBC conducted a study last year of the Fraser River estuary, and we found microplastic concentrations that were 40% higher than they were just five years ago. Nationally, over 80% of ocean plastic pollution comes from land-based sources — that's everyday items like bags, straws, cups, and takeout containers that end up in storm drains and eventually in our rivers and oceans. Cities like Victoria and Montreal that have already implemented bans are seeing measurable reductions in plastic pollution within the first year. We need to act now, before the problem gets worse.
 
-Mark: I appreciate Dr. Foster's passion, but a total ban would devastate small businesses. Many restaurants run on thin margins. Switching to compostable containers costs three to four times more. We need a gradual transition, not an overnight ban.
+Mark: I appreciate Dr. Foster's passion and her research, and I want to be clear — nobody in the restaurant industry wants to pollute the environment. But a total ban would be devastating for small businesses, many of which are still recovering from the economic challenges of the past few years. The restaurant industry runs on extremely thin margins, often between 3% and 5%. Switching from plastic to compostable containers and utensils costs three to four times more per unit. For a busy takeout restaurant that goes through a thousand containers a week, that's an additional $15,000 to $20,000 a year in packaging costs alone. We need a gradual, supported transition — not an overnight ban that could push businesses under.
 
-Dr. Foster: I understand the cost concern, and that's why I'm proposing a phased approach — start with plastic bags and straws, then move to containers over two years. The city could also subsidize the transition for small businesses.
+Dr. Foster: I completely understand the cost concern, Mark, and that's exactly why I'm not proposing an overnight ban. What I'm advocating for is a phased approach. Start with the easiest wins — plastic bags and straws — which already have affordable alternatives widely available. Then give businesses 18 to 24 months to transition away from plastic containers and cutlery. The city should also establish a green business subsidy fund to help small businesses offset the initial costs of switching to sustainable packaging. Several cities in Europe have done this very successfully.
 
-Mark: A subsidy program would help, but who pays for it? Taxpayers? And what about consumer choice? Many of our customers actually prefer plastic takeout containers because they're leak-proof and microwave-safe.
+Mark: A subsidy program would certainly help, and I'd welcome that conversation. But there are practical questions. Who pays for it — taxpayers? And how long does the subsidy last? What happens when the funding runs out and businesses are stuck with higher ongoing costs? And frankly, there's also the question of consumer choice. Many of our customers actively prefer plastic takeout containers because they're leak-proof, stackable, microwave-safe, and lightweight. The compostable alternatives don't always perform as well — some of them get soggy, they can't handle hot liquids, and they don't seal properly for delivery orders.
 
-Dr. Foster: Consumer preferences can shift. Look at what happened when stores started charging for plastic bags — usage dropped by 70% in the first year. People adapt. And the long-term healthcare and environmental costs of plastic pollution far outweigh the short-term transition costs.
+Dr. Foster: Those are fair points about product quality, and the industry is improving rapidly. But I'd argue that consumer preferences can and do shift when the right incentives are in place. Look at what happened when grocery stores across the country started charging five or ten cents for plastic bags — usage dropped by 70% in the first year alone. People adapted, they started bringing reusable bags, and now most consumers don't even think about it. The same thing will happen with other single-use plastics. And when you factor in the long-term healthcare costs of microplastic contamination in our food and water supply, plus the environmental cleanup costs, the economic argument for a ban is actually very strong. We're simply shifting costs from the future to the present.
 
-Host: Thank you both. It's clear this is a nuanced issue that needs careful planning.`,
+Host: Thank you both for such a thoughtful discussion. It's clear this is a nuanced issue that will require careful planning, collaboration between government and industry, and a realistic timeline for implementation.`,
     questions: [
       {
         id: "L6Q1",
