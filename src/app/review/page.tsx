@@ -16,6 +16,7 @@ import { Progress } from "@/components/ui/progress";
 import { createClient } from "@/lib/supabase/client";
 import { useAuth } from "@/lib/hooks/use-auth";
 import TranscriptAudioPlayer from "@/components/TranscriptAudioPlayer";
+import RedFlagButton from "@/components/RedFlagButton";
 
 interface ReviewQuestion {
   question: Question;
@@ -255,6 +256,7 @@ function ReviewContent() {
                     {quizSection === "writing" ? "Writing" : "Speaking"}
                   </Badge>
                   <span className="text-xs text-muted-foreground">{resp.title}</span>
+                  <RedFlagButton questionId={`resp-${idx}`} section={quizSection || section || "unknown"} />
                 </div>
 
                 <div className="bg-muted rounded-lg p-4 mb-4">
@@ -342,6 +344,7 @@ function ReviewContent() {
                     {isCorrect ? "Correct" : wasSkipped ? "Skipped" : "Wrong"}
                   </Badge>
                   <span className="text-xs text-muted-foreground">{rq.partTitle}</span>
+                  <RedFlagButton questionId={rq.question.id} section={quizSection || section || "unknown"} />
                 </div>
 
                 <p className="text-sm font-medium text-[#1a1a2e] mb-3">{rq.question.question}</p>

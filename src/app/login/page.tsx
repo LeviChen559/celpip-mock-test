@@ -106,7 +106,7 @@ export default function LoginPage() {
         {/* Back to home */}
         <button
           onClick={() => router.push("/")}
-          className="text-xs font-semibold tracking-widest uppercase mb-8 block transition-colors hp-reveal"
+          className="text-xs font-semibold tracking-widest mb-8 block transition-colors hp-reveal"
           style={{ color: "var(--hp-accent)" }}
           onMouseEnter={(e) =>
             (e.currentTarget.style.color = "var(--hp-accent-light)")
