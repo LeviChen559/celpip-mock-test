@@ -2,7 +2,21 @@
 
 A comprehensive web-based practice platform for the **CELPIP (Canadian English Language Proficiency Index Program) General Test**. Built with Next.js, it provides full-length mock tests, section-specific practice, untimed quiz mode, AI-powered writing feedback, and teacher/admin management tools.
 
-## Features
+## Core Features
+
+- Full-length timed mock tests (Listening, Reading, Writing, Speaking)
+- Section practice mode with timing simulation
+- Untimed quiz practice with instant feedback
+- AI-powered writing feedback via Claude API
+- AI-generated smart study plan with schedule tracking
+- Text-to-speech audio via ElevenLabs API
+- Test history, score trends, and full answer review
+- Report-a-problem system for question quality control
+- Role-based access (user, subscriber, teacher, admin)
+- Teacher portal for student progress monitoring
+- Admin dashboard for user and content management
+
+## Features in Detail
 
 ### Full-Length Mock Tests (Timed)
 - **Listening** (~47 min) — Problem solving, conversations, information gathering, news, discussions, viewpoints
