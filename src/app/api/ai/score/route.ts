@@ -49,9 +49,9 @@ export async function POST(req: NextRequest) {
   const { test_record_id, section, task_id, task_type, user_response, target_score } =
     await req.json();
 
-  if (!test_record_id || !section || !task_id || !task_type || !user_response) {
+  if (!section || !task_id || !task_type || !user_response) {
     return NextResponse.json(
-      { error: "Missing required fields: test_record_id, section, task_id, task_type, user_response" },
+      { error: "Missing required fields: section, task_id, task_type, user_response" },
       { status: 400 }
     );
   }
@@ -97,7 +97,7 @@ export async function POST(req: NextRequest) {
       .from("ai_scores")
       .insert({
         user_id: user.id,
-        test_record_id,
+        test_record_id: test_record_id || null,
         section,
         task_id,
         task_type,

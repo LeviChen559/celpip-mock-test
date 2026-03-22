@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { useHistory, TestRecord } from "@/lib/hooks/use-history";
+import { createClient } from "@/lib/supabase/client";
 
 type TestType = "full" | "section" | "quiz";
 
@@ -59,11 +60,49 @@ function hasAnswers(r: TestRecord): boolean {
   return false;
 }
 
+interface AiScoreRow {
+  test_record_id: string;
+  section: string;
+  task_id: string;
+  scores: {
+    task_response: { score: number; comment: string };
+    coherence: { score: number; comment: string };
+    vocabulary: { score: number; comment: string };
+    grammar: { score: number; comment: string };
+    overall: number;
+    clb_estimate: string;
+  };
+  weaknesses: string[];
+  created_at: string;
+}
+
 export default function MyTests() {
   const router = useRouter();
   const { records, loading, deleteRecord, clearAll } = useHistory();
   const [filter, setFilter] = useState<FilterKey>("all");
   const [showClearDialog, setShowClearDialog] = useState(false);
+  const [aiScoresMap, setAiScoresMap] = useState<Record<string, AiScoreRow[]>>({});
+  const [expandedRecord, setExpandedRecord] = useState<string | null>(null);
+
+  // Fetch AI scores for all records
+  useEffect(() => {
+    if (loading || records.length === 0) return;
+    const supabase = createClient();
+    supabase
+      .from("ai_scores")
+      .select("test_record_id, section, task_id, scores, weaknesses, created_at")
+      .order("created_at", { ascending: true })
+      .then(({ data }: { data: AiScoreRow[] | null }) => {
+        if (!data) return;
+        const map: Record<string, AiScoreRow[]> = {};
+        (data as AiScoreRow[]).forEach((row) => {
+          if (!row.test_record_id) return;
+          if (!map[row.test_record_id]) map[row.test_record_id] = [];
+          map[row.test_record_id].push(row);
+        });
+        setAiScoresMap(map);
+      });
+  }, [loading, records]);
 
   if (loading) return null;
 
@@ -224,6 +263,14 @@ export default function MyTests() {
                             Review
                           </button>
                         )}
+                        {aiScoresMap[r.id] && (
+                          <button
+                            onClick={() => setExpandedRecord(expandedRecord === r.id ? null : r.id)}
+                            className="text-xs font-medium text-[#6b4c9a] hover:underline transition-colors"
+                          >
+                            {expandedRecord === r.id ? "Hide AI" : "AI Scores"}
+                          </button>
+                        )}
                         <button
                           onClick={() => deleteRecord(r.id)}
                           className="text-xs hover:text-red-600 transition-colors"
@@ -234,6 +281,49 @@ export default function MyTests() {
                       </div>
                     </div>
                   </div>
+
+                  {/* AI Score Breakdown */}
+                  {expandedRecord === r.id && aiScoresMap[r.id] && (
+                    <div className="mt-3 pt-3 border-t border-[#e2ddd5] space-y-3">
+                      {aiScoresMap[r.id].map((ai) => (
+                        <div key={`${ai.section}-${ai.task_id}`} className="space-y-2">
+                          <div className="flex items-center gap-2">
+                            <Badge className="text-[10px] bg-green-100 text-green-700 border-green-200">
+                              AI {ai.section}
+                            </Badge>
+                            <span className="text-xs text-muted-foreground">{ai.task_id}</span>
+                          </div>
+                          <div className="grid grid-cols-2 gap-x-4 gap-y-1">
+                            {(["task_response", "coherence", "vocabulary", "grammar"] as const).map((dim) => {
+                              const d = ai.scores[dim];
+                              return (
+                                <div key={dim} className="flex justify-between text-xs">
+                                  <span className="capitalize">{dim.replace("_", " ")}</span>
+                                  <span className={`font-medium ${scoreColor(d.score)}`}>{d.score}/12</span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                          <p className="text-xs">
+                            <span className="font-medium">Overall:</span>{" "}
+                            <span className={`font-bold ${scoreColor(ai.scores.overall)}`}>{ai.scores.overall}/12</span>
+                            {ai.scores.clb_estimate && (
+                              <span className="ml-2 text-muted-foreground">CLB {ai.scores.clb_estimate}</span>
+                            )}
+                          </p>
+                          {ai.weaknesses?.length > 0 && (
+                            <div className="text-xs text-muted-foreground">
+                              {ai.weaknesses.map((w, i) => (
+                                <span key={i} className="inline-block bg-red-50 text-red-600 rounded px-1.5 py-0.5 mr-1 mb-1 text-[10px]">
+                                  {w}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             );

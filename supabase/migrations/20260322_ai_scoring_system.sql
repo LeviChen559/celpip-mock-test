@@ -23,7 +23,7 @@ CREATE UNIQUE INDEX IF NOT EXISTS idx_user_goals_active
 CREATE TABLE IF NOT EXISTS ai_scores (
   id              uuid DEFAULT gen_random_uuid() PRIMARY KEY,
   user_id         uuid REFERENCES profiles(id) ON DELETE CASCADE NOT NULL,
-  test_record_id  uuid REFERENCES test_records(id) ON DELETE CASCADE NOT NULL,
+  test_record_id  uuid REFERENCES test_records(id) ON DELETE CASCADE,
   section         text NOT NULL CHECK (section IN ('writing', 'speaking')),
   task_id         text NOT NULL,
   task_type       text NOT NULL,
