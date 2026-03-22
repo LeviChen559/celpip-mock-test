@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import { Progress } from "@/components/ui/progress";
 import { useSchedule, ScheduleItem } from "@/lib/hooks/use-schedule";
 import { useHistory } from "@/lib/hooks/use-history";
+import type { PlanItem } from "@/lib/prompts/planner";
 
 // ── Section metadata ───────────────────────────────────
 
@@ -198,10 +199,32 @@ export default function StudyPlan() {
   const [planDate, setPlanDate] = useState("");
   const [generated, setGenerated] = useState(false);
   const [preview, setPreview] = useState<ScheduleItem[]>([]);
+  const [useAiPlan, setUseAiPlan] = useState(false);
+  const [aiPlanLoading, setAiPlanLoading] = useState(false);
+  const [aiPlanSummary, setAiPlanSummary] = useState<string | null>(null);
+  const [aiGoalProgress, setAiGoalProgress] = useState<{ current_avg: number; target: number; days_remaining: number; on_track: boolean } | null>(null);
+  const [goalSaving, setGoalSaving] = useState(false);
+  const [goalSaved, setGoalSaved] = useState(false);
 
   useEffect(() => {
     if (!scheduleLoading && targetDate) setPlanDate(targetDate);
   }, [scheduleLoading, targetDate]);
+
+  // Load saved goal from API
+  useEffect(() => {
+    fetch("/api/ai/goal")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((goal) => {
+        if (goal) {
+          setGoalScore(goal.goal_score);
+          setSessionsPerDay(goal.sessions_per_day);
+          setFocusAreas(goal.focus_sections || []);
+          if (goal.target_date) setPlanDate(goal.target_date);
+          setGoalSaved(true);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   if (scheduleLoading || historyLoading) return null;
 
@@ -240,15 +263,92 @@ export default function StudyPlan() {
     setPreview([]);
   };
 
-  const handleGenerate = () => {
+  const handleSaveGoal = async () => {
+    setGoalSaving(true);
+    try {
+      const res = await fetch("/api/ai/goal", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          goal_score: goalScore,
+          target_date: planDate || null,
+          focus_sections: focusAreas,
+          sessions_per_day: sessionsPerDay,
+        }),
+      });
+      if (res.ok) setGoalSaved(true);
+    } catch {
+      // Goal save failed silently
+    }
+    setGoalSaving(false);
+  };
+
+  const handleGenerate = async () => {
     if (!planDate || totalDays <= 0) return;
 
-    const plan = generatePlan(
-      { targetDate: planDate, goalScore, sessionsPerDay, focusAreas },
-      weakSections
-    );
-    setPreview(plan);
-    setGenerated(true);
+    // Save goal first
+    if (!goalSaved) await handleSaveGoal();
+
+    if (useAiPlan) {
+      // Use AI planner
+      setAiPlanLoading(true);
+      setGenerated(false);
+      try {
+        const res = await fetch("/api/ai/plan", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ days_ahead: Math.min(totalDays, 14) }),
+        });
+        if (res.ok) {
+          const data = await res.json();
+          const aiItems: ScheduleItem[] = (data.plan_items as PlanItem[]).map((item) => ({
+            id: crypto.randomUUID(),
+            date: item.date,
+            section: item.section,
+            label: item.label,
+            completed: false,
+          }));
+          setPreview(aiItems);
+          setAiPlanSummary(data.summary);
+          setAiGoalProgress(data.goal_progress);
+          setGenerated(true);
+        } else if (res.status === 429) {
+          setAiPlanSummary("Monthly AI limit reached. Using algorithmic plan instead.");
+          // Fall back to algorithmic
+          const plan = generatePlan(
+            { targetDate: planDate, goalScore, sessionsPerDay, focusAreas },
+            weakSections
+          );
+          setPreview(plan);
+          setGenerated(true);
+        } else {
+          const err = await res.json();
+          setAiPlanSummary(err.error || "AI plan failed. Using algorithmic plan.");
+          const plan = generatePlan(
+            { targetDate: planDate, goalScore, sessionsPerDay, focusAreas },
+            weakSections
+          );
+          setPreview(plan);
+          setGenerated(true);
+        }
+      } catch {
+        // Fall back to algorithmic plan
+        const plan = generatePlan(
+          { targetDate: planDate, goalScore, sessionsPerDay, focusAreas },
+          weakSections
+        );
+        setPreview(plan);
+        setGenerated(true);
+      }
+      setAiPlanLoading(false);
+    } else {
+      const plan = generatePlan(
+        { targetDate: planDate, goalScore, sessionsPerDay, focusAreas },
+        weakSections
+      );
+      setPreview(plan);
+      setGenerated(true);
+    }
   };
 
   const handleApply = async () => {
@@ -400,13 +500,50 @@ export default function StudyPlan() {
             )}
           </div>
 
-          <Button
-            onClick={handleGenerate}
-            disabled={!planDate || totalDays <= 0}
-            className="rounded-full bg-[#6b4c9a] hover:bg-[#5a3d85] text-white px-8"
-          >
-            Generate Plan
-          </Button>
+          {/* AI Plan toggle */}
+          <div className="flex items-center gap-3 mb-4">
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={useAiPlan}
+                onChange={(e) => { setUseAiPlan(e.target.checked); setGenerated(false); setPreview([]); }}
+                className="w-4 h-4 rounded accent-[#6b4c9a]"
+              />
+              <span className="text-sm font-medium text-[#1a1a2e]">
+                Use AI-powered plan
+              </span>
+            </label>
+            {useAiPlan && (
+              <Badge className="bg-purple-100 text-[#6b4c9a] border-purple-200 text-[10px]">
+                Personalized to your diagnostics
+              </Badge>
+            )}
+          </div>
+
+          <div className="flex gap-3">
+            <Button
+              onClick={handleGenerate}
+              disabled={!planDate || totalDays <= 0 || aiPlanLoading}
+              className="rounded-full bg-[#6b4c9a] hover:bg-[#5a3d85] text-white px-8"
+            >
+              {aiPlanLoading ? "AI is planning..." : useAiPlan ? "Generate AI Plan" : "Generate Plan"}
+            </Button>
+            {!goalSaved && (
+              <Button
+                onClick={handleSaveGoal}
+                disabled={goalSaving}
+                variant="outline"
+                className="rounded-full px-6"
+              >
+                {goalSaving ? "Saving..." : "Save Goal"}
+              </Button>
+            )}
+            {goalSaved && (
+              <Badge variant="outline" className="text-green-600 border-green-300 text-xs self-center">
+                Goal saved
+              </Badge>
+            )}
+          </div>
         </CardContent>
       </Card>
 
@@ -445,23 +582,42 @@ export default function StudyPlan() {
                 </div>
               </div>
 
+              {/* AI summary */}
+              {aiPlanSummary && useAiPlan && (
+                <div className="bg-purple-50 rounded-lg p-3 mb-3">
+                  <p className="text-sm text-purple-800">{aiPlanSummary}</p>
+                  {aiGoalProgress && (
+                    <div className="flex gap-4 mt-2 text-xs text-purple-600">
+                      <span>Current avg: <strong>{aiGoalProgress.current_avg}</strong></span>
+                      <span>Target: <strong>{aiGoalProgress.target}</strong></span>
+                      <span>{aiGoalProgress.days_remaining} days left</span>
+                      <Badge className={aiGoalProgress.on_track ? "bg-green-100 text-green-700 text-[10px]" : "bg-red-100 text-red-700 text-[10px]"}>
+                        {aiGoalProgress.on_track ? "On track" : "Needs focus"}
+                      </Badge>
+                    </div>
+                  )}
+                </div>
+              )}
+
               {/* Phase breakdown */}
-              <div className="flex gap-2 flex-wrap">
-                {[
-                  { label: "Foundation", pct: 60, desc: "Quizzes & section drills" },
-                  { label: "Integration", pct: 30, desc: "Mixed practice & full tests" },
-                  { label: "Final Prep", pct: 10, desc: "Full mock tests & review" },
-                ].map((phase) => (
-                  <div key={phase.label} className="flex-1 min-w-[120px]">
-                    <Badge className={getPhaseColor(phase.label) + " border text-xs mb-1"}>
-                      {phase.label}
-                    </Badge>
-                    <p className="text-xs" style={{ color: "var(--muted-foreground)" }}>
-                      ~{phase.pct}% — {phase.desc}
-                    </p>
-                  </div>
-                ))}
-              </div>
+              {!useAiPlan && (
+                <div className="flex gap-2 flex-wrap">
+                  {[
+                    { label: "Foundation", pct: 60, desc: "Quizzes & section drills" },
+                    { label: "Integration", pct: 30, desc: "Mixed practice & full tests" },
+                    { label: "Final Prep", pct: 10, desc: "Full mock tests & review" },
+                  ].map((phase) => (
+                    <div key={phase.label} className="flex-1 min-w-[120px]">
+                      <Badge className={getPhaseColor(phase.label) + " border text-xs mb-1"}>
+                        {phase.label}
+                      </Badge>
+                      <p className="text-xs" style={{ color: "var(--muted-foreground)" }}>
+                        ~{phase.pct}% — {phase.desc}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
             </CardContent>
           </Card>
 

@@ -199,12 +199,13 @@ export default function MySchedule() {
                 <div className="space-y-2">
                   {dateItems.map((item) => {
                     const style = getSectionStyle(item.section);
+                    const isAi = item.source === "ai_planner";
                     return (
                       <div
                         key={item.id}
-                        className={`flex items-center gap-3 p-3 rounded-xl border border-[#e2ddd5] bg-white transition-all ${
-                          item.completed ? "opacity-60" : ""
-                        }`}
+                        className={`flex items-center gap-3 p-3 rounded-xl border transition-all ${
+                          isAi ? "border-l-4 border-l-[#6b4c9a] border-[#e2ddd5] bg-purple-50/50" : "border-[#e2ddd5] bg-white"
+                        } ${item.completed ? "opacity-60" : ""}`}
                       >
                         <input
                           type="checkbox"
@@ -212,15 +213,29 @@ export default function MySchedule() {
                           onChange={() => toggleItem(item.id)}
                           className="w-4 h-4 rounded accent-[#6b4c9a] cursor-pointer"
                         />
-                        <Badge className={`${style.bg} border text-[10px] shrink-0`}>
-                          {style.label}
-                        </Badge>
-                        <p
-                          className={`text-sm flex-1 ${item.completed ? "line-through" : ""}`}
-                          style={{ color: item.completed ? "var(--muted-foreground)" : "#1a1a2e" }}
-                        >
-                          {item.label}
-                        </p>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <Badge className={`${style.bg} border text-[10px] shrink-0`}>
+                              {style.label}
+                            </Badge>
+                            {isAi && (
+                              <Badge className="bg-purple-100 text-[#6b4c9a] border-purple-200 text-[10px]">
+                                AI Recommended
+                              </Badge>
+                            )}
+                          </div>
+                          <p
+                            className={`text-sm mt-1 ${item.completed ? "line-through" : ""}`}
+                            style={{ color: item.completed ? "var(--muted-foreground)" : "#1a1a2e" }}
+                          >
+                            {item.label}
+                          </p>
+                          {isAi && item.ai_metadata?.reason && (
+                            <p className="text-[10px] mt-0.5 text-[#6b4c9a]">
+                              {item.ai_metadata.reason}
+                            </p>
+                          )}
+                        </div>
                         <button
                           onClick={() => deleteItem(item.id)}
                           className="text-xs hover:text-red-600 transition-colors shrink-0"

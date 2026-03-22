@@ -10,6 +10,12 @@ export interface ScheduleItem {
   section: string;
   label: string;
   completed: boolean;
+  source?: string;
+  ai_metadata?: {
+    reason?: string;
+    target_dimension?: string;
+    difficulty?: string;
+  } | null;
 }
 
 interface ScheduleHook {
@@ -53,12 +59,14 @@ export function useSchedule(): ScheduleHook {
         .single(),
     ]).then(([{ data: scheduleData }, { data: profileData }]: [{ data: ScheduleItem[] | null }, { data: { target_date: string } | null }]) => {
       setItems(
-        (scheduleData || []).map((row: ScheduleItem) => ({
+        (scheduleData || []).map((row: ScheduleItem & { source?: string; ai_metadata?: ScheduleItem["ai_metadata"] }) => ({
           id: row.id,
           date: row.date,
           section: row.section,
           label: row.label,
           completed: row.completed,
+          source: row.source || "manual",
+          ai_metadata: row.ai_metadata || null,
         }))
       );
       setTargetDateState(profileData?.target_date || "");
