@@ -54,7 +54,7 @@ export default function ApiUsageCounter() {
             className="text-xs font-medium"
             style={{ color: "var(--hp-text)" }}
           >
-            AI Credits
+            Credits
           </span>
           <span
             className="text-xs tabular-nums"
