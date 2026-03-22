@@ -7,6 +7,7 @@ import { listeningParts, readingParts, writingTasks, speakingTasks } from "@/lib
 import MyTests from "@/components/MyTests";
 import MySchedule from "@/components/MySchedule";
 import StudyPlan from "@/components/StudyPlan";
+import ApiUsageCounter from "@/components/ApiUsageCounter";
 import { useAuth } from "@/lib/hooks/use-auth";
 import { useHistory } from "@/lib/hooks/use-history";
 import {
@@ -429,25 +430,30 @@ export default function Dashboard() {
       {/* ── Welcome header ─────────────────────────── */}
       <section className="max-w-screen-xl mx-auto px-4 sm:px-6 pt-8 sm:pt-10 pb-6 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end gap-3 md:gap-16">
-          <h2
-            className="text-2xl sm:text-3xl font-bold"
-            style={{
-              fontFamily: "var(--font-serif)",
-              color: "var(--hp-text)",
-            }}
-          >
-            Welcome back,{" "}
-            <span style={{ color: "var(--hp-accent)" }}>
-              {currentUser.name.split(" ")[0]}
-            </span>
-          </h2>
-          <p
-            className="text-base leading-relaxed"
-            style={{ color: "var(--hp-text-muted)" }}
-          >
-            Full timed tests, single section practice, or untimed quiz mode
-            with instant feedback.
-          </p>
+          <div className="flex-1 min-w-0">
+            <h2
+              className="text-2xl sm:text-3xl font-bold"
+              style={{
+                fontFamily: "var(--font-serif)",
+                color: "var(--hp-text)",
+              }}
+            >
+              Welcome back,{" "}
+              <span style={{ color: "var(--hp-accent)" }}>
+                {currentUser.name.split(" ")[0]}
+              </span>
+            </h2>
+            <p
+              className="text-base leading-relaxed mt-1"
+              style={{ color: "var(--hp-text-muted)" }}
+            >
+              Full timed tests, single section practice, or untimed quiz mode
+              with instant feedback.
+            </p>
+          </div>
+          <div className="w-full md:w-56 shrink-0">
+            <ApiUsageCounter />
+          </div>
         </div>
       </section>
 
