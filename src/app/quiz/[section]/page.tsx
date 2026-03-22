@@ -12,6 +12,7 @@ import { useHistory } from "@/lib/hooks/use-history";
 import { useAuth } from "@/lib/hooks/use-auth";
 import TranscriptAudioPlayer from "@/components/TranscriptAudioPlayer";
 import ReadingPassageRenderer from "@/components/ReadingPassageRenderer";
+import RedFlagButton from "@/components/RedFlagButton";
 
 interface QuizQuestion {
   question: Question;
@@ -485,6 +486,7 @@ export default function QuizPractice({
                     <span className="text-xs text-[#1a1a2e]/40 ml-auto">
                       {qq.partTitle}
                     </span>
+                    <RedFlagButton questionId={qq.question.id} section={section} />
                   </div>
 
                   <p className="text-sm font-medium text-[#1a1a2e] mb-4 leading-relaxed">{qq.question.question}</p>
