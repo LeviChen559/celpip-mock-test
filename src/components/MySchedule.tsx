@@ -266,9 +266,9 @@ export default function MySchedule() {
         /* ── Calendar View ────────────────────────── */
         <div>
           <Card className="border-2 border-[#e2ddd5] rounded-2xl mb-4">
-            <CardContent className="pt-5">
+            <CardContent className="pt-4 pb-3">
               {/* Month navigation */}
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-2">
                 <button
                   onClick={prevMonth}
                   className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 text-[#1a1a2e] transition-colors"
@@ -302,10 +302,10 @@ export default function MySchedule() {
               </div>
 
               {/* Calendar grid */}
-              <div className="grid grid-cols-7">
+              <div className="grid grid-cols-7 gap-px">
                 {/* Empty cells for days before month start */}
                 {Array.from({ length: startDay }).map((_, i) => (
-                  <div key={`empty-${i}`} className="aspect-square" />
+                  <div key={`empty-${i}`} className="h-10" />
                 ))}
 
                 {/* Day cells */}
@@ -323,7 +323,7 @@ export default function MySchedule() {
                     <button
                       key={dateStr}
                       onClick={() => setSelectedDate(isSelected ? null : dateStr)}
-                      className={`aspect-square flex flex-col items-center justify-center relative rounded-lg transition-all text-xs
+                      className={`h-10 flex flex-col items-center justify-center relative rounded-lg transition-all text-xs
                         ${isSelected ? "bg-[#6b4c9a] text-white ring-2 ring-[#6b4c9a] ring-offset-1" : ""}
                         ${isToday && !isSelected ? "bg-purple-50 font-bold text-[#6b4c9a]" : ""}
                         ${isTarget && !isSelected ? "ring-2 ring-[#6b4c9a] ring-offset-1" : ""}
@@ -373,7 +373,7 @@ export default function MySchedule() {
               </div>
 
               {/* Legend */}
-              <div className="flex items-center gap-4 mt-3 pt-3 border-t border-[#e2ddd5] flex-wrap">
+              <div className="flex items-center gap-4 mt-2 pt-2 border-t border-[#e2ddd5] flex-wrap">
                 <div className="flex items-center gap-1.5 text-[10px]" style={{ color: "var(--muted-foreground)" }}>
                   <span className="w-1.5 h-1.5 rounded-full bg-green-400" /> Completed
                 </div>
