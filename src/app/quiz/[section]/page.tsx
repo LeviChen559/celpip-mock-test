@@ -364,6 +364,10 @@ export default function QuizPractice({
   const answeredCount = Object.keys(answers).length;
   const sectionLabel = section === "listening" ? "Listening" : "Reading";
 
+  // Reading Part 3 ("Reading for Information") shows all questions at once with dropdown selects
+  const isReadingPart3 = section === "reading" && questions.length > 0
+    && questions.every(qq => qq.partId?.startsWith("Reading-Part3"));
+
   // ── Compute results ──────────────────────────────────
   const computeResults = () => {
     let correct = 0;
@@ -921,6 +925,184 @@ export default function QuizPractice({
               </div>
             </div>
           </div>
+        ) : isReadingPart3 ? (
+          /* Reading Part 3: passage + all questions at once with dropdown selects */
+          <>
+          {/* Desktop */}
+          <div className="hidden lg:grid lg:grid-cols-[1fr_420px] gap-6 lg:gap-10">
+            {/* Left: Passage */}
+            <div className="lg:sticky lg:top-28 lg:self-start">
+              <div className="quiz-card">
+                <div className="h-1 bg-gradient-to-r from-[var(--quiz-copper)] via-[var(--quiz-copper-light)] to-transparent" />
+                <div className="p-5 lg:p-6">
+                  <div className="flex items-center gap-2 mb-1">
+                    <h2 className="font-serif text-lg font-bold text-[var(--quiz-ink)]">{current.partTitle}</h2>
+                  </div>
+                  {current.contextLabel && (
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--quiz-ink)]/35 font-semibold mb-4">
+                      {current.contextLabel}
+                    </p>
+                  )}
+                  <div className="bg-[var(--quiz-warm)] rounded-xl p-5 max-h-[calc(100vh-240px)] overflow-y-auto quiz-passage-scroll">
+                    <ReadingPassageRenderer passage={current.context || ""} />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: All questions */}
+            <div className="flex flex-col gap-3">
+              <div className="quiz-card">
+                <div className="p-5 lg:p-6">
+                  <p className="text-xs text-[var(--quiz-ink)]/50 mb-4 leading-relaxed">
+                    {questions[0]?.question.question ? "" : ""}For each statement, select the paragraph where the information is found.
+                  </p>
+                  <div className="space-y-3">
+                    {questions.map((qq, idx) => (
+                      <div
+                        key={idx}
+                        className={`flex items-start gap-3 p-3 rounded-xl border transition-colors ${
+                          answers[idx] !== undefined
+                            ? "border-[var(--quiz-copper)]/30 bg-[var(--quiz-copper)]/[0.04]"
+                            : "border-[var(--quiz-border)] bg-white"
+                        }`}
+                      >
+                        <span className="w-7 h-7 rounded-lg bg-[var(--quiz-copper)]/10 flex items-center justify-center text-xs font-bold text-[var(--quiz-copper)] shrink-0 mt-0.5">
+                          {idx + 1}
+                        </span>
+                        <p className="flex-1 text-sm leading-relaxed text-[var(--quiz-ink)]">{qq.question.question}</p>
+                        <select
+                          value={answers[idx] !== undefined ? answers[idx] : ""}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            setAnswers((prev) => {
+                              if (val === "") {
+                                const next = { ...prev };
+                                delete next[idx];
+                                return next;
+                              }
+                              return { ...prev, [idx]: Number(val) };
+                            });
+                          }}
+                          className={`shrink-0 w-16 h-9 rounded-lg border text-sm font-bold text-center appearance-none cursor-pointer transition-colors ${
+                            answers[idx] !== undefined
+                              ? "border-[var(--quiz-copper)] bg-[var(--quiz-copper)] text-white"
+                              : "border-[var(--quiz-border)] bg-white text-[var(--quiz-ink)]/50 hover:border-[var(--quiz-copper)]/50"
+                          }`}
+                        >
+                          <option value="">—</option>
+                          {qq.question.options.map((opt, optIdx) => (
+                            <option key={optIdx} value={optIdx}>{opt}</option>
+                          ))}
+                        </select>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Finish button */}
+                  <div className="flex justify-end mt-5">
+                    <button
+                      onClick={finishQuiz}
+                      className="flex items-center gap-1.5 px-5 py-2.5 text-sm font-semibold rounded-lg bg-[var(--quiz-copper)] text-white hover:bg-[var(--quiz-copper-light)] transition-colors"
+                    >
+                      Finish Quiz
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile */}
+          <div className="flex flex-col lg:hidden" style={{ height: "calc(100vh - 52px)" }}>
+            {/* Passage */}
+            <div className="shrink-0 px-2 sm:px-4 pt-0 sm:pt-2 pb-1">
+              <div className="quiz-card sm:!rounded-[10px]">
+                <div className="h-1 bg-gradient-to-r from-[var(--quiz-copper)] via-[var(--quiz-copper-light)] to-transparent" />
+                <div className="px-3 py-3 sm:p-4">
+                  <div className="flex items-center gap-2 mb-1">
+                    <h2 className="font-serif text-base font-bold text-[var(--quiz-ink)]">{current.partTitle}</h2>
+                    {current.contextLabel && (
+                      <span className="text-[10px] uppercase tracking-[0.2em] text-[var(--quiz-ink)]/35 font-semibold">
+                        {current.contextLabel}
+                      </span>
+                    )}
+                  </div>
+                  <div className="bg-[var(--quiz-warm)] rounded-lg sm:rounded-xl p-2 sm:p-4 max-h-[30vh] overflow-y-auto quiz-passage-scroll">
+                    <ReadingPassageRenderer passage={current.context || ""} />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* All questions */}
+            <div className="flex-1 overflow-y-auto px-2 sm:px-4 pb-4">
+              <div className="quiz-card sm:!rounded-[10px]">
+                <div className="px-3 py-3 sm:p-4">
+                  <p className="text-xs text-[var(--quiz-ink)]/50 mb-3">
+                    For each statement, select the paragraph where the information is found.
+                  </p>
+                  <div className="space-y-2.5">
+                    {questions.map((qq, idx) => (
+                      <div
+                        key={idx}
+                        className={`flex items-start gap-2 p-2.5 rounded-lg border transition-colors ${
+                          answers[idx] !== undefined
+                            ? "border-[var(--quiz-copper)]/30 bg-[var(--quiz-copper)]/[0.04]"
+                            : "border-[var(--quiz-border)] bg-white"
+                        }`}
+                      >
+                        <span className="w-6 h-6 rounded-md bg-[var(--quiz-copper)]/10 flex items-center justify-center text-[11px] font-bold text-[var(--quiz-copper)] shrink-0 mt-0.5">
+                          {idx + 1}
+                        </span>
+                        <p className="flex-1 text-[13px] leading-relaxed text-[var(--quiz-ink)]">{qq.question.question}</p>
+                        <select
+                          value={answers[idx] !== undefined ? answers[idx] : ""}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            setAnswers((prev) => {
+                              if (val === "") {
+                                const next = { ...prev };
+                                delete next[idx];
+                                return next;
+                              }
+                              return { ...prev, [idx]: Number(val) };
+                            });
+                          }}
+                          className={`shrink-0 w-14 h-8 rounded-lg border text-sm font-bold text-center appearance-none cursor-pointer transition-colors ${
+                            answers[idx] !== undefined
+                              ? "border-[var(--quiz-copper)] bg-[var(--quiz-copper)] text-white"
+                              : "border-[var(--quiz-border)] bg-white text-[var(--quiz-ink)]/50"
+                          }`}
+                        >
+                          <option value="">—</option>
+                          {qq.question.options.map((opt, optIdx) => (
+                            <option key={optIdx} value={optIdx}>{opt}</option>
+                          ))}
+                        </select>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex justify-end mt-4">
+                    <button
+                      onClick={finishQuiz}
+                      className="flex items-center gap-1.5 px-5 py-2.5 text-sm font-semibold rounded-lg bg-[var(--quiz-copper)] text-white hover:bg-[var(--quiz-copper-light)] transition-colors"
+                    >
+                      Finish Quiz
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </>
         ) : (
           /* Reading: two-column on desktop, fixed header+passage with scrollable options on mobile */
           <>
