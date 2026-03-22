@@ -31,7 +31,7 @@ export async function checkAndIncrementUsage(
   userId: string,
   role: string
 ): Promise<UsageResult> {
-  const limit = MONTHLY_LIMITS[role] ?? MONTHLY_LIMITS.user;
+  const limit = role in MONTHLY_LIMITS ? MONTHLY_LIMITS[role] : MONTHLY_LIMITS.user;
   const month = getCurrentMonth();
 
   // Unlimited for teacher/admin
@@ -79,7 +79,7 @@ export async function getUsage(
   userId: string,
   role: string
 ): Promise<{ current: number; limit: number | null; remaining: number | null }> {
-  const limit = MONTHLY_LIMITS[role] ?? MONTHLY_LIMITS.user;
+  const limit = role in MONTHLY_LIMITS ? MONTHLY_LIMITS[role] : MONTHLY_LIMITS.user;
   const month = getCurrentMonth();
 
   const { data } = await supabase
