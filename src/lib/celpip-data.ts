@@ -639,19 +639,19 @@ Subject: Updated Remote Work Policy — Effective January 15
 
 Dear Team,
 
-Following our company-wide survey and consultation with department heads, we are pleased to announce our updated remote work policy, effective January 15th.
+Following our company-wide survey and consultation with department heads, we are pleased to announce our updated remote work policy, effective January 15th. This policy replaces all previous remote work arrangements and applies to all full-time and part-time employees across every department.
 
 Key Changes:
 
-1. Hybrid Model: All employees may work remotely up to 3 days per week. The remaining 2 days must be spent in the office. Each department will designate which days are mandatory in-office days.
+1. Hybrid Model: All employees may work remotely up to 3 days per week. The remaining 2 days must be spent in the office. Each department will designate which days are mandatory in-office days. Employees who wish to work remotely for more than 3 days in a given week must submit a written request to their manager at least one week in advance.
 
-2. Core Hours: Regardless of location, all employees must be available between 10:00 AM and 3:00 PM Eastern Time. Outside these hours, flexible scheduling is permitted with manager approval.
+2. Core Hours: Regardless of location, all employees must be available between 10:00 AM and 3:00 PM Eastern Time. Outside these hours, flexible scheduling is permitted with manager approval. Employees working from different time zones must coordinate with their teams to ensure adequate overlap during core hours.
 
-3. Equipment: The company will provide a one-time $500 stipend for home office setup. Receipts must be submitted to Finance by March 1st for reimbursement.
+3. Equipment: The company will provide a one-time $500 stipend for home office setup. Receipts must be submitted to Finance by March 1st for reimbursement. The stipend covers items such as monitors, keyboards, ergonomic chairs, and internet upgrades, but does not include general furniture or personal electronics.
 
-4. Performance Reviews: Remote work eligibility will be reviewed quarterly. Employees who do not meet performance targets may be required to return to full-time in-office work.
+4. Performance Reviews: Remote work eligibility will be reviewed quarterly. Employees who do not meet performance targets may be required to return to full-time in-office work. Managers will use the standard performance evaluation framework, and employees will receive written feedback at least two weeks before any change to their remote work status.
 
-5. Team Meetings: All-hands meetings will be held in person on the first Monday of each month. Attendance is mandatory unless you have prior written approval from your direct supervisor.
+5. Team Meetings: All-hands meetings will be held in person on the first Monday of each month. Attendance is mandatory unless you have prior written approval from your direct supervisor. Department-level meetings may be held virtually at the discretion of each department head.
 
 Please review the full policy document on the company intranet. If you have questions, contact your HR representative or email hr@techsolutions.ca.
 
@@ -665,13 +665,13 @@ Subject: RE: Updated Remote Work Policy — Effective January 15
 
 Dear Jennifer,
 
-Thank you for sharing the updated remote work policy. I appreciate the effort that went into gathering employee feedback and consulting with department heads. I have a few questions and concerns that I would like to raise on behalf of the Marketing Department.
+Thank you for sharing the updated remote work policy. I appreciate the effort that went into gathering employee feedback and consulting with department heads. Overall, I think the new framework is a positive step forward for the company. However, I have a few questions and concerns that I would like to raise on behalf of the Marketing Department.
 
 First, regarding the mandatory in-office days, our team frequently collaborates with external clients who are based in the Pacific Time Zone. Having our in-office days fixed by the department could ___ [7] with key client meetings. Would it be possible for individual teams within a department to negotiate their in-office schedules based on client-facing obligations?
 
-Second, I wanted to ask about the home office stipend. Several members of my team already invested in home office equipment during the previous remote work arrangement in 2022. Will employees who purchased equipment at their own expense before this policy be eligible for any ___ [8], or does the $500 stipend apply only to new purchases made after January 15th?
+Second, I wanted to ask about the home office stipend. Several members of my team already invested in home office equipment during the previous remote work arrangement in 2022. Some spent well over $500 on ergonomic setups and high-speed internet upgrades at that time. Will employees who purchased equipment at their own expense before this policy be eligible for any ___ [8], or does the $500 stipend apply only to new purchases made after January 15th?
 
-Third, I am concerned about the quarterly performance review process for remote work eligibility. Our department's major campaigns typically launch in Q1 and Q3, which means our workload and measurable output vary significantly throughout the year. Could you clarify whether ___ [9] will be taken into account when evaluating remote work eligibility?
+Third, I am concerned about the quarterly performance review process for remote work eligibility. Our department's major campaigns typically launch in Q1 and Q3, which means our workload and measurable output vary significantly throughout the year. During off-peak quarters, our metrics naturally dip even though we are preparing for the next campaign cycle. Could you clarify whether ___ [9] will be taken into account when evaluating remote work eligibility? Without that context, some of our strongest performers could unfairly lose their remote work privileges.
 
 Finally, regarding the monthly all-hands meetings, the first Monday of the month often coincides with our campaign launch preparation days. Would it be feasible to provide at least ___ [10] of the meeting agenda so that teams can plan accordingly? Additionally, for employees who travel for business, will ___ [11] be accepted as an alternative when travel conflicts arise?
 
@@ -690,63 +690,67 @@ Senior Marketing Manager`;
       questions: [
         {
           id: "Reading-Part1-01-Q1",
-          question: "How often are staff permitted to work from home each week?",
-          options: ["1 day", "2 days", "3 days", "4 days"],
+          question: "What is the maximum number of days per week an employee can telecommute under the new arrangement?",
+          options: ["1 day", "2 days", "3 days", "5 days"],
           correctAnswer: 2,
           passage: passageA,
         },
         {
           id: "Reading-Part1-01-Q2",
-          question: "During which mandatory availability window must all staff be reachable?",
+          question: "What happens if an employee needs to work from a different time zone?",
           options: [
-            "8:00 AM to 4:00 PM",
-            "9:00 AM to 5:00 PM",
-            "10:00 AM to 3:00 PM",
-            "9:00 AM to 3:00 PM",
-          ],
-          correctAnswer: 2,
-          passage: passageA,
-        },
-        {
-          id: "Reading-Part1-01-Q3",
-          question: "What is the financial allowance provided for setting up a workspace at home?",
-          options: ["$250", "$400", "$500", "$750"],
-          correctAnswer: 2,
-          passage: passageA,
-        },
-        {
-          id: "Reading-Part1-01-Q4",
-          question:
-            "What consequence may follow if a worker fails to achieve their productivity goals?",
-          options: [
-            "They receive a warning",
-            "They lose their stipend",
-            "They may have to return to full-time in-office",
-            "They are automatically terminated",
-          ],
-          correctAnswer: 2,
-          passage: passageA,
-        },
-        {
-          id: "Reading-Part1-01-Q5",
-          question: "How frequently do company-wide gatherings take place, and on what schedule?",
-          options: [
-            "Every Friday",
-            "The first Monday of each month",
-            "The last Wednesday of each month",
-            "Every two weeks",
+            "They are exempt from core hours",
+            "They must coordinate with their team to overlap during core hours",
+            "They must return to the office full-time",
+            "They need to switch to the Eastern Time schedule permanently",
           ],
           correctAnswer: 1,
           passage: passageA,
         },
         {
-          id: "Reading-Part1-01-Q6",
-          question: "On what date do the new telecommuting guidelines come into force?",
+          id: "Reading-Part1-01-Q3",
+          question: "Which of the following items would NOT be covered by the home office stipend?",
           options: [
-            "December 1",
-            "January 1",
-            "January 15",
-            "February 1",
+            "A computer monitor",
+            "An ergonomic keyboard",
+            "A personal tablet",
+            "An internet upgrade",
+          ],
+          correctAnswer: 2,
+          passage: passageA,
+        },
+        {
+          id: "Reading-Part1-01-Q4",
+          question: "Before an employee's remote work status is changed due to performance, the company must ___.",
+          options: [
+            "hold a formal hearing with HR present",
+            "give the employee written feedback at least two weeks in advance",
+            "offer the employee a transfer to another department",
+            "consult with the employee's direct reports",
+          ],
+          correctAnswer: 1,
+          passage: passageA,
+        },
+        {
+          id: "Reading-Part1-01-Q5",
+          question: "Under what condition can an employee skip a mandatory all-hands meeting?",
+          options: [
+            "If they are working remotely that day",
+            "If their department head approves",
+            "If they have prior written approval from their direct supervisor",
+            "If they attend virtually instead",
+          ],
+          correctAnswer: 2,
+          passage: passageA,
+        },
+        {
+          id: "Reading-Part1-01-Q6",
+          question: "Which previous policy does the new remote work framework replace?",
+          options: [
+            "Only the 2022 temporary arrangement",
+            "The core hours policy from last year",
+            "All previous remote work arrangements",
+            "The department-level scheduling policy",
           ],
           correctAnswer: 2,
           passage: passageA,
