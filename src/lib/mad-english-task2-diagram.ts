@@ -15,16 +15,19 @@ Morning Lessons
 9:00 a.m. - 10:00 a.m.
 Monday, Wednesday, Friday
 Cost: $50
+Instructor: Mark (15 years experience)
 
 Afternoon Lessons
 3:00 p.m. - 4:00 p.m.
 Tuesday, Thursday, Saturday
 Cost: $60
+Instructor: Susan (10 years experience)
 
 Evening Lessons
 7:00 p.m. - 8:00 p.m.
 Monday - Friday
 Cost: $75
+Instructor: Mark or Susan (based on availability)
 
 Special Parking Lesson
 10:00 a.m. - 12:00 p.m.
@@ -32,11 +35,13 @@ Sunday Only
 Cost: $100
 (Free with purchase of 10 lessons!)
 
+Note: All students must hold a valid learner's permit. Cancellations require 24 hours' notice or a $25 fee applies.
+
 ---
 
 Hi Omar,
 
-I remember you mentioning that Lena is interested in taking some driving lessons. I was getting my car fixed at the shop this morning and saw an ad for driving lessons in your area. You can take individual lessons or buy a bundle and ___ [1]. They offer morning, afternoon, and evening classes. I'm not sure if the ___ [2] classes would work because Lena picks up the kids from school every day, right? The morning classes might work because that's probably after the kids leave for school. Maybe you could ___ [3] on your way to work? Evening classes would probably work the best, but they ___ [4]. They also offer a parking class on Sunday morning which I think would be really helpful for her. It ___ [5]. Anyway, I'm sure it'll be great to have two drivers on your next family trip! Sarah and I were thinking of having you guys over for dinner next week sometime. What hours do you work at your new job?
+I remember you mentioning that Lena is interested in taking some driving lessons. I was getting my car fixed at the shop this morning and saw an ad for driving lessons in your area. It looks like a well-established school — the instructors have been teaching for over a decade. You can take individual lessons or buy a bundle and ___ [1]. They offer morning, afternoon, and evening classes. I'm not sure if the ___ [2] classes would work because Lena picks up the kids from school every day, right? The morning classes might work because that's probably after the kids leave for school. Maybe you could ___ [3] on your way to work? Evening classes would probably work the best, but they ___ [4]. They also offer a parking class on Sunday morning which I think would be really helpful for her. It ___ [5]. Just make sure Lena already has her learner's permit before signing up, because the school requires one. Anyway, I'm sure it'll be great to have two drivers on your next family trip! Sarah and I were thinking of having you guys over for dinner next week sometime. What hours do you work at your new job?
 
 All the best,
 Ian`,
@@ -47,7 +52,7 @@ Ian`,
         options: [
           "get a discount.",
           "get a free lesson.",
-          "get a free lunch.",
+          "save on the total cost.",
           "use the car to take your test.",
         ],
         correctAnswer: 1,
@@ -96,7 +101,7 @@ Ian`,
       {
         id: "Reading-Part2-05-Q6",
         question: "Lena is Omar's ___.",
-        options: ["baby sitter.", "cook.", "wife.", "sister."],
+        options: ["mother.", "partner.", "wife.", "sister."],
         correctAnswer: 2,
       },
       {
@@ -627,7 +632,7 @@ Raymond`,
         id: "Reading-Part2-09-Q6",
         question: "Raymond is trying to ___.",
         options: [
-          "flirt with Paula.",
+          "convince her to join a sports team.",
           "discourage her from winter activities.",
           "find a study partner.",
           "help her get involved in extra-curricular activities.",
@@ -639,9 +644,9 @@ Raymond`,
         question: "Raymond thinks Paula ___.",
         options: [
           "is not used to cold weather.",
-          "wants to be his girlfriend.",
+          "has never tried winter sports.",
           "will not have enough time for activities.",
-          "is poor.",
+          "might find the costs too high.",
         ],
         correctAnswer: 0,
       },

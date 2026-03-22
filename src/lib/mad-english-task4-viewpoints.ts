@@ -40,7 +40,7 @@ Having taken this drug as part of a clinical trial, I can say that the drug has 
         id: "Reading-Part4-05-Q3",
         question: "UTUC is challenging to treat because ___.",
         options: [
-          "it is rooted in homeopathic medicine.",
+          "the affected area is difficult to access surgically.",
           "the medication is washed away by urine before it can be effective.",
           "treatment options are currently banned by the Food and Drug Administration.",
           "there is not enough funding for adequate testing.",
@@ -76,7 +76,7 @@ Having taken this drug as part of a clinical trial, I can say that the drug has 
         options: [
           "avoiding surgery.",
           "avoiding chemotherapy.",
-          "becoming more sexually active.",
+          "receiving treatment closer to home.",
           "receiving more free treatment in the future.",
         ],
         correctAnswer: 0,
@@ -369,9 +369,9 @@ This is an important article because ___ [6]. So many people are guilty of texti
           "Especially in bad weather, people should pay attention to their ___.",
         options: [
           "following distance.",
-          "breathing.",
-          "gas mileage.",
-          "radio volume.",
+          "tire condition.",
+          "windshield visibility.",
+          "steering and braking inputs.",
         ],
         correctAnswer: 0,
       },
@@ -420,7 +420,7 @@ As a victim of identity theft myself, I wish I had looked more into ___ [6]. I h
           "do not trust telemedicine.",
           "have been the victim of fraud.",
           "have a hard time paying for medical expenses.",
-          "eat too much pizza.",
+          "are unaware of the benefits their employer offers.",
         ],
         correctAnswer: 2,
       },
@@ -452,7 +452,7 @@ As a victim of identity theft myself, I wish I had looked more into ___ [6]. I h
         options: [
           "moving away from telemedicine to a more traditional approach.",
           "failing to recognize the need for mental health services.",
-          "scamming their employees.",
+          "reducing healthcare benefits to cut costs.",
           "beginning to acknowledge the need for customizable healthcare plans.",
         ],
         correctAnswer: 3,

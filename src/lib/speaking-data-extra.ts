@@ -151,4 +151,14 @@ export const speakingTasksExtra: SpeakingTask[] = [
     prepTime: 30,
     responseTime: 90,
   },
+  {
+    id: "S24",
+    title: "03 | 1 Task | Describing an Unusual Situation",
+    instruction:
+      "Describe the unusual situation and explain how you would react.",
+    prompt:
+      "Imagine you arrive at your local grocery store and find that every product on the shelves has been replaced with items from a completely different country — all the labels are in a language you do not understand, the packaging looks unfamiliar, and none of your usual brands are available. The store employees seem confused as well. Describe the situation and explain what you would do.",
+    prepTime: 30,
+    responseTime: 60,
+  },
 ];

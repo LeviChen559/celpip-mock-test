@@ -211,4 +211,18 @@ Write an email to Maple Leaf Insurance's claims department. In your email:
     minWords: 150,
     maxWords: 200,
   },
+  {
+    id: "W18",
+    title: "09 | 1 Task | Responding to Survey Questions",
+    instruction:
+      "Read the following information and write a response of about 150–200 words.",
+    prompt: `Your local community centre is planning to offer a new weekend program for teenagers aged 13 to 17. They are asking residents to vote on two options:
+
+Option A: A coding and robotics workshop where teens learn programming, build robots, and work on team projects, with the goal of developing technology skills for the future.
+Option B: An outdoor adventure program that includes hiking, canoeing, rock climbing, and wilderness survival skills, with the goal of promoting physical fitness and connection with nature.
+
+Choose the option you prefer and explain why. Support your choice with reasons and examples.`,
+    minWords: 150,
+    maxWords: 200,
+  },
 ];
