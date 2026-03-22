@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
+import { createClient } from "@/lib/supabase/server";
+import { checkAndIncrementUsage } from "@/lib/api-usage";
 
 export async function POST(req: NextRequest) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
@@ -9,6 +11,33 @@ export async function POST(req: NextRequest) {
       { status: 500 }
     );
   }
+
+  // --- Auth & usage limit ---
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) {
+    return NextResponse.json({ error: "Authentication required" }, { status: 401 });
+  }
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", user.id)
+    .single();
+  const role = profile?.role ?? "user";
+
+  const usage = await checkAndIncrementUsage(supabase, user.id, role);
+  if (!usage.allowed) {
+    return NextResponse.json(
+      {
+        error: "Monthly API limit reached",
+        limit: usage.limit,
+        current: usage.current,
+      },
+      { status: 429 }
+    );
+  }
+  // --- End auth & usage limit ---
 
   const { taskTitle, taskPrompt, userResponse, score, minWords, maxWords } =
     await req.json();

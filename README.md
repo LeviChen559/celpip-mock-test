@@ -12,6 +12,7 @@ A comprehensive web-based practice platform for the **CELPIP (Canadian English L
 - Text-to-speech audio via ElevenLabs API
 - Test history, score trends, and full answer review
 - Report-a-problem system for question quality control
+- Monthly API usage limits by role (user: 15, subscriber: 100, teacher/admin: unlimited)
 - Role-based access (user, subscriber, teacher, admin)
 - Teacher portal for student progress monitoring
 - Admin dashboard for user and content management
