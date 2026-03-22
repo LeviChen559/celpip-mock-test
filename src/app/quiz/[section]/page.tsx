@@ -364,9 +364,23 @@ export default function QuizPractice({
   const answeredCount = Object.keys(answers).length;
   const sectionLabel = section === "listening" ? "Listening" : "Reading";
 
-  // Reading Part 3 ("Reading for Information") shows all questions at once with dropdown selects
-  const isReadingPart3 = section === "reading" && questions.length > 0
-    && questions.every(qq => qq.partId?.startsWith("Reading-Part3"));
+  // In the real CELPIP, ALL reading parts show all questions at once with dropdown selects
+  const isReadingAllAtOnce = section === "reading" && questions.length > 0;
+
+  // Gather all unique passages for the reading section (e.g. Part 1 has two emails)
+  const readingPassages = useMemo(() => {
+    if (!isReadingAllAtOnce) return [];
+    const seen = new Set<string>();
+    const passages: string[] = [];
+    for (const qq of questions) {
+      const ctx = qq.context || "";
+      if (ctx && !seen.has(ctx)) {
+        seen.add(ctx);
+        passages.push(ctx);
+      }
+    }
+    return passages;
+  }, [isReadingAllAtOnce, questions]);
 
   // ── Compute results ──────────────────────────────────
   const computeResults = () => {
@@ -766,25 +780,34 @@ export default function QuizPractice({
               {sectionLabel}
             </span>
 
-            {/* Question counter */}
-            <span className="text-sm text-[var(--quiz-ink)] shrink-0">
-              <span className="font-bold">{currentIndex + 1}</span>
-              <span className="text-[var(--quiz-ink)]/40">/{questions.length}</span>
-            </span>
+            {/* Question counter / answered count */}
+            {isReadingAllAtOnce ? (
+              <span className="text-sm text-[var(--quiz-ink)] shrink-0">
+                <span className="font-bold">{answeredCount}</span>
+                <span className="text-[var(--quiz-ink)]/40">/{questions.length} answered</span>
+              </span>
+            ) : (
+              <>
+                <span className="text-sm text-[var(--quiz-ink)] shrink-0">
+                  <span className="font-bold">{currentIndex + 1}</span>
+                  <span className="text-[var(--quiz-ink)]/40">/{questions.length}</span>
+                </span>
+                <span className="text-[11px] text-[var(--quiz-ink)]/40 shrink-0 hidden xs:inline">
+                  {answeredCount} done
+                </span>
+              </>
+            )}
 
-            {/* Answered count - hide on very small screens */}
-            <span className="text-[11px] text-[var(--quiz-ink)]/40 shrink-0 hidden xs:inline">
-              {answeredCount} done
-            </span>
-
-            {/* Flexible spacer + progress dots (centered) */}
+            {/* Flexible spacer + progress dots (hidden for reading all-at-once) */}
             <div className="flex-1 flex justify-center min-w-0 overflow-hidden px-1">
-              <ProgressDots
-                total={questions.length}
-                current={currentIndex}
-                answers={answers}
-                onSelect={goToQuestion}
-              />
+              {!isReadingAllAtOnce && (
+                <ProgressDots
+                  total={questions.length}
+                  current={currentIndex}
+                  answers={answers}
+                  onSelect={goToQuestion}
+                />
+              )}
             </div>
 
             {/* Timer */}
@@ -925,12 +948,12 @@ export default function QuizPractice({
               </div>
             </div>
           </div>
-        ) : isReadingPart3 ? (
-          /* Reading Part 3: passage + all questions at once with dropdown selects */
+        ) : isReadingAllAtOnce ? (
+          /* Reading: all questions at once with dropdown selects (matches real CELPIP format) */
           <>
           {/* Desktop */}
           <div className="hidden lg:grid lg:grid-cols-[1fr_420px] gap-6 lg:gap-10">
-            {/* Left: Passage */}
+            {/* Left: Passage(s) */}
             <div className="lg:sticky lg:top-28 lg:self-start">
               <div className="quiz-card">
                 <div className="h-1 bg-gradient-to-r from-[var(--quiz-copper)] via-[var(--quiz-copper-light)] to-transparent" />
@@ -944,18 +967,24 @@ export default function QuizPractice({
                     </p>
                   )}
                   <div className="bg-[var(--quiz-warm)] rounded-xl p-5 max-h-[calc(100vh-240px)] overflow-y-auto quiz-passage-scroll">
-                    <ReadingPassageRenderer passage={current.context || ""} />
+                    {readingPassages.map((passage, pIdx) => (
+                      <div key={pIdx} className={pIdx > 0 ? "mt-6 pt-6 border-t border-black/10" : ""}>
+                        <ReadingPassageRenderer passage={passage} />
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Right: All questions */}
+            {/* Right: All questions with dropdowns */}
             <div className="flex flex-col gap-3">
               <div className="quiz-card">
                 <div className="p-5 lg:p-6">
-                  <p className="text-xs text-[var(--quiz-ink)]/50 mb-4 leading-relaxed">
-                    {questions[0]?.question.question ? "" : ""}For each statement, select the paragraph where the information is found.
+                  <p className="text-xs text-[var(--quiz-ink)]/50 mb-4 leading-relaxed italic">
+                    {questions[0]?.question.question?.includes("___") || questions[0]?.partId?.startsWith("Reading-Part3")
+                      ? "Using the drop-down menu, choose the best option according to the information given."
+                      : "Choose the best answer to each question."}
                   </p>
                   <div className="space-y-3">
                     {questions.map((qq, idx) => (
@@ -984,7 +1013,7 @@ export default function QuizPractice({
                               return { ...prev, [idx]: Number(val) };
                             });
                           }}
-                          className={`shrink-0 w-16 h-9 rounded-lg border text-sm font-bold text-center appearance-none cursor-pointer transition-colors ${
+                          className={`shrink-0 min-w-[70px] max-w-[200px] h-9 px-2 rounded-lg border text-sm font-medium text-center cursor-pointer transition-colors ${
                             answers[idx] !== undefined
                               ? "border-[var(--quiz-copper)] bg-[var(--quiz-copper)] text-white"
                               : "border-[var(--quiz-border)] bg-white text-[var(--quiz-ink)]/50 hover:border-[var(--quiz-copper)]/50"
@@ -1018,7 +1047,7 @@ export default function QuizPractice({
 
           {/* Mobile */}
           <div className="flex flex-col lg:hidden" style={{ height: "calc(100vh - 52px)" }}>
-            {/* Passage */}
+            {/* Passage(s) */}
             <div className="shrink-0 px-2 sm:px-4 pt-0 sm:pt-2 pb-1">
               <div className="quiz-card sm:!rounded-[10px]">
                 <div className="h-1 bg-gradient-to-r from-[var(--quiz-copper)] via-[var(--quiz-copper-light)] to-transparent" />
@@ -1032,7 +1061,11 @@ export default function QuizPractice({
                     )}
                   </div>
                   <div className="bg-[var(--quiz-warm)] rounded-lg sm:rounded-xl p-2 sm:p-4 max-h-[30vh] overflow-y-auto quiz-passage-scroll">
-                    <ReadingPassageRenderer passage={current.context || ""} />
+                    {readingPassages.map((passage, pIdx) => (
+                      <div key={pIdx} className={pIdx > 0 ? "mt-4 pt-4 border-t border-black/10" : ""}>
+                        <ReadingPassageRenderer passage={passage} />
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -1042,8 +1075,10 @@ export default function QuizPractice({
             <div className="flex-1 overflow-y-auto px-2 sm:px-4 pb-4">
               <div className="quiz-card sm:!rounded-[10px]">
                 <div className="px-3 py-3 sm:p-4">
-                  <p className="text-xs text-[var(--quiz-ink)]/50 mb-3">
-                    For each statement, select the paragraph where the information is found.
+                  <p className="text-xs text-[var(--quiz-ink)]/50 mb-3 italic">
+                    {questions[0]?.question.question?.includes("___") || questions[0]?.partId?.startsWith("Reading-Part3")
+                      ? "Using the drop-down menu, choose the best option."
+                      : "Choose the best answer to each question."}
                   </p>
                   <div className="space-y-2.5">
                     {questions.map((qq, idx) => (
@@ -1072,7 +1107,7 @@ export default function QuizPractice({
                               return { ...prev, [idx]: Number(val) };
                             });
                           }}
-                          className={`shrink-0 w-14 h-8 rounded-lg border text-sm font-bold text-center appearance-none cursor-pointer transition-colors ${
+                          className={`shrink-0 min-w-[60px] max-w-[160px] h-8 px-1.5 rounded-lg border text-[13px] font-medium text-center cursor-pointer transition-colors ${
                             answers[idx] !== undefined
                               ? "border-[var(--quiz-copper)] bg-[var(--quiz-copper)] text-white"
                               : "border-[var(--quiz-border)] bg-white text-[var(--quiz-ink)]/50"
@@ -1103,231 +1138,7 @@ export default function QuizPractice({
             </div>
           </div>
           </>
-        ) : (
-          /* Reading: two-column on desktop, fixed header+passage with scrollable options on mobile */
-          <>
-          <div className="hidden lg:grid lg:grid-cols-[1fr_420px] gap-6 lg:gap-10">
-            {/* Left: Passage / Context */}
-            <div className="lg:sticky lg:top-28 lg:self-start">
-              <div className="quiz-card">
-                <div className="h-1 bg-gradient-to-r from-[var(--quiz-copper)] via-[var(--quiz-copper-light)] to-transparent" />
-                <div className="p-5 lg:p-6">
-                  <div className="flex items-center gap-2 mb-1">
-                    <h2 className="font-serif text-lg font-bold text-[var(--quiz-ink)]">{current.partTitle}</h2>
-                  </div>
-                  {current.contextLabel && (
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--quiz-ink)]/35 font-semibold mb-4">
-                      {current.contextLabel}
-                    </p>
-                  )}
-                  <div className="bg-[var(--quiz-warm)] rounded-xl p-5 max-h-[calc(100vh-240px)] overflow-y-auto quiz-passage-scroll">
-                    <ReadingPassageRenderer passage={current.context || ""} />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right: Question */}
-            <div className="flex flex-col gap-5">
-              <div className="quiz-card quiz-slide-in" key={slideKey}>
-                <div className="p-5 lg:p-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="w-8 h-8 rounded-lg bg-[var(--quiz-copper)]/10 flex items-center justify-center text-sm font-bold text-[var(--quiz-copper)]">
-                      {currentIndex + 1}
-                    </span>
-                    <span className="text-xs text-[var(--quiz-ink)]/40 font-medium">
-                      Question {currentIndex + 1} of {questions.length}
-                    </span>
-                  </div>
-
-                  <p className="text-sm leading-relaxed text-[var(--quiz-ink)] mb-5">{q.question}</p>
-
-                  <div className="space-y-2.5">
-                    {q.options.map((option, idx) => {
-                      const isSelected = answers[currentIndex] === idx;
-                      return (
-                        <button
-                          key={idx}
-                          onClick={() => setAnswers((prev) => ({ ...prev, [currentIndex]: idx }))}
-                          className={`quiz-option w-full flex items-center gap-3 px-4 py-3 rounded-xl border text-left text-sm ${
-                            isSelected
-                              ? "quiz-option-selected border-[var(--quiz-copper)]"
-                              : "border-[var(--quiz-border)] hover:border-[var(--quiz-copper)]/30 bg-white"
-                          }`}
-                        >
-                          <span className={`w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold shrink-0 transition-colors ${
-                            isSelected
-                              ? "bg-[var(--quiz-copper)] text-white"
-                              : "bg-black/[0.04] text-[var(--quiz-ink)]/40"
-                          }`}>
-                            {String.fromCharCode(65 + idx)}
-                          </span>
-                          <span className={`flex-1 ${isSelected ? "text-[var(--quiz-ink)] font-medium" : "text-[var(--quiz-ink)]/80"}`}>
-                            {option}
-                          </span>
-                          {isSelected && (
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--quiz-copper)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
-                              <polyline points="20 6 9 17 4 12" />
-                            </svg>
-                          )}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-
-              {/* Navigation */}
-              <div className="flex items-center justify-between">
-                <button
-                  disabled={currentIndex === 0}
-                  onClick={() => goToQuestion(currentIndex - 1)}
-                  className="flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium rounded-lg border border-[var(--quiz-border)] text-[var(--quiz-ink)] hover:bg-[var(--quiz-warm)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent"
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="15 18 9 12 15 6" />
-                  </svg>
-                  Previous
-                </button>
-
-                {currentIndex < questions.length - 1 ? (
-                  <button
-                    onClick={() => goToQuestion(currentIndex + 1)}
-                    className="flex items-center gap-1.5 px-5 py-2.5 text-sm font-semibold rounded-lg bg-[var(--quiz-copper)] text-white hover:bg-[var(--quiz-copper-light)] transition-colors"
-                  >
-                    Next
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="9 18 15 12 9 6" />
-                    </svg>
-                  </button>
-                ) : (
-                  <button
-                    onClick={finishQuiz}
-                    className="flex items-center gap-1.5 px-5 py-2.5 text-sm font-semibold rounded-lg bg-[var(--quiz-copper)] text-white hover:bg-[var(--quiz-copper-light)] transition-colors"
-                  >
-                    Finish Quiz
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile reading layout: fixed passage + scrollable questions */}
-          <div className="flex flex-col lg:hidden" style={{ height: "calc(100vh - 52px)" }}>
-            {/* Fixed passage area */}
-            <div className="shrink-0 px-2 sm:px-4 pt-0 sm:pt-2 pb-1">
-              <div className="quiz-card sm:!rounded-[10px]">
-                <div className="h-1 bg-gradient-to-r from-[var(--quiz-copper)] via-[var(--quiz-copper-light)] to-transparent" />
-                <div className="px-3 py-3 sm:p-4">
-                  <div className="flex items-center gap-2 mb-1">
-                    <h2 className="font-serif text-base font-bold text-[var(--quiz-ink)]">{current.partTitle}</h2>
-                    {current.contextLabel && (
-                      <span className="text-[10px] uppercase tracking-[0.2em] text-[var(--quiz-ink)]/35 font-semibold">
-                        {current.contextLabel}
-                      </span>
-                    )}
-                  </div>
-                  <div className="bg-[var(--quiz-warm)] rounded-lg sm:rounded-xl p-2 sm:p-4 max-h-[30vh] overflow-y-auto quiz-passage-scroll">
-                    <ReadingPassageRenderer passage={current.context || ""} />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Scrollable question + options area */}
-            <div className="flex-1 overflow-y-auto px-2 sm:px-4 pb-4">
-              <div className="flex flex-col gap-4">
-                <div className="quiz-card quiz-slide-in sm:!rounded-[10px]" key={slideKey}>
-                  <div className="px-3 py-3 sm:p-4">
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className="w-7 h-7 rounded-lg bg-[var(--quiz-copper)]/10 flex items-center justify-center text-sm font-bold text-[var(--quiz-copper)]">
-                        {currentIndex + 1}
-                      </span>
-                      <span className="text-xs text-[var(--quiz-ink)]/40 font-medium">
-                        Question {currentIndex + 1} of {questions.length}
-                      </span>
-                    </div>
-
-                    <p className="text-sm leading-relaxed text-[var(--quiz-ink)] mb-4">{q.question}</p>
-
-                    <div className="space-y-2">
-                      {q.options.map((option, idx) => {
-                        const isSelected = answers[currentIndex] === idx;
-                        return (
-                          <button
-                            key={idx}
-                            onClick={() => setAnswers((prev) => ({ ...prev, [currentIndex]: idx }))}
-                            className={`quiz-option w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border text-left text-sm ${
-                              isSelected
-                                ? "quiz-option-selected border-[var(--quiz-copper)]"
-                                : "border-[var(--quiz-border)] hover:border-[var(--quiz-copper)]/30 bg-white"
-                            }`}
-                          >
-                            <span className={`w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold shrink-0 transition-colors ${
-                              isSelected
-                                ? "bg-[var(--quiz-copper)] text-white"
-                                : "bg-black/[0.04] text-[var(--quiz-ink)]/40"
-                            }`}>
-                              {String.fromCharCode(65 + idx)}
-                            </span>
-                            <span className={`flex-1 ${isSelected ? "text-[var(--quiz-ink)] font-medium" : "text-[var(--quiz-ink)]/80"}`}>
-                              {option}
-                            </span>
-                            {isSelected && (
-                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--quiz-copper)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
-                                <polyline points="20 6 9 17 4 12" />
-                              </svg>
-                            )}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Navigation */}
-                <div className="flex items-center justify-between px-2 sm:px-0 pb-2">
-                  <button
-                    disabled={currentIndex === 0}
-                    onClick={() => goToQuestion(currentIndex - 1)}
-                    className="flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium rounded-lg border border-[var(--quiz-border)] text-[var(--quiz-ink)] hover:bg-[var(--quiz-warm)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent"
-                  >
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="15 18 9 12 15 6" />
-                    </svg>
-                    Previous
-                  </button>
-
-                  {currentIndex < questions.length - 1 ? (
-                    <button
-                      onClick={() => goToQuestion(currentIndex + 1)}
-                      className="flex items-center gap-1.5 px-5 py-2.5 text-sm font-semibold rounded-lg bg-[var(--quiz-copper)] text-white hover:bg-[var(--quiz-copper-light)] transition-colors"
-                    >
-                      Next
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="9 18 15 12 9 6" />
-                      </svg>
-                    </button>
-                  ) : (
-                    <button
-                      onClick={finishQuiz}
-                      className="flex items-center gap-1.5 px-5 py-2.5 text-sm font-semibold rounded-lg bg-[var(--quiz-copper)] text-white hover:bg-[var(--quiz-copper-light)] transition-colors"
-                    >
-                      Finish Quiz
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-          </>
-        )}
+        ) : null}
       </div>
     </main>
   );
