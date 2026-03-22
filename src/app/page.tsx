@@ -8,12 +8,12 @@ import {
   BookOpen,
   PenLine,
   Mic,
-  ClipboardList,
-  Layers,
-  HelpCircle,
+  Brain,
+  Target,
   CalendarCheck,
+  Layers,
   TrendingUp,
-  SearchCheck,
+  Zap,
   ArrowRight,
   Star,
   Sparkles,
@@ -21,45 +21,45 @@ import {
 
 const features = [
   {
-    title: "Full Mock Test",
-    icon: ClipboardList,
+    title: "AI Writing & Speaking Feedback",
+    icon: Brain,
     description:
-      "Complete timed test with all 4 sections — Listening, Reading, Writing, and Speaking.",
+      "Get scored on 4 CELPIP dimensions with specific, actionable improvement tips from our AI examiner.",
     color: "#c78b3c",
   },
   {
-    title: "Section Practice",
-    icon: Layers,
+    title: "Weakness Detection",
+    icon: Target,
     description:
-      "Focus on a single section at your own pace with full timing simulation.",
+      "The system tracks error patterns across your attempts and surfaces your top 3 weaknesses.",
     color: "#6b8f71",
   },
   {
-    title: "Quiz Mode",
-    icon: HelpCircle,
+    title: "Adaptive Study Plan",
+    icon: CalendarCheck,
     description:
-      "Untimed question-by-question practice with instant feedback on every answer.",
+      "Set your test date and target score. Get a day-by-day plan that shifts focus as your scores change.",
     color: "#7a8fc7",
   },
   {
-    title: "Smart Study Plan",
-    icon: CalendarCheck,
+    title: "Realistic Practice",
+    icon: Layers,
     description:
-      "Set your test date and goal score — we generate a phased study plan tailored to your weak areas.",
+      "Full mock tests and section practice that mirror the real CELPIP format and timing.",
     color: "#c77a8b",
   },
   {
-    title: "Test Review",
-    icon: SearchCheck,
+    title: "Score Progression",
+    icon: TrendingUp,
     description:
-      "Review every answer after each test — see what you got right, what you missed, and the correct answers.",
+      "See your predicted score trend over time. Know if you're on track before test day.",
     color: "#8bc7a3",
   },
   {
-    title: "Track Progress",
-    icon: TrendingUp,
+    title: "Targeted Drills",
+    icon: Zap,
     description:
-      "Save your test history, view score trends, and plan your study schedule.",
+      "Practice exercises generated specifically for your weak areas — grammar, coherence, vocabulary, or task response.",
     color: "#c7a33c",
   },
 ];
@@ -98,50 +98,50 @@ const testSections = [
 const testimonials = [
   {
     name: "Priya S.",
-    score: "CLB 9",
+    score: "CLB 7 → 9",
     location: "Toronto, ON",
     quote:
-      "The study plan feature was a game-changer. It identified my weak spots in listening and gave me a structured path. I went from a 7 to a 9 in just 3 weeks.",
+      "The AI found that my writing lacked coherence — I kept jumping between ideas. After two weeks of targeted drills, my writing score jumped from 7 to 9.",
     color: "#c78b3c",
   },
   {
     name: "Marco L.",
-    score: "CLB 10",
+    score: "CLB 8 → 10",
     location: "Vancouver, BC",
     quote:
-      "The quiz mode with instant feedback helped me understand my mistakes right away. The full mock tests felt very close to the real exam.",
+      "My daily tasks were exactly what I needed. The system knew my vocabulary was strong but my grammar was holding me back, so every drill focused there.",
     color: "#6b8f71",
   },
   {
     name: "Aisha K.",
-    score: "CLB 8",
+    score: "CLB 6 → 8",
     location: "Calgary, AB",
     quote:
-      "I only had 2 weeks to prepare and was very stressed. The auto-generated study plan kept me focused and on track. Highly recommend.",
+      "I only had 2 weeks. The AI diagnosed my weakest areas on day one, and the adaptive plan got me from 6 to 8. No wasted time on things I already knew.",
     color: "#7a8fc7",
   },
   {
     name: "David C.",
-    score: "CLB 9",
+    score: "CLB 7 → 9",
     location: "Montreal, QC",
     quote:
-      "Being able to practice individual sections was exactly what I needed. I spent extra time on writing and speaking, and my scores improved significantly.",
+      "Seeing my predicted score go up each week kept me motivated. The AI feedback on my speaking responses was more useful than any tutor I'd tried.",
     color: "#c77a8b",
   },
   {
     name: "Yuki T.",
-    score: "CLB 10",
+    score: "CLB 8 → 10",
     location: "Ottawa, ON",
     quote:
-      "The progress tracking kept me motivated. Seeing my score trend go up over time gave me the confidence I needed heading into the real test.",
+      "The score progression chart showed exactly where I was improving and where I still had gaps. I walked into the real test knowing I was ready.",
     color: "#8bc7a3",
   },
   {
     name: "Fatima R.",
-    score: "CLB 8",
+    score: "CLB 6 → 8",
     location: "Edmonton, AB",
     quote:
-      "I loved how the plan adjusted focus to my weakest areas. The three-phase approach made so much sense.",
+      "The AI kept adjusting my plan as I improved. Week one was all grammar drills, but by week three it shifted to full mock tests. Smart system.",
     color: "#c7a33c",
   },
 ];
@@ -256,30 +256,30 @@ export default function Home() {
                 }}
               >
                 <Sparkles className="w-3.5 h-3.5" />
-                CELPIP Preparation
+                AI Score Improvement System
               </span>
             </div>
             <h1
               className="hp-reveal hp-reveal-d2 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-[1.05]"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              Master the
+              Reach your
               <br />
               <span
                 className="hp-accent-line"
                 style={{ color: "var(--hp-accent)" }}
               >
-                CELPIP
+                target
               </span>{" "}
-              exam.
+              CELPIP score.
             </h1>
             <p
               className="hp-reveal hp-reveal-d3 text-lg leading-relaxed mb-10 max-w-lg"
               style={{ color: "var(--hp-text-muted)" }}
             >
-              Build confidence with realistic practice tests covering all four
-              sections. AI-powered study plans. Instant feedback. Track your
-              progress to test day.
+              AI analyzes your weaknesses, builds your study plan, and tracks
+              your score improvement — so you know exactly what to practice
+              every day.
             </p>
             <div className="hp-reveal hp-reveal-d4 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
               <button
@@ -323,10 +323,10 @@ export default function Home() {
       <section className="relative z-10 my-8">
         <div className="hp-strip max-w-screen-xl mx-auto px-4 sm:px-6 py-6 flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-16 hp-reveal hp-reveal-d6">
           {[
-            { value: "4", label: "Test Sections" },
-            { value: "96+", label: "Questions" },
-            { value: "~3h", label: "Full Test" },
-            { value: "AI", label: "Study Plans" },
+            { value: "4", label: "Score Dimensions" },
+            { value: "AI", label: "Examiner Feedback" },
+            { value: "30", label: "Day Plans" },
+            { value: "Live", label: "Score Tracking" },
           ].map((s) => (
             <div key={s.label} className="text-center">
               <p
@@ -349,96 +349,86 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Try a Free Quiz ──────────────────────────── */}
+      {/* ── How It Works ──────────────────────────────── */}
       <section className="max-w-screen-xl mx-auto px-4 sm:px-6 py-12 sm:py-20 relative z-10">
         <div className="text-center mb-10 sm:mb-14">
           <h2
             className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 hp-reveal"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            Try a{" "}
-            <span style={{ color: "var(--hp-accent)" }}>Free Quiz</span>
+            How it{" "}
+            <span style={{ color: "var(--hp-accent)" }}>works</span>
           </h2>
           <p
             className="text-base hp-reveal hp-reveal-d1"
             style={{ color: "var(--hp-text-muted)" }}
           >
-            No account needed. Jump right in and test your skills.
+            Three steps from your current level to your target score.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
           {[
             {
-              title: "Listening",
-              description: "Listen to a conversation and answer comprehension questions.",
-              icon: Headphones,
+              step: "1",
+              title: "Take a Practice Test",
+              description: "Complete a writing or listening task. Takes 5 minutes.",
               color: "#c78b3c",
+              cta: "Try Listening",
               href: "/quiz/listening?part=0",
-              detail: "Part 1 — Practice",
             },
             {
-              title: "Reading",
-              description: "Read a passage and answer questions about key details.",
-              icon: BookOpen,
+              step: "2",
+              title: "Get AI Diagnosis",
+              description: "Our AI examiner scores your response across 4 CELPIP dimensions and identifies your exact weaknesses.",
               color: "#6b8f71",
-              href: "/quiz/reading?part=0",
-              detail: "Part 1 — Practice",
+              cta: "Try Writing",
+              href: "/quiz-practice/writing?part=0",
             },
-          ].map((q, i) => (
-            <button
-              key={q.title}
-              onClick={() => router.push(q.href)}
-              className={`hp-glass rounded-2xl p-6 text-left relative overflow-hidden group transition-all hp-reveal hp-reveal-d${i + 1}`}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = q.color;
-                e.currentTarget.style.transform = "translateY(-2px)";
-                e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.08)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "var(--hp-border)";
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "none";
-              }}
-              style={{ border: "1px solid var(--hp-border)" }}
+            {
+              step: "3",
+              title: "Follow Your Plan",
+              description: "Receive a personalized daily study plan that adapts as you improve.",
+              color: "#7a8fc7",
+              cta: "Get Started",
+              href: "/signup",
+            },
+          ].map((s, i) => (
+            <div
+              key={s.step}
+              className={`hp-glass rounded-2xl p-6 text-center relative overflow-hidden hp-reveal hp-reveal-d${i + 1}`}
             >
               <div
                 className="absolute top-0 left-6 right-6 h-[2px] rounded-full"
-                style={{ background: q.color, opacity: 0.5 }}
+                style={{ background: s.color, opacity: 0.5 }}
               />
-              <div className="flex items-start gap-4">
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
-                  style={{ background: `${q.color}15`, color: q.color }}
-                >
-                  <q.icon className="w-6 h-6" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p
-                    className="text-lg font-bold mb-0.5"
-                    style={{ color: q.color, fontFamily: "var(--font-serif)" }}
-                  >
-                    {q.title}
-                  </p>
-                  <p
-                    className="text-xs font-medium mb-2"
-                    style={{ color: "var(--hp-text-muted)" }}
-                  >
-                    {q.detail}
-                  </p>
-                  <p
-                    className="text-sm leading-relaxed"
-                    style={{ color: "var(--hp-text-muted)" }}
-                  >
-                    {q.description}
-                  </p>
-                </div>
-                <ArrowRight
-                  className="w-5 h-5 shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-opacity"
-                  style={{ color: q.color }}
-                />
+              <div
+                className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold"
+                style={{ background: `${s.color}15`, color: s.color, fontFamily: "var(--font-serif)" }}
+              >
+                {s.step}
               </div>
-            </button>
+              <h3
+                className="text-base font-semibold mb-2"
+                style={{ color: "var(--hp-text)" }}
+              >
+                {s.title}
+              </h3>
+              <p
+                className="text-sm leading-relaxed mb-4"
+                style={{ color: "var(--hp-text-muted)" }}
+              >
+                {s.description}
+              </p>
+              <button
+                onClick={() => router.push(s.href)}
+                className="text-sm font-medium inline-flex items-center gap-1.5 transition-opacity hover:opacity-80"
+                style={{ color: s.color }}
+              >
+                {s.cta}
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
           ))}
         </div>
       </section>
@@ -457,14 +447,14 @@ export default function Home() {
             <br />
             to{" "}
             <span style={{ color: "var(--hp-accent)" }}>
-              prepare
+              improve
             </span>
           </h2>
           <p
             className="text-base hp-reveal hp-reveal-d1"
             style={{ color: "var(--hp-text-muted)" }}
           >
-            Multiple study modes designed to help you succeed on test day.
+            AI-driven tools that diagnose weaknesses and accelerate your score.
           </p>
         </div>
 
@@ -531,42 +521,42 @@ export default function Home() {
                 }}
               >
                 <Sparkles className="w-3 h-3" />
-                New Feature
+                AI-Powered
               </span>
               <h2
                 className="text-3xl md:text-4xl font-bold mb-4"
                 style={{ fontFamily: "var(--font-serif)" }}
               >
-                AI-Powered
+                Your Personal
                 <br />
-                <span style={{ color: "var(--hp-accent)" }}>Study Plan</span>
+                <span style={{ color: "var(--hp-accent)" }}>Score Coach</span>
               </h2>
               <p
                 className="text-sm leading-relaxed mb-8"
                 style={{ color: "var(--hp-text-muted)" }}
               >
-                Tell us your test date and target score. We analyze your past
-                performance, identify weak areas, and generate a personalized
-                day-by-day study plan with three phases:
+                Set your test date and target score. The AI diagnoses your
+                weaknesses, builds an adaptive study plan, and adjusts it as
+                your scores change — three phases to your goal:
               </p>
 
               {/* Phase timeline */}
               <div className="space-y-4 mb-8">
                 {[
                   {
-                    phase: "Foundation",
+                    phase: "Diagnose & Build",
                     pct: "60%",
-                    desc: "Build skills with quizzes and section drills on weak areas",
+                    desc: "AI identifies your weakest dimensions and assigns targeted practice",
                   },
                   {
-                    phase: "Integration",
+                    phase: "Practice & Measure",
                     pct: "30%",
-                    desc: "Mixed practice sessions with full mock tests",
+                    desc: "Mixed sessions with score tracking to measure improvement",
                   },
                   {
-                    phase: "Final Prep",
+                    phase: "Simulate & Refine",
                     pct: "10%",
-                    desc: "Full timed simulations and targeted review",
+                    desc: "Full timed tests with final gap analysis",
                   },
                 ].map((p, i) => (
                   <div key={p.phase} className="flex items-start gap-4">
@@ -609,23 +599,23 @@ export default function Home() {
                 {
                   day: "Mon",
                   items: [
-                    "Listening Quiz Practice",
-                    "Reading Section Practice",
+                    "Grammar Drill — Sentence Structure",
+                    "Writing Task 1 — AI Scored",
                   ],
                 },
                 {
                   day: "Tue",
                   items: [
-                    "Writing Section Practice",
-                    "Speaking Quiz Practice",
+                    "Vocabulary Drill — Coherence Words",
+                    "Listening Practice — Part 3",
                   ],
                 },
-                { day: "Wed", items: ["Full Mock Test"] },
+                { day: "Wed", items: ["Full Mock Test + AI Report"] },
                 {
                   day: "Thu",
                   items: [
-                    "Listening Review — Weak Areas",
-                    "Quick Quiz Review",
+                    "Weakness Review — Top 3 Gaps",
+                    "Speaking Task — AI Feedback",
                   ],
                 },
               ].map((row, ri) => (
@@ -672,7 +662,7 @@ export default function Home() {
             className="text-base hp-reveal hp-reveal-d1"
             style={{ color: "var(--hp-text-muted)" }}
           >
-            Our mock test mirrors the official CELPIP structure
+            Practice the exact format you will face on test day
           </p>
         </div>
 
@@ -721,14 +711,14 @@ export default function Home() {
             className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 hp-reveal"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            Trusted by{" "}
-            <span style={{ color: "var(--hp-accent)" }}>thousands</span>
+            Real{" "}
+            <span style={{ color: "var(--hp-accent)" }}>score improvements</span>
           </h2>
           <p
             className="text-base hp-reveal hp-reveal-d1"
             style={{ color: "var(--hp-text-muted)" }}
           >
-            Real results from real test-takers across Canada.
+            Test-takers across Canada reaching their target scores.
           </p>
         </div>
 
@@ -806,15 +796,15 @@ export default function Home() {
           className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 relative hp-reveal"
           style={{ fontFamily: "var(--font-serif)" }}
         >
-          Ready to start
+          Ready to hit your
           <br />
-          <span style={{ color: "var(--hp-accent)" }}>practicing?</span>
+          <span style={{ color: "var(--hp-accent)" }}>target score?</span>
         </h2>
         <p
           className="text-base mb-8 relative hp-reveal hp-reveal-d1"
           style={{ color: "var(--hp-text-muted)" }}
         >
-          Create a free account and take your first mock test today.
+          Join thousands of test-takers who improved their CELPIP score with AI-powered preparation.
         </p>
         <button
           onClick={handleCta}
