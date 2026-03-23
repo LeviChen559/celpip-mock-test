@@ -449,6 +449,79 @@
   transition: width 0.8s ease;
 }
 
+/* ── Mockup tabs ─────────────────────────────────── */
+
+.hp-mockup-tab {
+  padding: 6px 14px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  color: var(--hp-text-muted);
+  background: transparent;
+  border: 1px solid var(--hp-border);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.hp-mockup-tab:hover {
+  border-color: var(--hp-accent);
+  color: var(--hp-accent);
+}
+.hp-mockup-tab-active {
+  background: var(--hp-accent);
+  color: #fff;
+  border-color: var(--hp-accent);
+}
+.hp-mockup-tab-active:hover {
+  color: #fff;
+}
+
+/* Score dimension row */
+.hp-dimension-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: #f0ebe4;
+  flex: 1;
+  overflow: hidden;
+}
+.hp-dimension-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--hp-accent), var(--hp-accent-light));
+}
+
+/* Weakness tag */
+.hp-weakness-tag {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background: rgba(196, 73, 60, 0.08);
+  color: #c4493c;
+}
+
+/* Trend bar chart */
+.hp-trend-bar {
+  width: 100%;
+  border-radius: 3px 3px 0 0;
+  background: linear-gradient(180deg, var(--hp-accent), var(--hp-accent-light));
+  transition: height 0.5s ease;
+}
+
+/* AI badge */
+.hp-ai-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.625rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background: var(--hp-accent-glow);
+  color: var(--hp-accent);
+  border: 1px solid rgba(199, 139, 60, 0.2);
+}
+
 /* ── Standalone bold quote ───────────────────────── */
 
 .hp-quote-line {

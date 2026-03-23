@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/hooks/use-auth";
 import HeroAnimation from "@/components/HeroAnimation";
@@ -71,6 +72,8 @@ const testimonials = [
 export default function Home() {
   const router = useRouter();
   const { currentUser, loading } = useAuth();
+
+  const [mockupTab, setMockupTab] = useState<"feedback" | "progress" | "plan">("feedback");
 
   const handleCta = () =>
     router.push(!loading && currentUser ? "/dashboard" : "/signup");
@@ -396,24 +399,24 @@ export default function Home() {
               icon: Target,
               title: "Know exactly what to fix",
               description:
-                "AI scores your responses across 4 CELPIP dimensions. It finds your top 3 weaknesses — not guesses, data.",
-              callout: "Fix coherence → +1 CLB",
+                "AI scores your writing and speaking across 4 CELPIP dimensions — Task Response, Coherence, Vocabulary, Grammar. You get specific weaknesses and rewrite examples.",
+              callout: "Coherence: 7/12 → 'Use linking phrases between paragraphs'",
               color: "#c78b3c",
             },
             {
               icon: CalendarCheck,
               title: "Follow a plan that adapts",
               description:
-                "Get a personalized daily study plan. 3-minute tasks. No wasted time. The plan shifts as your scores change.",
-              callout: "Day 1: Grammar drills. Day 14: Full mock test.",
+                "Set your goal score and test date. The AI builds a 3-phase study plan with daily tasks that shift as your scores change.",
+              callout: "Phase 1: Drills → Phase 2: Mixed → Phase 3: Full mocks",
               color: "#6b8f71",
             },
             {
               icon: TrendingUp,
               title: "Watch your score climb",
               description:
-                "Track your predicted score over time. Know if you're on track before test day.",
-              callout: "7.0 → 8.5 in 28 days",
+                "After 2+ attempts, the AI diagnoses recurring patterns, predicts your next score, and tells you if you're on track.",
+              callout: "Predicted next score: 9.0 — on track",
               color: "#7a8fc7",
             },
           ].map((s, i) => (
@@ -556,71 +559,161 @@ export default function Home() {
             }}
           />
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            {/* Dashboard mockup */}
-            <div className="space-y-3 hp-reveal hp-reveal-d1">
-              {/* Score improvement card */}
-              <div className="hp-mockup-card p-4">
-                <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: "var(--hp-text-muted)" }}>
-                  Score Improvement
-                </p>
-                <div className="flex items-end gap-3 mb-2">
-                  <span className="text-3xl font-bold" style={{ color: "var(--hp-text-muted)", fontFamily: "var(--font-serif)" }}>7.0</span>
-                  <ArrowRight className="w-5 h-5 mb-1" style={{ color: "var(--hp-accent)" }} />
-                  <span className="text-3xl font-bold" style={{ color: "var(--hp-accent)", fontFamily: "var(--font-serif)" }}>8.5</span>
-                  <span className="text-xs font-semibold mb-1 px-2 py-0.5 rounded-full" style={{ background: "#6b8f7115", color: "#6b8f71" }}>+1.5 CLB</span>
-                </div>
-                <div className="hp-mockup-progress-bar">
-                  <div className="hp-mockup-progress-fill" style={{ width: "75%" }} />
-                </div>
-                <p className="text-xs mt-1.5" style={{ color: "var(--hp-text-muted)" }}>Day 21 of 30</p>
+            {/* Dashboard mockup — tabbed */}
+            <div className="hp-reveal hp-reveal-d1">
+              {/* Tabs */}
+              <div className="flex gap-2 mb-4">
+                {([
+                  { key: "feedback" as const, label: "AI Feedback" },
+                  { key: "progress" as const, label: "Your Progress" },
+                  { key: "plan" as const, label: "Daily Plan" },
+                ] as const).map((tab) => (
+                  <button
+                    key={tab.key}
+                    onClick={() => setMockupTab(tab.key)}
+                    className={`hp-mockup-tab ${mockupTab === tab.key ? "hp-mockup-tab-active" : ""}`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
               </div>
 
-              {/* Top weaknesses card */}
-              <div className="hp-mockup-card p-4">
-                <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: "var(--hp-text-muted)" }}>
-                  Top Weaknesses
-                </p>
-                <div className="space-y-2">
-                  {[
-                    { label: "Coherence (Writing)", pct: "45%" },
-                    { label: "Grammar (Writing)", pct: "60%" },
-                    { label: "Vocabulary (Speaking)", pct: "70%" },
-                  ].map((w) => (
-                    <div key={w.label}>
-                      <div className="flex justify-between text-xs mb-1">
-                        <span style={{ color: "var(--hp-text)" }}>{w.label}</span>
-                        <span style={{ color: "var(--hp-accent)" }}>{w.pct}</span>
+              {/* Tab 1: AI Feedback */}
+              {mockupTab === "feedback" && (
+                <div className="hp-mockup-card p-4 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hp-text-muted)" }}>
+                      Writing Task 1 — AI Score
+                    </p>
+                    <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: "var(--hp-accent-glow)", color: "var(--hp-accent)" }}>
+                      Overall: 8 / CLB 8–9
+                    </span>
+                  </div>
+                  {/* 4 dimension scores */}
+                  <div className="space-y-2.5">
+                    {[
+                      { dim: "Task Response", score: 9, pct: "75%" },
+                      { dim: "Coherence", score: 7, pct: "58%" },
+                      { dim: "Vocabulary", score: 8, pct: "67%" },
+                      { dim: "Grammar", score: 6, pct: "50%" },
+                    ].map((d) => (
+                      <div key={d.dim} className="flex items-center gap-3">
+                        <span className="text-xs w-24 shrink-0" style={{ color: "var(--hp-text-muted)" }}>{d.dim}</span>
+                        <div className="hp-dimension-bar">
+                          <div className="hp-dimension-fill" style={{ width: d.pct }} />
+                        </div>
+                        <span className="text-xs font-bold w-6 text-right" style={{ color: "var(--hp-accent)" }}>{d.score}</span>
                       </div>
-                      <div className="hp-mockup-progress-bar">
-                        <div className="hp-mockup-progress-fill" style={{ width: w.pct }} />
-                      </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
+                  {/* Weakness tags */}
+                  <div className="flex flex-wrap gap-1.5">
+                    <span className="hp-weakness-tag">Run-on sentences</span>
+                    <span className="hp-weakness-tag">Limited transition words</span>
+                    <span className="hp-weakness-tag">Paragraph structure</span>
+                  </div>
+                  {/* Improvement tip */}
+                  <div className="rounded-lg px-3 py-2.5" style={{ background: "rgba(107,143,113,0.06)", border: "1px solid rgba(107,143,113,0.12)" }}>
+                    <p className="text-xs" style={{ color: "var(--hp-text)" }}>
+                      <span className="font-semibold" style={{ color: "#6b8f71" }}>Fix:</span>{" "}
+                      Weak paragraph transitions → Use linking phrases like &ldquo;Furthermore&rdquo;, &ldquo;In contrast&rdquo;, &ldquo;As a result&rdquo;
+                    </p>
+                  </div>
                 </div>
-              </div>
+              )}
 
-              {/* Today's tasks card */}
-              <div className="hp-mockup-card p-4">
-                <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: "var(--hp-text-muted)" }}>
-                  Today&apos;s Tasks
-                </p>
-                <div className="space-y-2">
-                  {[
-                    { task: "Grammar Drill — Sentence Structure", time: "3 min" },
-                    { task: "Writing Task 1 — AI Scored", time: "15 min" },
-                    { task: "Vocabulary Review — Coherence Words", time: "5 min" },
-                  ].map((t) => (
-                    <div
-                      key={t.task}
-                      className="flex items-center justify-between rounded-lg px-3 py-2.5"
-                      style={{ background: "rgba(0,0,0,0.02)", border: "1px solid rgba(0,0,0,0.04)" }}
-                    >
-                      <span className="text-xs font-medium" style={{ color: "var(--hp-text)" }}>{t.task}</span>
-                      <span className="text-xs shrink-0 ml-2" style={{ color: "var(--hp-text-muted)" }}>{t.time}</span>
+              {/* Tab 2: Your Progress */}
+              {mockupTab === "progress" && (
+                <div className="hp-mockup-card p-4 space-y-4">
+                  <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hp-text-muted)" }}>
+                    Score Trend — Writing
+                  </p>
+                  {/* Mini bar chart */}
+                  <div className="flex items-end gap-2 h-24">
+                    {[
+                      { score: 6.5, h: "35%" },
+                      { score: 7.0, h: "45%" },
+                      { score: 7.5, h: "55%" },
+                      { score: 8.0, h: "65%" },
+                      { score: 8.5, h: "80%" },
+                    ].map((b) => (
+                      <div key={b.score} className="flex-1 flex flex-col items-center gap-1 h-full justify-end">
+                        <span className="text-[10px] font-bold" style={{ color: "var(--hp-accent)" }}>{b.score}</span>
+                        <div className="hp-trend-bar w-full" style={{ height: b.h }} />
+                      </div>
+                    ))}
+                  </div>
+                  {/* Stats row */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="rounded-lg px-3 py-2" style={{ background: "rgba(0,0,0,0.02)" }}>
+                      <p className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "var(--hp-text-muted)" }}>Predicted Next</p>
+                      <p className="text-lg font-bold" style={{ color: "var(--hp-accent)", fontFamily: "var(--font-serif)" }}>9.0</p>
                     </div>
-                  ))}
+                    <div className="rounded-lg px-3 py-2" style={{ background: "rgba(0,0,0,0.02)" }}>
+                      <p className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "var(--hp-text-muted)" }}>Status</p>
+                      <p className="text-sm font-bold" style={{ color: "#6b8f71" }}>On Track</p>
+                      <p className="text-[10px]" style={{ color: "var(--hp-text-muted)" }}>9 days remaining</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    <div className="flex-1 rounded-lg px-3 py-2" style={{ background: "rgba(0,0,0,0.02)" }}>
+                      <p className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "var(--hp-text-muted)" }}>Strongest</p>
+                      <p className="text-xs font-semibold" style={{ color: "var(--hp-text)" }}>Vocabulary</p>
+                    </div>
+                    <div className="flex-1 rounded-lg px-3 py-2" style={{ background: "rgba(0,0,0,0.02)" }}>
+                      <p className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "var(--hp-text-muted)" }}>Weakest</p>
+                      <p className="text-xs font-semibold" style={{ color: "#c4493c" }}>Grammar</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              )}
+
+              {/* Tab 3: Daily Plan */}
+              {mockupTab === "plan" && (
+                <div className="hp-mockup-card p-4 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hp-text-muted)" }}>
+                      Today&apos;s Tasks
+                    </p>
+                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full" style={{ background: "#7a8fc715", color: "#7a8fc7" }}>
+                      Phase 2: Practice &amp; Measure
+                    </span>
+                  </div>
+                  <div className="space-y-2">
+                    {[
+                      { task: "Grammar Drill — Sentence Structure", time: "3 min", ai: true, reason: "Targets your #1 weakness" },
+                      { task: "Writing Task 1 — AI Scored", time: "15 min", ai: true, reason: "Coherence focus" },
+                      { task: "Vocabulary Review — Transition Words", time: "5 min", ai: false, reason: "" },
+                    ].map((t) => (
+                      <div
+                        key={t.task}
+                        className="rounded-lg px-3 py-2.5"
+                        style={{ background: "rgba(0,0,0,0.02)", border: "1px solid rgba(0,0,0,0.04)" }}
+                      >
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-xs font-medium" style={{ color: "var(--hp-text)" }}>{t.task}</span>
+                          <span className="text-xs shrink-0 ml-2" style={{ color: "var(--hp-text-muted)" }}>{t.time}</span>
+                        </div>
+                        {t.ai && (
+                          <div className="flex items-center gap-2 mt-1">
+                            <span className="hp-ai-badge">
+                              <Sparkles className="w-2.5 h-2.5" />
+                              AI Recommended
+                            </span>
+                            <span className="text-[10px]" style={{ color: "var(--hp-text-muted)" }}>{t.reason}</span>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-between pt-1">
+                    <span className="text-xs" style={{ color: "var(--hp-text-muted)" }}>Day 21 of 30</span>
+                    <div className="hp-mockup-progress-bar w-24">
+                      <div className="hp-mockup-progress-fill" style={{ width: "70%" }} />
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Copy */}
@@ -654,9 +747,9 @@ export default function Home() {
               </p>
               <div className="space-y-3 mb-8">
                 {[
-                  "AI feedback on every response",
-                  "Weakness tracking across attempts",
-                  "Score prediction updated daily",
+                  "AI scores 4 dimensions with rewrite examples",
+                  "Diagnostic analysis finds recurring patterns",
+                  "Predicted score and 'on track' status",
                 ].map((item) => (
                   <div key={item} className="flex items-center gap-2.5">
                     <Check className="w-4 h-4 shrink-0" style={{ color: "var(--hp-accent)" }} />
@@ -700,10 +793,11 @@ export default function Home() {
               </thead>
               <tbody>
                 {[
-                  { feature: "Feedback", old: "Answer keys only", pugpip: "AI scores 4 dimensions with tips" },
-                  { feature: "Study Plan", old: "Figure it out yourself", pugpip: "Personalized daily tasks" },
-                  { feature: "Weakness Detection", old: "None", pugpip: "AI identifies top 3 gaps" },
-                  { feature: "Score Tracking", old: "Take another test and hope", pugpip: "Predicted score updated daily" },
+                  { feature: "Feedback", old: "Answer keys only", pugpip: "AI scores Task Response, Coherence, Vocabulary, Grammar + rewrite examples" },
+                  { feature: "Study Plan", old: "Figure it out yourself", pugpip: "AI-generated 3-phase plan with daily sessions" },
+                  { feature: "Weakness Detection", old: "None", pugpip: "Recurring patterns + strongest/weakest dimensions" },
+                  { feature: "Score Tracking", old: "Take another test and hope", pugpip: "Predicted score + 'on track' status" },
+                  { feature: "Practice Modes", old: "Random question banks", pugpip: "Full mock tests + section drills + targeted quizzes" },
                   { feature: "Time to Improve", old: "Months of general practice", pugpip: "Weeks of targeted practice" },
                 ].map((row) => (
                   <tr key={row.feature}>
