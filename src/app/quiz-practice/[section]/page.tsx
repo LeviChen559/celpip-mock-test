@@ -7,7 +7,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Separator } from "@/components/ui/separator";
 import { useHistory } from "@/lib/hooks/use-history";
 import { estimateWritingScore, estimateSpeakingScore } from "@/lib/celpip-data";
 
@@ -127,9 +126,7 @@ export default function WritingSpeakingQuiz({
   const answeredCount = Object.keys(responses).filter((k) => countWords(responses[Number(k)] || "") > 0).length;
 
   const sectionLabel = isWriting ? "Writing" : "Speaking";
-  const sectionBadgeClass = isWriting ? "bg-purple-500 text-white" : "bg-pink-500 text-white";
 
-  const timerPct = (timeLeft / totalTime) * 100;
   const timerColor =
     timeLeft <= 60 ? "text-red-600" : timeLeft <= totalTime * 0.25 ? "text-yellow-600" : "text-[#1a1a2e]";
 
@@ -207,21 +204,24 @@ export default function WritingSpeakingQuiz({
 
     return (
       <main className="min-h-screen bg-grid" style={{ backgroundColor: "var(--background)" }}>
-        <div className="sticky top-0 z-10 bg-white border-b px-4 py-4">
-          <div className="max-w-screen-xl mx-auto flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Badge className={sectionBadgeClass}>{sectionLabel} Quiz</Badge>
-              <span className="text-sm font-bold text-[#1a1a2e]">
+        <div className="sticky top-0 z-20 bg-white/90 backdrop-blur-md quiz-header-line">
+          <div className="max-w-screen-xl mx-auto px-3 sm:px-4 py-2.5">
+            <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+              <span className={`w-2 h-2 rounded-full shrink-0 ${isWriting ? "bg-purple-500" : "bg-pink-500"}`} />
+              <span className="text-[11px] uppercase tracking-widest font-bold text-[var(--quiz-ink)]/60 shrink-0 hidden sm:inline">
+                {sectionLabel}
+              </span>
+              <span className="text-sm font-bold text-[var(--quiz-ink)]">
                 Estimated Score: {score}/12
               </span>
+              <div className="flex-1" />
+              <button
+                onClick={() => router.push("/dashboard")}
+                className="px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg bg-[#6b4c9a] text-white hover:bg-[#5a3d85] transition-colors shrink-0"
+              >
+                Dashboard
+              </button>
             </div>
-            <Button
-              size="sm"
-              className="rounded-full bg-[#6b4c9a] hover:bg-[#5a3d85] text-white"
-              onClick={() => router.push("/dashboard")}
-            >
-              Back to Dashboard
-            </Button>
           </div>
         </div>
 
@@ -386,38 +386,56 @@ export default function WritingSpeakingQuiz({
   return (
     <main className="min-h-screen bg-grid" style={{ backgroundColor: "var(--background)" }}>
       {/* Top bar */}
-      <div className="sticky top-0 z-10 bg-white border-b px-3 sm:px-4 py-2 sm:py-3">
-        <div className="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between gap-y-1 gap-x-2 sm:gap-x-3">
-          <div className="flex items-center gap-1.5 sm:gap-3 min-w-0">
-            <Badge className={`${sectionBadgeClass} shrink-0 text-xs`}>{sectionLabel} Quiz</Badge>
-            <span className="text-xs sm:text-sm whitespace-nowrap" style={{ color: "var(--muted-foreground)" }}>
-              Task {currentIndex + 1} of {tasks.length}
+      <div className="sticky top-0 z-20 bg-white/90 backdrop-blur-md quiz-header-line">
+        <div className="max-w-screen-xl mx-auto px-3 sm:px-4 py-2.5">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            {/* Section dot + label */}
+            <span className={`w-2 h-2 rounded-full shrink-0 ${isWriting ? "bg-purple-500" : "bg-pink-500"}`} />
+            <span className="text-[11px] uppercase tracking-widest font-bold text-[var(--quiz-ink)]/60 shrink-0 hidden sm:inline">
+              {sectionLabel}
             </span>
-            <Separator orientation="vertical" className="h-4 sm:h-5 hidden sm:block" />
-            <span className="text-xs sm:text-sm font-medium text-[#1a1a2e] whitespace-nowrap hidden sm:inline">
-              {answeredCount}/{tasks.length} completed
+
+            {/* Task counter */}
+            <span className="text-sm text-[var(--quiz-ink)] shrink-0">
+              <span className="font-bold">{answeredCount}</span>
+              <span className="text-[var(--quiz-ink)]/40">/{tasks.length} completed</span>
             </span>
-          </div>
-          <div className="flex items-center gap-1.5 sm:gap-3">
-            <div className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full border border-[#e2ddd5] ${timerColor} font-mono text-xs sm:text-sm font-bold`}>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="sm:w-3.5 sm:h-3.5">
+
+            {/* Flexible spacer with progress bar */}
+            <div className="flex-1 flex items-center min-w-0 px-1">
+              <Progress value={progress} className="h-1.5 sm:h-2 flex-1" />
+            </div>
+
+            {/* Timer */}
+            <div className={`flex items-center gap-1.5 px-2 py-1 rounded-full bg-white border border-[var(--quiz-border)] shrink-0 ${timerColor}`}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="12" cy="12" r="10" />
                 <polyline points="12 6 12 12 16 14" />
               </svg>
-              {formatTime(timeLeft)}
+              <span className="font-mono text-xs sm:text-sm font-bold tracking-tight">
+                {formatTime(timeLeft)}
+              </span>
             </div>
-            <Button variant="outline" size="sm" className="rounded-full text-xs sm:text-sm px-2.5 sm:px-3" onClick={handleFinish}>
+
+            {/* Finish button */}
+            <button
+              onClick={handleFinish}
+              className="px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg border border-[var(--quiz-border)] text-[var(--quiz-ink)] hover:bg-[var(--quiz-warm)] transition-colors shrink-0"
+            >
               Finish
-            </Button>
-            <Button variant="ghost" size="sm" className="text-xs sm:text-sm px-1.5 sm:px-2" onClick={() => router.push("/dashboard")}>
-              Quit
-            </Button>
-          </div>
-        </div>
-        <div className="max-w-screen-xl mx-auto mt-1.5 sm:mt-2 flex gap-2 items-center">
-          <Progress value={progress} className="h-1.5 sm:h-2 flex-1" />
-          <div className="w-16 sm:w-20">
-            <Progress value={timerPct} className="h-1 sm:h-1.5" />
+            </button>
+
+            {/* Quit (X) */}
+            <button
+              onClick={() => router.push("/dashboard")}
+              className="p-1.5 rounded-lg text-[var(--quiz-ink)]/30 hover:text-[var(--quiz-ink)]/60 hover:bg-black/5 transition-colors shrink-0 hidden sm:flex"
+              title="Quit"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>
