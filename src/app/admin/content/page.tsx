@@ -60,22 +60,22 @@ export default function ContentDashboardPage() {
 
   if (authLoading || loading) {
     return (
-      <main className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
+      <main className="min-h-screen flex items-center justify-center bg-[#faf8f5]">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#6b4c9a]" />
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-gray-50">
-      <div className="sticky top-0 z-10 bg-white border-b px-4 py-3">
+    <main className="min-h-screen bg-[#faf8f5]">
+      <div className="sticky top-0 z-10 bg-white border-b border-[#e2ddd5] px-4 py-3">
         <div className="max-w-screen-xl mx-auto">
-          <h1 className="text-xl font-bold text-gray-900">Content Management</h1>
+          <h1 className="text-xl font-bold text-[#1a1a2e]">Content Management</h1>
         </div>
       </div>
 
       <div className="max-w-screen-xl mx-auto px-4 py-8">
-        <p className="text-gray-600 mb-6">Select a section to manage its content.</p>
+        <p className="text-[#1a1a2e]/60 mb-6">Select a section to manage its content.</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {SECTIONS.map(({ key, label, icon: Icon }) => {
@@ -84,26 +84,26 @@ export default function ContentDashboardPage() {
               <button
                 key={key}
                 onClick={() => router.push(`/admin/content/${key}`)}
-                className="text-left bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-blue-400 hover:shadow-md transition-all group"
+                className="text-left bg-white border-2 border-[#e2ddd5] rounded-2xl p-6 hover:border-[#6b4c9a] hover:shadow-md transition-all group"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 rounded-lg bg-blue-50 group-hover:bg-blue-100 transition-colors">
-                    <Icon className="w-6 h-6 text-blue-600" />
+                  <div className="p-2 rounded-lg bg-[#6b4c9a]/10 group-hover:bg-[#6b4c9a]/20 transition-colors">
+                    <Icon className="w-6 h-6 text-[#6b4c9a]" />
                   </div>
-                  <h2 className="text-lg font-semibold text-gray-900">{label}</h2>
+                  <h2 className="text-lg font-semibold text-[#1a1a2e]">{label}</h2>
                 </div>
                 <div className="grid grid-cols-3 gap-3">
                   <div className="text-center">
-                    <p className="text-2xl font-bold text-gray-900">{s.total}</p>
-                    <p className="text-xs text-gray-500 mt-0.5">Total</p>
+                    <p className="text-2xl font-bold text-[#1a1a2e]">{s.total}</p>
+                    <p className="text-xs text-[#1a1a2e]/60 mt-0.5">Total</p>
                   </div>
                   <div className="text-center">
                     <p className="text-2xl font-bold text-green-600">{s.published}</p>
-                    <p className="text-xs text-gray-500 mt-0.5">Published</p>
+                    <p className="text-xs text-[#1a1a2e]/60 mt-0.5">Published</p>
                   </div>
                   <div className="text-center">
                     <p className="text-2xl font-bold text-yellow-600">{s.draft}</p>
-                    <p className="text-xs text-gray-500 mt-0.5">Draft</p>
+                    <p className="text-xs text-[#1a1a2e]/60 mt-0.5">Draft</p>
                   </div>
                 </div>
               </button>

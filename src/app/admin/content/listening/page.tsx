@@ -56,29 +56,29 @@ export default function ListeningListPage() {
 
   if (authLoading || loading) {
     return (
-      <main className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
+      <main className="min-h-screen flex items-center justify-center bg-[#faf8f5]">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#6b4c9a]" />
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-gray-50">
-      <div className="sticky top-0 z-10 bg-white border-b px-4 py-3">
+    <main className="min-h-screen bg-[#faf8f5]">
+      <div className="sticky top-0 z-10 bg-white border-b border-[#e2ddd5] px-4 py-3">
         <div className="max-w-screen-xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <button
               onClick={() => router.push("/admin/content")}
-              className="p-1.5 text-gray-500 hover:text-gray-900 rounded hover:bg-gray-100"
+              className="p-1.5 text-[#1a1a2e]/60 hover:text-[#1a1a2e] rounded hover:bg-[#f3efe8]"
               aria-label="Back"
             >
               <ArrowLeft className="w-5 h-5" />
             </button>
-            <h1 className="text-xl font-bold text-gray-900">Listening Parts</h1>
+            <h1 className="text-xl font-bold text-[#1a1a2e]">Listening Parts</h1>
           </div>
           <button
             onClick={() => router.push("/admin/content/listening/new")}
-            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded hover:bg-blue-700"
+            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-[#6b4c9a] rounded-full hover:bg-[#5a3d85]"
           >
             <Plus className="w-4 h-4" />
             New Part

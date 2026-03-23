@@ -71,8 +71,8 @@ export default function EditListeningPage() {
 
   if (authLoading || loading) {
     return (
-      <main className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
+      <main className="min-h-screen flex items-center justify-center bg-[#faf8f5]">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#6b4c9a]" />
       </main>
     );
   }
@@ -118,26 +118,26 @@ export default function EditListeningPage() {
   const isDisabled = saving || !form.part_id || !form.title;
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-[#faf8f5]">
       {/* Header */}
-      <div className="sticky top-0 z-10 bg-white border-b px-4 py-3">
+      <div className="sticky top-0 z-10 bg-white border-b border-[#e2ddd5] px-4 py-3">
         <div className="max-w-screen-lg mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <button
               onClick={() => router.push("/admin/content/listening")}
-              className="p-1.5 text-gray-500 hover:text-gray-900 rounded hover:bg-gray-100"
+              className="p-1.5 text-[#1a1a2e]/60 hover:text-[#1a1a2e] rounded hover:bg-[#f3efe8]"
               aria-label="Back"
             >
               <ArrowLeft className="w-5 h-5" />
             </button>
-            <h1 className="text-xl font-bold text-gray-900">Edit Listening Part</h1>
+            <h1 className="text-xl font-bold text-[#1a1a2e]">Edit Listening Part</h1>
             <StatusBadge status={currentStatus} />
           </div>
           <div className="flex items-center gap-2">
             <button
               type="button"
               onClick={() => router.push("/admin/content/listening")}
-              className="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50"
+              className="px-4 py-2 text-sm font-medium text-[#1a1a2e]/60 border border-[#e2ddd5] rounded-full hover:bg-[#f3efe8]"
             >
               Cancel
             </button>
@@ -146,7 +146,7 @@ export default function EditListeningPage() {
                 <button
                   type="button"
                   disabled={isDisabled}
-                  className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-4 py-2 text-sm font-medium text-white bg-[#6b4c9a] rounded-full hover:bg-[#5a3d85] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {saving ? "Saving..." : "Save Changes"}
                 </button>
@@ -163,10 +163,10 @@ export default function EditListeningPage() {
       {/* Form */}
       <div className="max-w-screen-lg mx-auto px-4 py-8 space-y-6">
         {/* Part ID + Sort Order */}
-        <div className="bg-white border border-gray-200 rounded-lg p-6 space-y-4">
+        <div className="bg-white border border-[#e2ddd5] rounded-lg p-6 space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-[#1a1a2e] mb-1">
                 Part ID <span className="text-red-500">*</span>
               </label>
               <input
@@ -174,11 +174,11 @@ export default function EditListeningPage() {
                 value={(form.part_id as string) ?? ""}
                 onChange={(e) => setForm((f) => ({ ...f, part_id: e.target.value }))}
                 placeholder="e.g. L1"
-                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-[#e2ddd5] rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#6b4c9a] focus:border-[#6b4c9a]"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-[#1a1a2e] mb-1">
                 Sort Order
               </label>
               <input
@@ -187,14 +187,14 @@ export default function EditListeningPage() {
                 onChange={(e) =>
                   setForm((f) => ({ ...f, sort_order: parseInt(e.target.value, 10) || 0 }))
                 }
-                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-[#e2ddd5] rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#6b4c9a] focus:border-[#6b4c9a]"
               />
             </div>
           </div>
 
           {/* Title */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-[#1a1a2e] mb-1">
               Title <span className="text-red-500">*</span>
             </label>
             <input
@@ -202,13 +202,13 @@ export default function EditListeningPage() {
               value={(form.title as string) ?? ""}
               onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))}
               placeholder="Enter title..."
-              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-[#e2ddd5] rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#6b4c9a] focus:border-[#6b4c9a]"
             />
           </div>
 
           {/* Instruction */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-[#1a1a2e] mb-1">
               Instruction
             </label>
             <textarea
@@ -216,13 +216,13 @@ export default function EditListeningPage() {
               onChange={(e) => setForm((f) => ({ ...f, instruction: e.target.value }))}
               rows={3}
               placeholder="Enter instruction..."
-              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-[#e2ddd5] rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#6b4c9a] focus:border-[#6b4c9a]"
             />
           </div>
 
           {/* Transcript */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-[#1a1a2e] mb-1">
               Transcript
             </label>
             <textarea
@@ -230,13 +230,13 @@ export default function EditListeningPage() {
               onChange={(e) => setForm((f) => ({ ...f, transcript: e.target.value }))}
               rows={8}
               placeholder="Enter transcript..."
-              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-[#e2ddd5] rounded-md px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-[#6b4c9a] focus:border-[#6b4c9a]"
             />
           </div>
 
           {/* Status */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-[#1a1a2e] mb-1">
               Status
             </label>
             <select
@@ -247,7 +247,7 @@ export default function EditListeningPage() {
                   status: e.target.value as "draft" | "published",
                 }))
               }
-              className="border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="border border-[#e2ddd5] rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#6b4c9a] focus:border-[#6b4c9a]"
             >
               <option value="draft">Draft</option>
               <option value="published">Published</option>
@@ -256,8 +256,8 @@ export default function EditListeningPage() {
         </div>
 
         {/* Media */}
-        <div className="bg-white border border-gray-200 rounded-lg p-6">
-          <h2 className="text-sm font-semibold text-gray-800 mb-4">Media</h2>
+        <div className="bg-white border border-[#e2ddd5] rounded-lg p-6">
+          <h2 className="text-sm font-semibold text-[#1a1a2e] mb-4">Media</h2>
           <MediaUploader
             section="listening"
             partId={(form.part_id as string) || id}
@@ -271,7 +271,7 @@ export default function EditListeningPage() {
         </div>
 
         {/* Questions */}
-        <div className="bg-white border border-gray-200 rounded-lg p-6">
+        <div className="bg-white border border-[#e2ddd5] rounded-lg p-6">
           <QuestionEditor
             questions={questions}
             section="listening"
