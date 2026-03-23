@@ -87,7 +87,7 @@ export function MediaUploader({
     <div className="space-y-4">
       {/* Image Section */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-[#1a1a2e] mb-1">
           Image
         </label>
         {currentImageUrl ? (
@@ -96,7 +96,7 @@ export function MediaUploader({
             <img
               src={currentImageUrl}
               alt="Content image"
-              className="h-32 w-auto rounded border border-gray-200 object-cover"
+              className="h-32 w-auto rounded border border-[#e2ddd5] object-cover"
             />
             <ConfirmDialog
               trigger={
@@ -128,15 +128,15 @@ export function MediaUploader({
               type="button"
               onClick={() => imageInputRef.current?.click()}
               disabled={uploadingImage}
-              className="flex items-center gap-2 px-3 py-2 text-sm border border-dashed border-gray-300 rounded-md hover:border-gray-400 hover:bg-gray-50 disabled:opacity-50"
+              className="flex items-center gap-2 px-3 py-2 text-sm border border-dashed border-[#e2ddd5] rounded-md hover:border-[#6b4c9a] hover:bg-[#f3efe8] disabled:opacity-50"
             >
               {uploadingImage ? (
-                <span className="text-gray-500">Uploading...</span>
+                <span className="text-[#1a1a2e]/60">Uploading...</span>
               ) : (
                 <>
-                  <Image className="h-4 w-4 text-gray-400" />
-                  <Upload className="h-4 w-4 text-gray-400" />
-                  <span className="text-gray-600">Upload Image</span>
+                  <Image className="h-4 w-4 text-[#1a1a2e]/60" />
+                  <Upload className="h-4 w-4 text-[#1a1a2e]/60" />
+                  <span className="text-[#1a1a2e]/60">Upload Image</span>
                 </>
               )}
             </button>
@@ -146,7 +146,7 @@ export function MediaUploader({
 
       {/* Audio Section */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-[#1a1a2e] mb-1">
           Audio
         </label>
         {currentAudioUrl ? (
@@ -183,15 +183,15 @@ export function MediaUploader({
               type="button"
               onClick={() => audioInputRef.current?.click()}
               disabled={uploadingAudio}
-              className="flex items-center gap-2 px-3 py-2 text-sm border border-dashed border-gray-300 rounded-md hover:border-gray-400 hover:bg-gray-50 disabled:opacity-50"
+              className="flex items-center gap-2 px-3 py-2 text-sm border border-dashed border-[#e2ddd5] rounded-md hover:border-[#6b4c9a] hover:bg-[#f3efe8] disabled:opacity-50"
             >
               {uploadingAudio ? (
-                <span className="text-gray-500">Uploading...</span>
+                <span className="text-[#1a1a2e]/60">Uploading...</span>
               ) : (
                 <>
-                  <Music className="h-4 w-4 text-gray-400" />
-                  <Upload className="h-4 w-4 text-gray-400" />
-                  <span className="text-gray-600">Upload Audio</span>
+                  <Music className="h-4 w-4 text-[#1a1a2e]/60" />
+                  <Upload className="h-4 w-4 text-[#1a1a2e]/60" />
+                  <span className="text-[#1a1a2e]/60">Upload Audio</span>
                 </>
               )}
             </button>

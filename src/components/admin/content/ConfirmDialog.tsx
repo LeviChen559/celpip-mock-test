@@ -46,20 +46,20 @@ export function ConfirmDialog({
           <AlertDialog.Title className="text-lg font-semibold">
             {title}
           </AlertDialog.Title>
-          <AlertDialog.Description className="mt-2 text-sm text-gray-600">
+          <AlertDialog.Description className="mt-2 text-sm text-[#1a1a2e]/60">
             {description}
           </AlertDialog.Description>
           <div className="mt-4 flex justify-end gap-3">
-            <AlertDialog.Close className="px-4 py-2 text-sm rounded-md border border-gray-300 hover:bg-gray-50">
+            <AlertDialog.Close className="px-4 py-2 text-sm rounded-full border border-[#e2ddd5] hover:bg-[#f3efe8]">
               {cancelLabel}
             </AlertDialog.Close>
             <button
               onClick={handleConfirm}
               disabled={loading}
-              className={`px-4 py-2 text-sm rounded-md text-white ${
+              className={`px-4 py-2 text-sm rounded-full text-white ${
                 variant === "danger"
                   ? "bg-red-600 hover:bg-red-700"
-                  : "bg-blue-600 hover:bg-blue-700"
+                  : "bg-[#6b4c9a] hover:bg-[#5a3d85]"
               } disabled:opacity-50`}
             >
               {loading ? "..." : confirmLabel}

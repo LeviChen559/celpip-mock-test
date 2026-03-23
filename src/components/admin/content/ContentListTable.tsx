@@ -41,38 +41,38 @@ export function ContentListTable({
   };
 
   return (
-    <div className="overflow-x-auto rounded-lg border border-gray-200">
-      <table className="min-w-full divide-y divide-gray-200 bg-white">
-        <thead className="bg-gray-50">
+    <div className="overflow-x-auto rounded-lg border border-[#e2ddd5]">
+      <table className="min-w-full divide-y divide-[#e2ddd5] bg-white">
+        <thead className="bg-[#faf8f5]">
           <tr>
-            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-4 py-3 text-left text-xs font-medium text-[#1a1a2e]/60 uppercase tracking-wider">
               ID
             </th>
-            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-4 py-3 text-left text-xs font-medium text-[#1a1a2e]/60 uppercase tracking-wider">
               Title
             </th>
-            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-4 py-3 text-left text-xs font-medium text-[#1a1a2e]/60 uppercase tracking-wider">
               Status
             </th>
             {showQuestionCount && (
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-4 py-3 text-left text-xs font-medium text-[#1a1a2e]/60 uppercase tracking-wider">
                 Questions
               </th>
             )}
-            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-4 py-3 text-left text-xs font-medium text-[#1a1a2e]/60 uppercase tracking-wider">
               Updated
             </th>
-            <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-4 py-3 text-right text-xs font-medium text-[#1a1a2e]/60 uppercase tracking-wider">
               Actions
             </th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-gray-200">
+        <tbody className="divide-y divide-[#e2ddd5]">
           {items.length === 0 ? (
             <tr>
               <td
                 colSpan={showQuestionCount ? 6 : 5}
-                className="px-4 py-8 text-center text-sm text-gray-500"
+                className="px-4 py-8 text-center text-sm text-[#1a1a2e]/60"
               >
                 No items found. Create your first one!
               </td>
@@ -81,22 +81,22 @@ export function ContentListTable({
             items.map((item) => {
               const itemId = item.part_id ?? item.task_id ?? item.id;
               return (
-                <tr key={item.id} className="hover:bg-gray-50">
-                  <td className="px-4 py-3 text-sm font-mono text-gray-600 whitespace-nowrap">
+                <tr key={item.id} className="hover:bg-[#f3efe8]">
+                  <td className="px-4 py-3 text-sm font-mono text-[#1a1a2e]/60 whitespace-nowrap">
                     {itemId}
                   </td>
-                  <td className="px-4 py-3 text-sm text-gray-900">
+                  <td className="px-4 py-3 text-sm text-[#1a1a2e]">
                     {item.title}
                   </td>
                   <td className="px-4 py-3">
                     <StatusBadge status={item.status} />
                   </td>
                   {showQuestionCount && (
-                    <td className="px-4 py-3 text-sm text-gray-600">
+                    <td className="px-4 py-3 text-sm text-[#1a1a2e]/60">
                       {item.question_count ?? 0}
                     </td>
                   )}
-                  <td className="px-4 py-3 text-sm text-gray-500 whitespace-nowrap">
+                  <td className="px-4 py-3 text-sm text-[#1a1a2e]/60 whitespace-nowrap">
                     {formatDate(item.updated_at)}
                   </td>
                   <td className="px-4 py-3">
@@ -109,7 +109,7 @@ export function ContentListTable({
                             `/admin/content/${section}/${item.id}/edit`
                           )
                         }
-                        className="p-1 text-gray-500 hover:text-blue-600"
+                        className="p-1 text-[#1a1a2e]/60 hover:text-[#6b4c9a]"
                         aria-label="Edit"
                       >
                         <Pencil className="h-4 w-4" />
@@ -120,7 +120,7 @@ export function ContentListTable({
                         trigger={
                           <button
                             type="button"
-                            className="p-1 text-gray-500 hover:text-green-600"
+                            className="p-1 text-[#1a1a2e]/60 hover:text-green-600"
                             aria-label={
                               item.status === "published"
                                 ? "Unpublish"
@@ -155,7 +155,7 @@ export function ContentListTable({
                         trigger={
                           <button
                             type="button"
-                            className="p-1 text-gray-500 hover:text-red-600"
+                            className="p-1 text-[#1a1a2e]/60 hover:text-red-600"
                             aria-label="Delete"
                           >
                             <Trash2 className="h-4 w-4" />

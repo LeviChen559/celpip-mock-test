@@ -122,13 +122,13 @@ export function QuestionEditor({
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-medium text-gray-700">
+        <h3 className="text-sm font-medium text-[#1a1a2e]">
           Questions ({questions.length})
         </h3>
         <button
           type="button"
           onClick={addQuestion}
-          className="flex items-center gap-1 px-3 py-1.5 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700"
+          className="flex items-center gap-1 px-3 py-1.5 text-sm bg-[#6b4c9a] text-white rounded-full hover:bg-[#5a3d85]"
         >
           <Plus className="h-4 w-4" />
           Add Question
@@ -143,14 +143,14 @@ export function QuestionEditor({
             onDragStart={() => handleDragStart(qIndex)}
             onDragOver={(e) => handleDragOver(e, qIndex)}
             onDragEnd={handleDragEnd}
-            className={`border border-gray-200 rounded-lg p-4 bg-white ${
+            className={`border border-[#e2ddd5] rounded-lg p-4 bg-white ${
               draggingIndex === qIndex ? "opacity-50" : ""
             }`}
           >
             <div className="flex items-start gap-2">
               <button
                 type="button"
-                className="mt-1 cursor-grab text-gray-400 hover:text-gray-600"
+                className="mt-1 cursor-grab text-[#1a1a2e]/60 hover:text-[#1a1a2e]"
                 aria-label="Drag to reorder"
               >
                 <GripVertical className="h-4 w-4" />
@@ -158,7 +158,7 @@ export function QuestionEditor({
 
               <div className="flex-1 space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono text-gray-500">
+                  <span className="text-xs font-mono text-[#1a1a2e]/60">
                     {q.question_id}
                   </span>
                   <ConfirmDialog
@@ -181,7 +181,7 @@ export function QuestionEditor({
 
                 {/* Passage (optional) */}
                 <div>
-                  <label className="block text-xs font-medium text-gray-600 mb-1">
+                  <label className="block text-xs font-medium text-[#1a1a2e]/60 mb-1">
                     Passage (optional)
                   </label>
                   <textarea
@@ -191,13 +191,13 @@ export function QuestionEditor({
                     }
                     rows={2}
                     placeholder="Optional reading passage..."
-                    className="w-full text-sm border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full text-sm border border-[#e2ddd5] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#6b4c9a] focus:border-[#6b4c9a]"
                   />
                 </div>
 
                 {/* Question text */}
                 <div>
-                  <label className="block text-xs font-medium text-gray-600 mb-1">
+                  <label className="block text-xs font-medium text-[#1a1a2e]/60 mb-1">
                     Question <span className="text-red-500">*</span>
                   </label>
                   <textarea
@@ -207,13 +207,13 @@ export function QuestionEditor({
                     }
                     rows={2}
                     placeholder="Enter question text..."
-                    className="w-full text-sm border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full text-sm border border-[#e2ddd5] rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#6b4c9a] focus:border-[#6b4c9a]"
                   />
                 </div>
 
                 {/* Options */}
                 <div>
-                  <label className="block text-xs font-medium text-gray-600 mb-1">
+                  <label className="block text-xs font-medium text-[#1a1a2e]/60 mb-1">
                     Options (select correct answer)
                   </label>
                   <div className="space-y-2">
@@ -226,7 +226,7 @@ export function QuestionEditor({
                           onChange={() =>
                             updateQuestion(qIndex, { correct_answer: oIndex })
                           }
-                          className="h-4 w-4 text-blue-600"
+                          className="h-4 w-4 text-[#6b4c9a]"
                         />
                         <input
                           type="text"
@@ -235,13 +235,13 @@ export function QuestionEditor({
                             updateOption(qIndex, oIndex, e.target.value)
                           }
                           placeholder={`Option ${oIndex + 1}`}
-                          className="flex-1 text-sm border border-gray-300 rounded-md px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="flex-1 text-sm border border-[#e2ddd5] rounded-md px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#6b4c9a] focus:border-[#6b4c9a]"
                         />
                         {q.options.length > 2 && (
                           <button
                             type="button"
                             onClick={() => removeOption(qIndex, oIndex)}
-                            className="text-gray-400 hover:text-red-500"
+                            className="text-[#1a1a2e]/60 hover:text-red-500"
                             aria-label="Remove option"
                           >
                             <Trash2 className="h-3.5 w-3.5" />
@@ -253,7 +253,7 @@ export function QuestionEditor({
                   <button
                     type="button"
                     onClick={() => addOption(qIndex)}
-                    className="mt-2 flex items-center gap-1 text-xs text-blue-600 hover:text-blue-700"
+                    className="mt-2 flex items-center gap-1 text-xs text-[#6b4c9a] hover:text-[#5a3d85]"
                   >
                     <Plus className="h-3 w-3" />
                     Add Option
@@ -266,7 +266,7 @@ export function QuestionEditor({
       </div>
 
       {questions.length === 0 && (
-        <div className="text-center py-8 text-sm text-gray-500 border border-dashed border-gray-200 rounded-lg">
+        <div className="text-center py-8 text-sm text-[#1a1a2e]/60 border border-dashed border-[#e2ddd5] rounded-lg">
           No questions yet. Click &quot;Add Question&quot; to get started.
         </div>
       )}
