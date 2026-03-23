@@ -4,6 +4,7 @@ export interface Question {
   options: string[];
   correctAnswer: number;
   passage?: string;
+  imageUrl?: string;
 }
 
 export interface ListeningPart {
@@ -12,6 +13,8 @@ export interface ListeningPart {
   instruction: string;
   transcript: string;
   questions: Question[];
+  audioUrl?: string;
+  imageUrl?: string;
 }
 
 export interface ReadingPart {
@@ -21,6 +24,7 @@ export interface ReadingPart {
   passage: string;
   questions: Question[];
   paid?: boolean;
+  imageUrl?: string;
 }
 
 export interface WritingTask {
@@ -30,6 +34,8 @@ export interface WritingTask {
   prompt: string;
   minWords: number;
   maxWords: number;
+  imageUrl?: string;
+  audioUrl?: string;
 }
 
 export interface SpeakingTask {
@@ -39,6 +45,8 @@ export interface SpeakingTask {
   prompt: string;
   prepTime: number;
   responseTime: number;
+  imageUrl?: string;
+  audioUrl?: string;
 }
 
 import { listeningPartsExtra } from "./listening-data-extra";
