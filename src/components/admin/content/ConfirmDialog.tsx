@@ -4,7 +4,7 @@ import { AlertDialog } from "@base-ui/react/alert-dialog";
 import { useState } from "react";
 
 interface ConfirmDialogProps {
-  trigger: React.ReactNode;
+  trigger: React.ReactElement;
   title: string;
   description: string;
   confirmLabel?: string;

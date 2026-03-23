@@ -36,7 +36,7 @@ export async function GET(
 
       const countMap: Record<string, number> = {};
       for (const row of counts || []) {
-        const pid = row[fkCol] as string;
+        const pid = (row as Record<string, unknown>)[fkCol] as string;
         countMap[pid] = (countMap[pid] || 0) + 1;
       }
 

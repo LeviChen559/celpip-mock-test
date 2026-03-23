@@ -10,9 +10,9 @@ interface MediaUploaderProps {
   currentImageUrl?: string | null;
   currentAudioUrl?: string | null;
   onImageUploaded: (url: string, mediaId: string) => void;
-  onAudioUploaded: (url: string, mediaId: string) => void;
+  onAudioUploaded?: (url: string, mediaId: string) => void;
   onImageRemoved: () => void;
-  onAudioRemoved: () => void;
+  onAudioRemoved?: () => void;
 }
 
 export function MediaUploader({
@@ -74,7 +74,7 @@ export function MediaUploader({
     setUploadingAudio(true);
     try {
       const { url, mediaId } = await uploadFile(file, "audio");
-      onAudioUploaded(url, mediaId);
+      onAudioUploaded?.(url, mediaId);
     } catch (err) {
       alert(err instanceof Error ? err.message : "Failed to upload audio");
     } finally {
@@ -166,7 +166,8 @@ export function MediaUploader({
               description="Are you sure you want to remove this audio file?"
               confirmLabel="Remove"
               variant="danger"
-              onConfirm={onAudioRemoved}
+              onConfirm={onAudioRemoved || (() => {})}
+
             />
           </div>
         ) : (
