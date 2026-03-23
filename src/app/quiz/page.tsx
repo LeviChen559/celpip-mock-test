@@ -1,41 +1,54 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { listeningParts, readingParts } from "@/lib/celpip-data";
+import { listeningParts as hardcodedListeningParts, readingParts as hardcodedReadingParts } from "@/lib/celpip-data";
+import { getListeningPartsClient, getReadingPartsClient } from "@/lib/content-client";
+import type { ListeningPart, ReadingPart } from "@/lib/celpip-data";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 
-const quizSections = [
-  {
-    key: "listening",
-    title: "Listening",
-    color: "bg-blue-500",
-    badgeColor: "bg-blue-100 text-blue-700",
-    parts: listeningParts.map((p) => ({
-      id: p.id,
-      title: p.title,
-      questionCount: p.questions.length,
-    })),
-  },
-  {
-    key: "reading",
-    title: "Reading",
-    color: "bg-emerald-500",
-    badgeColor: "bg-emerald-100 text-emerald-700",
-    parts: readingParts.map((p) => ({
-      id: p.id,
-      title: p.title,
-      questionCount: p.questions.length,
-    })),
-  },
-];
+function buildQuizSections(listeningParts: ListeningPart[], readingParts: ReadingPart[]) {
+  return [
+    {
+      key: "listening",
+      title: "Listening",
+      color: "bg-blue-500",
+      badgeColor: "bg-blue-100 text-blue-700",
+      parts: listeningParts.map((p) => ({
+        id: p.id,
+        title: p.title,
+        questionCount: p.questions.length,
+      })),
+    },
+    {
+      key: "reading",
+      title: "Reading",
+      color: "bg-emerald-500",
+      badgeColor: "bg-emerald-100 text-emerald-700",
+      parts: readingParts.map((p) => ({
+        id: p.id,
+        title: p.title,
+        questionCount: p.questions.length,
+      })),
+    },
+  ];
+}
 
 export default function QuizSelect() {
   const router = useRouter();
+  const [listeningParts, setListeningParts] = useState(hardcodedListeningParts);
+  const [readingParts, setReadingParts] = useState(hardcodedReadingParts);
   const [selectedSection, setSelectedSection] = useState<string | null>(null);
+
+  useEffect(() => {
+    getListeningPartsClient().then(setListeningParts);
+    getReadingPartsClient().then(setReadingParts);
+  }, []);
+
+  const quizSections = buildQuizSections(listeningParts, readingParts);
 
   const handleStartQuiz = (sectionKey: string, partIndex: number) => {
     router.push(`/quiz/${sectionKey}?part=${partIndex}`);

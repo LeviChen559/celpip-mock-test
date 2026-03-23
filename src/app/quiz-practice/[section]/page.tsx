@@ -2,7 +2,9 @@
 
 import { useState, useMemo, use, useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { writingTasks, speakingTasks } from "@/lib/celpip-data";
+import { writingTasks as hardcodedWritingTasks, speakingTasks as hardcodedSpeakingTasks } from "@/lib/celpip-data";
+import { getWritingTasksClient, getSpeakingTasksClient } from "@/lib/content-client";
+import type { WritingTask, SpeakingTask } from "@/lib/celpip-data";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -29,7 +31,7 @@ interface PracticeTask {
   responseTime?: number;
 }
 
-function buildTasks(section: string, partParam: string): PracticeTask[] {
+function buildTasks(section: string, partParam: string, writingTasks: WritingTask[], speakingTasks: SpeakingTask[]): PracticeTask[] {
   if (section === "writing") {
     const tasks = partParam === "all" ? writingTasks : [writingTasks[Number(partParam)]];
     return tasks.map((t) => ({
@@ -75,7 +77,15 @@ export default function WritingSpeakingQuiz({
   const router = useRouter();
   const partParam = searchParams.get("part") || "all";
 
-  const tasks = useMemo(() => buildTasks(section, partParam), [section, partParam]);
+  const [writingTasks, setWritingTasks] = useState(hardcodedWritingTasks);
+  const [speakingTasks, setSpeakingTasks] = useState(hardcodedSpeakingTasks);
+
+  useEffect(() => {
+    getWritingTasksClient().then(setWritingTasks);
+    getSpeakingTasksClient().then(setSpeakingTasks);
+  }, []);
+
+  const tasks = useMemo(() => buildTasks(section, partParam, writingTasks, speakingTasks), [section, partParam, writingTasks, speakingTasks]);
 
   const isWriting = section === "writing";
   const isSpeaking = section === "speaking";

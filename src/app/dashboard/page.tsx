@@ -3,7 +3,17 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { resetTestState, saveTestState, PracticeSection } from "@/lib/test-store";
-import { listeningParts, readingParts, writingTasks, speakingTasks } from "@/lib/celpip-data";
+import {
+  listeningParts as hardcodedListeningParts,
+  readingParts as hardcodedReadingParts,
+  writingTasks as hardcodedWritingTasks,
+  speakingTasks as hardcodedSpeakingTasks,
+  type ListeningPart,
+  type ReadingPart,
+  type WritingTask,
+  type SpeakingTask,
+} from "@/lib/celpip-data";
+import { getListeningPartsClient, getReadingPartsClient, getWritingTasksClient, getSpeakingTasksClient } from "@/lib/content-client";
 import MyTests from "@/components/MyTests";
 import MySchedule from "@/components/MySchedule";
 import StudyPlan from "@/components/StudyPlan";
@@ -46,80 +56,87 @@ function extractTopic(text: string): string {
 
 // ── Section data ───────────────────────────────────────
 
-const sections = [
-  {
-    title: "Listening",
-    key: "listening" as PracticeSection,
-    icon: Headphones,
-    description:
-      "Conversations, news reports, and discussions with multiple-choice questions.",
-    duration: "~47 min",
-    summary: "6 parts + practice, 39 questions",
-    color: "#b8703b",
-    href: "/test/listening",
-    quizBase: "/quiz/listening",
-    officialParts: listeningParts.slice(0, 7).map((p, i) => ({
-      index: i,
-      title: p.title,
-      topic: extractTopic(p.transcript),
-      questionCount: p.questions.length,
-    })),
-  },
-  {
-    title: "Reading",
-    key: "reading" as PracticeSection,
-    icon: BookOpen,
-    description:
-      "Emails, schedules, articles, and opinion pieces with comprehension questions.",
-    duration: "~55 min",
-    summary: "4 parts + practice, 39 questions",
-    color: "#5a8a6a",
-    href: "/test/reading",
-    quizBase: "/quiz/reading",
-    officialParts: readingParts.slice(0, 5).map((p, i) => ({
-      index: i,
-      title: p.title,
-      topic: extractTopic(p.passage),
-      questionCount: p.questions.length,
-    })),
-  },
-  {
-    title: "Writing",
-    key: "writing" as PracticeSection,
-    icon: PenLine,
-    description:
-      "Write an email and respond to a survey question with structured responses.",
-    duration: "~53 min",
-    summary: "2 tasks",
-    color: "#7a7ac7",
-    href: "/test/writing",
-    quizBase: "/quiz-practice/writing",
-    officialParts: writingTasks.slice(0, 2).map((t, i) => ({
-      index: i,
-      title: t.title,
-      topic: extractTopic(t.prompt),
-      questionCount: 1,
-    })),
-  },
-  {
-    title: "Speaking",
-    key: "speaking" as PracticeSection,
-    icon: Mic,
-    description:
-      "Respond to prompts covering advice, descriptions, opinions, and persuasion.",
-    duration: "~20 min",
-    summary: "8 tasks + practice",
-    color: "#c77a8b",
-    href: "/test/speaking",
-    quizBase: "/quiz-practice/speaking",
-    officialParts: speakingTasks.slice(0, 9).map((t, i) => ({
-      index: i,
-      title: t.title,
-      topic: extractTopic(t.prompt),
-      questionCount: 1,
-    })),
-  },
-];
+function buildSections(
+  listeningParts: ListeningPart[],
+  readingParts: ReadingPart[],
+  writingTasks: WritingTask[],
+  speakingTasks: SpeakingTask[]
+) {
+  return [
+    {
+      title: "Listening",
+      key: "listening" as PracticeSection,
+      icon: Headphones,
+      description:
+        "Conversations, news reports, and discussions with multiple-choice questions.",
+      duration: "~47 min",
+      summary: "6 parts + practice, 39 questions",
+      color: "#b8703b",
+      href: "/test/listening",
+      quizBase: "/quiz/listening",
+      officialParts: listeningParts.slice(0, 7).map((p, i) => ({
+        index: i,
+        title: p.title,
+        topic: extractTopic(p.transcript),
+        questionCount: p.questions.length,
+      })),
+    },
+    {
+      title: "Reading",
+      key: "reading" as PracticeSection,
+      icon: BookOpen,
+      description:
+        "Emails, schedules, articles, and opinion pieces with comprehension questions.",
+      duration: "~55 min",
+      summary: "4 parts + practice, 39 questions",
+      color: "#5a8a6a",
+      href: "/test/reading",
+      quizBase: "/quiz/reading",
+      officialParts: readingParts.slice(0, 5).map((p, i) => ({
+        index: i,
+        title: p.title,
+        topic: extractTopic(p.passage),
+        questionCount: p.questions.length,
+      })),
+    },
+    {
+      title: "Writing",
+      key: "writing" as PracticeSection,
+      icon: PenLine,
+      description:
+        "Write an email and respond to a survey question with structured responses.",
+      duration: "~53 min",
+      summary: "2 tasks",
+      color: "#7a7ac7",
+      href: "/test/writing",
+      quizBase: "/quiz-practice/writing",
+      officialParts: writingTasks.slice(0, 2).map((t, i) => ({
+        index: i,
+        title: t.title,
+        topic: extractTopic(t.prompt),
+        questionCount: 1,
+      })),
+    },
+    {
+      title: "Speaking",
+      key: "speaking" as PracticeSection,
+      icon: Mic,
+      description:
+        "Respond to prompts covering advice, descriptions, opinions, and persuasion.",
+      duration: "~20 min",
+      summary: "8 tasks + practice",
+      color: "#c77a8b",
+      href: "/test/speaking",
+      quizBase: "/quiz-practice/speaking",
+      officialParts: speakingTasks.slice(0, 9).map((t, i) => ({
+        index: i,
+        title: t.title,
+        topic: extractTopic(t.prompt),
+        questionCount: 1,
+      })),
+    },
+  ];
+}
 
 // Group parts/tasks by their CELPIP category
 function extractCategoryKey(title: string): string {
@@ -161,73 +178,80 @@ function groupByCategory(
   }));
 }
 
-const quizSections = [
-  {
-    key: "listening",
-    title: "Listening",
-    icon: Headphones,
-    description:
-      "Conversations, news reports, and discussions with multiple-choice questions.",
-    color: "#b8703b",
-    categories: groupByCategory(
-      listeningParts.map((p) => ({
-        id: p.id,
-        title: p.title,
-        topic: extractTopic(p.transcript),
-        questionCount: p.questions.length,
-      }))
-    ),
-  },
-  {
-    key: "reading",
-    title: "Reading",
-    icon: BookOpen,
-    description:
-      "Emails, schedules, articles, and opinion pieces with comprehension questions.",
-    color: "#5a8a6a",
-    categories: groupByCategory(
-      readingParts.map((p) => ({
-        id: p.id,
-        title: p.title,
-        topic: extractTopic(p.passage),
-        questionCount: p.questions.length,
-        paid: p.paid,
-      }))
-    ),
-  },
-  {
-    key: "writing",
-    title: "Writing",
-    icon: PenLine,
-    description:
-      "Write an email and respond to a survey question with structured responses.",
-    color: "#7a7ac7",
-    categories: groupByCategory(
-      writingTasks.map((t) => ({
-        id: t.id,
-        title: t.title,
-        topic: extractTopic(t.prompt),
-        questionCount: 1,
-      }))
-    ),
-  },
-  {
-    key: "speaking",
-    title: "Speaking",
-    icon: Mic,
-    description:
-      "Respond to prompts covering advice, descriptions, opinions, and persuasion.",
-    color: "#c77a8b",
-    categories: groupByCategory(
-      speakingTasks.map((t) => ({
-        id: t.id,
-        title: t.title,
-        topic: extractTopic(t.prompt),
-        questionCount: 1,
-      }))
-    ),
-  },
-];
+function buildQuizSections(
+  listeningParts: ListeningPart[],
+  readingParts: ReadingPart[],
+  writingTasks: WritingTask[],
+  speakingTasks: SpeakingTask[]
+) {
+  return [
+    {
+      key: "listening",
+      title: "Listening",
+      icon: Headphones,
+      description:
+        "Conversations, news reports, and discussions with multiple-choice questions.",
+      color: "#b8703b",
+      categories: groupByCategory(
+        listeningParts.map((p) => ({
+          id: p.id,
+          title: p.title,
+          topic: extractTopic(p.transcript),
+          questionCount: p.questions.length,
+        }))
+      ),
+    },
+    {
+      key: "reading",
+      title: "Reading",
+      icon: BookOpen,
+      description:
+        "Emails, schedules, articles, and opinion pieces with comprehension questions.",
+      color: "#5a8a6a",
+      categories: groupByCategory(
+        readingParts.map((p) => ({
+          id: p.id,
+          title: p.title,
+          topic: extractTopic(p.passage),
+          questionCount: p.questions.length,
+          paid: p.paid,
+        }))
+      ),
+    },
+    {
+      key: "writing",
+      title: "Writing",
+      icon: PenLine,
+      description:
+        "Write an email and respond to a survey question with structured responses.",
+      color: "#7a7ac7",
+      categories: groupByCategory(
+        writingTasks.map((t) => ({
+          id: t.id,
+          title: t.title,
+          topic: extractTopic(t.prompt),
+          questionCount: 1,
+        }))
+      ),
+    },
+    {
+      key: "speaking",
+      title: "Speaking",
+      icon: Mic,
+      description:
+        "Respond to prompts covering advice, descriptions, opinions, and persuasion.",
+      color: "#c77a8b",
+      categories: groupByCategory(
+        speakingTasks.map((t) => ({
+          id: t.id,
+          title: t.title,
+          topic: extractTopic(t.prompt),
+          questionCount: 1,
+        }))
+      ),
+    },
+  ];
+}
 
 // ── Tabs ───────────────────────────────────────────────
 
@@ -253,6 +277,21 @@ export default function Dashboard() {
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
   const [quizCategoryFilter, setQuizCategoryFilter] = useState<string | null>(null);
   const userRole = currentUser?.role || "subscriber";
+
+  const [listeningParts, setListeningParts] = useState(hardcodedListeningParts);
+  const [readingParts, setReadingParts] = useState(hardcodedReadingParts);
+  const [writingTasks, setWritingTasks] = useState(hardcodedWritingTasks);
+  const [speakingTasks, setSpeakingTasks] = useState(hardcodedSpeakingTasks);
+
+  useEffect(() => {
+    getListeningPartsClient().then(setListeningParts);
+    getReadingPartsClient().then(setReadingParts);
+    getWritingTasksClient().then(setWritingTasks);
+    getSpeakingTasksClient().then(setSpeakingTasks);
+  }, []);
+
+  const sections = buildSections(listeningParts, readingParts, writingTasks, speakingTasks);
+  const quizSections = buildQuizSections(listeningParts, readingParts, writingTasks, speakingTasks);
 
   useEffect(() => {
     if (!loading && !currentUser) {

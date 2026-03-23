@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { listeningPartsOfficial as listeningParts } from "@/lib/celpip-data";
+import { listeningPartsOfficial } from "@/lib/celpip-data";
+import { getListeningPartsClient } from "@/lib/content-client";
 import { getTestState, saveTestState } from "@/lib/test-store";
 import { useShuffleMap, shuffledOptions, toOriginalIndex, toShuffledIndex } from "@/lib/shuffle-options";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -15,6 +16,7 @@ import TranscriptAudioPlayer from "@/components/TranscriptAudioPlayer";
 
 export default function ListeningTest() {
   const router = useRouter();
+  const [listeningParts, setListeningParts] = useState(listeningPartsOfficial);
   const [currentPart, setCurrentPart] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<string, number>>(() => {
@@ -25,6 +27,10 @@ export default function ListeningTest() {
     if (typeof window === "undefined") return 47 * 60;
     return getTestState().listeningTimeLeft;
   });
+
+  useEffect(() => {
+    getListeningPartsClient().then(setListeningParts);
+  }, []);
 
   const allQuestions = useMemo(() => listeningParts.flatMap((p) => p.questions), []);
   const totalQuestions = allQuestions.length;

@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { writingTasksOfficial as writingTasks } from "@/lib/celpip-data";
+import { writingTasksOfficial } from "@/lib/celpip-data";
+import { getWritingTasksClient } from "@/lib/content-client";
 import { getTestState, saveTestState } from "@/lib/test-store";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -20,6 +21,7 @@ function countWords(text: string): number {
 
 export default function WritingTest() {
   const router = useRouter();
+  const [writingTasks, setWritingTasks] = useState(writingTasksOfficial);
   const [currentTask, setCurrentTask] = useState(0);
   const [responses, setResponses] = useState<Record<string, string>>(() => {
     if (typeof window === "undefined") return {};
@@ -29,6 +31,10 @@ export default function WritingTest() {
     if (typeof window === "undefined") return 53 * 60;
     return getTestState().writingTimeLeft;
   });
+
+  useEffect(() => {
+    getWritingTasksClient().then(setWritingTasks);
+  }, []);
 
   const task = writingTasks[currentTask];
   const currentText = responses[task.id] || "";

@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { speakingTasksOfficial as speakingTasks } from "@/lib/celpip-data";
+import { speakingTasksOfficial } from "@/lib/celpip-data";
+import { getSpeakingTasksClient } from "@/lib/content-client";
 import { getTestState, saveTestState } from "@/lib/test-store";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -14,9 +15,10 @@ type Phase = "prep" | "response";
 
 export default function SpeakingTest() {
   const router = useRouter();
+  const [speakingTasks, setSpeakingTasks] = useState(speakingTasksOfficial);
   const [currentTask, setCurrentTask] = useState(0);
   const [phase, setPhase] = useState<Phase>("prep");
-  const [phaseTimer, setPhaseTimer] = useState(speakingTasks[0].prepTime);
+  const [phaseTimer, setPhaseTimer] = useState(speakingTasksOfficial[0].prepTime);
   const [responses, setResponses] = useState<Record<string, string>>(() => {
     if (typeof window === "undefined") return {};
     return getTestState().speakingResponses;
@@ -24,6 +26,10 @@ export default function SpeakingTest() {
 
   const task = speakingTasks[currentTask];
   const currentText = responses[task.id] || "";
+
+  useEffect(() => {
+    getSpeakingTasksClient().then(setSpeakingTasks);
+  }, []);
 
   // Timer for prep/response phases
   useEffect(() => {

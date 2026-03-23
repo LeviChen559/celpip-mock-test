@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { readingPartsOfficial as readingParts } from "@/lib/celpip-data";
+import { readingPartsOfficial } from "@/lib/celpip-data";
+import { getReadingPartsClient } from "@/lib/content-client";
 import { getTestState, saveTestState } from "@/lib/test-store";
 import { useShuffleMap } from "@/lib/shuffle-options";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -15,6 +16,7 @@ import ReadingPassageRenderer from "@/components/ReadingPassageRenderer";
 
 export default function ReadingTest() {
   const router = useRouter();
+  const [readingParts, setReadingParts] = useState(readingPartsOfficial);
   const [currentPart, setCurrentPart] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<string, number>>(() => {
@@ -25,6 +27,10 @@ export default function ReadingTest() {
     if (typeof window === "undefined") return 55 * 60;
     return getTestState().readingTimeLeft;
   });
+
+  useEffect(() => {
+    getReadingPartsClient().then(setReadingParts);
+  }, []);
 
   const allQuestions = useMemo(() => readingParts.flatMap((p) => p.questions), []);
   const totalQuestions = allQuestions.length;
