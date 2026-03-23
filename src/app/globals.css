@@ -372,6 +372,99 @@
   display: none;
 }
 
+/* ── Comparison table ──────────────────────────── */
+
+.hp-compare-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.hp-compare-table th,
+.hp-compare-table td {
+  padding: 14px 20px;
+  text-align: left;
+  font-size: 0.875rem;
+  border-bottom: 1px solid var(--hp-border);
+}
+.hp-compare-table th {
+  font-weight: 600;
+  color: var(--hp-text);
+}
+.hp-compare-table thead th {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--hp-text-muted);
+  padding-bottom: 12px;
+}
+.hp-compare-table thead th:last-child {
+  color: var(--hp-accent);
+}
+.hp-compare-table td:last-child {
+  color: var(--hp-text);
+  font-weight: 500;
+}
+.hp-compare-table td:nth-child(2) {
+  color: var(--hp-text-muted);
+}
+.hp-compare-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* ── Problem card hover tint ─────────────────────── */
+
+.hp-problem-card {
+  background: var(--hp-glass);
+  border: 1px solid var(--hp-border);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  transition: all 0.3s ease;
+}
+.hp-problem-card:hover {
+  border-color: rgba(196, 73, 60, 0.2);
+  background: rgba(196, 73, 60, 0.03);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+/* ── Dashboard mockup ────────────────────────────── */
+
+.hp-mockup-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+
+.hp-mockup-progress-bar {
+  height: 8px;
+  border-radius: 4px;
+  background: #f0ebe4;
+  overflow: hidden;
+}
+.hp-mockup-progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--hp-accent), var(--hp-accent-light));
+  transition: width 0.8s ease;
+}
+
+/* ── Standalone bold quote ───────────────────────── */
+
+.hp-quote-line {
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--hp-text);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+.hp-quote-line em {
+  color: var(--hp-accent);
+  font-style: normal;
+}
+
 /* Hide scrollbar for horizontal scroll sections on mobile */
 .scrollbar-none {
   -ms-overflow-style: none;
