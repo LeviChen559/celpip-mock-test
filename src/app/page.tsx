@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/hooks/use-auth";
 import HeroAnimation from "@/components/HeroAnimation";
@@ -72,8 +71,6 @@ const testimonials = [
 export default function Home() {
   const router = useRouter();
   const { currentUser, loading } = useAuth();
-
-  const [mockupTab, setMockupTab] = useState<"feedback" | "progress" | "plan">("feedback");
 
   const handleCta = () =>
     router.push(!loading && currentUser ? "/dashboard" : "/signup");
@@ -559,161 +556,128 @@ export default function Home() {
             }}
           />
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            {/* Dashboard mockup — tabbed */}
-            <div className="hp-reveal hp-reveal-d1">
-              {/* Tabs */}
-              <div className="flex gap-2 mb-4">
-                {([
-                  { key: "feedback" as const, label: "AI Feedback" },
-                  { key: "progress" as const, label: "Your Progress" },
-                  { key: "plan" as const, label: "Daily Plan" },
-                ] as const).map((tab) => (
-                  <button
-                    key={tab.key}
-                    onClick={() => setMockupTab(tab.key)}
-                    className={`hp-mockup-tab ${mockupTab === tab.key ? "hp-mockup-tab-active" : ""}`}
-                  >
-                    {tab.label}
-                  </button>
-                ))}
+            {/* Dashboard mockup — all 3 views stacked */}
+            <div className="space-y-3 hp-reveal hp-reveal-d1">
+              {/* Card 1: AI Feedback */}
+              <div className="hp-mockup-card p-4 space-y-4">
+                <div className="flex items-center justify-between">
+                  <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hp-text-muted)" }}>
+                    Writing Task 1 — AI Score
+                  </p>
+                  <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: "var(--hp-accent-glow)", color: "var(--hp-accent)" }}>
+                    Overall: 8 / CLB 8–9
+                  </span>
+                </div>
+                {/* 4 dimension scores */}
+                <div className="space-y-2.5">
+                  {[
+                    { dim: "Task Response", score: 9, pct: "75%" },
+                    { dim: "Coherence", score: 7, pct: "58%" },
+                    { dim: "Vocabulary", score: 8, pct: "67%" },
+                    { dim: "Grammar", score: 6, pct: "50%" },
+                  ].map((d) => (
+                    <div key={d.dim} className="flex items-center gap-3">
+                      <span className="text-xs w-24 shrink-0" style={{ color: "var(--hp-text-muted)" }}>{d.dim}</span>
+                      <div className="hp-dimension-bar">
+                        <div className="hp-dimension-fill" style={{ width: d.pct }} />
+                      </div>
+                      <span className="text-xs font-bold w-6 text-right" style={{ color: "var(--hp-accent)" }}>{d.score}</span>
+                    </div>
+                  ))}
+                </div>
+                {/* Weakness tags */}
+                <div className="flex flex-wrap gap-1.5">
+                  <span className="hp-weakness-tag">Run-on sentences</span>
+                  <span className="hp-weakness-tag">Limited transition words</span>
+                  <span className="hp-weakness-tag">Paragraph structure</span>
+                </div>
+                {/* Improvement tip */}
+                <div className="rounded-lg px-3 py-2.5" style={{ background: "rgba(107,143,113,0.06)", border: "1px solid rgba(107,143,113,0.12)" }}>
+                  <p className="text-xs" style={{ color: "var(--hp-text)" }}>
+                    <span className="font-semibold" style={{ color: "#6b8f71" }}>Fix:</span>{" "}
+                    Weak paragraph transitions → Use linking phrases like &ldquo;Furthermore&rdquo;, &ldquo;In contrast&rdquo;, &ldquo;As a result&rdquo;
+                  </p>
+                </div>
               </div>
 
-              {/* Tab 1: AI Feedback */}
-              {mockupTab === "feedback" && (
-                <div className="hp-mockup-card p-4 space-y-4">
-                  <div className="flex items-center justify-between">
-                    <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hp-text-muted)" }}>
-                      Writing Task 1 — AI Score
-                    </p>
-                    <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: "var(--hp-accent-glow)", color: "var(--hp-accent)" }}>
-                      Overall: 8 / CLB 8–9
-                    </span>
+              {/* Card 2: Your Progress */}
+              <div className="hp-mockup-card p-4 space-y-4">
+                <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hp-text-muted)" }}>
+                  Score Trend — Writing
+                </p>
+                {/* Mini bar chart */}
+                <div className="flex items-end gap-2 h-24">
+                  {[
+                    { score: 6.5, h: "35%" },
+                    { score: 7.0, h: "45%" },
+                    { score: 7.5, h: "55%" },
+                    { score: 8.0, h: "65%" },
+                    { score: 8.5, h: "80%" },
+                  ].map((b) => (
+                    <div key={b.score} className="flex-1 flex flex-col items-center gap-1 h-full justify-end">
+                      <span className="text-[10px] font-bold" style={{ color: "var(--hp-accent)" }}>{b.score}</span>
+                      <div className="hp-trend-bar w-full" style={{ height: b.h }} />
+                    </div>
+                  ))}
+                </div>
+                {/* Stats row */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="rounded-lg px-3 py-2" style={{ background: "rgba(0,0,0,0.02)" }}>
+                    <p className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "var(--hp-text-muted)" }}>Predicted Next</p>
+                    <p className="text-lg font-bold" style={{ color: "var(--hp-accent)", fontFamily: "var(--font-serif)" }}>9.0</p>
                   </div>
-                  {/* 4 dimension scores */}
-                  <div className="space-y-2.5">
-                    {[
-                      { dim: "Task Response", score: 9, pct: "75%" },
-                      { dim: "Coherence", score: 7, pct: "58%" },
-                      { dim: "Vocabulary", score: 8, pct: "67%" },
-                      { dim: "Grammar", score: 6, pct: "50%" },
-                    ].map((d) => (
-                      <div key={d.dim} className="flex items-center gap-3">
-                        <span className="text-xs w-24 shrink-0" style={{ color: "var(--hp-text-muted)" }}>{d.dim}</span>
-                        <div className="hp-dimension-bar">
-                          <div className="hp-dimension-fill" style={{ width: d.pct }} />
-                        </div>
-                        <span className="text-xs font-bold w-6 text-right" style={{ color: "var(--hp-accent)" }}>{d.score}</span>
-                      </div>
-                    ))}
-                  </div>
-                  {/* Weakness tags */}
-                  <div className="flex flex-wrap gap-1.5">
-                    <span className="hp-weakness-tag">Run-on sentences</span>
-                    <span className="hp-weakness-tag">Limited transition words</span>
-                    <span className="hp-weakness-tag">Paragraph structure</span>
-                  </div>
-                  {/* Improvement tip */}
-                  <div className="rounded-lg px-3 py-2.5" style={{ background: "rgba(107,143,113,0.06)", border: "1px solid rgba(107,143,113,0.12)" }}>
-                    <p className="text-xs" style={{ color: "var(--hp-text)" }}>
-                      <span className="font-semibold" style={{ color: "#6b8f71" }}>Fix:</span>{" "}
-                      Weak paragraph transitions → Use linking phrases like &ldquo;Furthermore&rdquo;, &ldquo;In contrast&rdquo;, &ldquo;As a result&rdquo;
-                    </p>
+                  <div className="rounded-lg px-3 py-2" style={{ background: "rgba(0,0,0,0.02)" }}>
+                    <p className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "var(--hp-text-muted)" }}>Status</p>
+                    <p className="text-sm font-bold" style={{ color: "#6b8f71" }}>On Track</p>
+                    <p className="text-[10px]" style={{ color: "var(--hp-text-muted)" }}>9 days remaining</p>
                   </div>
                 </div>
-              )}
+              </div>
 
-              {/* Tab 2: Your Progress */}
-              {mockupTab === "progress" && (
-                <div className="hp-mockup-card p-4 space-y-4">
+              {/* Card 3: Daily Plan */}
+              <div className="hp-mockup-card p-4 space-y-3">
+                <div className="flex items-center justify-between">
                   <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hp-text-muted)" }}>
-                    Score Trend — Writing
+                    Today&apos;s Tasks
                   </p>
-                  {/* Mini bar chart */}
-                  <div className="flex items-end gap-2 h-24">
-                    {[
-                      { score: 6.5, h: "35%" },
-                      { score: 7.0, h: "45%" },
-                      { score: 7.5, h: "55%" },
-                      { score: 8.0, h: "65%" },
-                      { score: 8.5, h: "80%" },
-                    ].map((b) => (
-                      <div key={b.score} className="flex-1 flex flex-col items-center gap-1 h-full justify-end">
-                        <span className="text-[10px] font-bold" style={{ color: "var(--hp-accent)" }}>{b.score}</span>
-                        <div className="hp-trend-bar w-full" style={{ height: b.h }} />
-                      </div>
-                    ))}
-                  </div>
-                  {/* Stats row */}
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="rounded-lg px-3 py-2" style={{ background: "rgba(0,0,0,0.02)" }}>
-                      <p className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "var(--hp-text-muted)" }}>Predicted Next</p>
-                      <p className="text-lg font-bold" style={{ color: "var(--hp-accent)", fontFamily: "var(--font-serif)" }}>9.0</p>
-                    </div>
-                    <div className="rounded-lg px-3 py-2" style={{ background: "rgba(0,0,0,0.02)" }}>
-                      <p className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "var(--hp-text-muted)" }}>Status</p>
-                      <p className="text-sm font-bold" style={{ color: "#6b8f71" }}>On Track</p>
-                      <p className="text-[10px]" style={{ color: "var(--hp-text-muted)" }}>9 days remaining</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                    <div className="flex-1 rounded-lg px-3 py-2" style={{ background: "rgba(0,0,0,0.02)" }}>
-                      <p className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "var(--hp-text-muted)" }}>Strongest</p>
-                      <p className="text-xs font-semibold" style={{ color: "var(--hp-text)" }}>Vocabulary</p>
-                    </div>
-                    <div className="flex-1 rounded-lg px-3 py-2" style={{ background: "rgba(0,0,0,0.02)" }}>
-                      <p className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "var(--hp-text-muted)" }}>Weakest</p>
-                      <p className="text-xs font-semibold" style={{ color: "#c4493c" }}>Grammar</p>
-                    </div>
-                  </div>
+                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full" style={{ background: "#7a8fc715", color: "#7a8fc7" }}>
+                    Phase 2: Practice &amp; Measure
+                  </span>
                 </div>
-              )}
-
-              {/* Tab 3: Daily Plan */}
-              {mockupTab === "plan" && (
-                <div className="hp-mockup-card p-4 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hp-text-muted)" }}>
-                      Today&apos;s Tasks
-                    </p>
-                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full" style={{ background: "#7a8fc715", color: "#7a8fc7" }}>
-                      Phase 2: Practice &amp; Measure
-                    </span>
-                  </div>
-                  <div className="space-y-2">
-                    {[
-                      { task: "Grammar Drill — Sentence Structure", time: "3 min", ai: true, reason: "Targets your #1 weakness" },
-                      { task: "Writing Task 1 — AI Scored", time: "15 min", ai: true, reason: "Coherence focus" },
-                      { task: "Vocabulary Review — Transition Words", time: "5 min", ai: false, reason: "" },
-                    ].map((t) => (
-                      <div
-                        key={t.task}
-                        className="rounded-lg px-3 py-2.5"
-                        style={{ background: "rgba(0,0,0,0.02)", border: "1px solid rgba(0,0,0,0.04)" }}
-                      >
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-xs font-medium" style={{ color: "var(--hp-text)" }}>{t.task}</span>
-                          <span className="text-xs shrink-0 ml-2" style={{ color: "var(--hp-text-muted)" }}>{t.time}</span>
+                <div className="space-y-2">
+                  {[
+                    { task: "Grammar Drill — Sentence Structure", time: "3 min", ai: true, reason: "Targets your #1 weakness" },
+                    { task: "Writing Task 1 — AI Scored", time: "15 min", ai: true, reason: "Coherence focus" },
+                    { task: "Vocabulary Review — Transition Words", time: "5 min", ai: false, reason: "" },
+                  ].map((t) => (
+                    <div
+                      key={t.task}
+                      className="rounded-lg px-3 py-2.5"
+                      style={{ background: "rgba(0,0,0,0.02)", border: "1px solid rgba(0,0,0,0.04)" }}
+                    >
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-xs font-medium" style={{ color: "var(--hp-text)" }}>{t.task}</span>
+                        <span className="text-xs shrink-0 ml-2" style={{ color: "var(--hp-text-muted)" }}>{t.time}</span>
+                      </div>
+                      {t.ai && (
+                        <div className="flex items-center gap-2 mt-1">
+                          <span className="hp-ai-badge">
+                            <Sparkles className="w-2.5 h-2.5" />
+                            AI Recommended
+                          </span>
+                          <span className="text-[10px]" style={{ color: "var(--hp-text-muted)" }}>{t.reason}</span>
                         </div>
-                        {t.ai && (
-                          <div className="flex items-center gap-2 mt-1">
-                            <span className="hp-ai-badge">
-                              <Sparkles className="w-2.5 h-2.5" />
-                              AI Recommended
-                            </span>
-                            <span className="text-[10px]" style={{ color: "var(--hp-text-muted)" }}>{t.reason}</span>
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex items-center justify-between pt-1">
-                    <span className="text-xs" style={{ color: "var(--hp-text-muted)" }}>Day 21 of 30</span>
-                    <div className="hp-mockup-progress-bar w-24">
-                      <div className="hp-mockup-progress-fill" style={{ width: "70%" }} />
+                      )}
                     </div>
+                  ))}
+                </div>
+                <div className="flex items-center justify-between pt-1">
+                  <span className="text-xs" style={{ color: "var(--hp-text-muted)" }}>Day 21 of 30</span>
+                  <div className="hp-mockup-progress-bar w-24">
+                    <div className="hp-mockup-progress-fill" style={{ width: "70%" }} />
                   </div>
                 </div>
-              )}
+              </div>
             </div>
 
             {/* Copy */}
