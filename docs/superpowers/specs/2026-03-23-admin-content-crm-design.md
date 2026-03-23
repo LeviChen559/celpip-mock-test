@@ -35,7 +35,7 @@ A content management system (CRM) for admin users to create, edit, delete, and p
 | transcript | text NOT NULL | |
 | audio_url | text | Supabase Storage URL |
 | image_url | text | Optional |
-| status | text NOT NULL DEFAULT 'draft' | 'draft' or 'published' |
+| status | text NOT NULL DEFAULT 'draft' | CHECK (status IN ('draft', 'published')) |
 | sort_order | integer NOT NULL DEFAULT 0 | Display ordering |
 | created_at | timestamptz DEFAULT now() | |
 | updated_at | timestamptz DEFAULT now() | |
@@ -50,7 +50,7 @@ A content management system (CRM) for admin users to create, edit, delete, and p
 | instruction | text NOT NULL | |
 | passage | text NOT NULL | |
 | image_url | text | Optional |
-| status | text NOT NULL DEFAULT 'draft' | 'draft' or 'published' |
+| status | text NOT NULL DEFAULT 'draft' | CHECK (status IN ('draft', 'published')) |
 | paid | boolean NOT NULL DEFAULT false | |
 | sort_order | integer NOT NULL DEFAULT 0 | |
 | created_at | timestamptz DEFAULT now() | |
@@ -69,7 +69,7 @@ A content management system (CRM) for admin users to create, edit, delete, and p
 | max_words | integer NOT NULL | |
 | image_url | text | Optional |
 | audio_url | text | Optional |
-| status | text NOT NULL DEFAULT 'draft' | 'draft' or 'published' |
+| status | text NOT NULL DEFAULT 'draft' | CHECK (status IN ('draft', 'published')) |
 | sort_order | integer NOT NULL DEFAULT 0 | |
 | created_at | timestamptz DEFAULT now() | |
 | updated_at | timestamptz DEFAULT now() | |
@@ -87,19 +87,18 @@ A content management system (CRM) for admin users to create, edit, delete, and p
 | response_time | integer NOT NULL | Seconds |
 | image_url | text | Optional |
 | audio_url | text | Optional |
-| status | text NOT NULL DEFAULT 'draft' | 'draft' or 'published' |
+| status | text NOT NULL DEFAULT 'draft' | CHECK (status IN ('draft', 'published')) |
 | sort_order | integer NOT NULL DEFAULT 0 | |
 | created_at | timestamptz DEFAULT now() | |
 | updated_at | timestamptz DEFAULT now() | |
 
-### 1.5 `questions` (shared by listening + reading)
+### 1.5 `listening_questions`
 
 | Column | Type | Notes |
 |--------|------|-------|
 | id | uuid PK | Default `gen_random_uuid()` |
 | question_id | text NOT NULL | e.g., "L1Q1" |
-| parent_id | uuid NOT NULL | FK → listening_parts.id or reading_parts.id |
-| parent_type | text NOT NULL | 'listening' or 'reading' |
+| listening_part_id | uuid NOT NULL | FK → listening_parts.id ON DELETE CASCADE |
 | question | text NOT NULL | |
 | options | jsonb NOT NULL | String array |
 | correct_answer | integer NOT NULL | Index into options |
@@ -109,9 +108,29 @@ A content management system (CRM) for admin users to create, edit, delete, and p
 | created_at | timestamptz DEFAULT now() | |
 | updated_at | timestamptz DEFAULT now() | |
 
-Indexes: `(parent_id, parent_type)`, unique on `(question_id, parent_id)`.
+Indexes: unique on `(question_id, listening_part_id)`.
 
-### 1.6 `media`
+### 1.6 `reading_questions`
+
+| Column | Type | Notes |
+|--------|------|-------|
+| id | uuid PK | Default `gen_random_uuid()` |
+| question_id | text NOT NULL | e.g., "Reading-Part1-01-Q1" |
+| reading_part_id | uuid NOT NULL | FK → reading_parts.id ON DELETE CASCADE |
+| question | text NOT NULL | |
+| options | jsonb NOT NULL | String array |
+| correct_answer | integer NOT NULL | Index into options |
+| passage | text | Optional per-question passage (e.g., passageA vs passageB in correspondence tasks) |
+| image_url | text | Optional |
+| sort_order | integer NOT NULL DEFAULT 0 | |
+| created_at | timestamptz DEFAULT now() | |
+| updated_at | timestamptz DEFAULT now() | |
+
+Indexes: unique on `(question_id, reading_part_id)`.
+
+> **Design note:** Split into two tables instead of a polymorphic `questions` table so that foreign keys and CASCADE deletes are enforced at the database level.
+
+### 1.7 `media`
 
 | Column | Type | Notes |
 |--------|------|-------|
@@ -153,10 +172,31 @@ Indexes: `(parent_id, parent_type)`, unique on `(question_id, parent_id)`.
 | reading_parts | Same as above | Admin only |
 | writing_tasks | Same as above | Admin only |
 | speaking_tasks | Same as above | Admin only |
-| questions | Readable if parent is readable | Admin only |
+| listening_questions | Readable if joined listening_part has `status = 'published'`; all rows for admin | Admin only |
+| reading_questions | Readable if joined reading_part has `status = 'published'`; all rows for admin | Admin only |
 | media | Public read | Admin only |
 
 Admin check: `EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')`
+
+### RLS Policy SQL for Question Tables
+
+```sql
+-- listening_questions: public read when parent is published
+CREATE POLICY "Public can read questions of published listening parts"
+  ON listening_questions FOR SELECT
+  USING (
+    EXISTS (SELECT 1 FROM listening_parts WHERE id = listening_questions.listening_part_id AND status = 'published')
+    OR EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+  );
+
+-- reading_questions: same pattern
+CREATE POLICY "Public can read questions of published reading parts"
+  ON reading_questions FOR SELECT
+  USING (
+    EXISTS (SELECT 1 FROM reading_parts WHERE id = reading_questions.reading_part_id AND status = 'published')
+    OR EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+  );
+```
 
 ---
 
@@ -181,7 +221,7 @@ All endpoints require admin authentication (verified via Supabase session + role
 
 | Endpoint | Method | Purpose |
 |----------|--------|---------|
-| `/api/admin/content/[section]/[id]/questions` | POST | Add question to a part |
+| `/api/admin/content/[section]/[id]/questions` | POST | Add question (routes to `listening_questions` or `reading_questions` based on section) |
 | `/api/admin/content/[section]/[id]/questions/[qid]` | PUT | Update question |
 | `/api/admin/content/[section]/[id]/questions/[qid]` | DELETE | Delete question |
 
@@ -255,11 +295,26 @@ Every modifying action requires a confirmation dialog:
 | Unpublish | "This will hide this content from users. It will remain as a draft." |
 | Delete media file | "Are you sure you want to remove this file?" |
 
-Built as a reusable `ConfirmDialog` component using existing Shadcn UI primitives.
+Built as a reusable `ConfirmDialog` component using `@base-ui/react` AlertDialog (matching the existing admin page pattern).
+
+### Required UI Components
+
+The following new Shadcn/base-ui components will need to be installed or built:
+- **Input** — text fields for titles, IDs, etc.
+- **Select** — dropdown selectors (e.g., status filter)
+- **Table** — content list views (or build a simple table with Tailwind)
+- **Switch** — publish/unpublish toggle, paid toggle
+- **DropdownMenu** — row action menus (edit, delete, publish)
+
+Existing components already available: Badge, Button, Card, Label, Progress, Separator, Tabs, Textarea.
 
 ### Navigation
 
 Add "Content Management" link to the existing admin navigation/sidebar.
+
+### API Pattern Note
+
+The existing admin API (`/api/admin/route.ts`) uses a single-route action-based dispatch pattern (`?action=users`, `{ action: "update-role" }`). The new content API intentionally uses RESTful resource routes (`/api/admin/content/[section]/[id]`) because content CRUD maps naturally to REST and the nested resource structure (section → part → questions) would be unwieldy as action parameters. Both patterns coexist — the action-based route handles user management, the RESTful routes handle content management.
 
 ---
 
@@ -274,12 +329,48 @@ Test-taking pages currently import from TypeScript files (`celpip-data.ts`, `*-d
 3. **Map DB results to existing interfaces** (`ListeningPart[]`, `ReadingPart[]`, `WritingTask[]`, `SpeakingTask[]`) so downstream components need minimal changes
 4. **Temporary fallback** — if DB returns empty for a section, fall back to hardcoded data. Remove fallback once migration is verified.
 
-### Interface Compatibility
+### Interface Changes
 
-The existing TypeScript interfaces remain the same. A data access layer (`src/lib/content.ts`) will handle:
+The existing TypeScript interfaces will be extended with optional media fields:
+
+```typescript
+// Added to existing interfaces in celpip-data.ts or a new types file
+interface ListeningPart {
+  // ... existing fields ...
+  audioUrl?: string;  // NEW
+  imageUrl?: string;  // NEW
+}
+interface ReadingPart {
+  // ... existing fields ...
+  imageUrl?: string;  // NEW
+}
+interface WritingTask {
+  // ... existing fields ...
+  imageUrl?: string;  // NEW
+  audioUrl?: string;  // NEW
+}
+interface SpeakingTask {
+  // ... existing fields ...
+  imageUrl?: string;  // NEW
+  audioUrl?: string;  // NEW
+}
+interface Question {
+  // ... existing fields ...
+  imageUrl?: string;  // NEW
+}
+```
+
+### Data Access Layer (`src/lib/content.ts`)
+
+Responsible for:
 - Fetching from Supabase
-- Mapping DB rows to existing interfaces
+- **snake_case → camelCase mapping** (e.g., `audio_url` → `audioUrl`, `min_words` → `minWords`, `prep_time` → `prepTime`, `correct_answer` → `correctAnswer`, `sort_order` → `sortOrder`)
 - Including resolved media URLs
+- Returning data conforming to the extended interfaces above
+
+### Official vs All Content
+
+The codebase currently distinguishes `listeningPartsOfficial` (base set) from `listeningParts` (all including extras). In the DB model, **all published content is served** — the "official vs extra" distinction is removed. All content is equal once published. If a future need arises for tagging content sets, a `tags` column can be added later.
 
 ---
 
@@ -289,12 +380,22 @@ The existing TypeScript interfaces remain the same. A data access layer (`src/li
 
 A one-time Node.js script that:
 
-1. Imports all data from `celpip-data.ts`, `listening-data-extra.ts`, `reading-data-extra.ts`, `writing-data-extra.ts`, `speaking-data-extra.ts`
+1. Imports all data from:
+   - `celpip-data.ts` (base listening, reading, writing, speaking)
+   - `listening-data-extra.ts`
+   - `reading-data-extra.ts`
+   - `writing-data-extra.ts`
+   - `speaking-data-extra.ts`
+   - `mad-english-task1-correspondence.ts` (additional reading parts)
+   - `mad-english-task2-diagram.ts` (additional reading parts)
+   - `mad-english-task3-information.ts` (additional reading parts)
+   - `mad-english-task4-viewpoints.ts` (additional reading parts)
 2. Inserts each part/task into its corresponding table
-3. Inserts each question into the `questions` table with proper `parent_id` and `parent_type`
-4. Sets all migrated content to `status = 'published'`
-5. Assigns `sort_order` based on array index ordering
-6. Media columns (`audio_url`, `image_url`) set to null — admin uploads media later via CRM
+3. Inserts each question into `listening_questions` or `reading_questions` with proper `listening_part_id` or `reading_part_id`
+4. **Resolves per-question passages** — Reading data (especially correspondence tasks) constructs per-question `passage` values from local variables (`passageA`, `passageB`). The migration script must evaluate these to their final string values at migration time.
+5. Sets all migrated content to `status = 'published'`
+6. Assigns `sort_order` based on array index ordering
+7. Media columns (`audio_url`, `image_url`) set to null — admin uploads media later via CRM
 
 ### Execution
 
@@ -356,7 +457,7 @@ src/
       content/
         ContentListTable.tsx              # Reusable table for content lists
         ContentForm.tsx                   # Section-specific edit forms
-        QuestionEditor.tsx                # Inline question add/edit/reorder
+        QuestionEditor.tsx                # Inline question add/edit/reorder (used by listening + reading)
         MediaUploader.tsx                 # Drag-and-drop upload with preview
         ConfirmDialog.tsx                 # Reusable confirmation modal
         StatusBadge.tsx                   # Draft/Published badge
