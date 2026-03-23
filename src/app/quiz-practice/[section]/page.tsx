@@ -386,38 +386,38 @@ export default function WritingSpeakingQuiz({
   return (
     <main className="min-h-screen bg-grid" style={{ backgroundColor: "var(--background)" }}>
       {/* Top bar */}
-      <div className="sticky top-0 z-10 bg-white border-b px-4 py-3">
-        <div className="max-w-screen-xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Badge className={sectionBadgeClass}>{sectionLabel} Quiz</Badge>
-            <span className="text-sm" style={{ color: "var(--muted-foreground)" }}>
+      <div className="sticky top-0 z-10 bg-white border-b px-3 sm:px-4 py-2 sm:py-3">
+        <div className="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between gap-y-1 gap-x-2 sm:gap-x-3">
+          <div className="flex items-center gap-1.5 sm:gap-3 min-w-0">
+            <Badge className={`${sectionBadgeClass} shrink-0 text-xs`}>{sectionLabel} Quiz</Badge>
+            <span className="text-xs sm:text-sm whitespace-nowrap" style={{ color: "var(--muted-foreground)" }}>
               Task {currentIndex + 1} of {tasks.length}
             </span>
-            <Separator orientation="vertical" className="h-5" />
-            <span className="text-sm font-medium text-[#1a1a2e]">
+            <Separator orientation="vertical" className="h-4 sm:h-5 hidden sm:block" />
+            <span className="text-xs sm:text-sm font-medium text-[#1a1a2e] whitespace-nowrap hidden sm:inline">
               {answeredCount}/{tasks.length} completed
             </span>
           </div>
-          <div className="flex items-center gap-3">
-            <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#e2ddd5] ${timerColor} font-mono text-sm font-bold`}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <div className="flex items-center gap-1.5 sm:gap-3">
+            <div className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full border border-[#e2ddd5] ${timerColor} font-mono text-xs sm:text-sm font-bold`}>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="sm:w-3.5 sm:h-3.5">
                 <circle cx="12" cy="12" r="10" />
                 <polyline points="12 6 12 12 16 14" />
               </svg>
               {formatTime(timeLeft)}
             </div>
-            <Button variant="outline" size="sm" className="rounded-full" onClick={handleFinish}>
-              Finish Quiz
+            <Button variant="outline" size="sm" className="rounded-full text-xs sm:text-sm px-2.5 sm:px-3" onClick={handleFinish}>
+              Finish
             </Button>
-            <Button variant="ghost" size="sm" onClick={() => router.push("/dashboard")}>
+            <Button variant="ghost" size="sm" className="text-xs sm:text-sm px-1.5 sm:px-2" onClick={() => router.push("/dashboard")}>
               Quit
             </Button>
           </div>
         </div>
-        <div className="max-w-screen-xl mx-auto mt-2 flex gap-2 items-center">
-          <Progress value={progress} className="h-2 flex-1" />
-          <div className="w-20">
-            <Progress value={timerPct} className="h-1.5" />
+        <div className="max-w-screen-xl mx-auto mt-1.5 sm:mt-2 flex gap-2 items-center">
+          <Progress value={progress} className="h-1.5 sm:h-2 flex-1" />
+          <div className="w-16 sm:w-20">
+            <Progress value={timerPct} className="h-1 sm:h-1.5" />
           </div>
         </div>
       </div>
