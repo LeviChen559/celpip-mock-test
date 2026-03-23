@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { useAuth } from "@/lib/hooks/use-auth";
-import { Users, Activity, Trophy, Trash2, ChevronLeft, ChevronDown, ChevronRight, Search, Flag } from "lucide-react";
+import { Users, Activity, Trophy, Trash2, ChevronLeft, ChevronDown, ChevronRight, Search, Flag, FileText, Home } from "lucide-react";
 
 interface AdminUser {
   id: string;
@@ -437,34 +437,50 @@ export default function AdminPage() {
 
   // Users list view
   return (
-    <main className="min-h-screen bg-grid" style={{ backgroundColor: "var(--background)" }}>
-      <div className="sticky top-0 z-10 bg-white border-b px-4 py-3">
-        <div className="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between gap-2">
-          <h1 className="text-xl font-bold text-[#1a1a2e] flex items-center gap-2">
-            <Users className="w-5 h-5 text-[#6b4c9a]" /> User Management
-          </h1>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => router.push("/admin/content")}
-              className="px-4 py-2 text-sm font-medium text-blue-600 border border-blue-600 rounded hover:bg-blue-50"
-            >
-              Content Management
-            </button>
-            <Button
-              size="sm"
-              onClick={() => router.push("/admin/red-flags")}
-              className="rounded-full bg-red-50 hover:bg-red-100 text-red-600 border border-red-200"
-            >
-              <Flag className="w-4 h-4 mr-1" />
-              Red Flags
-            </Button>
-            <Button size="sm" onClick={() => router.push("/dashboard")} className="rounded-full bg-[#6b4c9a] hover:bg-[#5a3d85] text-white">
-              <span className="hidden sm:inline">Back to Dashboard</span>
-              <span className="sm:hidden">Dashboard</span>
-            </Button>
+    <main className="min-h-screen flex bg-grid" style={{ backgroundColor: "var(--background)" }}>
+      {/* Sidebar */}
+      <aside className="sticky top-0 h-screen w-56 shrink-0 bg-white border-r border-[#e2ddd5] flex flex-col justify-between py-6 px-3">
+        <div className="space-y-1">
+          <p className="px-3 mb-4 text-xs font-semibold uppercase tracking-wider text-gray-400">Admin</p>
+          <button
+            className="w-full flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg bg-[#6b4c9a]/10 text-[#6b4c9a]"
+          >
+            <Users className="w-4 h-4" />
+            User Management
+          </button>
+          <button
+            onClick={() => router.push("/admin/content")}
+            className="w-full flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+          >
+            <FileText className="w-4 h-4" />
+            Content Management
+          </button>
+          <button
+            onClick={() => router.push("/admin/red-flags")}
+            className="w-full flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+          >
+            <Flag className="w-4 h-4" />
+            Red Flags
+          </button>
+        </div>
+        <button
+          onClick={() => router.push("/dashboard")}
+          className="w-full flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+        >
+          <Home className="w-4 h-4" />
+          Back to Dashboard
+        </button>
+      </aside>
+
+      {/* Main content */}
+      <div className="flex-1 min-w-0">
+        <div className="sticky top-0 z-10 bg-white border-b px-4 py-3">
+          <div className="max-w-screen-xl mx-auto">
+            <h1 className="text-xl font-bold text-[#1a1a2e] flex items-center gap-2">
+              <Users className="w-5 h-5 text-[#6b4c9a]" /> User Management
+            </h1>
           </div>
         </div>
-      </div>
 
       <div className="max-w-screen-xl mx-auto px-4 py-8">
         {/* Summary stats */}
@@ -848,6 +864,7 @@ export default function AdminPage() {
           </AlertDialog.Popup>
         </AlertDialog.Portal>
       </AlertDialog.Root>
+      </div>
     </main>
   );
 }
