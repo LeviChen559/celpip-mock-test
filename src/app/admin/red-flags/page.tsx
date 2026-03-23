@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useAuth } from "@/lib/hooks/use-auth";
-import { Flag, ChevronLeft, CheckCircle, AlertCircle, Clock } from "lucide-react";
+import { Flag, CheckCircle, AlertCircle, Clock } from "lucide-react";
 
 interface RedFlag {
   id: string;
@@ -129,14 +129,6 @@ export default function RedFlagsPage() {
       <div className="sticky top-0 z-10 bg-white border-b border-[#e2ddd5] px-4 py-4">
         <div className="max-w-screen-lg mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <button
-              onClick={() => router.push("/admin")}
-              className="flex items-center gap-1 text-sm text-[#1a1a2e]/60 hover:text-[#1a1a2e] transition-colors"
-            >
-              <ChevronLeft size={16} />
-              Admin
-            </button>
-            <div className="w-px h-5 bg-[#e2ddd5]" />
             <div className="flex items-center gap-2">
               <Flag size={18} className="text-red-500" />
               <h1 className="text-lg font-bold text-[#1a1a2e]">Red Flag Reports</h1>
