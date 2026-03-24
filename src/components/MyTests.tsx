@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { useHistory, TestRecord } from "@/lib/hooks/use-history";
 import { createClient } from "@/lib/supabase/client";
+import { listeningParts, readingParts } from "@/lib/celpip-data";
 
 type TestType = "full" | "section" | "quiz";
 
@@ -187,25 +188,32 @@ export default function MyTests() {
       .slice(0, 3)
       .map(([w]) => w);
 
-    // Per-part breakdown for listening/reading
+    // Per-category breakdown for listening/reading
+    // Group by CELPIP category name (e.g. "Reading Correspondence") instead of raw part index
     const partScores: { part: string; avg: number; count: number }[] = [];
     if (sec === "listening" || sec === "reading") {
-      const partMap = new Map<string, number[]>();
+      const partsData = sec === "listening" ? listeningParts : readingParts;
+      const categoryMap = new Map<string, number[]>();
       sectionRecords
         .filter((r) => r.type === "quiz" && r.quizPart && r.quizPart !== "all")
         .forEach((r) => {
-          const key = r.quizPart!;
-          if (!partMap.has(key)) partMap.set(key, []);
-          partMap.get(key)!.push(r.overallScore);
+          const idx = Number(r.quizPart!);
+          const partTitle = partsData[idx]?.title || "";
+          // Extract category: "01 | 8 Questions | Reading Correspondence" → "Reading Correspondence"
+          const pipeMatch = partTitle.match(/\d+\s*\|\s*(?:\d+\s*(?:Questions?|Tasks?)\s*\|\s*)?(.+)/);
+          const category = pipeMatch ? pipeMatch[1] : `Part ${idx + 1}`;
+          if (!categoryMap.has(category)) categoryMap.set(category, []);
+          categoryMap.get(category)!.push(r.overallScore);
         });
-      partMap.forEach((vals, part) => {
+      categoryMap.forEach((vals, category) => {
         partScores.push({
-          part,
+          part: category,
           avg: Math.round(vals.reduce((a, b) => a + b, 0) / vals.length),
           count: vals.length,
         });
       });
-      partScores.sort((a, b) => Number(a.part) - Number(b.part));
+      // Sort by average score descending so weakest is easy to spot
+      partScores.sort((a, b) => a.avg - b.avg);
     }
 
     // Quiz score history (last 8 for sparkline)
@@ -334,16 +342,18 @@ export default function MyTests() {
                     <CardContent className="pt-4 pb-4 space-y-3">
                       <p className="text-xs font-semibold text-[#1a1a2e]">{sectionLabel} Analysis</p>
 
-                      {/* Per-part breakdown for listening/reading */}
+                      {/* Per-category breakdown for listening/reading */}
                       {stat.partScores.length > 0 && (
                         <div>
-                          <p className="text-[10px] uppercase tracking-wider text-[#6b6b7b] font-bold mb-1.5">By Part</p>
+                          <p className="text-[10px] uppercase tracking-wider text-[#6b6b7b] font-bold mb-1.5">By Category</p>
                           <div className="space-y-1.5">
                             {stat.partScores.map((p) => {
                               const isWeakest = weakestPart && p.part === weakestPart.part && stat.partScores.length >= 2;
                               return (
                                 <div key={p.part} className="flex items-center gap-2">
-                                  <span className="text-[10px] text-[#6b6b7b] w-12 shrink-0">Part {Number(p.part) + 1}</span>
+                                  <span className={`text-[10px] ${isWeakest ? "text-red-500 font-medium" : "text-[#6b6b7b]"} w-28 shrink-0 truncate`} title={p.part}>
+                                    {p.part}
+                                  </span>
                                   <div className="flex-1 h-1.5 rounded-full bg-black/5">
                                     <div
                                       className={`h-full rounded-full ${isWeakest ? "bg-red-400" : sectionColors[stat.key]}`}
@@ -359,7 +369,7 @@ export default function MyTests() {
                           </div>
                           {weakestPart && (
                             <p className="text-[10px] text-red-500 mt-1.5 font-medium">
-                              Part {Number(weakestPart.part) + 1} needs the most work (avg {weakestPart.avg}/12)
+                              {weakestPart.part} needs the most work (avg {weakestPart.avg}/12)
                             </p>
                           )}
                         </div>
