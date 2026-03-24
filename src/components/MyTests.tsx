@@ -76,13 +76,30 @@ interface AiScoreRow {
   created_at: string;
 }
 
+const SECTION_KEYS = ["listening", "reading", "writing", "speaking"] as const;
+type SectionKey = (typeof SECTION_KEYS)[number];
+const sectionColors: Record<SectionKey, string> = {
+  listening: "bg-orange-400",
+  reading: "bg-green-500",
+  writing: "bg-purple-500",
+  speaking: "bg-pink-500",
+};
+const sectionTextColors: Record<SectionKey, string> = {
+  listening: "text-orange-600",
+  reading: "text-green-600",
+  writing: "text-purple-600",
+  speaking: "text-pink-600",
+};
+
 export default function MyTests() {
   const router = useRouter();
   const { records, loading, deleteRecord, clearAll } = useHistory();
   const [filter, setFilter] = useState<FilterKey>("all");
   const [showClearDialog, setShowClearDialog] = useState(false);
   const [aiScoresMap, setAiScoresMap] = useState<Record<string, AiScoreRow[]>>({});
+  const [allAiScores, setAllAiScores] = useState<AiScoreRow[]>([]);
   const [expandedRecord, setExpandedRecord] = useState<string | null>(null);
+  const [expandedSection, setExpandedSection] = useState<SectionKey | null>(null);
 
   // Fetch AI scores for all records
   useEffect(() => {
@@ -94,6 +111,7 @@ export default function MyTests() {
       .order("created_at", { ascending: true })
       .then(({ data }: { data: AiScoreRow[] | null }) => {
         if (!data) return;
+        setAllAiScores(data as AiScoreRow[]);
         const map: Record<string, AiScoreRow[]> = {};
         (data as AiScoreRow[]).forEach((row) => {
           if (!row.test_record_id) return;
@@ -126,6 +144,78 @@ export default function MyTests() {
   ];
 
   const chartData = [...records].sort((a, b) => a.timestamp - b.timestamp).slice(-10);
+
+  // Per-section analytics
+  const sectionStats = SECTION_KEYS.map((sec) => {
+    const sectionRecords = records.filter(
+      (r) => r.section === sec || r.quizSection === sec || (r.type === "full" && r.scores[sec] != null)
+    );
+    const scores = sectionRecords.map((r) =>
+      r.type === "full" ? (r.scores[sec] ?? 0) : r.overallScore
+    );
+    const latest5 = [...sectionRecords]
+      .sort((a, b) => b.timestamp - a.timestamp)
+      .slice(0, 5)
+      .map((r) => r.type === "full" ? (r.scores[sec] ?? 0) : r.overallScore);
+    const avg = scores.length > 0 ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : 0;
+    const best = scores.length > 0 ? Math.max(...scores) : 0;
+    const trend = latest5.length >= 2
+      ? latest5[0] - latest5[latest5.length - 1]
+      : 0;
+
+    // AI dimension scores for writing/speaking
+    const aiForSection = allAiScores.filter((ai) => ai.section === sec);
+    const latestAi = aiForSection.slice(-3);
+    const dimAvg = latestAi.length > 0
+      ? {
+          task_response: Math.round(latestAi.reduce((s, a) => s + (a.scores.task_response?.score || 0), 0) / latestAi.length * 10) / 10,
+          coherence: Math.round(latestAi.reduce((s, a) => s + (a.scores.coherence?.score || 0), 0) / latestAi.length * 10) / 10,
+          vocabulary: Math.round(latestAi.reduce((s, a) => s + (a.scores.vocabulary?.score || 0), 0) / latestAi.length * 10) / 10,
+          grammar: Math.round(latestAi.reduce((s, a) => s + (a.scores.grammar?.score || 0), 0) / latestAi.length * 10) / 10,
+        }
+      : null;
+
+    // Aggregate weaknesses (count frequency) for writing/speaking
+    const weaknessCount = new Map<string, number>();
+    aiForSection.forEach((ai) => {
+      ai.weaknesses?.forEach((w) => {
+        weaknessCount.set(w, (weaknessCount.get(w) || 0) + 1);
+      });
+    });
+    const topWeaknesses = [...weaknessCount.entries()]
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 3)
+      .map(([w]) => w);
+
+    // Per-part breakdown for listening/reading
+    const partScores: { part: string; avg: number; count: number }[] = [];
+    if (sec === "listening" || sec === "reading") {
+      const partMap = new Map<string, number[]>();
+      sectionRecords
+        .filter((r) => r.type === "quiz" && r.quizPart && r.quizPart !== "all")
+        .forEach((r) => {
+          const key = r.quizPart!;
+          if (!partMap.has(key)) partMap.set(key, []);
+          partMap.get(key)!.push(r.overallScore);
+        });
+      partMap.forEach((vals, part) => {
+        partScores.push({
+          part,
+          avg: Math.round(vals.reduce((a, b) => a + b, 0) / vals.length),
+          count: vals.length,
+        });
+      });
+      partScores.sort((a, b) => Number(a.part) - Number(b.part));
+    }
+
+    // Quiz score history (last 8 for sparkline)
+    const sparkline = [...sectionRecords]
+      .sort((a, b) => a.timestamp - b.timestamp)
+      .slice(-8)
+      .map((r) => r.type === "full" ? (r.scores[sec] ?? 0) : r.overallScore);
+
+    return { key: sec, count: sectionRecords.length, avg, best, trend, dimAvg, topWeaknesses, sparkline, partScores };
+  });
 
   return (
     <div>
@@ -179,6 +269,157 @@ export default function MyTests() {
             </div>
           </CardContent>
         </Card>
+      )}
+
+      {/* Section Analytics */}
+      {sectionStats.some((s) => s.count > 0) && (
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+          {sectionStats.map((stat) => {
+            const isExpanded = expandedSection === stat.key;
+            const hasData = stat.count > 0;
+            const sectionLabel = stat.key.charAt(0).toUpperCase() + stat.key.slice(1);
+            const weakestPart = stat.partScores.length >= 2
+              ? stat.partScores.reduce((min, p) => (p.avg < min.avg ? p : min), stat.partScores[0])
+              : null;
+
+            return (
+              <div key={stat.key} className="flex flex-col gap-3">
+                <Card
+                  className={`border-2 rounded-2xl transition-all cursor-pointer ${
+                    isExpanded ? "border-[#6b4c9a]" : "border-[#e2ddd5] hover:border-[#6b4c9a]/30"
+                  } ${!hasData ? "opacity-50" : ""}`}
+                  onClick={() => hasData && setExpandedSection(isExpanded ? null : stat.key)}
+                >
+                  <CardContent className="pt-4 pb-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className={`w-2.5 h-2.5 rounded-full ${sectionColors[stat.key]}`} />
+                      <span className="text-xs font-medium text-[#1a1a2e]">{sectionLabel}</span>
+                      {stat.trend !== 0 && (
+                        <span className={`text-[10px] font-bold ml-auto ${stat.trend > 0 ? "text-green-600" : "text-red-500"}`}>
+                          {stat.trend > 0 ? "+" : ""}{stat.trend}
+                        </span>
+                      )}
+                    </div>
+
+                    {hasData ? (
+                      <>
+                        <p className={`text-2xl font-bold ${scoreColor(stat.avg)}`}>{stat.avg}<span className="text-xs font-normal text-[#6b6b7b]">/12</span></p>
+                        <div className="flex gap-3 mt-1">
+                          <span className="text-[10px] text-[#6b6b7b]">Best: <strong className="text-[#1a1a2e]">{stat.best}</strong></span>
+                          <span className="text-[10px] text-[#6b6b7b]">{stat.count} test{stat.count !== 1 ? "s" : ""}</span>
+                        </div>
+
+                        {/* Mini sparkline */}
+                        {stat.sparkline.length >= 2 && (
+                          <div className="flex items-end gap-px mt-2" style={{ height: 24 }}>
+                            {stat.sparkline.map((v, i) => (
+                              <div
+                                key={i}
+                                className={`flex-1 rounded-sm ${sectionColors[stat.key]} opacity-60`}
+                                style={{ height: `${Math.max((v / 12) * 100, 8)}%` }}
+                              />
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <p className="text-xs text-[#6b6b7b] mt-1">No tests yet</p>
+                    )}
+                  </CardContent>
+                </Card>
+
+                {/* Expanded detail panel */}
+                {isExpanded && hasData && (
+                  <Card className="border-2 border-[#6b4c9a]/20 rounded-2xl">
+                    <CardContent className="pt-4 pb-4 space-y-3">
+                      <p className="text-xs font-semibold text-[#1a1a2e]">{sectionLabel} Analysis</p>
+
+                      {/* Per-part breakdown for listening/reading */}
+                      {stat.partScores.length > 0 && (
+                        <div>
+                          <p className="text-[10px] uppercase tracking-wider text-[#6b6b7b] font-bold mb-1.5">By Part</p>
+                          <div className="space-y-1.5">
+                            {stat.partScores.map((p) => {
+                              const isWeakest = weakestPart && p.part === weakestPart.part && stat.partScores.length >= 2;
+                              return (
+                                <div key={p.part} className="flex items-center gap-2">
+                                  <span className="text-[10px] text-[#6b6b7b] w-12 shrink-0">Part {Number(p.part) + 1}</span>
+                                  <div className="flex-1 h-1.5 rounded-full bg-black/5">
+                                    <div
+                                      className={`h-full rounded-full ${isWeakest ? "bg-red-400" : sectionColors[stat.key]}`}
+                                      style={{ width: `${(p.avg / 12) * 100}%` }}
+                                    />
+                                  </div>
+                                  <span className={`text-[10px] font-bold w-6 text-right ${isWeakest ? "text-red-500" : scoreColor(p.avg)}`}>
+                                    {p.avg}
+                                  </span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                          {weakestPart && (
+                            <p className="text-[10px] text-red-500 mt-1.5 font-medium">
+                              Part {Number(weakestPart.part) + 1} needs the most work (avg {weakestPart.avg}/12)
+                            </p>
+                          )}
+                        </div>
+                      )}
+
+                      {/* AI dimension breakdown for writing/speaking */}
+                      {stat.dimAvg && (
+                        <div>
+                          <p className="text-[10px] uppercase tracking-wider text-[#6b6b7b] font-bold mb-1.5">AI Dimensions (avg of last 3)</p>
+                          <div className="space-y-1.5">
+                            {(["task_response", "coherence", "vocabulary", "grammar"] as const).map((dim) => {
+                              const val = stat.dimAvg![dim];
+                              const allDims = [stat.dimAvg!.task_response, stat.dimAvg!.coherence, stat.dimAvg!.vocabulary, stat.dimAvg!.grammar];
+                              const isWeakest = val === Math.min(...allDims) && new Set(allDims).size > 1;
+                              return (
+                                <div key={dim} className="flex items-center gap-2">
+                                  <span className="text-[10px] text-[#6b6b7b] w-20 shrink-0 capitalize">{dim.replace("_", " ")}</span>
+                                  <div className="flex-1 h-1.5 rounded-full bg-black/5">
+                                    <div
+                                      className={`h-full rounded-full ${isWeakest ? "bg-red-400" : sectionColors[stat.key]}`}
+                                      style={{ width: `${(val / 12) * 100}%` }}
+                                    />
+                                  </div>
+                                  <span className={`text-[10px] font-bold w-6 text-right ${isWeakest ? "text-red-500" : scoreColor(val)}`}>
+                                    {val}
+                                  </span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Top weaknesses */}
+                      {stat.topWeaknesses.length > 0 && (
+                        <div>
+                          <p className="text-[10px] uppercase tracking-wider text-[#6b6b7b] font-bold mb-1.5">Recurring Weaknesses</p>
+                          <div className="flex flex-wrap gap-1">
+                            {stat.topWeaknesses.map((w) => (
+                              <span key={w} className="inline-block bg-red-50 text-red-600 rounded px-1.5 py-0.5 text-[10px]">
+                                {w}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* No AI data hint for listening/reading */}
+                      {!stat.dimAvg && stat.partScores.length === 0 && (
+                        <p className="text-[10px] text-[#6b6b7b]">
+                          Complete more quizzes for individual parts to see a detailed breakdown.
+                        </p>
+                      )}
+                    </CardContent>
+                  </Card>
+                )}
+              </div>
+            );
+          })}
+        </div>
       )}
 
       {/* Filters */}
