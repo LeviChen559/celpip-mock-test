@@ -894,22 +894,22 @@ export default function Home() {
           {/* Team / Tutors plan */}
           <div className="hp-glass rounded-2xl p-6 sm:p-8 flex flex-col hp-reveal hp-reveal-d2">
             <p className="text-xs uppercase tracking-widest font-bold mb-3" style={{ color: "var(--hp-text-muted)" }}>
-              Team
+              Max
             </p>
             <div className="flex items-baseline gap-1 mb-1">
               <span className="text-4xl font-bold" style={{ fontFamily: "var(--font-serif)", color: "var(--hp-text)" }}>$49</span>
               <span className="text-sm" style={{ color: "var(--hp-text-muted)" }}>/month</span>
             </div>
             <p className="text-sm mb-6" style={{ color: "var(--hp-text-muted)" }}>
-              For tutors and study groups preparing together.
+              Get expert teacher guidance alongside AI coaching.
             </p>
             <ul className="space-y-3 mb-8 flex-1">
               {[
                 "Everything in Pro",
-                "Up to 5 student seats",
-                "Tutor dashboard with group analytics",
-                "Shared study plans & assignments",
-                "Priority support",
+                "1-on-1 teacher feedback on writing & speaking",
+                "Weekly live Q&A sessions with CELPIP instructors",
+                "Teacher-reviewed study plan adjustments",
+                "Priority support & direct messaging with teachers",
               ].map((f) => (
                 <li key={f} className="flex items-start gap-2 text-sm" style={{ color: "var(--hp-text)" }}>
                   <Check className="w-4 h-4 shrink-0 mt-0.5" style={{ color: "var(--hp-accent)" }} />
@@ -931,7 +931,7 @@ export default function Home() {
                 e.currentTarget.style.backgroundColor = "transparent";
               }}
             >
-              Contact Us
+              Get Max
             </button>
           </div>
         </div>
