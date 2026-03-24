@@ -28,52 +28,52 @@ UPDATE listening_parts SET part_id = 'Listening-Part1-03' WHERE part_id = 'L13';
 UPDATE listening_parts SET part_id = 'Listening-Part4-03' WHERE part_id = 'L14';
 UPDATE listening_parts SET part_id = 'Listening-Part5-03' WHERE part_id = 'L15';
 
--- Writing (adjust table name if needed)
-UPDATE writing_tasks SET part_id = 'Writing-Task1-01' WHERE part_id = 'W1';
-UPDATE writing_tasks SET part_id = 'Writing-Task2-01' WHERE part_id = 'W2';
-UPDATE writing_tasks SET part_id = 'Writing-Task1-02' WHERE part_id = 'W3';
-UPDATE writing_tasks SET part_id = 'Writing-Task2-02' WHERE part_id = 'W4';
-UPDATE writing_tasks SET part_id = 'Writing-Task1-03' WHERE part_id = 'W5';
-UPDATE writing_tasks SET part_id = 'Writing-Task2-03' WHERE part_id = 'W6';
-UPDATE writing_tasks SET part_id = 'Writing-Task1-04' WHERE part_id = 'W7';
-UPDATE writing_tasks SET part_id = 'Writing-Task2-04' WHERE part_id = 'W8';
-UPDATE writing_tasks SET part_id = 'Writing-Task1-05' WHERE part_id = 'W9';
-UPDATE writing_tasks SET part_id = 'Writing-Task2-05' WHERE part_id = 'W10';
-UPDATE writing_tasks SET part_id = 'Writing-Task1-06' WHERE part_id = 'W11';
-UPDATE writing_tasks SET part_id = 'Writing-Task2-06' WHERE part_id = 'W12';
-UPDATE writing_tasks SET part_id = 'Writing-Task1-07' WHERE part_id = 'W13';
-UPDATE writing_tasks SET part_id = 'Writing-Task2-07' WHERE part_id = 'W14';
-UPDATE writing_tasks SET part_id = 'Writing-Task1-08' WHERE part_id = 'W15';
-UPDATE writing_tasks SET part_id = 'Writing-Task2-08' WHERE part_id = 'W16';
-UPDATE writing_tasks SET part_id = 'Writing-Task1-09' WHERE part_id = 'W17';
-UPDATE writing_tasks SET part_id = 'Writing-Task2-09' WHERE part_id = 'W18';
+-- Writing (uses task_id column)
+UPDATE writing_tasks SET task_id = 'Writing-Task1-01' WHERE task_id = 'W1';
+UPDATE writing_tasks SET task_id = 'Writing-Task2-01' WHERE task_id = 'W2';
+UPDATE writing_tasks SET task_id = 'Writing-Task1-02' WHERE task_id = 'W3';
+UPDATE writing_tasks SET task_id = 'Writing-Task2-02' WHERE task_id = 'W4';
+UPDATE writing_tasks SET task_id = 'Writing-Task1-03' WHERE task_id = 'W5';
+UPDATE writing_tasks SET task_id = 'Writing-Task2-03' WHERE task_id = 'W6';
+UPDATE writing_tasks SET task_id = 'Writing-Task1-04' WHERE task_id = 'W7';
+UPDATE writing_tasks SET task_id = 'Writing-Task2-04' WHERE task_id = 'W8';
+UPDATE writing_tasks SET task_id = 'Writing-Task1-05' WHERE task_id = 'W9';
+UPDATE writing_tasks SET task_id = 'Writing-Task2-05' WHERE task_id = 'W10';
+UPDATE writing_tasks SET task_id = 'Writing-Task1-06' WHERE task_id = 'W11';
+UPDATE writing_tasks SET task_id = 'Writing-Task2-06' WHERE task_id = 'W12';
+UPDATE writing_tasks SET task_id = 'Writing-Task1-07' WHERE task_id = 'W13';
+UPDATE writing_tasks SET task_id = 'Writing-Task2-07' WHERE task_id = 'W14';
+UPDATE writing_tasks SET task_id = 'Writing-Task1-08' WHERE task_id = 'W15';
+UPDATE writing_tasks SET task_id = 'Writing-Task2-08' WHERE task_id = 'W16';
+UPDATE writing_tasks SET task_id = 'Writing-Task1-09' WHERE task_id = 'W17';
+UPDATE writing_tasks SET task_id = 'Writing-Task2-09' WHERE task_id = 'W18';
 
--- Speaking (adjust table name if needed)
-UPDATE speaking_tasks SET part_id = 'Speaking-Practice-01' WHERE part_id = 'S0';
-UPDATE speaking_tasks SET part_id = 'Speaking-Task1-01' WHERE part_id = 'S1';
-UPDATE speaking_tasks SET part_id = 'Speaking-Task2-01' WHERE part_id = 'S2';
-UPDATE speaking_tasks SET part_id = 'Speaking-Task3-01' WHERE part_id = 'S3';
-UPDATE speaking_tasks SET part_id = 'Speaking-Task4-01' WHERE part_id = 'S4';
-UPDATE speaking_tasks SET part_id = 'Speaking-Task5-01' WHERE part_id = 'S5';
-UPDATE speaking_tasks SET part_id = 'Speaking-Task6-01' WHERE part_id = 'S6';
-UPDATE speaking_tasks SET part_id = 'Speaking-Task7-01' WHERE part_id = 'S7';
-UPDATE speaking_tasks SET part_id = 'Speaking-Task8-01' WHERE part_id = 'S8';
-UPDATE speaking_tasks SET part_id = 'Speaking-Task1-02' WHERE part_id = 'S9';
-UPDATE speaking_tasks SET part_id = 'Speaking-Task2-02' WHERE part_id = 'S10';
-UPDATE speaking_tasks SET part_id = 'Speaking-Task3-02' WHERE part_id = 'S11';
-UPDATE speaking_tasks SET part_id = 'Speaking-Task4-02' WHERE part_id = 'S12';
-UPDATE speaking_tasks SET part_id = 'Speaking-Task5-02' WHERE part_id = 'S13';
-UPDATE speaking_tasks SET part_id = 'Speaking-Task6-02' WHERE part_id = 'S14';
-UPDATE speaking_tasks SET part_id = 'Speaking-Task7-02' WHERE part_id = 'S15';
-UPDATE speaking_tasks SET part_id = 'Speaking-Task8-02' WHERE part_id = 'S16';
-UPDATE speaking_tasks SET part_id = 'Speaking-Task1-03' WHERE part_id = 'S17';
-UPDATE speaking_tasks SET part_id = 'Speaking-Task2-03' WHERE part_id = 'S18';
-UPDATE speaking_tasks SET part_id = 'Speaking-Task3-03' WHERE part_id = 'S19';
-UPDATE speaking_tasks SET part_id = 'Speaking-Task4-03' WHERE part_id = 'S20';
-UPDATE speaking_tasks SET part_id = 'Speaking-Task5-03' WHERE part_id = 'S21';
-UPDATE speaking_tasks SET part_id = 'Speaking-Task6-03' WHERE part_id = 'S22';
-UPDATE speaking_tasks SET part_id = 'Speaking-Task7-03' WHERE part_id = 'S23';
-UPDATE speaking_tasks SET part_id = 'Speaking-Task8-03' WHERE part_id = 'S24';
+-- Speaking (uses task_id column)
+UPDATE speaking_tasks SET task_id = 'Speaking-Practice-01' WHERE task_id = 'S0';
+UPDATE speaking_tasks SET task_id = 'Speaking-Task1-01' WHERE task_id = 'S1';
+UPDATE speaking_tasks SET task_id = 'Speaking-Task2-01' WHERE task_id = 'S2';
+UPDATE speaking_tasks SET task_id = 'Speaking-Task3-01' WHERE task_id = 'S3';
+UPDATE speaking_tasks SET task_id = 'Speaking-Task4-01' WHERE task_id = 'S4';
+UPDATE speaking_tasks SET task_id = 'Speaking-Task5-01' WHERE task_id = 'S5';
+UPDATE speaking_tasks SET task_id = 'Speaking-Task6-01' WHERE task_id = 'S6';
+UPDATE speaking_tasks SET task_id = 'Speaking-Task7-01' WHERE task_id = 'S7';
+UPDATE speaking_tasks SET task_id = 'Speaking-Task8-01' WHERE task_id = 'S8';
+UPDATE speaking_tasks SET task_id = 'Speaking-Task1-02' WHERE task_id = 'S9';
+UPDATE speaking_tasks SET task_id = 'Speaking-Task2-02' WHERE task_id = 'S10';
+UPDATE speaking_tasks SET task_id = 'Speaking-Task3-02' WHERE task_id = 'S11';
+UPDATE speaking_tasks SET task_id = 'Speaking-Task4-02' WHERE task_id = 'S12';
+UPDATE speaking_tasks SET task_id = 'Speaking-Task5-02' WHERE task_id = 'S13';
+UPDATE speaking_tasks SET task_id = 'Speaking-Task6-02' WHERE task_id = 'S14';
+UPDATE speaking_tasks SET task_id = 'Speaking-Task7-02' WHERE task_id = 'S15';
+UPDATE speaking_tasks SET task_id = 'Speaking-Task8-02' WHERE task_id = 'S16';
+UPDATE speaking_tasks SET task_id = 'Speaking-Task1-03' WHERE task_id = 'S17';
+UPDATE speaking_tasks SET task_id = 'Speaking-Task2-03' WHERE task_id = 'S18';
+UPDATE speaking_tasks SET task_id = 'Speaking-Task3-03' WHERE task_id = 'S19';
+UPDATE speaking_tasks SET task_id = 'Speaking-Task4-03' WHERE task_id = 'S20';
+UPDATE speaking_tasks SET task_id = 'Speaking-Task5-03' WHERE task_id = 'S21';
+UPDATE speaking_tasks SET task_id = 'Speaking-Task6-03' WHERE task_id = 'S22';
+UPDATE speaking_tasks SET task_id = 'Speaking-Task7-03' WHERE task_id = 'S23';
+UPDATE speaking_tasks SET task_id = 'Speaking-Task8-03' WHERE task_id = 'S24';
 
 -- ============================================================
 -- PART 2: Update question IDs inside test_records.details JSONB
