@@ -600,25 +600,71 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Card 2: Your Progress */}
+              {/* Card 2: All Sections Progress */}
               <div className="hp-mockup-card p-4 space-y-4">
-                <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hp-text-muted)" }}>
-                  Score Trend — Writing
-                </p>
-                {/* Mini bar chart */}
-                <div className="flex items-end gap-2 h-24">
+                <div className="flex items-center justify-between">
+                  <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hp-text-muted)" }}>
+                    Progress — All Sections
+                  </p>
+                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full" style={{ background: "rgba(107,143,113,0.1)", color: "#6b8f71" }}>
+                    +1.5 avg improvement
+                  </span>
+                </div>
+                {/* Section rows */}
+                <div className="space-y-3">
                   {[
-                    { score: 6.5, h: "35%" },
-                    { score: 7.0, h: "45%" },
-                    { score: 7.5, h: "55%" },
-                    { score: 8.0, h: "65%" },
-                    { score: 8.5, h: "80%" },
-                  ].map((b) => (
-                    <div key={b.score} className="flex-1 flex flex-col items-center gap-1 h-full justify-end">
-                      <span className="text-[10px] font-bold" style={{ color: "var(--hp-accent)" }}>{b.score}</span>
-                      <div className="hp-trend-bar w-full" style={{ height: b.h }} />
+                    { name: "Listening", score: 9, prev: 8, color: "#e89234", barPct: "75%", sparkline: [6, 7, 7, 8, 8, 9], weakness: "Part 3: Viewpoints" },
+                    { name: "Reading", score: 8, prev: 7, color: "#5a8a6a", barPct: "67%", sparkline: [5, 6, 6, 7, 7, 8], weakness: "Part 4: Opinions" },
+                    { name: "Writing", score: 8, prev: 6, color: "#7a7ac7", barPct: "67%", sparkline: [5, 5, 6, 7, 7, 8], weakness: "Coherence" },
+                    { name: "Speaking", score: 7, prev: 6, color: "#c77a8b", barPct: "58%", sparkline: [5, 5, 6, 6, 6, 7], weakness: "Grammar" },
+                  ].map((s) => (
+                    <div key={s.name} className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full shrink-0" style={{ background: s.color }} />
+                      <span className="text-xs w-16 shrink-0" style={{ color: "var(--hp-text)" }}>{s.name}</span>
+                      {/* Mini sparkline */}
+                      <div className="flex items-end gap-px shrink-0" style={{ height: 16, width: 36 }}>
+                        {s.sparkline.map((v, i) => (
+                          <div
+                            key={i}
+                            className="flex-1 rounded-sm"
+                            style={{
+                              height: `${Math.max((v / 12) * 100, 10)}%`,
+                              background: s.color,
+                              opacity: i === s.sparkline.length - 1 ? 1 : 0.4,
+                            }}
+                          />
+                        ))}
+                      </div>
+                      <div className="flex-1 h-1.5 rounded-full" style={{ background: "rgba(0,0,0,0.05)" }}>
+                        <div className="h-full rounded-full" style={{ width: s.barPct, background: s.color }} />
+                      </div>
+                      <span className="text-xs font-bold w-4 text-right" style={{ color: s.color }}>{s.score}</span>
+                      <span className={`text-[10px] font-bold w-5 ${s.score > s.prev ? "text-green-600" : "text-yellow-600"}`}>
+                        {s.score > s.prev ? `+${s.score - s.prev}` : "—"}
+                      </span>
                     </div>
                   ))}
+                </div>
+                {/* Weakness summary */}
+                <div className="rounded-lg px-3 py-2.5" style={{ background: "rgba(0,0,0,0.02)", border: "1px solid rgba(0,0,0,0.04)" }}>
+                  <p className="text-[10px] uppercase tracking-wide font-semibold mb-1.5" style={{ color: "var(--hp-text-muted)" }}>
+                    Areas to Focus
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {[
+                      { label: "Listening Part 3", color: "#e89234" },
+                      { label: "Writing: Coherence", color: "#7a7ac7" },
+                      { label: "Speaking: Grammar", color: "#c77a8b" },
+                    ].map((w) => (
+                      <span
+                        key={w.label}
+                        className="text-[10px] font-medium px-2 py-0.5 rounded-full"
+                        style={{ background: `${w.color}10`, color: w.color, border: `1px solid ${w.color}20` }}
+                      >
+                        {w.label}
+                      </span>
+                    ))}
+                  </div>
                 </div>
                 {/* Stats row */}
                 <div className="grid grid-cols-2 gap-3">
@@ -711,9 +757,10 @@ export default function Home() {
               </p>
               <div className="space-y-3 mb-8">
                 {[
-                  "AI scores 4 dimensions with rewrite examples",
-                  "Diagnostic analysis finds recurring patterns",
-                  "Predicted score and 'on track' status",
+                  "Track all 4 sections — Listening, Reading, Writing, Speaking",
+                  "AI scores writing & speaking across 4 dimensions",
+                  "Pinpoints weakest parts and recurring patterns",
+                  "Predicted score and adaptive study plan",
                 ].map((item) => (
                   <div key={item} className="flex items-center gap-2.5">
                     <Check className="w-4 h-4 shrink-0" style={{ color: "var(--hp-accent)" }} />
