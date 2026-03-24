@@ -54,7 +54,7 @@ import { writingTasksExtra } from "./writing-data-extra";
 
 const listeningPartsBase: ListeningPart[] = [
   {
-    id: "L0",
+    id: "Listening-Practice-01",
     title: "Practice Task (unscored)",
     instruction:
       "This is a practice task to help you get familiar with the listening test format. Your answer will not be scored.",
@@ -69,7 +69,7 @@ Man: I think it closes at 5 PM on weekdays, but it might close earlier on Saturd
 Woman: Okay, I'd better hurry then. Thanks for your help!`,
     questions: [
       {
-        id: "L0Q1",
+        id: "Listening-Practice-01-Q1",
         question: "Where is the post office located?",
         options: [
           "Next to the bank",
@@ -82,7 +82,7 @@ Woman: Okay, I'd better hurry then. Thanks for your help!`,
     ],
   },
   {
-    id: "L1",
+    id: "Listening-Part1-01",
     title: "01 | 8 Questions | Listening to Problem Solving",
     instruction:
       "You will hear a conversation between two people discussing a problem. Listen carefully and answer the questions.",
@@ -109,7 +109,7 @@ Mike: Sure. I'll have a draft ready by tonight so you can review it before we se
 Sarah: Perfect. And I'll call the Landlord and Tenant Board's information line tomorrow during my lunch break to make sure we're not missing anything. Better to be thorough about this.`,
     questions: [
       {
-        id: "L1Q1",
+        id: "Listening-Part1-01-Q1",
         question: "What is the main problem Sarah and Mike are discussing?",
         options: [
           "Their apartment needs repairs",
@@ -120,20 +120,20 @@ Sarah: Perfect. And I'll call the Landlord and Tenant Board's information line t
         correctAnswer: 1,
       },
       {
-        id: "L1Q2",
+        id: "Listening-Part1-01-Q2",
         question: "How much is the landlord trying to increase the rent?",
         options: ["$45", "$180", "$300", "$1,800"],
         correctAnswer: 2,
       },
       {
-        id: "L1Q3",
+        id: "Listening-Part1-01-Q3",
         question:
           "According to Sarah, what is the provincial rent increase guideline?",
         options: ["About 1.5%", "About 2.5%", "About 5%", "About 10%"],
         correctAnswer: 1,
       },
       {
-        id: "L1Q4",
+        id: "Listening-Part1-01-Q4",
         question: "What does Mike suggest as a backup plan?",
         options: [
           "Moving in with his colleague",
@@ -144,13 +144,13 @@ Sarah: Perfect. And I'll call the Landlord and Tenant Board's information line t
         correctAnswer: 2,
       },
       {
-        id: "L1Q5",
+        id: "Listening-Part1-01-Q5",
         question: "Who will draft the letter to the landlord?",
         options: ["Sarah", "Mike", "Their lawyer", "A tenant association"],
         correctAnswer: 1,
       },
       {
-        id: "L1Q6",
+        id: "Listening-Part1-01-Q6",
         question:
           "What reason does the landlord give for the large rent increase?",
         options: [
@@ -162,7 +162,7 @@ Sarah: Perfect. And I'll call the Landlord and Tenant Board's information line t
         correctAnswer: 1,
       },
       {
-        id: "L1Q7",
+        id: "Listening-Part1-01-Q7",
         question:
           "What does Sarah plan to do if the landlord insists on the increase?",
         options: [
@@ -174,7 +174,7 @@ Sarah: Perfect. And I'll call the Landlord and Tenant Board's information line t
         correctAnswer: 2,
       },
       {
-        id: "L1Q8",
+        id: "Listening-Part1-01-Q8",
         question: "What do Sarah and Mike agree to do this weekend?",
         options: [
           "Meet with the landlord in person",
@@ -187,7 +187,7 @@ Sarah: Perfect. And I'll call the Landlord and Tenant Board's information line t
     ],
   },
   {
-    id: "L2",
+    id: "Listening-Part2-01",
     title: "01 | 5 Questions | Listening to a Daily Life Conversation",
     instruction:
       "You will hear a conversation in a daily life context. Listen and answer the questions.",
@@ -214,7 +214,7 @@ Patient: No, that's everything. Thank you so much for fitting me in.
 Receptionist: You're welcome. We'll see you Thursday. Take care.`,
     questions: [
       {
-        id: "L2Q1",
+        id: "Listening-Part2-01-Q1",
         question: "Why is the patient calling the clinic?",
         options: [
           "To renew a prescription",
@@ -225,7 +225,7 @@ Receptionist: You're welcome. We'll see you Thursday. Take care.`,
         correctAnswer: 1,
       },
       {
-        id: "L2Q2",
+        id: "Listening-Part2-01-Q2",
         question: "Why can't the patient see Dr. Chen this week?",
         options: [
           "Dr. Chen is on vacation",
@@ -236,7 +236,7 @@ Receptionist: You're welcome. We'll see you Thursday. Take care.`,
         correctAnswer: 1,
       },
       {
-        id: "L2Q3",
+        id: "Listening-Part2-01-Q3",
         question: "When is the appointment the patient accepts?",
         options: [
           "Tuesday at 2:30 PM",
@@ -247,7 +247,7 @@ Receptionist: You're welcome. We'll see you Thursday. Take care.`,
         correctAnswer: 2,
       },
       {
-        id: "L2Q4",
+        id: "Listening-Part2-01-Q4",
         question:
           "What should the patient bring to the appointment? (Select the best answer)",
         options: [
@@ -259,7 +259,7 @@ Receptionist: You're welcome. We'll see you Thursday. Take care.`,
         correctAnswer: 1,
       },
       {
-        id: "L2Q5",
+        id: "Listening-Part2-01-Q5",
         question: "Why should the patient arrive 15 minutes early?",
         options: [
           "To meet Dr. Patel beforehand",
@@ -272,7 +272,7 @@ Receptionist: You're welcome. We'll see you Thursday. Take care.`,
     ],
   },
   {
-    id: "L3",
+    id: "Listening-Part3-01",
     title: "01 | 6 Questions | Listening for Information",
     instruction:
       "You will hear an informational presentation. Listen carefully and answer the questions.",
@@ -289,19 +289,19 @@ Finally, a note on public safety. We're hiring 40 additional firefighters and pa
 Thank you for being engaged citizens. Questions and comments can be directed to our new community hotline at 311, which is staffed Monday through Saturday from 8 AM to 8 PM.`,
     questions: [
       {
-        id: "L3Q1",
+        id: "Listening-Part3-01-Q1",
         question: "When will construction of the light rail begin?",
         options: ["January", "March", "April", "June"],
         correctAnswer: 2,
       },
       {
-        id: "L3Q2",
+        id: "Listening-Part3-01-Q2",
         question: "How many stations will the new light rail have?",
         options: ["Four", "Five", "Six", "Eight"],
         correctAnswer: 2,
       },
       {
-        id: "L3Q3",
+        id: "Listening-Part3-01-Q3",
         question:
           "How much money is being invested in Riverside Park renovations?",
         options: [
@@ -313,7 +313,7 @@ Thank you for being engaged citizens. Questions and comments can be directed to 
         correctAnswer: 2,
       },
       {
-        id: "L3Q4",
+        id: "Listening-Part3-01-Q4",
         question: "Who gets priority for the new affordable housing units?",
         options: [
           "First-time homebuyers",
@@ -324,7 +324,7 @@ Thank you for being engaged citizens. Questions and comments can be directed to 
         correctAnswer: 2,
       },
       {
-        id: "L3Q5",
+        id: "Listening-Part3-01-Q5",
         question:
           "By how much will fire response times be reduced in the northern district?",
         options: [
@@ -336,7 +336,7 @@ Thank you for being engaged citizens. Questions and comments can be directed to 
         correctAnswer: 1,
       },
       {
-        id: "L3Q6",
+        id: "Listening-Part3-01-Q6",
         question:
           "How can residents contact the city with questions about these developments?",
         options: [
@@ -350,7 +350,7 @@ Thank you for being engaged citizens. Questions and comments can be directed to 
     ],
   },
   {
-    id: "L4",
+    id: "Listening-Part4-01",
     title: "01 | 5 Questions | Listening to a News Item",
     instruction: "You will hear a news report. Listen and answer the questions.",
     transcript: `This is CBC News at Six. I'm Rachel Nguyen.
@@ -366,7 +366,7 @@ City officials are urging residents to stock up on essentials, keep their mobile
 Environment Canada senior forecaster David Liu told reporters this afternoon that this could be the most significant snowfall event in the Vancouver area since the major storm of December 2017, which dumped 34 centimetres on the city and caused widespread disruptions for nearly a week.`,
     questions: [
       {
-        id: "L4Q1",
+        id: "Listening-Part4-01-Q1",
         question: "The storm originated in ___.",
         options: [
           "the Pacific Northwest",
@@ -377,7 +377,7 @@ Environment Canada senior forecaster David Liu told reporters this afternoon tha
         correctAnswer: 1,
       },
       {
-        id: "L4Q2",
+        id: "Listening-Part4-01-Q2",
         question: "The storm is expected to bring ___ of snow.",
         options: [
           "10 to 20 cm",
@@ -388,7 +388,7 @@ Environment Canada senior forecaster David Liu told reporters this afternoon tha
         correctAnswer: 2,
       },
       {
-        id: "L4Q3",
+        id: "Listening-Part4-01-Q3",
         question: "BC Ferries has ___ for tomorrow.",
         options: [
           "reduced ferry sizes",
@@ -399,13 +399,13 @@ Environment Canada senior forecaster David Liu told reporters this afternoon tha
         correctAnswer: 2,
       },
       {
-        id: "L4Q4",
+        id: "Listening-Part4-01-Q4",
         question: "The city has opened ___ additional warming centres.",
         options: ["two", "three", "four", "five"],
         correctAnswer: 1,
       },
       {
-        id: "L4Q5",
+        id: "Listening-Part4-01-Q5",
         question: "The last comparable snowfall event in Vancouver was in ___.",
         options: ["2012", "2015", "2017", "2019"],
         correctAnswer: 2,
@@ -413,7 +413,7 @@ Environment Canada senior forecaster David Liu told reporters this afternoon tha
     ],
   },
   {
-    id: "L5",
+    id: "Listening-Part5-01",
     title: "01 | 8 Questions | Listening to a Discussion",
     instruction:
       "You will hear a discussion between colleagues. Listen and answer the questions.",
@@ -436,13 +436,13 @@ Tom: Will do. I've actually already been in touch with a couple of suppliers, so
 Lisa: Sounds good. I'll set up a meeting with IT first thing tomorrow morning.`,
     questions: [
       {
-        id: "L5Q1",
+        id: "Listening-Part5-01-Q1",
         question: "Online sales grew by ___ this quarter.",
         options: ["8%", "10%", "12%", "18%"],
         correctAnswer: 2,
       },
       {
-        id: "L5Q2",
+        id: "Listening-Part5-01-Q2",
         question: "Tom believes the drop in in-store sales was caused by ___.",
         options: [
           "poor customer service",
@@ -453,7 +453,7 @@ Lisa: Sounds good. I'll set up a meeting with IT first thing tomorrow morning.`,
         correctAnswer: 1,
       },
       {
-        id: "L5Q3",
+        id: "Listening-Part5-01-Q3",
         question: "Lisa suggests the company should ___.",
         options: [
           "drop the premium line entirely",
@@ -464,13 +464,13 @@ Lisa: Sounds good. I'll set up a meeting with IT first thing tomorrow morning.`,
         correctAnswer: 2,
       },
       {
-        id: "L5Q4",
+        id: "Listening-Part5-01-Q4",
         question: "The loyalty program has signed up ___ members.",
         options: ["1,800", "2,000", "2,300", "3,200"],
         correctAnswer: 2,
       },
       {
-        id: "L5Q5",
+        id: "Listening-Part5-01-Q5",
         question: "Karen asks Lisa to ___.",
         options: [
           "train new staff on the loyalty program",
@@ -481,13 +481,13 @@ Lisa: Sounds good. I'll set up a meeting with IT first thing tomorrow morning.`,
         correctAnswer: 2,
       },
       {
-        id: "L5Q6",
+        id: "Listening-Part5-01-Q6",
         question: "In-store sales dropped by ___ this quarter.",
         options: ["4%", "8%", "12%", "18%"],
         correctAnswer: 1,
       },
       {
-        id: "L5Q7",
+        id: "Listening-Part5-01-Q7",
         question: "Lisa identifies the issue with the loyalty program as ___.",
         options: [
           "it requires a monthly fee",
@@ -498,7 +498,7 @@ Lisa: Sounds good. I'll set up a meeting with IT first thing tomorrow morning.`,
         correctAnswer: 2,
       },
       {
-        id: "L5Q8",
+        id: "Listening-Part5-01-Q8",
         question: "Karen wants the proposals ___.",
         options: [
           "by the end of the day",
@@ -511,7 +511,7 @@ Lisa: Sounds good. I'll set up a meeting with IT first thing tomorrow morning.`,
     ],
   },
   {
-    id: "L6",
+    id: "Listening-Part6-01",
     title: "01 | 6 Questions | Listening for Viewpoints",
     instruction:
       "You will hear a discussion presenting different viewpoints. Listen and answer the questions.",
@@ -530,7 +530,7 @@ Dr. Foster: Those are fair points about product quality, and the industry is imp
 Host: Thank you both for such a thoughtful discussion. It's clear this is a nuanced issue that will require careful planning, collaboration between government and industry, and a realistic timeline for implementation.`,
     questions: [
       {
-        id: "L6Q1",
+        id: "Listening-Part6-01-Q1",
         question: "Dr. Foster's main argument is that ___.",
         options: [
           "plastics are too expensive for businesses",
@@ -541,7 +541,7 @@ Host: Thank you both for such a thoughtful discussion. It's clear this is a nuan
         correctAnswer: 1,
       },
       {
-        id: "L6Q2",
+        id: "Listening-Part6-01-Q2",
         question: "Mark's primary concern about a plastic ban is that ___.",
         options: [
           "it would hurt tourism",
@@ -552,7 +552,7 @@ Host: Thank you both for such a thoughtful discussion. It's clear this is a nuan
         correctAnswer: 2,
       },
       {
-        id: "L6Q3",
+        id: "Listening-Part6-01-Q3",
         question: "Dr. Foster suggests ___ as a compromise.",
         options: [
           "banning all plastics immediately",
@@ -563,7 +563,7 @@ Host: Thank you both for such a thoughtful discussion. It's clear this is a nuan
         correctAnswer: 2,
       },
       {
-        id: "L6Q4",
+        id: "Listening-Part6-01-Q4",
         question: "According to Mark, compostable containers cost ___.",
         options: [
           "twice as much",
@@ -574,7 +574,7 @@ Host: Thank you both for such a thoughtful discussion. It's clear this is a nuan
         correctAnswer: 1,
       },
       {
-        id: "L6Q5",
+        id: "Listening-Part6-01-Q5",
         question: "When stores started charging for plastic bags, usage ___.",
         options: [
           "increased",
@@ -585,7 +585,7 @@ Host: Thank you both for such a thoughtful discussion. It's clear this is a nuan
         correctAnswer: 2,
       },
       {
-        id: "L6Q6",
+        id: "Listening-Part6-01-Q6",
         question: "According to Dr. Foster, ___ of ocean plastic comes from land-based sources.",
         options: [
           "over 50%",
@@ -1064,7 +1064,7 @@ export const readingPartsOfficial: ReadingPart[] = readingPartsBase;
 
 const writingTasksBase: WritingTask[] = [
   {
-    id: "W1",
+    id: "Writing-Task1-01",
     title: "01 | 1 Task | Writing an Email",
     instruction:
       "Read the following situation and write an email of about 150–200 words.",
@@ -1078,7 +1078,7 @@ Write an email to your landlord. In your email:
     maxWords: 200,
   },
   {
-    id: "W2",
+    id: "Writing-Task2-01",
     title: "01 | 1 Task | Responding to Survey Questions",
     instruction:
       "Read the following information and write a response of about 150–200 words.",
@@ -1101,7 +1101,7 @@ export const writingTasksOfficial: WritingTask[] = writingTasksBase;
 
 const speakingTasksBase: SpeakingTask[] = [
   {
-    id: "S0",
+    id: "Speaking-Practice-01",
     title: "Practice Task (unscored)",
     instruction:
       "This is a practice task. It will not be scored. Respond to the prompt below to warm up.",
@@ -1111,7 +1111,7 @@ const speakingTasksBase: SpeakingTask[] = [
     responseTime: 60,
   },
   {
-    id: "S1",
+    id: "Speaking-Task1-01",
     title: "01 | 1 Task | Giving Advice",
     instruction:
       "A friend is asking you for advice. Respond as if you are speaking to them.",
@@ -1121,7 +1121,7 @@ const speakingTasksBase: SpeakingTask[] = [
     responseTime: 90,
   },
   {
-    id: "S2",
+    id: "Speaking-Task2-01",
     title: "01 | 1 Task | Talking About a Personal Experience",
     instruction: "Describe a personal experience based on the prompt below.",
     prompt:
@@ -1130,7 +1130,7 @@ const speakingTasksBase: SpeakingTask[] = [
     responseTime: 60,
   },
   {
-    id: "S3",
+    id: "Speaking-Task3-01",
     title: "01 | 1 Task | Describing a Scene",
     instruction:
       "Describe the scene below in as much detail as possible. Imagine you are describing it to someone who cannot see it.",
@@ -1140,7 +1140,7 @@ const speakingTasksBase: SpeakingTask[] = [
     responseTime: 60,
   },
   {
-    id: "S4",
+    id: "Speaking-Task4-01",
     title: "01 | 1 Task | Making Predictions",
     instruction: "Make predictions about the situation described below.",
     prompt:
@@ -1149,7 +1149,7 @@ const speakingTasksBase: SpeakingTask[] = [
     responseTime: 60,
   },
   {
-    id: "S5",
+    id: "Speaking-Task5-01",
     title: "01 | 1 Task | Comparing and Persuading",
     instruction:
       "Compare the two options below and persuade your friend to choose the one you prefer.",
@@ -1159,7 +1159,7 @@ const speakingTasksBase: SpeakingTask[] = [
     responseTime: 60,
   },
   {
-    id: "S6",
+    id: "Speaking-Task6-01",
     title: "01 | 1 Task | Dealing with a Difficult Situation",
     instruction: "Respond to the difficult situation described below.",
     prompt:
@@ -1168,7 +1168,7 @@ const speakingTasksBase: SpeakingTask[] = [
     responseTime: 60,
   },
   {
-    id: "S7",
+    id: "Speaking-Task7-01",
     title: "01 | 1 Task | Expressing Opinions",
     instruction: "Express your opinion on the topic below.",
     prompt:
@@ -1177,7 +1177,7 @@ const speakingTasksBase: SpeakingTask[] = [
     responseTime: 90,
   },
   {
-    id: "S8",
+    id: "Speaking-Task8-01",
     title: "01 | 1 Task | Describing an Unusual Situation",
     instruction:
       "Describe what is happening in the unusual situation below and explain what you think might have led to it.",

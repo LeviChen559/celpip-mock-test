@@ -2,7 +2,7 @@ import { SpeakingTask } from "./celpip-data";
 
 export const speakingTasksExtra: SpeakingTask[] = [
   {
-    id: "S9",
+    id: "Speaking-Task1-02",
     title: "02 | 1 Task | Giving Advice",
     instruction:
       "A friend is asking you for advice. Respond as if you are speaking to them.",
@@ -12,7 +12,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
     responseTime: 90,
   },
   {
-    id: "S10",
+    id: "Speaking-Task2-02",
     title: "02 | 1 Task | Talking About a Personal Experience",
     instruction:
       "Talk about a personal experience related to the topic below.",
@@ -22,7 +22,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
     responseTime: 60,
   },
   {
-    id: "S11",
+    id: "Speaking-Task3-02",
     title: "02 | 1 Task | Describing a Scene",
     instruction:
       "Describe what you see in as much detail as possible.",
@@ -32,7 +32,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
     responseTime: 60,
   },
   {
-    id: "S12",
+    id: "Speaking-Task4-02",
     title: "02 | 1 Task | Making Predictions",
     instruction:
       "Make predictions about the topic described below.",
@@ -42,7 +42,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
     responseTime: 60,
   },
   {
-    id: "S13",
+    id: "Speaking-Task5-02",
     title: "02 | 1 Task | Comparing and Persuading",
     instruction:
       "Compare the two options below and persuade your listener to choose one.",
@@ -52,7 +52,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
     responseTime: 60,
   },
   {
-    id: "S14",
+    id: "Speaking-Task6-02",
     title: "02 | 1 Task | Dealing with a Difficult Situation",
     instruction:
       "Respond to the situation as if you are speaking to the person involved.",
@@ -62,7 +62,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
     responseTime: 60,
   },
   {
-    id: "S15",
+    id: "Speaking-Task7-02",
     title: "02 | 1 Task | Expressing Opinions",
     instruction:
       "Express and support your opinion on the topic below.",
@@ -72,7 +72,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
     responseTime: 90,
   },
   {
-    id: "S16",
+    id: "Speaking-Task8-02",
     title: "02 | 1 Task | Describing an Unusual Situation",
     instruction:
       "Describe the unusual situation and explain how you would react.",
@@ -82,7 +82,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
     responseTime: 60,
   },
   {
-    id: "S17",
+    id: "Speaking-Task1-03",
     title: "03 | 1 Task | Giving Advice",
     instruction:
       "A friend is asking you for advice. Respond as if you are speaking to them.",
@@ -92,7 +92,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
     responseTime: 90,
   },
   {
-    id: "S18",
+    id: "Speaking-Task2-03",
     title: "03 | 1 Task | Talking About a Personal Experience",
     instruction:
       "Talk about a personal experience related to the topic below.",
@@ -102,7 +102,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
     responseTime: 60,
   },
   {
-    id: "S19",
+    id: "Speaking-Task3-03",
     title: "03 | 1 Task | Describing a Scene",
     instruction:
       "Describe what you see in as much detail as possible.",
@@ -112,7 +112,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
     responseTime: 60,
   },
   {
-    id: "S20",
+    id: "Speaking-Task4-03",
     title: "03 | 1 Task | Making Predictions",
     instruction:
       "Make predictions about the topic described below.",
@@ -122,7 +122,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
     responseTime: 60,
   },
   {
-    id: "S21",
+    id: "Speaking-Task5-03",
     title: "03 | 1 Task | Comparing and Persuading",
     instruction:
       "Compare the two options below and persuade your listener to choose one.",
@@ -132,7 +132,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
     responseTime: 60,
   },
   {
-    id: "S22",
+    id: "Speaking-Task6-03",
     title: "03 | 1 Task | Dealing with a Difficult Situation",
     instruction:
       "Respond to the situation as if you are speaking to the person involved.",
@@ -142,7 +142,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
     responseTime: 60,
   },
   {
-    id: "S23",
+    id: "Speaking-Task7-03",
     title: "03 | 1 Task | Expressing Opinions",
     instruction:
       "Express and support your opinion on the topic below.",
@@ -152,7 +152,7 @@ export const speakingTasksExtra: SpeakingTask[] = [
     responseTime: 90,
   },
   {
-    id: "S24",
+    id: "Speaking-Task8-03",
     title: "03 | 1 Task | Describing an Unusual Situation",
     instruction:
       "Describe the unusual situation and explain how you would react.",

@@ -2,7 +2,7 @@ import { WritingTask } from "./celpip-data";
 
 export const writingTasksExtra: WritingTask[] = [
   {
-    id: "W3",
+    id: "Writing-Task1-02",
     title: "02 | 1 Task | Writing an Email",
     instruction:
       "Read the following situation and write an email of about 150–200 words.",
@@ -16,7 +16,7 @@ Write an email to your professor, Dr. Thompson. In your email:
     maxWords: 200,
   },
   {
-    id: "W4",
+    id: "Writing-Task2-02",
     title: "02 | 1 Task | Responding to Survey Questions",
     instruction:
       "Read the following information and write a response of about 150–200 words.",
@@ -30,7 +30,7 @@ Choose the option you prefer and explain why. Support your choice with reasons a
     maxWords: 200,
   },
   {
-    id: "W5",
+    id: "Writing-Task1-03",
     title: "03 | 1 Task | Writing an Email",
     instruction:
       "Read the following situation and write an email of about 150–200 words.",
@@ -44,7 +44,7 @@ Write an email to Northern Sky Airlines' customer service department. In your em
     maxWords: 200,
   },
   {
-    id: "W6",
+    id: "Writing-Task2-03",
     title: "03 | 1 Task | Responding to Survey Questions",
     instruction:
       "Read the following information and write a response of about 150–200 words.",
@@ -58,7 +58,7 @@ Choose the option you prefer and explain why. Support your choice with reasons a
     maxWords: 200,
   },
   {
-    id: "W7",
+    id: "Writing-Task1-04",
     title: "04 | 1 Task | Writing an Email",
     instruction:
       "Read the following situation and write an email of about 150–200 words.",
@@ -72,7 +72,7 @@ Write an email to your manager, Karen Liu. In your email:
     maxWords: 200,
   },
   {
-    id: "W8",
+    id: "Writing-Task2-04",
     title: "04 | 1 Task | Responding to Survey Questions",
     instruction:
       "Read the following information and write a response of about 150–200 words.",
@@ -86,7 +86,7 @@ Choose the option you prefer and explain why. Support your choice with reasons a
     maxWords: 200,
   },
   {
-    id: "W9",
+    id: "Writing-Task1-05",
     title: "05 | 1 Task | Writing an Email",
     instruction:
       "Read the following situation and write an email of about 150–200 words.",
@@ -100,7 +100,7 @@ Write an email to FitLife Gym's billing department. In your email:
     maxWords: 200,
   },
   {
-    id: "W10",
+    id: "Writing-Task2-05",
     title: "05 | 1 Task | Responding to Survey Questions",
     instruction:
       "Read the following information and write a response of about 150–200 words.",
@@ -114,7 +114,7 @@ Choose the option you prefer and explain why. Support your choice with reasons a
     maxWords: 200,
   },
   {
-    id: "W11",
+    id: "Writing-Task1-06",
     title: "06 | 1 Task | Writing an Email",
     instruction:
       "Read the following situation and write an email of about 150–200 words.",
@@ -128,7 +128,7 @@ Write an email to your neighbour, David Park. In your email:
     maxWords: 200,
   },
   {
-    id: "W12",
+    id: "Writing-Task2-06",
     title: "06 | 1 Task | Responding to Survey Questions",
     instruction:
       "Read the following information and write a response of about 150–200 words.",
@@ -142,7 +142,7 @@ Choose the option you prefer and explain why. Support your choice with reasons a
     maxWords: 200,
   },
   {
-    id: "W13",
+    id: "Writing-Task1-07",
     title: "07 | 1 Task | Writing an Email",
     instruction:
       "Read the following situation and write an email of about 150–200 words.",
@@ -156,7 +156,7 @@ Write an email to your city council representative, Councillor Maria Santos. In 
     maxWords: 200,
   },
   {
-    id: "W14",
+    id: "Writing-Task2-07",
     title: "07 | 1 Task | Responding to Survey Questions",
     instruction:
       "Read the following information and write a response of about 150–200 words.",
@@ -170,7 +170,7 @@ Choose the option you prefer and explain why. Support your choice with reasons a
     maxWords: 200,
   },
   {
-    id: "W15",
+    id: "Writing-Task1-08",
     title: "08 | 1 Task | Writing an Email",
     instruction:
       "Read the following situation and write an email of about 150–200 words.",
@@ -184,7 +184,7 @@ Write an email to your co-worker, Priya Sharma. In your email:
     maxWords: 200,
   },
   {
-    id: "W16",
+    id: "Writing-Task2-08",
     title: "08 | 1 Task | Responding to Survey Questions",
     instruction:
       "Read the following information and write a response of about 150–200 words.",
@@ -198,7 +198,7 @@ Choose the option you prefer and explain why. Support your choice with reasons a
     maxWords: 200,
   },
   {
-    id: "W17",
+    id: "Writing-Task1-09",
     title: "09 | 1 Task | Writing an Email",
     instruction:
       "Read the following situation and write an email of about 150–200 words.",
@@ -212,7 +212,7 @@ Write an email to Maple Leaf Insurance's claims department. In your email:
     maxWords: 200,
   },
   {
-    id: "W18",
+    id: "Writing-Task2-09",
     title: "09 | 1 Task | Responding to Survey Questions",
     instruction:
       "Read the following information and write a response of about 150–200 words.",
