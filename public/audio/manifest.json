@@ -1,5 +1,5 @@
 {
-  "L0": {
+  "Listening-Practice-01": {
     "lines": [
       {
         "file": "L0-0.mp3",
@@ -28,7 +28,7 @@
       }
     ]
   },
-  "L1": {
+  "Listening-Part1-01": {
     "lines": [
       {
         "file": "L1-0.mp3",
@@ -72,7 +72,7 @@
       }
     ]
   },
-  "L2": {
+  "Listening-Part2-01": {
     "lines": [
       {
         "file": "L2-0.mp3",
@@ -121,7 +121,7 @@
       }
     ]
   },
-  "L3": {
+  "Listening-Part3-01": {
     "lines": [
       {
         "file": "L3-0.mp3",
@@ -130,7 +130,7 @@
       }
     ]
   },
-  "L4": {
+  "Listening-Part4-01": {
     "lines": [
       {
         "file": "L4-0.mp3",
@@ -139,7 +139,7 @@
       }
     ]
   },
-  "L5": {
+  "Listening-Part5-01": {
     "lines": [
       {
         "file": "L5-0.mp3",
@@ -183,7 +183,7 @@
       }
     ]
   },
-  "L6": {
+  "Listening-Part6-01": {
     "lines": [
       {
         "file": "L6-0.mp3",
@@ -222,7 +222,7 @@
       }
     ]
   },
-  "L7": {
+  "Listening-Part1-02": {
     "lines": [
       {
         "file": "L7-0.mp3",
