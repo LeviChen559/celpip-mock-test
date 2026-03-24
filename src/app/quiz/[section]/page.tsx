@@ -411,7 +411,7 @@ export default function QuizPractice({
       type: "quiz",
       quizSection: section,
       quizPart: partParam,
-      scores: {},
+      scores: { [section]: score },
       details: {
         quiz: { correct, total },
         answers: {
