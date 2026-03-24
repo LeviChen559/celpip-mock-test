@@ -786,6 +786,157 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── Pricing ──────────────────────────────────── */}
+      <section className="max-w-screen-xl mx-auto px-4 sm:px-6 py-12 sm:py-20 relative z-10">
+        <div className="text-center mb-10 sm:mb-14">
+          <h2
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 hp-reveal"
+            style={{ fontFamily: "var(--font-serif)" }}
+          >
+            Simple,{" "}
+            <span style={{ color: "var(--hp-accent)" }}>transparent pricing</span>
+          </h2>
+          <p
+            className="text-base max-w-xl mx-auto hp-reveal hp-reveal-d1"
+            style={{ color: "var(--hp-text-muted)" }}
+          >
+            Start for free. Upgrade when you&apos;re ready to get serious about your score.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-5 max-w-4xl mx-auto">
+          {/* Free plan */}
+          <div className="hp-glass rounded-2xl p-6 sm:p-8 flex flex-col hp-reveal">
+            <p className="text-xs uppercase tracking-widest font-bold mb-3" style={{ color: "var(--hp-text-muted)" }}>
+              Free
+            </p>
+            <div className="flex items-baseline gap-1 mb-1">
+              <span className="text-4xl font-bold" style={{ fontFamily: "var(--font-serif)", color: "var(--hp-text)" }}>$0</span>
+            </div>
+            <p className="text-sm mb-6" style={{ color: "var(--hp-text-muted)" }}>
+              Perfect to explore and try the platform.
+            </p>
+            <ul className="space-y-3 mb-8 flex-1">
+              {[
+                "AI diagnostic quiz",
+                "Score estimate across 4 dimensions",
+                "1 writing + 1 speaking practice",
+                "Basic AI feedback",
+              ].map((f) => (
+                <li key={f} className="flex items-start gap-2 text-sm" style={{ color: "var(--hp-text)" }}>
+                  <Check className="w-4 h-4 shrink-0 mt-0.5" style={{ color: "var(--hp-accent)" }} />
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <button
+              onClick={handleCta}
+              className="w-full py-3 rounded-full text-sm font-semibold border transition-colors"
+              style={{
+                borderColor: "var(--hp-border)",
+                color: "var(--hp-text)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "var(--hp-accent-glow)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "transparent";
+              }}
+            >
+              Get Started
+            </button>
+          </div>
+
+          {/* Pro plan */}
+          <div
+            className="hp-glass rounded-2xl p-6 sm:p-8 flex flex-col relative overflow-hidden hp-reveal hp-reveal-d1"
+            style={{ border: "2px solid var(--hp-accent)" }}
+          >
+            {/* Popular badge */}
+            <div
+              className="absolute top-4 right-4 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider text-white"
+              style={{ backgroundColor: "var(--hp-accent)" }}
+            >
+              Popular
+            </div>
+            <p className="text-xs uppercase tracking-widest font-bold mb-3" style={{ color: "var(--hp-accent)" }}>
+              Pro
+            </p>
+            <div className="flex items-baseline gap-1 mb-1">
+              <span className="text-4xl font-bold" style={{ fontFamily: "var(--font-serif)", color: "var(--hp-text)" }}>$19</span>
+              <span className="text-sm" style={{ color: "var(--hp-text-muted)" }}>/month</span>
+            </div>
+            <p className="text-sm mb-6" style={{ color: "var(--hp-text-muted)" }}>
+              Everything you need to hit your target score.
+            </p>
+            <ul className="space-y-3 mb-8 flex-1">
+              {[
+                "Unlimited practice quizzes",
+                "Personalized 30-day study plan",
+                "Detailed AI feedback on every response",
+                "Score tracking & progress analytics",
+                "All 4 sections: Reading, Writing, Listening, Speaking",
+              ].map((f) => (
+                <li key={f} className="flex items-start gap-2 text-sm" style={{ color: "var(--hp-text)" }}>
+                  <Check className="w-4 h-4 shrink-0 mt-0.5" style={{ color: "var(--hp-accent)" }} />
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <button
+              onClick={handleCta}
+              className="hp-cta-btn w-full py-3 rounded-full text-sm font-semibold"
+            >
+              Start Free Trial
+            </button>
+          </div>
+
+          {/* Team / Tutors plan */}
+          <div className="hp-glass rounded-2xl p-6 sm:p-8 flex flex-col hp-reveal hp-reveal-d2">
+            <p className="text-xs uppercase tracking-widest font-bold mb-3" style={{ color: "var(--hp-text-muted)" }}>
+              Max
+            </p>
+            <div className="flex items-baseline gap-1 mb-1">
+              <span className="text-4xl font-bold" style={{ fontFamily: "var(--font-serif)", color: "var(--hp-text)" }}>$49</span>
+              <span className="text-sm" style={{ color: "var(--hp-text-muted)" }}>/month</span>
+            </div>
+            <p className="text-sm mb-6" style={{ color: "var(--hp-text-muted)" }}>
+              Get expert teacher guidance alongside AI coaching.
+            </p>
+            <ul className="space-y-3 mb-8 flex-1">
+              {[
+                "Everything in Pro",
+                "1-on-1 teacher feedback on writing & speaking",
+                "Weekly live Q&A sessions with CELPIP instructors",
+                "Teacher-reviewed study plan adjustments",
+                "Priority support & direct messaging with teachers",
+              ].map((f) => (
+                <li key={f} className="flex items-start gap-2 text-sm" style={{ color: "var(--hp-text)" }}>
+                  <Check className="w-4 h-4 shrink-0 mt-0.5" style={{ color: "var(--hp-accent)" }} />
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <button
+              onClick={handleCta}
+              className="w-full py-3 rounded-full text-sm font-semibold border transition-colors"
+              style={{
+                borderColor: "var(--hp-border)",
+                color: "var(--hp-text)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "var(--hp-accent-glow)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "transparent";
+              }}
+            >
+              Get Max
+            </button>
+          </div>
+        </div>
+      </section>
+
       {/* ── Testimonials ────────────────────────────── */}
       <section className="max-w-screen-xl mx-auto px-4 sm:px-6 py-12 sm:py-20 relative z-10">
         <div className="text-center mb-10 sm:mb-14">
