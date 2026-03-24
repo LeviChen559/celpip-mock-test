@@ -653,6 +653,7 @@ export default function Home() {
                   <div className="flex flex-wrap gap-1.5">
                     {[
                       { label: "Listening Part 3", color: "#e89234" },
+                      { label: "Reading Part 4", color: "#5a8a6a" },
                       { label: "Writing: Coherence", color: "#7a7ac7" },
                       { label: "Speaking: Grammar", color: "#c77a8b" },
                     ].map((w) => (
