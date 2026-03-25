@@ -449,12 +449,12 @@ export default function AdminPage() {
               onClick={() => router.push("/admin/red-flags")}
               className="rounded-full bg-red-50 hover:bg-red-100 text-red-600 border border-red-200"
             >
-              <Flag className="w-4 h-4 mr-1" />
-              Red Flags
+              <Flag className="w-4 h-4 sm:mr-1" />
+              <span className="hidden sm:inline">Red Flags</span>
             </Button>
             <Button size="sm" onClick={() => router.push("/dashboard")} className="rounded-full bg-[#6b4c9a] hover:bg-[#5a3d85] text-white">
-              <span className="hidden sm:inline">Back to Dashboard</span>
-              <span className="sm:hidden">Dashboard</span>
+              <ChevronLeft className="w-4 h-4 sm:mr-1" />
+              <span className="hidden sm:inline">Dashboard</span>
             </Button>
           </div>
         </div>
