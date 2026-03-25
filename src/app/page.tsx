@@ -15,6 +15,10 @@ import {
   CircleAlert,
   Clock,
   ShieldQuestion,
+  Zap,
+  Shield,
+  Crown,
+  BicepsFlexed,
 } from "lucide-react";
 
 const testimonials = [
@@ -852,136 +856,191 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-5 max-w-4xl mx-auto">
-          {/* Free plan */}
-          <div className="hp-glass rounded-2xl p-6 sm:p-8 flex flex-col hp-reveal">
-            <p className="text-xs uppercase tracking-widest font-bold mb-3" style={{ color: "var(--hp-text-muted)" }}>
-              Free
-            </p>
-            <div className="flex items-baseline gap-1 mb-1">
-              <span className="text-4xl font-bold" style={{ fontFamily: "var(--font-serif)", color: "var(--hp-text)" }}>$0</span>
-            </div>
-            <p className="text-sm mb-6" style={{ color: "var(--hp-text-muted)" }}>
-              Perfect to explore and try the platform.
-            </p>
-            <ul className="space-y-3 mb-8 flex-1">
-              {[
-                "AI diagnostic quiz",
-                "Score estimate across 4 dimensions",
-                "1 writing + 1 speaking practice",
-                "Basic AI feedback",
-              ].map((f) => (
-                <li key={f} className="flex items-start gap-2 text-sm" style={{ color: "var(--hp-text)" }}>
-                  <Check className="w-4 h-4 shrink-0 mt-0.5" style={{ color: "var(--hp-accent)" }} />
-                  {f}
-                </li>
-              ))}
-            </ul>
-            <button
-              onClick={handleCta}
-              className="w-full py-3 rounded-full text-sm font-semibold border transition-colors"
-              style={{
-                borderColor: "var(--hp-border)",
-                color: "var(--hp-text)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "var(--hp-accent-glow)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "transparent";
-              }}
-            >
-              Get Started
-            </button>
-          </div>
-
-          {/* Pro plan */}
-          <div
-            className="hp-glass rounded-2xl p-6 sm:p-8 flex flex-col relative overflow-hidden hp-reveal hp-reveal-d1"
-            style={{ border: "2px solid var(--hp-accent)" }}
-          >
-            {/* Popular badge */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
+          {[
+            {
+              id: "free",
+              name: "Free",
+              price: "$0",
+              period: "forever",
+              description: "Get started with basic practice",
+              icon: Zap,
+              accent: false,
+              popular: false,
+              features: [
+                "15 AI credits / month",
+                "Full-length mock tests",
+                "Instant reading & listening scores",
+                "Basic study dashboard",
+                "Community support",
+              ],
+              cta: "Get Started",
+            },
+            {
+              id: "improver",
+              name: "Improver",
+              price: "$15",
+              period: "/ month",
+              description: "AI-powered feedback to level up fast",
+              icon: Sparkles,
+              accent: true,
+              popular: true,
+              features: [
+                "100 AI credits / month",
+                "AI writing scoring & feedback",
+                "AI speaking evaluation",
+                "Personalized study plan",
+                "Diagnostic assessment",
+                "Priority support",
+              ],
+              cta: "Get Improver",
+            },
+            {
+              id: "intensive",
+              name: "Intensive",
+              price: "$45",
+              period: "/ 3 months",
+              description: "Maximum preparation for test day",
+              icon: BicepsFlexed,
+              accent: false,
+              popular: false,
+              features: [
+                "500 AI credits / month",
+                "Everything in Improver",
+                "Exclusive CELPIP test video",
+                "Real-time writing feedback",
+                "Advanced analytics & trends",
+                "Speaking practice with AI coach",
+                "Dedicated support",
+              ],
+              cta: "Get Intensive",
+            },
+            {
+              id: "guarantee",
+              name: "Score Guarantee",
+              price: "$79",
+              period: "one-time",
+              description: "90-day unlimited access with confidence",
+              icon: Crown,
+              accent: false,
+              popular: false,
+              features: [
+                "Unlimited AI credits for 90 days",
+                "Everything in Intensive",
+                "Teacher review sessions",
+                "Custom study schedule",
+                "Score improvement guarantee",
+                "1-on-1 support channel",
+              ],
+              cta: "Get Guarantee",
+            },
+          ].map((plan, i) => (
             <div
-              className="absolute top-4 right-4 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider text-white"
-              style={{ backgroundColor: "var(--hp-accent)" }}
+              key={plan.id}
+              className={`hp-reveal hp-reveal-d${i} relative rounded-2xl p-6 sm:p-8 flex flex-col ${
+                plan.accent ? "" : "hp-glass"
+              }`}
+              style={
+                plan.accent
+                  ? {
+                      background: "#ffffff",
+                      border: "2px solid var(--hp-accent)",
+                      boxShadow: "0 8px 32px rgba(184, 112, 59, 0.12), 0 1px 3px rgba(0,0,0,0.04)",
+                    }
+                  : undefined
+              }
             >
-              Popular
-            </div>
-            <p className="text-xs uppercase tracking-widest font-bold mb-3" style={{ color: "var(--hp-accent)" }}>
-              Pro
-            </p>
-            <div className="flex items-baseline gap-1 mb-1">
-              <span className="text-4xl font-bold" style={{ fontFamily: "var(--font-serif)", color: "var(--hp-text)" }}>$19</span>
-              <span className="text-sm" style={{ color: "var(--hp-text-muted)" }}>/month</span>
-            </div>
-            <p className="text-sm mb-6" style={{ color: "var(--hp-text-muted)" }}>
-              Everything you need to hit your target score.
-            </p>
-            <ul className="space-y-3 mb-8 flex-1">
-              {[
-                "Unlimited practice quizzes",
-                "Personalized 30-day study plan",
-                "Detailed AI feedback on every response",
-                "Score tracking & progress analytics",
-                "All 4 sections: Reading, Writing, Listening, Speaking",
-              ].map((f) => (
-                <li key={f} className="flex items-start gap-2 text-sm" style={{ color: "var(--hp-text)" }}>
-                  <Check className="w-4 h-4 shrink-0 mt-0.5" style={{ color: "var(--hp-accent)" }} />
-                  {f}
-                </li>
-              ))}
-            </ul>
-            <button
-              onClick={handleCta}
-              className="hp-cta-btn w-full py-3 rounded-full text-sm font-semibold"
-            >
-              Start Free Trial
-            </button>
-          </div>
+              {plan.popular && (
+                <div
+                  className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-semibold text-white"
+                  style={{ background: "var(--hp-accent)" }}
+                >
+                  Most Popular
+                </div>
+              )}
 
-          {/* Team / Tutors plan */}
-          <div className="hp-glass rounded-2xl p-6 sm:p-8 flex flex-col hp-reveal hp-reveal-d2">
-            <p className="text-xs uppercase tracking-widest font-bold mb-3" style={{ color: "var(--hp-text-muted)" }}>
-              Max
-            </p>
-            <div className="flex items-baseline gap-1 mb-1">
-              <span className="text-4xl font-bold" style={{ fontFamily: "var(--font-serif)", color: "var(--hp-text)" }}>$49</span>
-              <span className="text-sm" style={{ color: "var(--hp-text-muted)" }}>/month</span>
+              <div
+                className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
+                style={{
+                  background: plan.accent ? "var(--hp-accent-glow)" : "rgba(0,0,0,0.03)",
+                }}
+              >
+                <plan.icon
+                  className="w-5 h-5"
+                  style={{
+                    color: plan.accent ? "var(--hp-accent)" : "var(--hp-text-muted)",
+                  }}
+                />
+              </div>
+
+              <p
+                className="text-xs uppercase tracking-widest font-bold mb-3"
+                style={{ color: plan.accent ? "var(--hp-accent)" : "var(--hp-text-muted)" }}
+              >
+                {plan.name}
+              </p>
+              <div className="flex items-baseline gap-1 mb-1">
+                <span className="text-4xl font-bold" style={{ fontFamily: "var(--font-serif)", color: "var(--hp-text)" }}>
+                  {plan.price}
+                </span>
+                <span className="text-sm" style={{ color: "var(--hp-text-muted)" }}>
+                  {plan.period}
+                </span>
+              </div>
+              <p className="text-sm mb-6" style={{ color: "var(--hp-text-muted)" }}>
+                {plan.description}
+              </p>
+
+              <ul className="space-y-2.5 mb-8 flex-1">
+                {plan.features.map((f) => (
+                  <li key={f} className="flex items-start gap-2 text-sm" style={{ color: "var(--hp-text)" }}>
+                    <Check className="w-4 h-4 shrink-0 mt-0.5" style={{ color: plan.accent ? "var(--hp-accent)" : "var(--hp-text-muted)" }} />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+
+              <button
+                onClick={handleCta}
+                className={`w-full py-3 rounded-full text-sm font-semibold flex items-center justify-center gap-2 transition-colors ${
+                  plan.accent ? "hp-cta-btn" : "border"
+                }`}
+                style={
+                  plan.accent
+                    ? undefined
+                    : {
+                        borderColor: "var(--hp-border)",
+                        color: "var(--hp-text)",
+                      }
+                }
+                onMouseEnter={(e) => {
+                  if (!plan.accent) {
+                    e.currentTarget.style.borderColor = "var(--hp-accent)";
+                    e.currentTarget.style.color = "var(--hp-accent)";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!plan.accent) {
+                    e.currentTarget.style.borderColor = "var(--hp-border)";
+                    e.currentTarget.style.color = "var(--hp-text)";
+                  }
+                }}
+              >
+                {plan.cta}
+                <ArrowRight className="w-4 h-4" />
+              </button>
             </div>
-            <p className="text-sm mb-6" style={{ color: "var(--hp-text-muted)" }}>
-              Get expert teacher guidance alongside AI coaching.
-            </p>
-            <ul className="space-y-3 mb-8 flex-1">
-              {[
-                "Everything in Pro",
-                "1-on-1 teacher feedback on writing & speaking",
-                "Weekly live Q&A sessions with CELPIP instructors",
-                "Teacher-reviewed study plan adjustments",
-                "Priority support & direct messaging with teachers",
-              ].map((f) => (
-                <li key={f} className="flex items-start gap-2 text-sm" style={{ color: "var(--hp-text)" }}>
-                  <Check className="w-4 h-4 shrink-0 mt-0.5" style={{ color: "var(--hp-accent)" }} />
-                  {f}
-                </li>
-              ))}
-            </ul>
-            <button
-              onClick={handleCta}
-              className="w-full py-3 rounded-full text-sm font-semibold border transition-colors"
-              style={{
-                borderColor: "var(--hp-border)",
-                color: "var(--hp-text)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "var(--hp-accent-glow)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "transparent";
-              }}
-            >
-              Get Max
-            </button>
-          </div>
+          ))}
+        </div>
+
+        {/* Trust badges */}
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-6 md:gap-10 hp-reveal hp-reveal-d5">
+          {["Cancel anytime", "Secure payment", "7-day money-back guarantee"].map((badge) => (
+            <div key={badge} className="flex items-center gap-2 text-xs font-medium" style={{ color: "var(--hp-text-muted)" }}>
+              <Shield className="w-3.5 h-3.5" style={{ color: "var(--hp-accent)" }} />
+              {badge}
+            </div>
+          ))}
         </div>
       </section>
 

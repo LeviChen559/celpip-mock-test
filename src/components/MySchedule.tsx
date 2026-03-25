@@ -135,58 +135,59 @@ export default function MySchedule() {
 
   return (
     <div>
-      {/* Target date */}
-      <Card className="border-2 border-[#e2ddd5] rounded-2xl mb-6">
-        <CardContent className="pt-5">
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-            <div className="flex-1">
-              <p className="text-sm font-medium text-[#1a1a2e] mb-1">Target Test Date</p>
-              <input
-                type="date"
-                value={targetDate}
-                onChange={(e) => setTargetDate(e.target.value)}
-                min={todayStr()}
-                className="border border-[#e2ddd5] rounded-lg px-3 py-2 text-sm bg-white w-full sm:w-auto"
-              />
-            </div>
-            {targetDate && (
-              <div className="text-right">
-                <p className={`text-3xl font-bold ${days > 0 ? "text-[#6b4c9a]" : "text-red-600"}`}>
-                  {days > 0 ? days : 0}
-                </p>
-                <p className="text-xs" style={{ color: "var(--muted-foreground)" }}>
-                  {days > 0 ? "days remaining" : days === 0 ? "Test day!" : "Past due"}
-                </p>
-                {totalItems > 0 && (
-                  <Button
-                    onClick={() => clearAll()}
-                    variant="outline"
-                    className="mt-2 rounded-full border-red-300 text-red-600 hover:bg-red-50 text-xs px-4"
-                  >
-                    Reset Plan
-                  </Button>
-                )}
-              </div>
-            )}
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Progress */}
-      {totalItems > 0 && (
-        <Card className="border-2 border-[#e2ddd5] rounded-2xl mb-6">
+      {/* Target date & Progress */}
+      <div className={`grid gap-4 mb-6 ${totalItems > 0 ? "md:grid-cols-2" : ""}`}>
+        <Card className="border-2 border-[#e2ddd5] rounded-2xl">
           <CardContent className="pt-5">
-            <div className="flex items-center justify-between mb-2">
-              <p className="text-sm font-medium text-[#1a1a2e]">Study Progress</p>
-              <p className="text-sm font-bold text-[#6b4c9a]">{completedCount}/{totalItems}</p>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+              <div className="flex-1">
+                <p className="text-sm font-medium text-[#1a1a2e] mb-1">Target Test Date</p>
+                <input
+                  type="date"
+                  value={targetDate}
+                  onChange={(e) => setTargetDate(e.target.value)}
+                  min={todayStr()}
+                  className="border border-[#e2ddd5] rounded-lg px-3 py-2 text-sm bg-white w-full sm:w-auto"
+                />
+              </div>
+              {targetDate && (
+                <div className="text-right">
+                  <p className={`text-3xl font-bold ${days > 0 ? "text-[#6b4c9a]" : "text-red-600"}`}>
+                    {days > 0 ? days : 0}
+                  </p>
+                  <p className="text-xs" style={{ color: "var(--muted-foreground)" }}>
+                    {days > 0 ? "days remaining" : days === 0 ? "Test day!" : "Past due"}
+                  </p>
+                  {totalItems > 0 && (
+                    <Button
+                      onClick={() => clearAll()}
+                      variant="outline"
+                      className="mt-2 rounded-full border-red-300 text-red-600 hover:bg-red-50 text-xs px-4"
+                    >
+                      Reset Plan
+                    </Button>
+                  )}
+                </div>
+              )}
             </div>
-            <Progress value={completionPct} className="h-2.5" />
-            <p className="text-xs mt-1" style={{ color: "var(--muted-foreground)" }}>
-              {completionPct}% complete
-            </p>
           </CardContent>
         </Card>
-      )}
+
+        {totalItems > 0 && (
+          <Card className="border-2 border-[#e2ddd5] rounded-2xl">
+            <CardContent className="pt-5">
+              <div className="flex items-center justify-between mb-2">
+                <p className="text-sm font-medium text-[#1a1a2e]">Study Progress</p>
+                <p className="text-sm font-bold text-[#6b4c9a]">{completedCount}/{totalItems}</p>
+              </div>
+              <Progress value={completionPct} className="h-2.5" />
+              <p className="text-xs mt-1" style={{ color: "var(--muted-foreground)" }}>
+                {completionPct}% complete
+              </p>
+            </CardContent>
+          </Card>
+        )}
+      </div>
 
       {/* Add form */}
       <Card className="border-2 border-[#e2ddd5] rounded-2xl mb-6">

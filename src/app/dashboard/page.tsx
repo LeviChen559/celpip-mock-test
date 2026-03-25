@@ -34,6 +34,11 @@ import {
   FileText,
   Layers,
   Zap,
+  HatGlasses,
+  User,
+  UserCheck,
+  UserStar,
+  LogOut,
 } from "lucide-react";
 
 // ── Helpers ────────────────────────────────────────────
@@ -393,29 +398,33 @@ export default function Dashboard() {
 
         {/* Desktop-only nav tabs */}
         <div className="hidden md:flex items-center gap-2">
-          {visibleTabs.slice(4).map((tab) => (
-            <button
-              key={tab.key}
-              onClick={() => setActiveTab(tab.key)}
-              className="px-4 py-2 rounded-full text-sm font-medium transition-all"
-              style={{
-                background:
-                  activeTab === tab.key ? "var(--hp-accent)" : "transparent",
-                color:
-                  activeTab === tab.key ? "#ffffff" : "var(--hp-text-muted)",
-              }}
-              onMouseEnter={(e) => {
-                if (activeTab !== tab.key)
-                  e.currentTarget.style.color = "var(--hp-text)";
-              }}
-              onMouseLeave={(e) => {
-                if (activeTab !== tab.key)
-                  e.currentTarget.style.color = "var(--hp-text-muted)";
-              }}
-            >
-              {tab.label}
-            </button>
-          ))}
+          {visibleTabs.filter((t) => ["plan", "mytests", "schedule"].includes(t.key)).map((tab) => {
+            const Icon = tab.icon;
+            return (
+              <button
+                key={tab.key}
+                onClick={() => setActiveTab(tab.key)}
+                className="px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-1.5"
+                style={{
+                  background:
+                    activeTab === tab.key ? "var(--hp-accent)" : "transparent",
+                  color:
+                    activeTab === tab.key ? "#ffffff" : "var(--hp-text-muted)",
+                }}
+                onMouseEnter={(e) => {
+                  if (activeTab !== tab.key)
+                    e.currentTarget.style.color = "var(--hp-text)";
+                }}
+                onMouseLeave={(e) => {
+                  if (activeTab !== tab.key)
+                    e.currentTarget.style.color = "var(--hp-text-muted)";
+                }}
+              >
+                {Icon && <Icon className="w-4 h-4" />}
+                {tab.label}
+              </button>
+            );
+          })}
 
           <div
             className="w-px h-5 mx-1"
@@ -423,27 +432,35 @@ export default function Dashboard() {
           />
         </div>
 
-        <span
-          className="text-sm font-medium hidden sm:inline"
-          style={{ color: "var(--hp-text)" }}
-        >
-          {currentUser.name}
-        </span>
-        {userRole === "admin" && (
-          <button
-            onClick={() => router.push("/admin")}
-            className="px-3 py-1.5 rounded-full text-xs font-medium transition-colors"
-            style={{ color: "var(--hp-accent)" }}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.color = "var(--hp-accent-light)")
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.color = "var(--hp-accent)")
-            }
-          >
-            Admin
-          </button>
-        )}
+        {(() => {
+          const RoleIcon = userRole === "admin" ? HatGlasses : userRole === "teacher" ? UserCheck : userRole === "subscriber" ? UserStar : User;
+          const roleLabel = userRole === "admin" ? "Admin" : userRole === "teacher" ? "Teacher" : null;
+          const isClickable = userRole === "admin";
+          return isClickable ? (
+            <button
+              onClick={() => router.push("/admin")}
+              className="px-3 py-1.5 rounded-full text-sm font-medium inline-flex items-center gap-1.5 transition-colors"
+              style={{ color: "var(--hp-accent)" }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.color = "var(--hp-accent-light)")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.color = "var(--hp-accent)")
+              }
+            >
+              <RoleIcon className="w-4 h-4" />
+              <span className="hidden sm:inline">{currentUser.name}{roleLabel && ` · ${roleLabel}`}</span>
+            </button>
+          ) : (
+            <span
+              className="text-sm font-medium inline-flex items-center gap-1.5"
+              style={{ color: "var(--hp-text)" }}
+            >
+              <RoleIcon className="w-4 h-4" />
+              <span className="hidden sm:inline">{currentUser.name}{roleLabel && ` · ${roleLabel}`}</span>
+            </span>
+          );
+        })()}
         {userRole === "teacher" && (
           <button
             onClick={() => router.push("/teacher")}
@@ -461,13 +478,14 @@ export default function Dashboard() {
         )}
         <button
           onClick={() => signOut()}
-          className="px-3 py-1.5 rounded-full text-xs font-medium transition-colors"
+          className="px-3 py-1.5 rounded-full text-xs font-medium transition-colors flex items-center gap-1.5"
           style={{ color: "var(--hp-text-muted)" }}
           onMouseEnter={(e) => (e.currentTarget.style.color = "#c75050")}
           onMouseLeave={(e) =>
             (e.currentTarget.style.color = "var(--hp-text-muted)")
           }
         >
+          <LogOut className="w-3.5 h-3.5" />
           Sign Out
         </button>
       </nav>
@@ -508,6 +526,7 @@ export default function Dashboard() {
           {visibleTabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.key;
+            const isHeaderTab = ["plan", "mytests", "schedule"].includes(tab.key);
             return (
               <button
                 key={tab.key}
@@ -516,7 +535,7 @@ export default function Dashboard() {
                   isActive
                     ? "px-4 sm:px-5"
                     : "px-2.5 sm:px-5"
-                }`}
+                } ${isHeaderTab ? "md:hidden" : ""}`}
                 style={{
                   background:
                     isActive ? "var(--hp-accent)" : "var(--hp-glass)",
