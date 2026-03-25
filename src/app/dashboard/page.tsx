@@ -18,6 +18,9 @@ import {
   ArrowRight,
   CheckCircle2,
   Lock,
+  ClipboardList,
+  BarChart3,
+  CalendarDays,
 } from "lucide-react";
 
 // ── Helpers ────────────────────────────────────────────
@@ -232,12 +235,12 @@ const quizSections = [
 // ── Tabs ───────────────────────────────────────────────
 
 const tabs = [
-  { key: "full", label: "Full Mock Test" },
-  { key: "section", label: "Section Practice" },
-  { key: "quiz", label: "Quiz Practice" },
-  { key: "plan", label: "Study Plan" },
-  { key: "mytests", label: "My Test Results" },
-  { key: "schedule", label: "My Schedule" },
+  { key: "full", label: "Full Mock Test", icon: null },
+  { key: "section", label: "Section Practice", icon: null },
+  { key: "quiz", label: "Quiz Practice", icon: null },
+  { key: "plan", label: "Study Plan", icon: ClipboardList },
+  { key: "mytests", label: "My Test Results", icon: BarChart3 },
+  { key: "schedule", label: "My Schedule", icon: CalendarDays },
 ] as const;
 
 type TabKey = (typeof tabs)[number]["key"];
@@ -459,57 +462,47 @@ export default function Dashboard() {
 
       {/* ── Tab navigation ─────────────────────────── */}
       <section className="max-w-screen-xl mx-auto px-4 sm:px-6 pb-10 relative z-10">
-        {(() => {
-          const quizTabs = visibleTabs.filter((t) => t.key === "full" || t.key === "section" || t.key === "quiz");
-          const utilTabs = visibleTabs.filter((t) => t.key === "plan" || t.key === "mytests" || t.key === "schedule");
-          const renderTab = (tab: (typeof visibleTabs)[number]) => (
-            <button
-              key={tab.key}
-              onClick={() => setActiveTab(tab.key)}
-              className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-sm font-medium transition-all whitespace-nowrap shrink-0"
-              style={{
-                background:
-                  activeTab === tab.key ? "var(--hp-accent)" : "var(--hp-glass)",
-                color:
-                  activeTab === tab.key ? "#ffffff" : "var(--hp-text-muted)",
-                border:
-                  activeTab === tab.key
-                    ? "1px solid var(--hp-accent)"
-                    : "1px solid var(--hp-border)",
-                boxShadow:
-                  activeTab === tab.key
-                    ? "0 2px 8px rgba(184,112,59,0.15)"
-                    : "none",
-              }}
-              onMouseEnter={(e) => {
-                if (activeTab !== tab.key) {
-                  e.currentTarget.style.borderColor = "var(--hp-accent)";
-                  e.currentTarget.style.color = "var(--hp-accent)";
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (activeTab !== tab.key) {
-                  e.currentTarget.style.borderColor = "var(--hp-border)";
-                  e.currentTarget.style.color = "var(--hp-text-muted)";
-                }
-              }}
-            >
-              {tab.label}
-            </button>
-          );
-          return (
-            <div className="flex flex-col gap-3 mb-8">
-              {/* Quiz mode tabs */}
-              <div className="flex gap-2 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none">
-                {quizTabs.map(renderTab)}
-              </div>
-              {/* Utility tabs */}
-              <div className="flex gap-2 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none">
-                {utilTabs.map(renderTab)}
-              </div>
-            </div>
-          );
-        })()}
+        <div className="flex gap-2 mb-8 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none flex-wrap">
+          {visibleTabs.map((tab) => {
+            const Icon = tab.icon;
+            return (
+              <button
+                key={tab.key}
+                onClick={() => setActiveTab(tab.key)}
+                className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-sm font-medium transition-all whitespace-nowrap shrink-0 flex items-center gap-1.5"
+                style={{
+                  background:
+                    activeTab === tab.key ? "var(--hp-accent)" : "var(--hp-glass)",
+                  color:
+                    activeTab === tab.key ? "#ffffff" : "var(--hp-text-muted)",
+                  border:
+                    activeTab === tab.key
+                      ? "1px solid var(--hp-accent)"
+                      : "1px solid var(--hp-border)",
+                  boxShadow:
+                    activeTab === tab.key
+                      ? "0 2px 8px rgba(184,112,59,0.15)"
+                      : "none",
+                }}
+                onMouseEnter={(e) => {
+                  if (activeTab !== tab.key) {
+                    e.currentTarget.style.borderColor = "var(--hp-accent)";
+                    e.currentTarget.style.color = "var(--hp-accent)";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (activeTab !== tab.key) {
+                    e.currentTarget.style.borderColor = "var(--hp-border)";
+                    e.currentTarget.style.color = "var(--hp-text-muted)";
+                  }
+                }}
+              >
+                {Icon && <Icon className="w-4 h-4" />}
+                {tab.label}
+              </button>
+            );
+          })}
+        </div>
 
         {/* ── Tab 1: Full Mock Test ──────────────── */}
         {activeTab === "full" && canAccessFullTest && (
