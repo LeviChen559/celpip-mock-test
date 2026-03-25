@@ -587,7 +587,9 @@ export default function Dashboard() {
                   <button
                     key={s.key}
                     onClick={() => setExpandedSection(s.key)}
-                    className="md:w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all flex items-center gap-2.5 whitespace-nowrap shrink-0"
+                    className={`md:w-full text-left py-3 rounded-xl text-sm font-medium transition-all flex items-center gap-2.5 whitespace-nowrap shrink-0 ${
+                      isActive ? "px-4" : "px-3 md:px-4"
+                    }`}
                     style={{
                       background: isActive ? `${s.color}12` : "transparent",
                       color: isActive ? s.color : "var(--hp-text-muted)",
@@ -607,7 +609,7 @@ export default function Dashboard() {
                     }}
                   >
                     <s.icon className="w-4 h-4" />
-                    {s.title}
+                    <span className={isActive ? "" : "hidden md:inline"}>{s.title}</span>
                   </button>
                 );
               })}
@@ -711,7 +713,9 @@ export default function Dashboard() {
                   <button
                     key={qs.key}
                     onClick={() => { setExpandedQuiz(qs.key); setQuizCategoryFilter(null); }}
-                    className="md:w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all flex items-center gap-2.5 whitespace-nowrap shrink-0"
+                    className={`md:w-full text-left py-3 rounded-xl text-sm font-medium transition-all flex items-center gap-2.5 whitespace-nowrap shrink-0 ${
+                      isActive ? "px-4" : "px-3 md:px-4"
+                    }`}
                     style={{
                       background: isActive
                         ? `${qs.color}12`
@@ -737,7 +741,7 @@ export default function Dashboard() {
                     }}
                   >
                     <qs.icon className="w-4 h-4" />
-                    {qs.title}
+                    <span className={isActive ? "" : "hidden md:inline"}>{qs.title}</span>
                   </button>
                 );
               })}
