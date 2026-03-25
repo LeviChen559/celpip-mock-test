@@ -498,13 +498,14 @@ export default function Dashboard() {
 
       {/* ── Tab navigation ─────────────────────────── */}
       <section className="max-w-screen-xl mx-auto px-4 sm:px-6 pb-10 relative z-10">
-        <div className="flex gap-2 mb-8 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none">
-          {/* On mobile show all tabs; on md+ only show first 4 (rest are in nav) */}
-          {visibleTabs.map((tab, i) => (
+        {(() => {
+          const quizTabs = visibleTabs.filter((t) => t.key === "full" || t.key === "section" || t.key === "quiz");
+          const utilTabs = visibleTabs.filter((t) => t.key === "plan" || t.key === "mytests" || t.key === "schedule");
+          const renderTab = (tab: (typeof visibleTabs)[number]) => (
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
-              className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-sm font-medium transition-all whitespace-nowrap shrink-0 ${i >= 4 ? "md:hidden" : ""}`}
+              className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-sm font-medium transition-all whitespace-nowrap shrink-0"
               style={{
                 background:
                   activeTab === tab.key ? "var(--hp-accent)" : "var(--hp-glass)",
@@ -534,8 +535,20 @@ export default function Dashboard() {
             >
               {tab.label}
             </button>
-          ))}
-        </div>
+          );
+          return (
+            <div className="flex flex-col gap-3 mb-8">
+              {/* Quiz mode tabs */}
+              <div className="flex gap-2 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none">
+                {quizTabs.map(renderTab)}
+              </div>
+              {/* Utility tabs */}
+              <div className="flex gap-2 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none">
+                {utilTabs.map(renderTab)}
+              </div>
+            </div>
+          );
+        })()}
 
         {/* ── Tab 1: Full Mock Test ──────────────── */}
         {activeTab === "full" && canAccessFullTest && (
