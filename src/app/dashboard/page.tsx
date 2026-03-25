@@ -21,6 +21,9 @@ import {
   ClipboardList,
   BarChart3,
   CalendarDays,
+  FileText,
+  Layers,
+  Zap,
 } from "lucide-react";
 
 // ── Helpers ────────────────────────────────────────────
@@ -235,9 +238,9 @@ const quizSections = [
 // ── Tabs ───────────────────────────────────────────────
 
 const tabs = [
-  { key: "full", label: "Full Mock Test", icon: null },
-  { key: "section", label: "Section Practice", icon: null },
-  { key: "quiz", label: "Quiz Practice", icon: null },
+  { key: "full", label: "Full Mock Test", icon: FileText },
+  { key: "section", label: "Section Practice", icon: Layers },
+  { key: "quiz", label: "Quiz Practice", icon: Zap },
   { key: "plan", label: "Study Plan", icon: ClipboardList },
   { key: "mytests", label: "My Test Results", icon: BarChart3 },
   { key: "schedule", label: "My Schedule", icon: CalendarDays },
