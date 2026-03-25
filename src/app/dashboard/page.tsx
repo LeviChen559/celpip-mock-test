@@ -465,7 +465,7 @@ export default function Dashboard() {
 
       {/* ── Tab navigation ─────────────────────────── */}
       <section className="max-w-screen-xl mx-auto px-4 sm:px-6 pb-10 relative z-10">
-        <div className="flex gap-2 mb-8 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none flex-wrap">
+        <div className="flex gap-2 mb-8 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none sm:flex-wrap flex-nowrap">
           {visibleTabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.key;
