@@ -24,9 +24,9 @@ const plans = [
     icon: Zap,
     accent: false,
     features: [
-      "15 AI credits / month",
-      "Full-length mock tests",
-      "Instant reading & listening scores",
+      "15 test credits / month",
+      "Full test: 30 cr · Section test: 4–15 cr",
+      "Quiz practice: 1–3 cr per section",
       "Basic study dashboard",
       "Community support",
     ],
@@ -42,7 +42,7 @@ const plans = [
     accent: true,
     popular: true,
     features: [
-      "100 AI credits / month",
+      "100 test credits / month",
       "AI writing scoring & feedback",
       "AI speaking evaluation",
       "Personalized study plan",
@@ -60,7 +60,7 @@ const plans = [
     icon: BicepsFlexed,
     accent: false,
     features: [
-      "500 AI credits / month",
+      "500 test credits / month",
       "Everything in Improver",
       "Exclusive CELPIP test video",
       "Real-time writing feedback",
@@ -79,7 +79,7 @@ const plans = [
     icon: Crown,
     accent: false,
     features: [
-      "Unlimited AI credits for 90 days",
+      "Unlimited test credits for 90 days",
       "Everything in Intensive",
       "Teacher review sessions",
       "Custom study schedule",

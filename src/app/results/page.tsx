@@ -192,6 +192,21 @@ export default function Results() {
       };
       await addRecordRef.current(record);
 
+      // Consume credits: full test = 30, section test = per-section cost
+      if (state.practiceMode) {
+        fetch("/api/usage/consume", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ section: state.practiceMode, type: "section" }),
+        }).catch(() => {});
+      } else {
+        fetch("/api/usage/consume", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ type: "full" }),
+        }).catch(() => {});
+      }
+
       // Mark as saved
       const raw = localStorage.getItem("celpip-test-state");
       if (raw) {
@@ -257,9 +272,6 @@ export default function Results() {
                     : s
                 )
               );
-            } else if (writeRes.status === 429) {
-              setAiError("Monthly AI limit reached. Showing word-count estimate.");
-              break;
             }
           } catch {
             // Fall back to word-count estimate silently
@@ -298,9 +310,6 @@ export default function Results() {
                     : s
                 )
               );
-            } else if (speakRes.status === 429) {
-              setAiError("Monthly AI limit reached. Showing word-count estimate.");
-              break;
             }
           } catch {
             // Fall back silently

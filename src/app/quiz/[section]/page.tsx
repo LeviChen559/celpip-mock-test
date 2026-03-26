@@ -423,6 +423,13 @@ export default function QuizPractice({
       overallScore: score,
     });
     setResultSaved(true);
+
+    // Consume credits for this quiz practice
+    fetch("/api/usage/consume", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ section, type: "quiz" }),
+    }).catch(() => {});
   };
 
   // ── Review phase ───────────────────────────────────
