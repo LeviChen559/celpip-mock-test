@@ -11,6 +11,7 @@ import {
   Zap,
   Shield,
   Crown,
+  BicepsFlexed,
 } from "lucide-react";
 
 const plans = [
@@ -34,7 +35,7 @@ const plans = [
   {
     id: "improver",
     name: "Improver",
-    price: "$12",
+    price: "$15",
     period: "/ month",
     description: "AI-powered feedback to level up fast",
     icon: Sparkles,
@@ -53,14 +54,15 @@ const plans = [
   {
     id: "intensive",
     name: "Intensive",
-    price: "$29",
-    period: "/ month",
+    price: "$45",
+    period: "/ 3 months",
     description: "Maximum preparation for test day",
-    icon: Shield,
+    icon: BicepsFlexed,
     accent: false,
     features: [
       "500 test credits / month",
       "Everything in Improver",
+      "Exclusive CELPIP test video",
       "Real-time writing feedback",
       "Advanced analytics & trends",
       "Speaking practice with AI coach",
