@@ -49,7 +49,7 @@ export function useAuthProvider(): AuthContextType {
         if (res.ok) {
           const profile = await res.json();
           console.log("[useAuth] profile loaded via API:", { id: user.id, role: profile.role });
-          return { id: user.id, name: profile.name || fallbackName, email: profile.email || fallbackEmail, role: profile.role ?? "subscriber" };
+          return { id: user.id, name: profile.name || fallbackName, email: profile.email || fallbackEmail, role: profile.role ?? "improver" };
         }
       } catch (e) {
         console.log("[useAuth] API fetch failed:", e);
@@ -57,7 +57,7 @@ export function useAuthProvider(): AuthContextType {
 
       // API failed — return basic info from auth metadata
       console.log("[useAuth] using auth metadata fallback");
-      return { id: user.id, name: fallbackName, email: fallbackEmail, role: "subscriber" };
+      return { id: user.id, name: fallbackName, email: fallbackEmail, role: "improver" };
     };
 
     let initialSessionHandled = false;

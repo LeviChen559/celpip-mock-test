@@ -2,7 +2,6 @@ import { SupabaseClient } from "@supabase/supabase-js";
 
 const MONTHLY_LIMITS: Record<string, number | null> = {
   user: 15,
-  subscriber: 100,
   improver: 100,      // AI scoring + diagnostics + planner
   intensive: 500,     // Everything + real-time feedback
   guarantee: null,    // Unlimited (time-boxed to 90 days)

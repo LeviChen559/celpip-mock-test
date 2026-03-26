@@ -282,7 +282,7 @@ export default function Dashboard() {
   const [expandedQuiz, setExpandedQuiz] = useState<string | null>(null);
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
   const [quizCategoryFilter, setQuizCategoryFilter] = useState<string | null>(null);
-  const userRole = currentUser?.role || "subscriber";
+  const userRole = currentUser?.role || "improver";
 
   const [listeningParts, setListeningParts] = useState(hardcodedListeningParts);
   const [readingParts, setReadingParts] = useState(hardcodedReadingParts);
