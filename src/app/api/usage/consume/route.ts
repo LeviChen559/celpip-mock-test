@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
-import { checkAndIncrementUsage, SECTION_CREDITS } from "@/lib/api-usage";
+import { checkAndIncrementUsage, QUIZ_CREDITS, SECTION_TEST_CREDITS, FULL_TEST_CREDITS } from "@/lib/api-usage";
 
 /**
  * POST /api/usage/consume
  * Consume credits when a user finishes a test/quiz.
- * Body: { section: "reading" | "listening" | "speaking" | "writing" }
+ * Body: { section, type: "quiz" | "section" | "full" }
  */
 export async function POST(req: NextRequest) {
   const supabase = await createClient();
@@ -14,10 +14,22 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
   }
 
-  const { section } = await req.json();
-  const cost = SECTION_CREDITS[section];
-  if (!cost) {
-    return NextResponse.json({ error: "Invalid section" }, { status: 400 });
+  const { section, type } = await req.json();
+
+  let cost: number;
+  if (type === "full") {
+    cost = FULL_TEST_CREDITS;
+  } else if (type === "section") {
+    cost = SECTION_TEST_CREDITS[section];
+    if (!cost) {
+      return NextResponse.json({ error: "Invalid section" }, { status: 400 });
+    }
+  } else {
+    // quiz (default)
+    cost = QUIZ_CREDITS[section];
+    if (!cost) {
+      return NextResponse.json({ error: "Invalid section" }, { status: 400 });
+    }
   }
 
   const { data: profile } = await supabase
@@ -36,5 +48,5 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  return NextResponse.json({ consumed: cost, section, ...usage });
+  return NextResponse.json({ consumed: cost, section, type, ...usage });
 }

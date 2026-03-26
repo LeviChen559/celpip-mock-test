@@ -24,8 +24,8 @@ const plans = [
     accent: false,
     features: [
       "15 test credits / month",
-      "Reading quiz: 1 credit, Listening: 2",
-      "Writing quiz: 3 credits, Speaking: 2",
+      "Full test: 30 cr · Section test: 4–15 cr",
+      "Quiz practice: 1–3 cr per section",
       "Basic study dashboard",
       "Community support",
     ],

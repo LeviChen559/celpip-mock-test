@@ -192,15 +192,18 @@ export default function Results() {
       };
       await addRecordRef.current(record);
 
-      // Consume credits for completed sections
-      const completedSections = state.practiceMode
-        ? [state.practiceMode]
-        : ["listening", "reading", "writing", "speaking"];
-      for (const sec of completedSections) {
+      // Consume credits: full test = 30, section test = per-section cost
+      if (state.practiceMode) {
         fetch("/api/usage/consume", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ section: sec }),
+          body: JSON.stringify({ section: state.practiceMode, type: "section" }),
+        }).catch(() => {});
+      } else {
+        fetch("/api/usage/consume", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ type: "full" }),
         }).catch(() => {});
       }
 

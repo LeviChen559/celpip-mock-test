@@ -10,13 +10,24 @@ const MONTHLY_LIMITS: Record<string, number | null> = {
   admin: null,        // unlimited
 };
 
-/** Credit cost per finished quiz/test by section */
-export const SECTION_CREDITS: Record<string, number> = {
+/** Credit cost per finished quiz practice by section */
+export const QUIZ_CREDITS: Record<string, number> = {
   reading: 1,
   listening: 2,
   speaking: 2,
   writing: 3,
 };
+
+/** Credit cost per finished section test by section */
+export const SECTION_TEST_CREDITS: Record<string, number> = {
+  reading: 4,
+  listening: 10,
+  speaking: 15,
+  writing: 5,
+};
+
+/** Credit cost for a full test (all 4 sections) */
+export const FULL_TEST_CREDITS = 30;
 
 function getCurrentMonth(): string {
   const now = new Date();

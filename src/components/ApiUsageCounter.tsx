@@ -9,12 +9,21 @@ interface UsageData {
   remaining: number | null;
 }
 
-const SECTION_COSTS = [
-  { label: "Reading", cost: 1 },
-  { label: "Listening", cost: 2 },
-  { label: "Speaking", cost: 2 },
-  { label: "Writing", cost: 3 },
-];
+const CREDIT_COSTS = {
+  quiz: [
+    { label: "Reading", cost: 1 },
+    { label: "Listening", cost: 2 },
+    { label: "Speaking", cost: 2 },
+    { label: "Writing", cost: 3 },
+  ],
+  section: [
+    { label: "Reading", cost: 4 },
+    { label: "Listening", cost: 10 },
+    { label: "Speaking", cost: 15 },
+    { label: "Writing", cost: 5 },
+  ],
+  full: 30,
+};
 
 export default function ApiUsageCounter() {
   const [usage, setUsage] = useState<UsageData | null>(null);
@@ -96,14 +105,24 @@ export default function ApiUsageCounter() {
         </div>
       </div>
 
-      {/* Section cost breakdown */}
-      <div className="flex flex-wrap gap-x-3 gap-y-1 text-[10px]" style={{ color: "var(--hp-text-muted)" }}>
-        {SECTION_COSTS.map(({ label, cost }) => (
-          <span key={label} className="flex items-center gap-1">
-            <span className="font-medium" style={{ color: "var(--hp-text)" }}>{label}</span>
-            {cost} cr
+      {/* Credit cost breakdown */}
+      <div className="space-y-1.5 text-[10px]" style={{ color: "var(--hp-text-muted)" }}>
+        <div>
+          <span className="font-semibold" style={{ color: "var(--hp-text)" }}>Full Test</span>
+          {" "}{CREDIT_COSTS.full} cr
+        </div>
+        <div>
+          <span className="font-semibold" style={{ color: "var(--hp-text)" }}>Section Test</span>
+          <span className="ml-1">
+            {CREDIT_COSTS.section.map(({ label, cost }) => `${label} ${cost}`).join(" · ")}
           </span>
-        ))}
+        </div>
+        <div>
+          <span className="font-semibold" style={{ color: "var(--hp-text)" }}>Quiz</span>
+          <span className="ml-1">
+            {CREDIT_COSTS.quiz.map(({ label, cost }) => `${label} ${cost}`).join(" · ")}
+          </span>
+        </div>
       </div>
     </div>
   );
