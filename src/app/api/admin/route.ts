@@ -16,7 +16,7 @@ async function getUserRole(supabase: any): Promise<string | null> {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function isStaff(supabase: any) {
   const role = await getUserRole(supabase);
-  return role === "admin" || role === "teacher";
+  return role === "admin" || role === "teacher" || role === "editor";
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -101,7 +101,7 @@ export async function GET(req: NextRequest) {
 
     // If caller is a teacher (not admin), verify they are assigned to this student
     const callerRole = await getUserRole(supabase);
-    if (callerRole === "teacher") {
+    if (callerRole === "teacher" || callerRole === "editor") {
       const callerId = await getAuthUserId(supabase);
       const { data: assignment } = await supabase
         .from("teacher_student_assignments")
@@ -162,7 +162,7 @@ export async function GET(req: NextRequest) {
 
     // If caller is a teacher, they can only view their own students
     const callerRole = await getUserRole(supabase);
-    if (callerRole === "teacher") {
+    if (callerRole === "teacher" || callerRole === "editor") {
       const callerId = await getAuthUserId(supabase);
       if (callerId !== teacherId) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
@@ -232,7 +232,7 @@ export async function POST(req: NextRequest) {
 
   if (action === "update-role") {
     if (!userId || !role) return NextResponse.json({ error: "userId and role required" }, { status: 400 });
-    if (!["admin", "teacher", "user", "improver", "intensive", "guarantee"].includes(role)) return NextResponse.json({ error: "Invalid role" }, { status: 400 });
+    if (!["admin", "teacher", "editor", "user", "improver", "intensive", "guarantee"].includes(role)) return NextResponse.json({ error: "Invalid role" }, { status: 400 });
 
     const { error } = await supabase
       .from("profiles")

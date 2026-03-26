@@ -6,6 +6,7 @@ const MONTHLY_LIMITS: Record<string, number | null> = {
   intensive: 500,     // Everything + real-time feedback
   guarantee: null,    // Unlimited (time-boxed to 90 days)
   teacher: null,      // unlimited
+  editor: null,       // unlimited (same as teacher)
   admin: null,        // unlimited
 };
 

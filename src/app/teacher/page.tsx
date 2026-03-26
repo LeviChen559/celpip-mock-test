@@ -113,8 +113,8 @@ export default function TeacherPage() {
       fetch("/api/admin?action=debug")
         .then((r) => r.json())
         .then((d) => {
-          if (d.role !== "admin" && d.role !== "teacher") {
-            setError("Access denied. Teacher or admin role required.");
+          if (d.role !== "admin" && d.role !== "teacher" && d.role !== "editor") {
+            setError("Access denied. Teacher, editor, or admin role required.");
             setLoading(false);
             return;
           }

@@ -282,7 +282,7 @@ export default function AdminPage() {
 
   // Build grouped structure: admins, teachers (with nested students), unassigned
   const adminUsers = filtered.filter((u) => u.role === "admin");
-  const teacherUsers = filtered.filter((u) => u.role === "teacher");
+  const teacherUsers = filtered.filter((u) => u.role === "teacher" || u.role === "editor");
   const assignedStudentIds = new Set(assignmentMap.keys());
   const unassignedUsers = filtered.filter(
     (u) => (u.role === "user" || u.role === "improver") && !assignedStudentIds.has(u.id)
@@ -327,6 +327,7 @@ export default function AdminPage() {
               <Badge className={`shrink-0 ${
                 p.role === "admin" ? "bg-purple-100 text-purple-700 border-purple-200" :
                 p.role === "teacher" ? "bg-blue-100 text-blue-700 border-blue-200" :
+                p.role === "editor" ? "bg-cyan-100 text-cyan-700 border-cyan-200" :
                 p.role === "user" ? "bg-green-100 text-green-700 border-green-200" :
                 "bg-gray-100 text-gray-600 border-gray-200"
               }`}>
@@ -342,6 +343,7 @@ export default function AdminPage() {
                 >
                   <option value="admin">Admin</option>
                   <option value="teacher">Teacher</option>
+                  <option value="editor">Editor</option>
                   <option value="user">User</option>
                   <option value="improver">Improver</option>
                 </select>
@@ -534,6 +536,7 @@ export default function AdminPage() {
                           >
                             <option value="admin">Admin</option>
                             <option value="teacher">Teacher</option>
+                  <option value="editor">Editor</option>
                             <option value="user">User</option>
                             <option value="improver">Improver</option>
                           </select>
@@ -607,6 +610,7 @@ export default function AdminPage() {
                               >
                                 <option value="admin">Admin</option>
                                 <option value="teacher">Teacher</option>
+                  <option value="editor">Editor</option>
                                 <option value="user">User</option>
                                 <option value="improver">Improver</option>
                               </select>
@@ -672,6 +676,7 @@ export default function AdminPage() {
                                   >
                                     <option value="admin">Admin</option>
                                     <option value="teacher">Teacher</option>
+                  <option value="editor">Editor</option>
                                     <option value="user">User</option>
                                     <option value="improver">Improver</option>
                                   </select>
@@ -749,6 +754,7 @@ export default function AdminPage() {
                             >
                               <option value="admin">Admin</option>
                               <option value="teacher">Teacher</option>
+                  <option value="editor">Editor</option>
                               <option value="user">User</option>
                               <option value="improver">Improver</option>
                             </select>
@@ -793,6 +799,7 @@ export default function AdminPage() {
                   <Badge className={
                     pendingRoleChange.currentRole === "admin" ? "bg-purple-100 text-purple-700 border-purple-200 border" :
                     pendingRoleChange.currentRole === "teacher" ? "bg-blue-100 text-blue-700 border-blue-200 border" :
+                    pendingRoleChange.currentRole === "editor" ? "bg-cyan-100 text-cyan-700 border-cyan-200 border" :
                     pendingRoleChange.currentRole === "user" ? "bg-green-100 text-green-700 border-green-200 border" :
                     "bg-gray-100 text-gray-600 border-gray-200 border"
                   }>
@@ -802,6 +809,7 @@ export default function AdminPage() {
                   <Badge className={
                     pendingRoleChange.newRole === "admin" ? "bg-purple-100 text-purple-700 border-purple-200 border" :
                     pendingRoleChange.newRole === "teacher" ? "bg-blue-100 text-blue-700 border-blue-200 border" :
+                    pendingRoleChange.newRole === "editor" ? "bg-cyan-100 text-cyan-700 border-cyan-200 border" :
                     pendingRoleChange.newRole === "user" ? "bg-green-100 text-green-700 border-green-200 border" :
                     "bg-gray-100 text-gray-600 border-gray-200 border"
                   }>
