@@ -10,6 +10,14 @@ const MONTHLY_LIMITS: Record<string, number | null> = {
   admin: null,        // unlimited
 };
 
+/** Credit cost per finished quiz/test by section */
+export const SECTION_CREDITS: Record<string, number> = {
+  reading: 1,
+  listening: 2,
+  speaking: 2,
+  writing: 3,
+};
+
 function getCurrentMonth(): string {
   const now = new Date();
   return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
@@ -23,18 +31,19 @@ interface UsageResult {
 }
 
 /**
- * Check whether the user can make an API call, and increment the counter if allowed.
- * Returns usage info including whether the call is allowed.
+ * Check whether the user has enough credits, and increment the counter if allowed.
+ * `cost` defaults to 1 for backward compatibility.
  */
 export async function checkAndIncrementUsage(
   supabase: SupabaseClient,
   userId: string,
-  role: string
+  role: string,
+  cost: number = 1
 ): Promise<UsageResult> {
   const limit = role in MONTHLY_LIMITS ? MONTHLY_LIMITS[role] : MONTHLY_LIMITS.user;
   const month = getCurrentMonth();
 
-  // Unlimited for teacher/admin
+  // Unlimited for teacher/admin/guarantee
   if (limit === null) {
     // Still track for analytics, but always allow
     await supabase.rpc("increment_api_usage", { p_user_id: userId, p_month: month });
@@ -51,23 +60,23 @@ export async function checkAndIncrementUsage(
 
   const current = data?.call_count ?? 0;
 
-  if (current >= limit) {
-    return { allowed: false, current, limit, remaining: 0 };
+  if (current + cost > limit) {
+    return { allowed: false, current, limit, remaining: Math.max(0, limit - current) };
   }
 
-  // Increment via upsert
+  // Increment by cost via upsert
   await supabase
     .from("api_usage")
     .upsert(
-      { user_id: userId, month, call_count: current + 1, updated_at: new Date().toISOString() },
+      { user_id: userId, month, call_count: current + cost, updated_at: new Date().toISOString() },
       { onConflict: "user_id,month" }
     );
 
   return {
     allowed: true,
-    current: current + 1,
+    current: current + cost,
     limit,
-    remaining: limit - current - 1,
+    remaining: limit - current - cost,
   };
 }
 

@@ -23,9 +23,9 @@ const plans = [
     icon: Zap,
     accent: false,
     features: [
-      "15 AI credits / month",
-      "Full-length mock tests",
-      "Instant reading & listening scores",
+      "15 test credits / month",
+      "Reading quiz: 1 credit, Listening: 2",
+      "Writing quiz: 3 credits, Speaking: 2",
       "Basic study dashboard",
       "Community support",
     ],
@@ -41,7 +41,7 @@ const plans = [
     accent: true,
     popular: true,
     features: [
-      "100 AI credits / month",
+      "100 test credits / month",
       "AI writing scoring & feedback",
       "AI speaking evaluation",
       "Personalized study plan",
@@ -59,7 +59,7 @@ const plans = [
     icon: Shield,
     accent: false,
     features: [
-      "500 AI credits / month",
+      "500 test credits / month",
       "Everything in Improver",
       "Real-time writing feedback",
       "Advanced analytics & trends",
@@ -77,7 +77,7 @@ const plans = [
     icon: Crown,
     accent: false,
     features: [
-      "Unlimited AI credits for 90 days",
+      "Unlimited test credits for 90 days",
       "Everything in Intensive",
       "Teacher review sessions",
       "Custom study schedule",
