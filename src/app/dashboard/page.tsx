@@ -36,7 +36,21 @@ import {
   Zap,
   Play,
   Lightbulb,
+  Target,
+  TrendingUp,
+  TrendingDown,
+  Minus,
+  ChevronDown,
   ExternalLink,
+  Timer,
+  StickyNote,
+  Mail,
+  MessageCircle,
+  SearchIcon,
+  Crosshair,
+  BarChartHorizontal,
+  AlertTriangle,
+  type LucideIcon,
   HatGlasses,
   User,
   UserCheck,
@@ -275,7 +289,9 @@ const tabs = [
   { key: "plan", label: "Study Plan", icon: ClipboardList },
   { key: "mytests", label: "My Test Results", icon: BarChart3 },
   { key: "schedule", label: "My Schedule", icon: CalendarDays },
-  { key: "videos", label: "Videos & Advice", icon: Play },
+  { key: "videos", label: "Videos", icon: Play },
+  { key: "advice", label: "Advice", icon: Lightbulb },
+  { key: "strategy", label: "Strategy", icon: Target },
 ] as const;
 
 type TabKey = (typeof tabs)[number]["key"];
@@ -1044,7 +1060,7 @@ export default function Dashboard() {
         {/* ── Tab 6: My Schedule ─────────────────── */}
         {activeTab === "schedule" && <MySchedule />}
 
-        {/* ── Tab 7: Videos & Advice ───────────────── */}
+        {/* ── Tab 7: Videos ───────────────── */}
         {activeTab === "videos" && (
           <div className="space-y-8">
             {/* ── Video Resources ── */}
@@ -1060,12 +1076,12 @@ export default function Dashboard() {
               </div>
 
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {[
+                {([
                   {
                     title: "CELPIP Listening Tips: How to Score 9+",
                     section: "Listening",
                     duration: "12:34",
-                    thumbnail: "🎧",
+                    thumbnail: Headphones,
                     color: "#b8703b",
                     description: "Master note-taking strategies and learn to identify key information in conversations and discussions.",
                   },
@@ -1073,7 +1089,7 @@ export default function Dashboard() {
                     title: "Reading Comprehension Strategies",
                     section: "Reading",
                     duration: "15:20",
-                    thumbnail: "📖",
+                    thumbnail: BookOpen,
                     color: "#5a8a6a",
                     description: "Skimming, scanning, and time management techniques for all four reading parts.",
                   },
@@ -1081,7 +1097,7 @@ export default function Dashboard() {
                     title: "Writing Task 1: Email Writing Masterclass",
                     section: "Writing",
                     duration: "18:45",
-                    thumbnail: "✍️",
+                    thumbnail: PenLine,
                     color: "#7a7ac7",
                     description: "Structure, tone, and vocabulary tips to write effective emails that score high.",
                   },
@@ -1089,7 +1105,7 @@ export default function Dashboard() {
                     title: "Speaking: Describe a Scene Like a Pro",
                     section: "Speaking",
                     duration: "10:15",
-                    thumbnail: "🎤",
+                    thumbnail: Mic,
                     color: "#c77a8b",
                     description: "Frameworks for organizing your response and using advanced vocabulary naturally.",
                   },
@@ -1097,7 +1113,7 @@ export default function Dashboard() {
                     title: "CELPIP vs IELTS: Key Differences",
                     section: "General",
                     duration: "8:50",
-                    thumbnail: "📊",
+                    thumbnail: BarChartHorizontal,
                     color: "var(--hp-text-muted)",
                     description: "Understand the format differences and which strategies work specifically for CELPIP.",
                   },
@@ -1105,11 +1121,11 @@ export default function Dashboard() {
                     title: "Common Mistakes That Drop Your Score",
                     section: "General",
                     duration: "14:10",
-                    thumbnail: "⚠️",
+                    thumbnail: AlertTriangle,
                     color: "var(--hp-text-muted)",
                     description: "Avoid these frequent errors in writing and speaking that cost candidates 1-2 score levels.",
                   },
-                ].map((video) => (
+                ] as const).map((video) => (
                   <div
                     key={video.title}
                     className="hp-glass rounded-2xl overflow-hidden group cursor-pointer"
@@ -1119,7 +1135,7 @@ export default function Dashboard() {
                       className="relative h-32 flex items-center justify-center"
                       style={{ background: `${video.color}08` }}
                     >
-                      <span className="text-4xl">{video.thumbnail}</span>
+                      <video.thumbnail className="w-10 h-10" style={{ color: video.color }} />
                       <div
                         className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
                         style={{ background: "rgba(0,0,0,0.3)" }}
@@ -1175,7 +1191,12 @@ export default function Dashboard() {
                 ))}
               </div>
             </div>
+          </div>
+        )}
 
+        {/* ── Tab 8: Advice ───────────────── */}
+        {activeTab === "advice" && (
+          <div className="space-y-8">
             {/* ── Expert Advice ── */}
             <div>
               <div className="flex items-center gap-2 mb-4">
@@ -1189,44 +1210,44 @@ export default function Dashboard() {
               </div>
 
               <div className="grid sm:grid-cols-2 gap-4">
-                {[
+                {([
                   {
                     title: "Time Management is Everything",
                     content: "In the CELPIP test, every section is timed. Practice with strict timers from day one. For reading, spend no more than 10 minutes per part. For writing, allocate 5 minutes to plan, 18 minutes to write, and 4 minutes to review.",
-                    icon: "⏱️",
+                    icon: Timer,
                     category: "Strategy",
                   },
                   {
                     title: "Use the Notepad Feature",
                     content: "CELPIP provides a digital notepad during the listening section. Write down key names, numbers, and relationships as you listen. This is especially crucial for Parts 3-6 where you need to track multiple speakers.",
-                    icon: "📝",
+                    icon: StickyNote,
                     category: "Listening",
                   },
                   {
                     title: "Master the Email Format",
                     content: "Writing Task 1 always asks for an email. Use a clear structure: greeting, 3 body paragraphs (one per bullet point), and a closing. Match your tone to the audience — formal for a manager, semi-formal for a colleague, informal for a friend.",
-                    icon: "📧",
+                    icon: Mail,
                     category: "Writing",
                   },
                   {
                     title: "Don't Memorize — Practice Patterns",
                     content: "Memorized responses sound unnatural and score low. Instead, practice response patterns: 'In my opinion... because firstly... secondly... For instance...' These frameworks let you speak naturally about any topic.",
-                    icon: "🗣️",
+                    icon: MessageCircle,
                     category: "Speaking",
                   },
                   {
                     title: "Read the Questions First",
                     content: "Before reading a passage, scan all the questions. This tells your brain what to look for, making you faster and more accurate. Focus on keywords in questions — names, dates, opinions, and cause-effect relationships.",
-                    icon: "🔍",
+                    icon: SearchIcon,
                     category: "Reading",
                   },
                   {
                     title: "Simulate Real Test Conditions",
                     content: "Take at least 3 full-length practice tests under real conditions: no pausing, no phone, quiet room, full timing. This builds stamina for the 3-hour test and reduces anxiety on test day.",
-                    icon: "🎯",
+                    icon: Crosshair,
                     category: "Strategy",
                   },
-                ].map((advice) => (
+                ] as const).map((advice) => (
                   <div
                     key={advice.title}
                     className="hp-glass rounded-2xl p-5 relative overflow-hidden"
@@ -1236,9 +1257,9 @@ export default function Dashboard() {
                       style={{ background: "var(--hp-accent)", opacity: 0.2 }}
                     />
                     <div className="flex items-start gap-3">
-                      <span className="text-2xl shrink-0 mt-0.5">
-                        {advice.icon}
-                      </span>
+                      <div className="w-9 h-9 rounded-xl shrink-0 flex items-center justify-center" style={{ background: "var(--hp-accent-glow)" }}>
+                        <advice.icon className="w-5 h-5" style={{ color: "var(--hp-accent)" }} />
+                      </div>
                       <div className="min-w-0">
                         <div className="flex items-center gap-2 mb-1">
                           <span
@@ -1315,6 +1336,581 @@ export default function Dashboard() {
             </div>
           </div>
         )}
+        {/* ── Tab 9: Strategy (based on test results) ───────────────── */}
+        {activeTab === "strategy" && (() => {
+          const sectionKeys = ["listening", "reading", "writing", "speaking"] as const;
+          type SectionKey = typeof sectionKeys[number];
+          const sectionMeta: Record<SectionKey, { icon: LucideIcon; color: string; label: string }> = {
+            listening: { icon: Headphones, color: "#b8703b", label: "Listening" },
+            reading:   { icon: BookOpen, color: "#5a8a6a", label: "Reading" },
+            writing:   { icon: PenLine, color: "#7a7ac7", label: "Writing" },
+            speaking:  { icon: Mic, color: "#c77a8b", label: "Speaking" },
+          };
+
+          const scoresBySection: Record<SectionKey, number[]> = {
+            listening: [], reading: [], writing: [], speaking: [],
+          };
+          records.forEach((r) => {
+            // For full/section tests, scores has all 4 keys
+            sectionKeys.forEach((sk) => {
+              const s = r.scores[sk];
+              if (s != null) scoresBySection[sk].push(s);
+            });
+            // For quiz records, the score may only be in overallScore with quizSection indicating the section
+            if (r.type === "quiz" && r.quizSection && sectionKeys.includes(r.quizSection as SectionKey)) {
+              const sk = r.quizSection as SectionKey;
+              // Only add if not already captured via r.scores
+              if (r.scores[sk] == null && r.overallScore != null) {
+                scoresBySection[sk].push(r.overallScore);
+              }
+            }
+          });
+
+          const avg = (arr: number[]) => arr.length ? Math.round((arr.reduce((a, b) => a + b, 0) / arr.length) * 10) / 10 : null;
+          const getScore = (r: typeof records[number], sk: SectionKey) =>
+            r.scores[sk] ?? (r.type === "quiz" && r.quizSection === sk ? r.overallScore : null);
+          const latest = (sk: SectionKey) => {
+            const sorted = records
+              .filter((r) => getScore(r, sk) != null)
+              .sort((a, b) => b.timestamp - a.timestamp);
+            return sorted.length ? getScore(sorted[0], sk)! : null;
+          };
+
+          const sectionStats = sectionKeys.map((sk) => ({
+            key: sk,
+            ...sectionMeta[sk],
+            average: avg(scoresBySection[sk]),
+            latest: latest(sk),
+            testCount: scoresBySection[sk].length,
+          }));
+
+          const hasAnyData = sectionStats.some((s) => s.testCount > 0);
+          const maxScore = 12;
+
+          // Sort sections by latest score to identify strongest/weakest
+          const ranked = [...sectionStats].filter((s) => s.latest != null).sort((a, b) => (b.latest ?? 0) - (a.latest ?? 0));
+          const strongest = ranked[0] ?? null;
+          const weakest = ranked.length > 1 ? ranked[ranked.length - 1] : null;
+
+          // Radar chart helpers
+          const radarCx = 140, radarCy = 140, radarR = 100;
+          const radarAngles = [-Math.PI / 2, 0, Math.PI / 2, Math.PI]; // top, right, bottom, left
+          const radarPoint = (angle: number, value: number) => ({
+            x: radarCx + Math.cos(angle) * (value / maxScore) * radarR,
+            y: radarCy + Math.sin(angle) * (value / maxScore) * radarR,
+          });
+
+          // Improvement tips
+          const getTips = (sk: SectionKey, score: number | null): { priority: string; tips: string[] } => {
+            if (score == null) return { priority: "No data yet", tips: ["Take a practice test to get personalized recommendations."] };
+            if (score >= 10) return { priority: "Excellent — maintain your edge", tips: sk === "listening"
+              ? ["Focus on the most nuanced inference questions in Parts 5-6.", "Practice with varied accents and faster speech speeds.", "Challenge yourself with academic lectures and panel discussions."]
+              : sk === "reading"
+              ? ["Practice speed-reading to bank extra time for review.", "Focus on tone/attitude questions that require subtle inference.", "Read editorials and academic papers to sharpen critical analysis."]
+              : sk === "writing"
+              ? ["Aim for sophisticated cohesion devices (moreover, notwithstanding).", "Experiment with complex sentence structures — conditionals, cleft sentences.", "Proofread for micro-errors: article usage, preposition collocations."]
+              : ["Use idiomatic expressions naturally — avoid overuse.", "Work on intonation and stress patterns for emphasis.", "Practice impromptu responses to unfamiliar topics under time pressure."] };
+            if (score >= 8) return { priority: "Strong — push to advanced", tips: sk === "listening"
+              ? ["Focus on implicit meaning and speaker attitude in Parts 4-6.", "Practice note-taking with abbreviations for speed.", "Listen to podcasts at 1.25x speed to build processing capacity."]
+              : sk === "reading"
+              ? ["Work on inference and 'author's purpose' question types.", "Practice eliminating distractors in multiple-choice questions.", "Read opinion pieces and practice identifying the writer's stance."]
+              : sk === "writing"
+              ? ["Expand vocabulary with less common synonyms and collocations.", "Use a wider range of sentence structures (participle clauses, inversions).", "Strengthen paragraph transitions with clear topic sentences."]
+              : ["Develop more detailed descriptions with specific adjectives and adverbs.", "Practice expressing and defending opinions with supporting examples.", "Record yourself and review for filler words (um, uh, like)."] };
+            if (score >= 6) return { priority: "Developing — build core skills", tips: sk === "listening"
+              ? ["Practice active listening — pause after each part and summarize what you heard.", "Focus on catching numbers, names, and key details on first listen.", "Use the notepad to jot speaker opinions and relationships."]
+              : sk === "reading"
+              ? ["Read the questions BEFORE the passage to know what to look for.", "Practice skimming for main ideas and scanning for specific details.", "Build vocabulary with CELPIP-level word lists — focus on academic words."]
+              : sk === "writing"
+              ? ["Master the basic email format: greeting, 3 body paragraphs, closing.", "Practice the 5-18-4 rule: 5 min plan, 18 min write, 4 min review.", "Focus on addressing ALL bullet points in the prompt completely."]
+              : ["Use simple response frameworks: state opinion → reason 1 → reason 2 → example.", "Practice speaking for the full time allotted — don't stop early.", "Focus on clarity and fluency over complex vocabulary."] };
+            return { priority: "Needs focus — foundational work", tips: sk === "listening"
+              ? ["Start with slower audio materials and gradually increase speed.", "Practice identifying the main topic of short conversations.", "Learn to recognize common question patterns (who, what, why, where)."]
+              : sk === "reading"
+              ? ["Build reading stamina — read English articles for 20 minutes daily.", "Start with shorter passages and focus on understanding the main idea.", "Learn common CELPIP vocabulary through flashcards and context reading."]
+              : sk === "writing"
+              ? ["Practice writing simple, clear sentences before attempting complex ones.", "Learn basic email conventions: formal vs informal tone.", "Focus on spelling and basic grammar — subject-verb agreement, tenses."]
+              : ["Practice speaking English daily, even 10 minutes of self-talk helps.", "Learn and rehearse common opinion phrases and transition words.", "Focus on pronunciation of commonly mispronounced words in your language."] };
+          };
+
+          const getBarColor = (score: number) =>
+            score >= 10 ? "#22c55e" : score >= 8 ? "#3b82f6" : score >= 6 ? "#f59e0b" : "#ef4444";
+
+          const getTag = (sk: string) => {
+            if (strongest && sk === strongest.key && weakest && sk !== weakest.key) return { text: "Strength", bg: "#22c55e" };
+            if (weakest && sk === weakest.key && strongest && sk !== strongest.key) return { text: "Weakness", bg: "#ef4444" };
+            return null;
+          };
+
+          return (
+          <div className="space-y-8">
+            {/* Header */}
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <Target className="w-5 h-5" style={{ color: "var(--hp-accent)" }} />
+                <h3
+                  className="text-lg font-bold"
+                  style={{ fontFamily: "var(--font-serif)", color: "var(--hp-text)" }}
+                >
+                  Your Improvement Strategy
+                </h3>
+              </div>
+              <p className="text-sm" style={{ color: "var(--hp-text-muted)" }}>
+                {hasAnyData
+                  ? "Personalized recommendations based on your test results."
+                  : "Take a practice test to unlock personalized strategy recommendations."}
+              </p>
+            </div>
+
+            {/* ── Charts Row ── */}
+            {hasAnyData && (
+              <div className="grid lg:grid-cols-2 gap-6">
+                {/* Radar Chart */}
+                <div className="hp-glass rounded-2xl p-5">
+                  <h4 className="text-sm font-bold mb-4" style={{ color: "var(--hp-text)" }}>
+                    Skills Overview
+                  </h4>
+                  <svg viewBox="0 0 280 280" className="w-full max-w-[320px] mx-auto">
+                    {/* Grid rings */}
+                    {[0.25, 0.5, 0.75, 1].map((pct) => (
+                      <polygon
+                        key={pct}
+                        points={radarAngles.map((a) => {
+                          const p = radarPoint(a, maxScore * pct);
+                          return `${p.x},${p.y}`;
+                        }).join(" ")}
+                        fill="none"
+                        stroke="var(--hp-border)"
+                        strokeWidth="1"
+                        opacity={0.5}
+                      />
+                    ))}
+                    {/* Axis lines */}
+                    {radarAngles.map((a, i) => {
+                      const p = radarPoint(a, maxScore);
+                      return (
+                        <line
+                          key={i}
+                          x1={radarCx} y1={radarCy}
+                          x2={p.x} y2={p.y}
+                          stroke="var(--hp-border)"
+                          strokeWidth="1"
+                          opacity={0.4}
+                        />
+                      );
+                    })}
+                    {/* Score polygon */}
+                    <polygon
+                      points={sectionStats.map((s, i) => {
+                        const p = radarPoint(radarAngles[i], s.latest ?? 0);
+                        return `${p.x},${p.y}`;
+                      }).join(" ")}
+                      fill="var(--hp-accent)"
+                      fillOpacity={0.15}
+                      stroke="var(--hp-accent)"
+                      strokeWidth="2"
+                    />
+                    {/* Score dots */}
+                    {sectionStats.map((s, i) => {
+                      const p = radarPoint(radarAngles[i], s.latest ?? 0);
+                      return (
+                        <circle
+                          key={s.key}
+                          cx={p.x} cy={p.y} r="5"
+                          fill={s.color}
+                          stroke="#fff"
+                          strokeWidth="2"
+                        />
+                      );
+                    })}
+                    {/* Labels */}
+                    {sectionStats.map((s, i) => {
+                      const labelOffset = 18;
+                      const p = radarPoint(radarAngles[i], maxScore);
+                      const dx = i === 1 ? labelOffset : i === 3 ? -labelOffset : 0;
+                      const dy = i === 0 ? -labelOffset : i === 2 ? labelOffset + 4 : 0;
+                      const anchor = i === 1 ? "start" : i === 3 ? "end" : "middle";
+                      return (
+                        <g key={s.key}>
+                          <text
+                            x={p.x + dx} y={p.y + dy}
+                            textAnchor={anchor}
+                            dominantBaseline="central"
+                            className="text-[11px] font-semibold"
+                            fill={s.color}
+                          >
+                            {s.label}
+                          </text>
+                          <text
+                            x={p.x + dx} y={p.y + dy + 13}
+                            textAnchor={anchor}
+                            dominantBaseline="central"
+                            className="text-[10px] font-bold"
+                            fill="var(--hp-text)"
+                          >
+                            {s.latest ?? "—"}
+                          </text>
+                        </g>
+                      );
+                    })}
+                    {/* Ring score labels */}
+                    {[3, 6, 9, 12].map((val, i) => (
+                      <text
+                        key={val}
+                        x={radarCx + 4}
+                        y={radarCy - (([0.25, 0.5, 0.75, 1][i]) * radarR) - 3}
+                        className="text-[8px]"
+                        fill="var(--hp-text-muted)"
+                        textAnchor="start"
+                      >
+                        {val}
+                      </text>
+                    ))}
+                  </svg>
+                </div>
+
+                {/* Bar Chart — Strength / Weakness */}
+                <div className="hp-glass rounded-2xl p-5">
+                  <h4 className="text-sm font-bold mb-4" style={{ color: "var(--hp-text)" }}>
+                    Score Breakdown
+                  </h4>
+                  <div className="space-y-5">
+                    {sectionStats.map((s) => {
+                      const score = s.latest ?? 0;
+                      const pct = (score / maxScore) * 100;
+                      const tag = getTag(s.key);
+                      return (
+                        <div key={s.key}>
+                          {/* Label row */}
+                          <div className="flex items-center justify-between mb-1.5">
+                            <div className="flex items-center gap-2">
+                              <s.icon className="w-4 h-4" style={{ color: s.color }} />
+                              <span className="text-xs font-semibold" style={{ color: "var(--hp-text)" }}>
+                                {s.label}
+                              </span>
+                              {tag && (
+                                <span
+                                  className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded"
+                                  style={{ background: `${tag.bg}18`, color: tag.bg }}
+                                >
+                                  {tag.text}
+                                </span>
+                              )}
+                            </div>
+                            <div className="flex items-center gap-1.5">
+                              <span className="text-xs font-bold" style={{ color: "var(--hp-text)" }}>
+                                {s.latest != null ? s.latest : "—"}
+                              </span>
+                              <span className="text-[10px]" style={{ color: "var(--hp-text-muted)" }}>
+                                / {maxScore}
+                              </span>
+                            </div>
+                          </div>
+                          {/* Bar */}
+                          <div
+                            className="w-full h-3 rounded-full overflow-hidden"
+                            style={{ background: "var(--hp-border)" }}
+                          >
+                            <div
+                              className="h-full rounded-full transition-all duration-700"
+                              style={{
+                                width: `${pct}%`,
+                                background: s.latest != null
+                                  ? `linear-gradient(90deg, ${s.color}, ${getBarColor(score)})`
+                                  : "var(--hp-text-muted)",
+                              }}
+                            />
+                          </div>
+                          {/* Avg + count */}
+                          <div className="flex items-center justify-between mt-1">
+                            <span className="text-[10px]" style={{ color: "var(--hp-text-muted)" }}>
+                              {s.testCount > 0 ? `avg ${s.average}` : "no tests yet"}
+                            </span>
+                            <span className="text-[10px]" style={{ color: "var(--hp-text-muted)" }}>
+                              {s.testCount > 0 ? `${s.testCount} test${s.testCount > 1 ? "s" : ""}` : ""}
+                            </span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Summary callout */}
+                  {strongest && weakest && strongest.key !== weakest.key && (
+                    <div
+                      className="mt-6 rounded-xl p-3 text-xs leading-relaxed"
+                      style={{ background: "var(--hp-accent-glow)", color: "var(--hp-text)" }}
+                    >
+                      <span className="font-bold" style={{ color: "#22c55e" }}>Strongest:</span>{" "}
+                      {strongest.label} ({strongest.latest}){" · "}
+                      <span className="font-bold" style={{ color: "#ef4444" }}>Weakest:</span>{" "}
+                      {weakest.label} ({weakest.latest}){" · "}
+                      <span style={{ color: "var(--hp-text-muted)" }}>
+                        Focus your practice on {weakest.label.toLowerCase()} to balance your overall score.
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* ── Per-Part Detail Breakdown ── */}
+            {hasAnyData && (() => {
+              // Build per-part scores from quiz records
+              // quizPart is the part index as a string
+              const partScores: Record<SectionKey, Map<string, { scores: number[]; latest: number; latestTs: number; title: string }>> = {
+                listening: new Map(), reading: new Map(), writing: new Map(), speaking: new Map(),
+              };
+
+              // Get part titles from quizSections
+              const partTitleMap: Record<string, Record<string, string>> = {};
+              quizSections.forEach((qs) => {
+                partTitleMap[qs.key] = {};
+                qs.categories.forEach((cat) => {
+                  cat.items.forEach((item) => {
+                    partTitleMap[qs.key][String(item.originalIndex)] = item.title;
+                  });
+                });
+              });
+
+              records.forEach((r) => {
+                if (r.type !== "quiz" || !r.quizSection || r.quizPart == null) return;
+                const sk = r.quizSection as SectionKey;
+                if (!sectionKeys.includes(sk)) return;
+                const partKey = String(r.quizPart);
+                const score = r.scores[sk] ?? r.overallScore;
+                if (score == null) return;
+                const map = partScores[sk];
+                if (!map.has(partKey)) {
+                  map.set(partKey, {
+                    scores: [],
+                    latest: score,
+                    latestTs: r.timestamp,
+                    title: partTitleMap[sk]?.[partKey] || `Part ${Number(partKey) + 1}`,
+                  });
+                }
+                const entry = map.get(partKey)!;
+                entry.scores.push(score);
+                if (r.timestamp > entry.latestTs) {
+                  entry.latest = score;
+                  entry.latestTs = r.timestamp;
+                }
+              });
+
+              // Check if any section has part data
+              const hasPartData = sectionKeys.some((sk) => partScores[sk].size > 0);
+              if (!hasPartData) return null;
+
+              return (
+                <div className="space-y-4">
+                  <h4 className="text-sm font-bold" style={{ color: "var(--hp-text)" }}>
+                    Part-by-Part Breakdown
+                  </h4>
+                  {sectionStats.filter((s) => partScores[s.key].size > 0).map((s) => {
+                    const parts = Array.from(partScores[s.key].entries())
+                      .sort((a, b) => Number(a[0]) - Number(b[0]))
+                      .map(([partKey, data]) => ({
+                        partKey,
+                        ...data,
+                        average: Math.round((data.scores.reduce((a, b) => a + b, 0) / data.scores.length) * 10) / 10,
+                      }));
+                    const partLatests = parts.map((p) => p.latest);
+                    const bestPart = parts.reduce((best, p) => p.latest > best.latest ? p : best, parts[0]);
+                    const worstPart = parts.reduce((worst, p) => p.latest < worst.latest ? p : worst, parts[0]);
+
+                    return (
+                      <details key={s.key} className="hp-glass rounded-2xl overflow-hidden group">
+                        <summary
+                          className="flex items-center justify-between p-4 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden"
+                        >
+                          <div className="flex items-center gap-2">
+                            <s.icon className="w-5 h-5" style={{ color: s.color }} />
+                            <span className="text-sm font-bold" style={{ color: "var(--hp-text)" }}>
+                              {s.label}
+                            </span>
+                            <span className="text-[10px] px-1.5 py-0.5 rounded-full font-semibold" style={{ background: `${s.color}15`, color: s.color }}>
+                              {parts.length} part{parts.length > 1 ? "s" : ""} tested
+                            </span>
+                          </div>
+                          <ChevronDown
+                            className="w-4 h-4 transition-transform group-open:rotate-180"
+                            style={{ color: "var(--hp-text-muted)" }}
+                          />
+                        </summary>
+
+                        <div className="px-4 pb-4 space-y-3">
+                          {/* Mini bar chart for each part */}
+                          {parts.map((p) => {
+                            const pct = (p.latest / maxScore) * 100;
+                            const isBest = parts.length > 1 && p.partKey === bestPart.partKey;
+                            const isWorst = parts.length > 1 && p.partKey === worstPart.partKey && bestPart.partKey !== worstPart.partKey;
+                            const barColor = getBarColor(p.latest);
+                            // Shorten title: extract meaningful name
+                            const shortTitle = p.title.replace(/^\d+\s*\|\s*\d+\s*(?:Questions?|Tasks?)\s*\|\s*/, "")
+                              .replace(/^(?:Part|Task)\s+\d+:\s*/, "");
+                            return (
+                              <div key={p.partKey}>
+                                <div className="flex items-center justify-between mb-1">
+                                  <div className="flex items-center gap-1.5 min-w-0">
+                                    <span className="text-[11px] font-semibold shrink-0" style={{ color: "var(--hp-text)" }}>
+                                      Part {Number(p.partKey) + 1}
+                                    </span>
+                                    <span className="text-[10px] truncate" style={{ color: "var(--hp-text-muted)" }}>
+                                      {shortTitle}
+                                    </span>
+                                    {isBest && (
+                                      <span className="text-[8px] font-bold uppercase px-1 py-0.5 rounded shrink-0" style={{ background: "#22c55e18", color: "#22c55e" }}>
+                                        Best
+                                      </span>
+                                    )}
+                                    {isWorst && (
+                                      <span className="text-[8px] font-bold uppercase px-1 py-0.5 rounded shrink-0" style={{ background: "#ef444418", color: "#ef4444" }}>
+                                        Weakest
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div className="flex items-center gap-1 shrink-0 ml-2">
+                                    <span className="text-[11px] font-bold" style={{ color: barColor }}>
+                                      {p.latest}
+                                    </span>
+                                    <span className="text-[9px]" style={{ color: "var(--hp-text-muted)" }}>
+                                      / {maxScore}
+                                    </span>
+                                  </div>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  <div
+                                    className="flex-1 h-2 rounded-full overflow-hidden"
+                                    style={{ background: "var(--hp-border)" }}
+                                  >
+                                    <div
+                                      className="h-full rounded-full transition-all duration-500"
+                                      style={{
+                                        width: `${pct}%`,
+                                        background: `linear-gradient(90deg, ${s.color}88, ${barColor})`,
+                                      }}
+                                    />
+                                  </div>
+                                  <span className="text-[9px] w-16 text-right shrink-0" style={{ color: "var(--hp-text-muted)" }}>
+                                    avg {p.average} · {p.scores.length}x
+                                  </span>
+                                </div>
+                              </div>
+                            );
+                          })}
+
+                          {/* Summary for this section */}
+                          {parts.length > 1 && bestPart.partKey !== worstPart.partKey && (
+                            <div
+                              className="rounded-lg p-2.5 mt-2 text-[11px] leading-relaxed"
+                              style={{ background: `${s.color}08`, color: "var(--hp-text-muted)" }}
+                            >
+                              <span className="font-semibold" style={{ color: "#22c55e" }}>Best:</span>{" "}
+                              Part {Number(bestPart.partKey) + 1} ({bestPart.latest}){" · "}
+                              <span className="font-semibold" style={{ color: "#ef4444" }}>Weakest:</span>{" "}
+                              Part {Number(worstPart.partKey) + 1} ({worstPart.latest}){" · "}
+                              Prioritize practicing Part {Number(worstPart.partKey) + 1} to improve your {s.label.toLowerCase()} score.
+                            </div>
+                          )}
+                        </div>
+                      </details>
+                    );
+                  })}
+                </div>
+              );
+            })()}
+
+            {/* ── Per-section strategy cards ── */}
+            <div>
+              <h4 className="text-sm font-bold mb-4" style={{ color: "var(--hp-text)" }}>
+                {hasAnyData ? "Improvement Plan" : "General Tips"}
+              </h4>
+              <div className="grid sm:grid-cols-2 gap-5">
+                {sectionStats.map((s) => {
+                  const { priority, tips } = getTips(s.key, s.latest);
+                  const priorityColor = s.latest == null ? "var(--hp-text-muted)"
+                    : s.latest >= 10 ? "#22c55e"
+                    : s.latest >= 8 ? "#3b82f6"
+                    : s.latest >= 6 ? "#f59e0b"
+                    : "#ef4444";
+                  const PriorityIcon = s.latest == null ? Minus
+                    : s.latest >= 8 ? TrendingUp
+                    : TrendingDown;
+                  const tag = getTag(s.key);
+
+                  return (
+                    <div
+                      key={s.key}
+                      className="hp-glass rounded-2xl p-5 relative overflow-hidden"
+                      style={tag?.text === "Weakness" ? { border: "1px solid #ef444430" } : undefined}
+                    >
+                      <div
+                        className="absolute top-0 left-5 right-5 h-[2px] rounded-full"
+                        style={{ background: s.color, opacity: 0.3 }}
+                      />
+
+                      {/* Section header */}
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-center gap-2">
+                          <s.icon className="w-5 h-5" style={{ color: s.color }} />
+                          <h4 className="text-sm font-bold" style={{ color: "var(--hp-text)" }}>
+                            {s.label}
+                          </h4>
+                          {tag && (
+                            <span
+                              className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded"
+                              style={{ background: `${tag.bg}18`, color: tag.bg }}
+                            >
+                              {tag.text}
+                            </span>
+                          )}
+                        </div>
+                        {s.latest != null && (
+                          <span
+                            className="text-xs font-bold px-2 py-0.5 rounded-full"
+                            style={{ background: `${priorityColor}15`, color: priorityColor }}
+                          >
+                            Score: {s.latest}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Priority badge */}
+                      <div className="flex items-center gap-1.5 mb-3">
+                        <PriorityIcon className="w-3.5 h-3.5" style={{ color: priorityColor }} />
+                        <span
+                          className="text-[11px] font-semibold"
+                          style={{ color: priorityColor }}
+                        >
+                          {priority}
+                        </span>
+                      </div>
+
+                      {/* Tips */}
+                      <ul className="space-y-2">
+                        {tips.map((tip, i) => (
+                          <li key={i} className="flex items-start gap-2">
+                            <CheckCircle2
+                              className="w-3.5 h-3.5 shrink-0 mt-0.5"
+                              style={{ color: s.color, opacity: 0.7 }}
+                            />
+                            <span
+                              className="text-xs leading-relaxed"
+                              style={{ color: "var(--hp-text-muted)" }}
+                            >
+                              {tip}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+          );
+        })()}
       </section>
     </main>
   );

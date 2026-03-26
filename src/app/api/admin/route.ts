@@ -212,11 +212,39 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   const supabase = await createClient();
-  if (!(await isAdmin(supabase))) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
-  }
+  const callerRole = await getUserRole(supabase);
+  const callerIsAdmin = callerRole === "admin";
+  const callerIsStaff = callerIsAdmin || callerRole === "teacher" || callerRole === "editor";
 
   const { action, userId, role, teacherId, studentId, studentIds, flagId } = await req.json();
+
+  // Staff (teacher/editor) can update student-level roles; everything else requires admin
+  if (action === "update-role") {
+    if (!callerIsStaff) return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
+    if (!userId || !role) return NextResponse.json({ error: "userId and role required" }, { status: 400 });
+
+    const studentRoles = ["user", "improver", "intensive", "guarantee"];
+    const allRoles = ["admin", "teacher", "editor", ...studentRoles];
+    if (!allRoles.includes(role)) return NextResponse.json({ error: "Invalid role" }, { status: 400 });
+
+    // Non-admin staff can only assign student-level roles
+    if (!callerIsAdmin && !studentRoles.includes(role)) {
+      return NextResponse.json({ error: "Only admins can assign admin/teacher/editor roles" }, { status: 403 });
+    }
+
+    const { error } = await supabase
+      .from("profiles")
+      .update({ role })
+      .eq("id", userId);
+
+    if (error) return NextResponse.json({ error: error.message, code: error.code, details: error.details }, { status: 500 });
+    return NextResponse.json({ success: true });
+  }
+
+  // All remaining actions require admin
+  if (!callerIsAdmin) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
+  }
 
   if (action === "solve-red-flag") {
     if (!flagId) return NextResponse.json({ error: "flagId required" }, { status: 400 });
@@ -227,19 +255,6 @@ export async function POST(req: NextRequest) {
       .eq("id", flagId);
 
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-    return NextResponse.json({ success: true });
-  }
-
-  if (action === "update-role") {
-    if (!userId || !role) return NextResponse.json({ error: "userId and role required" }, { status: 400 });
-    if (!["admin", "teacher", "editor", "user", "improver", "intensive", "guarantee"].includes(role)) return NextResponse.json({ error: "Invalid role" }, { status: 400 });
-
-    const { error } = await supabase
-      .from("profiles")
-      .update({ role })
-      .eq("id", userId);
-
-    if (error) return NextResponse.json({ error: error.message, code: error.code, details: error.details }, { status: 500 });
     return NextResponse.json({ success: true });
   }
 

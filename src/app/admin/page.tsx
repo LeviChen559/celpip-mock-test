@@ -270,6 +270,20 @@ export default function AdminPage() {
   const totalUsers = users.length;
   const activeUsers = users.filter((u) => u.testCount > 0).length;
   const isViewerAdmin = viewerRole === "admin";
+  const isViewerStaff = viewerRole === "admin" || viewerRole === "teacher" || viewerRole === "editor";
+
+  const staffRoles = [
+    { value: "user", label: "User" },
+    { value: "improver", label: "Improver" },
+    { value: "intensive", label: "Intensive" },
+    { value: "guarantee", label: "Guarantee" },
+  ];
+  const adminOnlyRoles = [
+    { value: "admin", label: "Admin" },
+    { value: "teacher", label: "Teacher" },
+    { value: "editor", label: "Editor" },
+  ];
+  const roleOptions = isViewerAdmin ? [...adminOnlyRoles, ...staffRoles] : staffRoles;
 
   const toggleTeacher = (teacherId: string) => {
     setExpandedTeachers((prev) => {
@@ -334,18 +348,16 @@ export default function AdminPage() {
                 {p.role}
               </Badge>
             </div>
-            {isViewerAdmin && (
+            {isViewerStaff && (
               <div className="flex flex-wrap gap-2">
                 <select
                   value={p.role}
                   onChange={(e) => requestRoleChange(p.id, e.target.value)}
                   className="rounded-full border border-gray-300 px-3 py-1.5 text-xs font-medium bg-white focus:outline-none focus:border-[#6b4c9a]"
                 >
-                  <option value="admin">Admin</option>
-                  <option value="teacher">Teacher</option>
-                  <option value="editor">Editor</option>
-                  <option value="user">User</option>
-                  <option value="improver">Improver</option>
+                  {roleOptions.map((r) => (
+                    <option key={r.value} value={r.value}>{r.label}</option>
+                  ))}
                 </select>
                 <Button size="sm" variant="outline" onClick={() => deleteUserRecords(p.id)} className="rounded-full text-red-600 border-red-300 hover:bg-red-50">
                   <Trash2 className="w-4 h-4 sm:mr-1" /> <span className="hidden sm:inline">Clear Data</span>
@@ -528,17 +540,15 @@ export default function AdminPage() {
                         <Button size="sm" variant="outline" onClick={() => fetchUserDetail(u.id)} className="rounded-full text-xs px-3">
                           View
                         </Button>
-                        {isViewerAdmin && (
+                        {isViewerStaff && (
                           <select
                             value={u.role}
                             onChange={(e) => requestRoleChange(u.id, e.target.value)}
                             className="rounded-full border border-gray-300 px-2 py-1 text-xs font-medium bg-white focus:outline-none focus:border-[#6b4c9a]"
                           >
-                            <option value="admin">Admin</option>
-                            <option value="teacher">Teacher</option>
-                  <option value="editor">Editor</option>
-                            <option value="user">User</option>
-                            <option value="improver">Improver</option>
+                            {roleOptions.map((r) => (
+                              <option key={r.value} value={r.value}>{r.label}</option>
+                            ))}
                           </select>
                         )}
                       </div>
@@ -602,17 +612,15 @@ export default function AdminPage() {
                             <Button size="sm" variant="outline" onClick={() => fetchUserDetail(t.id)} className="rounded-full text-xs px-3">
                               View
                             </Button>
-                            {isViewerAdmin && (
+                            {isViewerStaff && (
                               <select
                                 value={t.role}
                                 onChange={(e) => requestRoleChange(t.id, e.target.value)}
                                 className="rounded-full border border-gray-300 px-2 py-1 text-xs font-medium bg-white focus:outline-none focus:border-[#6b4c9a]"
                               >
-                                <option value="admin">Admin</option>
-                                <option value="teacher">Teacher</option>
-                  <option value="editor">Editor</option>
-                                <option value="user">User</option>
-                                <option value="improver">Improver</option>
+                                {roleOptions.map((r) => (
+                                  <option key={r.value} value={r.value}>{r.label}</option>
+                                ))}
                               </select>
                             )}
                           </div>
@@ -657,28 +665,28 @@ export default function AdminPage() {
                               <Button size="sm" variant="outline" onClick={() => fetchUserDetail(s.id)} className="rounded-full text-xs px-3">
                                 View
                               </Button>
-                              {isViewerAdmin && (
+                              {isViewerStaff && (
                                 <>
-                                  <select
-                                    value={t.id}
-                                    onChange={(e) => assignStudent(s.id, e.target.value)}
-                                    className="rounded-full border border-gray-300 px-2 py-1 text-xs font-medium bg-white focus:outline-none focus:border-[#6b4c9a] max-w-[120px]"
-                                  >
-                                    <option value="">Unassign</option>
-                                    {teachers.map((teacher) => (
-                                      <option key={teacher.id} value={teacher.id}>{teacher.name || teacher.email}</option>
-                                    ))}
-                                  </select>
+                                  {isViewerAdmin && (
+                                    <select
+                                      value={t.id}
+                                      onChange={(e) => assignStudent(s.id, e.target.value)}
+                                      className="rounded-full border border-gray-300 px-2 py-1 text-xs font-medium bg-white focus:outline-none focus:border-[#6b4c9a] max-w-[120px]"
+                                    >
+                                      <option value="">Unassign</option>
+                                      {teachers.map((teacher) => (
+                                        <option key={teacher.id} value={teacher.id}>{teacher.name || teacher.email}</option>
+                                      ))}
+                                    </select>
+                                  )}
                                   <select
                                     value={s.role}
                                     onChange={(e) => requestRoleChange(s.id, e.target.value)}
                                     className="rounded-full border border-gray-300 px-2 py-1 text-xs font-medium bg-white focus:outline-none focus:border-[#6b4c9a]"
                                   >
-                                    <option value="admin">Admin</option>
-                                    <option value="teacher">Teacher</option>
-                  <option value="editor">Editor</option>
-                                    <option value="user">User</option>
-                                    <option value="improver">Improver</option>
+                                    {roleOptions.map((r) => (
+                                      <option key={r.value} value={r.value}>{r.label}</option>
+                                    ))}
                                   </select>
                                 </>
                               )}
@@ -735,28 +743,28 @@ export default function AdminPage() {
                         <Button size="sm" variant="outline" onClick={() => fetchUserDetail(u.id)} className="rounded-full text-xs px-3">
                           View
                         </Button>
-                        {isViewerAdmin && (
+                        {isViewerStaff && (
                           <>
-                            <select
-                              value=""
-                              onChange={(e) => assignStudent(u.id, e.target.value)}
-                              className="rounded-full border border-gray-300 px-2 py-1 text-xs font-medium bg-white focus:outline-none focus:border-[#6b4c9a] max-w-[120px]"
-                            >
-                              <option value="">Assign to...</option>
-                              {teachers.map((t) => (
-                                <option key={t.id} value={t.id}>{t.name || t.email}</option>
-                              ))}
-                            </select>
+                            {isViewerAdmin && (
+                              <select
+                                value=""
+                                onChange={(e) => assignStudent(u.id, e.target.value)}
+                                className="rounded-full border border-gray-300 px-2 py-1 text-xs font-medium bg-white focus:outline-none focus:border-[#6b4c9a] max-w-[120px]"
+                              >
+                                <option value="">Assign to...</option>
+                                {teachers.map((t) => (
+                                  <option key={t.id} value={t.id}>{t.name || t.email}</option>
+                                ))}
+                              </select>
+                            )}
                             <select
                               value={u.role}
                               onChange={(e) => requestRoleChange(u.id, e.target.value)}
                               className="rounded-full border border-gray-300 px-2 py-1 text-xs font-medium bg-white focus:outline-none focus:border-[#6b4c9a]"
                             >
-                              <option value="admin">Admin</option>
-                              <option value="teacher">Teacher</option>
-                  <option value="editor">Editor</option>
-                              <option value="user">User</option>
-                              <option value="improver">Improver</option>
+                              {roleOptions.map((r) => (
+                                <option key={r.value} value={r.value}>{r.label}</option>
+                              ))}
                             </select>
                           </>
                         )}
