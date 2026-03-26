@@ -285,7 +285,7 @@ export default function AdminPage() {
   const teacherUsers = filtered.filter((u) => u.role === "teacher");
   const assignedStudentIds = new Set(assignmentMap.keys());
   const unassignedUsers = filtered.filter(
-    (u) => (u.role === "user" || u.role === "subscriber") && !assignedStudentIds.has(u.id)
+    (u) => (u.role === "user" || u.role === "improver") && !assignedStudentIds.has(u.id)
   );
 
   // Build a reverse map: teacherId -> students (from filtered list)
@@ -343,7 +343,7 @@ export default function AdminPage() {
                   <option value="admin">Admin</option>
                   <option value="teacher">Teacher</option>
                   <option value="user">User</option>
-                  <option value="subscriber">Subscriber</option>
+                  <option value="improver">Improver</option>
                 </select>
                 <Button size="sm" variant="outline" onClick={() => deleteUserRecords(p.id)} className="rounded-full text-red-600 border-red-300 hover:bg-red-50">
                   <Trash2 className="w-4 h-4 sm:mr-1" /> <span className="hidden sm:inline">Clear Data</span>
@@ -535,7 +535,7 @@ export default function AdminPage() {
                             <option value="admin">Admin</option>
                             <option value="teacher">Teacher</option>
                             <option value="user">User</option>
-                            <option value="subscriber">Subscriber</option>
+                            <option value="improver">Improver</option>
                           </select>
                         )}
                       </div>
@@ -608,7 +608,7 @@ export default function AdminPage() {
                                 <option value="admin">Admin</option>
                                 <option value="teacher">Teacher</option>
                                 <option value="user">User</option>
-                                <option value="subscriber">Subscriber</option>
+                                <option value="improver">Improver</option>
                               </select>
                             )}
                           </div>
@@ -673,7 +673,7 @@ export default function AdminPage() {
                                     <option value="admin">Admin</option>
                                     <option value="teacher">Teacher</option>
                                     <option value="user">User</option>
-                                    <option value="subscriber">Subscriber</option>
+                                    <option value="improver">Improver</option>
                                   </select>
                                 </>
                               )}
@@ -685,7 +685,7 @@ export default function AdminPage() {
                   );
                 })}
 
-                {/* Unassigned users/subscribers */}
+                {/* Unassigned users */}
                 {unassignedUsers.length > 0 && (adminUsers.length > 0 || teacherUsers.length > 0) && (
                   <tr>
                     <td colSpan={7} className="px-4 py-2 bg-gray-50/50">
@@ -750,7 +750,7 @@ export default function AdminPage() {
                               <option value="admin">Admin</option>
                               <option value="teacher">Teacher</option>
                               <option value="user">User</option>
-                              <option value="subscriber">Subscriber</option>
+                              <option value="improver">Improver</option>
                             </select>
                           </>
                         )}

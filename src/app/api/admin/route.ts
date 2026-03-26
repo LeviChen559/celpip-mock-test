@@ -232,7 +232,7 @@ export async function POST(req: NextRequest) {
 
   if (action === "update-role") {
     if (!userId || !role) return NextResponse.json({ error: "userId and role required" }, { status: 400 });
-    if (!["admin", "teacher", "user", "subscriber"].includes(role)) return NextResponse.json({ error: "Invalid role" }, { status: 400 });
+    if (!["admin", "teacher", "user", "improver", "intensive", "guarantee"].includes(role)) return NextResponse.json({ error: "Invalid role" }, { status: 400 });
 
     const { error } = await supabase
       .from("profiles")

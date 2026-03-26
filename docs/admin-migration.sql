@@ -2,7 +2,7 @@
 -- Run this in the Supabase SQL Editor
 
 -- 1. Add role column to profiles
-alter table public.profiles add column if not exists role text not null default 'subscriber' check (role in ('admin', 'teacher', 'user', 'subscriber'));
+alter table public.profiles add column if not exists role text not null default 'improver' check (role in ('admin', 'teacher', 'user', 'improver', 'intensive', 'guarantee'));
 
 -- 2. Allow admins to read all profiles
 create policy "Admins can read all profiles"

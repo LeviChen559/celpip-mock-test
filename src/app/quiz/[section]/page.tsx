@@ -182,7 +182,7 @@ export default function QuizPractice({
     return part?.paid === true;
   }, [section, partParam]);
 
-  const userRole = currentUser?.role || "subscriber";
+  const userRole = currentUser?.role || "improver";
   const hasPaidAccess = userRole === "admin" || userRole === "teacher";
 
   // Reading: 1 minute per question global timer. Listening: 30s per question.
