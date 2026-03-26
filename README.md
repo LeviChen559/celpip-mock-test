@@ -12,8 +12,8 @@ A comprehensive web-based practice platform for the **CELPIP (Canadian English L
 - Text-to-speech audio via ElevenLabs API
 - Test history, score trends, and full answer review
 - Report-a-problem system for question quality control
-- Monthly credit limits by role (user: 15, improver: 100, intensive: 500, guarantee/teacher/admin: unlimited)
-- Role-based access (user, improver, intensive, guarantee, teacher, admin)
+- Monthly credit limits by role (user: 15, improver: 100, intensive: 500, guarantee/teacher/editor/admin: unlimited)
+- Role-based access (user, improver, intensive, guarantee, teacher, editor, admin)
 - Teacher portal for student progress monitoring
 - Admin dashboard for user and content management
 
@@ -61,7 +61,7 @@ A comprehensive web-based practice platform for the **CELPIP (Canadian English L
 
 ### User Authentication & Roles
 - Email/password authentication via Supabase
-- Role-based access: user, improver, intensive, guarantee, teacher, admin
+- Role-based access: user, improver, intensive, guarantee, teacher, editor, admin
 
 ### Teacher Portal
 - View assigned students and their progress

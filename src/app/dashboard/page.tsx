@@ -308,13 +308,13 @@ export default function Dashboard() {
   // Set default tab based on role
   useEffect(() => {
     if (currentUser) {
-      setActiveTab((prev) => prev ?? (userRole === "admin" || userRole === "teacher" ? "full" : "quiz"));
+      setActiveTab((prev) => prev ?? (userRole === "admin" || userRole === "teacher" || userRole === "editor" ? "full" : "quiz"));
     }
   }, [currentUser, userRole]);
 
   if (loading || !currentUser || !activeTab) return null;
 
-  const canAccessFullTest = userRole === "admin" || userRole === "teacher";
+  const canAccessFullTest = userRole === "admin" || userRole === "teacher" || userRole === "editor";
   const visibleTabs = canAccessFullTest ? tabs : tabs.filter((t) => t.key !== "full");
 
   // Build a map of completed quiz keys
@@ -444,7 +444,7 @@ export default function Dashboard() {
             Admin
           </button>
         )}
-        {userRole === "teacher" && (
+        {(userRole === "teacher" || userRole === "editor") && (
           <button
             onClick={() => router.push("/teacher")}
             className="px-3 py-1.5 rounded-full text-xs font-medium transition-colors"
@@ -872,7 +872,7 @@ export default function Dashboard() {
                                 item.originalIndex
                               );
                               const isPaid = item.paid === true;
-                              const isLocked = isPaid && userRole !== "admin" && userRole !== "teacher";
+                              const isLocked = isPaid && userRole !== "admin" && userRole !== "teacher" && userRole !== "editor";
                               return (
                                 <button
                                   key={item.id}
