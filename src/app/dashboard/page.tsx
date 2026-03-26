@@ -34,6 +34,9 @@ import {
   FileText,
   Layers,
   Zap,
+  Play,
+  Lightbulb,
+  ExternalLink,
 } from "lucide-react";
 
 // ── Helpers ────────────────────────────────────────────
@@ -268,6 +271,7 @@ const tabs = [
   { key: "plan", label: "Study Plan", icon: ClipboardList },
   { key: "mytests", label: "My Test Results", icon: BarChart3 },
   { key: "schedule", label: "My Schedule", icon: CalendarDays },
+  { key: "videos", label: "Videos & Advice", icon: Play },
 ] as const;
 
 type TabKey = (typeof tabs)[number]["key"];
@@ -1021,6 +1025,278 @@ export default function Dashboard() {
 
         {/* ── Tab 6: My Schedule ─────────────────── */}
         {activeTab === "schedule" && <MySchedule />}
+
+        {/* ── Tab 7: Videos & Advice ───────────────── */}
+        {activeTab === "videos" && (
+          <div className="space-y-8">
+            {/* ── Video Resources ── */}
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <Play className="w-5 h-5" style={{ color: "var(--hp-accent)" }} />
+                <h3
+                  className="text-lg font-bold"
+                  style={{ fontFamily: "var(--font-serif)", color: "var(--hp-text)" }}
+                >
+                  Video Resources
+                </h3>
+              </div>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {[
+                  {
+                    title: "CELPIP Listening Tips: How to Score 9+",
+                    section: "Listening",
+                    duration: "12:34",
+                    thumbnail: "🎧",
+                    color: "#b8703b",
+                    description: "Master note-taking strategies and learn to identify key information in conversations and discussions.",
+                  },
+                  {
+                    title: "Reading Comprehension Strategies",
+                    section: "Reading",
+                    duration: "15:20",
+                    thumbnail: "📖",
+                    color: "#5a8a6a",
+                    description: "Skimming, scanning, and time management techniques for all four reading parts.",
+                  },
+                  {
+                    title: "Writing Task 1: Email Writing Masterclass",
+                    section: "Writing",
+                    duration: "18:45",
+                    thumbnail: "✍️",
+                    color: "#7a7ac7",
+                    description: "Structure, tone, and vocabulary tips to write effective emails that score high.",
+                  },
+                  {
+                    title: "Speaking: Describe a Scene Like a Pro",
+                    section: "Speaking",
+                    duration: "10:15",
+                    thumbnail: "🎤",
+                    color: "#c77a8b",
+                    description: "Frameworks for organizing your response and using advanced vocabulary naturally.",
+                  },
+                  {
+                    title: "CELPIP vs IELTS: Key Differences",
+                    section: "General",
+                    duration: "8:50",
+                    thumbnail: "📊",
+                    color: "var(--hp-text-muted)",
+                    description: "Understand the format differences and which strategies work specifically for CELPIP.",
+                  },
+                  {
+                    title: "Common Mistakes That Drop Your Score",
+                    section: "General",
+                    duration: "14:10",
+                    thumbnail: "⚠️",
+                    color: "var(--hp-text-muted)",
+                    description: "Avoid these frequent errors in writing and speaking that cost candidates 1-2 score levels.",
+                  },
+                ].map((video) => (
+                  <div
+                    key={video.title}
+                    className="hp-glass rounded-2xl overflow-hidden group cursor-pointer"
+                  >
+                    {/* Thumbnail area */}
+                    <div
+                      className="relative h-32 flex items-center justify-center"
+                      style={{ background: `${video.color}08` }}
+                    >
+                      <span className="text-4xl">{video.thumbnail}</span>
+                      <div
+                        className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                        style={{ background: "rgba(0,0,0,0.3)" }}
+                      >
+                        <div
+                          className="w-12 h-12 rounded-full flex items-center justify-center"
+                          style={{ background: "rgba(255,255,255,0.95)" }}
+                        >
+                          <Play
+                            className="w-5 h-5 ml-0.5"
+                            style={{ color: video.color }}
+                          />
+                        </div>
+                      </div>
+                      <span
+                        className="absolute bottom-2 right-2 px-2 py-0.5 rounded text-[10px] font-mono font-bold"
+                        style={{
+                          background: "rgba(0,0,0,0.6)",
+                          color: "#fff",
+                        }}
+                      >
+                        {video.duration}
+                      </span>
+                    </div>
+
+                    {/* Info */}
+                    <div className="p-4">
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <span
+                          className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full"
+                          style={{
+                            background: `${video.color}12`,
+                            color: video.color,
+                          }}
+                        >
+                          {video.section}
+                        </span>
+                      </div>
+                      <h4
+                        className="text-sm font-bold leading-snug mb-1"
+                        style={{ color: "var(--hp-text)" }}
+                      >
+                        {video.title}
+                      </h4>
+                      <p
+                        className="text-xs leading-relaxed"
+                        style={{ color: "var(--hp-text-muted)" }}
+                      >
+                        {video.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ── Expert Advice ── */}
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <Lightbulb className="w-5 h-5" style={{ color: "var(--hp-accent)" }} />
+                <h3
+                  className="text-lg font-bold"
+                  style={{ fontFamily: "var(--font-serif)", color: "var(--hp-text)" }}
+                >
+                  Expert Advice
+                </h3>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                {[
+                  {
+                    title: "Time Management is Everything",
+                    content: "In the CELPIP test, every section is timed. Practice with strict timers from day one. For reading, spend no more than 10 minutes per part. For writing, allocate 5 minutes to plan, 18 minutes to write, and 4 minutes to review.",
+                    icon: "⏱️",
+                    category: "Strategy",
+                  },
+                  {
+                    title: "Use the Notepad Feature",
+                    content: "CELPIP provides a digital notepad during the listening section. Write down key names, numbers, and relationships as you listen. This is especially crucial for Parts 3-6 where you need to track multiple speakers.",
+                    icon: "📝",
+                    category: "Listening",
+                  },
+                  {
+                    title: "Master the Email Format",
+                    content: "Writing Task 1 always asks for an email. Use a clear structure: greeting, 3 body paragraphs (one per bullet point), and a closing. Match your tone to the audience — formal for a manager, semi-formal for a colleague, informal for a friend.",
+                    icon: "📧",
+                    category: "Writing",
+                  },
+                  {
+                    title: "Don't Memorize — Practice Patterns",
+                    content: "Memorized responses sound unnatural and score low. Instead, practice response patterns: 'In my opinion... because firstly... secondly... For instance...' These frameworks let you speak naturally about any topic.",
+                    icon: "🗣️",
+                    category: "Speaking",
+                  },
+                  {
+                    title: "Read the Questions First",
+                    content: "Before reading a passage, scan all the questions. This tells your brain what to look for, making you faster and more accurate. Focus on keywords in questions — names, dates, opinions, and cause-effect relationships.",
+                    icon: "🔍",
+                    category: "Reading",
+                  },
+                  {
+                    title: "Simulate Real Test Conditions",
+                    content: "Take at least 3 full-length practice tests under real conditions: no pausing, no phone, quiet room, full timing. This builds stamina for the 3-hour test and reduces anxiety on test day.",
+                    icon: "🎯",
+                    category: "Strategy",
+                  },
+                ].map((advice) => (
+                  <div
+                    key={advice.title}
+                    className="hp-glass rounded-2xl p-5 relative overflow-hidden"
+                  >
+                    <div
+                      className="absolute top-0 left-5 right-5 h-[2px] rounded-full"
+                      style={{ background: "var(--hp-accent)", opacity: 0.2 }}
+                    />
+                    <div className="flex items-start gap-3">
+                      <span className="text-2xl shrink-0 mt-0.5">
+                        {advice.icon}
+                      </span>
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span
+                            className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full"
+                            style={{
+                              background: "var(--hp-accent-glow)",
+                              color: "var(--hp-accent)",
+                            }}
+                          >
+                            {advice.category}
+                          </span>
+                        </div>
+                        <h4
+                          className="text-sm font-bold mb-1.5"
+                          style={{ color: "var(--hp-text)" }}
+                        >
+                          {advice.title}
+                        </h4>
+                        <p
+                          className="text-xs leading-relaxed"
+                          style={{ color: "var(--hp-text-muted)" }}
+                        >
+                          {advice.content}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ── Useful Links ── */}
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <ExternalLink className="w-5 h-5" style={{ color: "var(--hp-accent)" }} />
+                <h3
+                  className="text-lg font-bold"
+                  style={{ fontFamily: "var(--font-serif)", color: "var(--hp-text)" }}
+                >
+                  Useful Links
+                </h3>
+              </div>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                {[
+                  { label: "Official CELPIP Website", url: "https://www.celpip.ca", description: "Test registration, dates, and official prep materials" },
+                  { label: "CELPIP Score Calculator", url: "https://www.celpip.ca/prepare-for-celpip/score-comparison", description: "Compare your scores to CLB levels and IELTS equivalents" },
+                  { label: "Free Sample Test", url: "https://www.celpip.ca/prepare-for-celpip/free-practice-test", description: "Official free practice test from CELPIP" },
+                  { label: "Test Day Checklist", url: "https://www.celpip.ca/take-celpip/test-day", description: "What to bring, what to expect, and test-day tips" },
+                ].map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hp-glass rounded-xl p-4 flex flex-col gap-1.5 group"
+                  >
+                    <span
+                      className="text-sm font-semibold flex items-center gap-1.5 group-hover:gap-2.5 transition-all"
+                      style={{ color: "var(--hp-accent)" }}
+                    >
+                      {link.label}
+                      <ExternalLink className="w-3 h-3 opacity-50" />
+                    </span>
+                    <span
+                      className="text-[11px] leading-relaxed"
+                      style={{ color: "var(--hp-text-muted)" }}
+                    >
+                      {link.description}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </section>
     </main>
   );
