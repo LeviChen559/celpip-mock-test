@@ -496,7 +496,7 @@ export default function Dashboard() {
             My Students
           </button>
         )}
-        {!["admin", "teacher", "editor"].includes(userRole) && (
+        {userRole === "user" && (
           <button
             onClick={() => router.push("/payment")}
             className="px-3 py-1.5 rounded-full text-xs font-semibold transition-all flex items-center gap-1.5"
