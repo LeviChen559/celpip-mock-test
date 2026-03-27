@@ -1413,7 +1413,7 @@ export default function Dashboard() {
           const weakest = ranked.length > 1 ? ranked[ranked.length - 1] : null;
 
           // Radar chart helpers
-          const radarCx = 140, radarCy = 140, radarR = 100;
+          const radarCx = 170, radarCy = 140, radarR = 100;
           const radarAngles = [-Math.PI / 2, 0, Math.PI / 2, Math.PI]; // top, right, bottom, left
           const radarPoint = (angle: number, value: number) => ({
             x: radarCx + Math.cos(angle) * (value / maxScore) * radarR,
@@ -1490,7 +1490,7 @@ export default function Dashboard() {
                   <h4 className="text-sm font-bold mb-4" style={{ color: "var(--hp-text)" }}>
                     Skills Overview
                   </h4>
-                  <svg viewBox="0 0 280 280" className="w-full max-w-[320px] mx-auto">
+                  <svg viewBox="0 0 340 300" className="w-full max-w-[340px] mx-auto">
                     {/* Grid rings */}
                     {[0.25, 0.5, 0.75, 1].map((pct) => (
                       <polygon
