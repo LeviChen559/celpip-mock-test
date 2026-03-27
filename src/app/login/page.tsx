@@ -25,7 +25,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (!loading && currentUser) {
-      router.push("/dashboard");
+      router.push("/payment");
     }
   }, [loading, currentUser, router]);
 
@@ -55,7 +55,7 @@ export default function LoginPage() {
       }
       const err = await signIn(email.trim().toLowerCase(), password);
       if (err) { setError(err); setSubmitting(false); return; }
-      router.push("/dashboard");
+      router.push("/payment");
     } catch {
       setError("Something went wrong. Please try again.");
     } finally {

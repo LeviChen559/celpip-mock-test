@@ -55,6 +55,7 @@ import {
   User,
   UserCheck,
   LogOut,
+  Crown,
 } from "lucide-react";
 
 // ── Helpers ────────────────────────────────────────────
@@ -493,6 +494,25 @@ export default function Dashboard() {
             }
           >
             My Students
+          </button>
+        )}
+        {!["admin", "teacher", "editor"].includes(userRole) && (
+          <button
+            onClick={() => router.push("/payment")}
+            className="px-3 py-1.5 rounded-full text-xs font-semibold transition-all flex items-center gap-1.5"
+            style={{
+              background: "var(--hp-accent)",
+              color: "#ffffff",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "var(--hp-accent-light)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "var(--hp-accent)";
+            }}
+          >
+            <Crown className="w-3.5 h-3.5" />
+            Upgrade
           </button>
         )}
         <button
