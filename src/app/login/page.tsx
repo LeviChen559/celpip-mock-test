@@ -55,9 +55,9 @@ export default function LoginPage() {
       }
       const err = await signIn(email.trim().toLowerCase(), password);
       if (err) { setError(err); setSubmitting(false); return; }
+      // Keep submitting=true — useEffect will redirect once profile loads
     } catch {
       setError("Something went wrong. Please try again.");
-    } finally {
       setSubmitting(false);
     }
   };
