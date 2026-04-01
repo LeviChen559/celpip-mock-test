@@ -1,31 +1,28 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { useAuth } from "@/lib/hooks/use-auth";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
-export default function LoginPage() {
+export default function SignupPage() {
   const router = useRouter();
-  const { currentUser, loading, signIn } = useAuth();
+  const t = useTranslations("signup");
+  const tc = useTranslations("common");
+  const { currentUser, loading, signUp } = useAuth();
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem("remembered_email");
-    if (saved) {
-      setEmail(saved);
-      setRememberMe(true);
-    }
-  }, []);
-
-  useEffect(() => {
     if (!loading && currentUser) {
-      router.push(currentUser.role === "user" ? "/payment" : "/dashboard");
+      router.push("/payment");
     }
   }, [loading, currentUser, router]);
 
@@ -43,20 +40,22 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    setSuccess("");
     setSubmitting(true);
 
     try {
-      if (!email.trim()) { setError("Email is required."); setSubmitting(false); return; }
-      if (!password) { setError("Password is required."); setSubmitting(false); return; }
-      if (rememberMe) {
-        localStorage.setItem("remembered_email", email.trim().toLowerCase());
-      } else {
-        localStorage.removeItem("remembered_email");
+      if (!name.trim()) { setError(t("nameRequired")); setSubmitting(false); return; }
+      if (!email.trim()) { setError(t("emailRequired")); setSubmitting(false); return; }
+      if (password.length < 6) { setError(t("passwordMin")); setSubmitting(false); return; }
+      const err = await signUp(name.trim(), email.trim().toLowerCase(), password);
+      if (err) {
+        const msg = err.toLowerCase().includes("rate") ? t("tooManyAttempts") : err;
+        setError(msg); setSubmitting(false); return;
       }
-      const err = await signIn(email.trim().toLowerCase(), password);
-      if (err) { setError(err); setSubmitting(false); return; }
+      setSuccess(t("accountCreated"));
+      setSubmitting(false);
     } catch {
-      setError("Something went wrong. Please try again.");
+      setError(t("somethingWrong"));
     } finally {
       setSubmitting(false);
     }
@@ -102,20 +101,23 @@ export default function LoginPage() {
       />
 
       <div className="w-full max-w-md relative z-10">
-        {/* Back to home */}
-        <button
-          onClick={() => router.push("/")}
-          className="text-xs font-semibold tracking-widest mb-8 block transition-colors hp-reveal"
-          style={{ color: "var(--hp-accent)" }}
-          onMouseEnter={(e) =>
-            (e.currentTarget.style.color = "var(--hp-accent-light)")
-          }
-          onMouseLeave={(e) =>
-            (e.currentTarget.style.color = "var(--hp-accent)")
-          }
-        >
-          &larr; PugPIP
-        </button>
+        {/* Back to home + language switcher */}
+        <div className="flex items-center justify-between mb-8 hp-reveal">
+          <button
+            onClick={() => router.push("/")}
+            className="text-xs font-semibold tracking-widest block transition-colors"
+            style={{ color: "var(--hp-accent)" }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.color = "var(--hp-accent-light)")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.color = "var(--hp-accent)")
+            }
+          >
+            &larr; PugPIP
+          </button>
+          <LanguageSwitcher />
+        </div>
 
         {/* Card */}
         <div className="hp-glass rounded-3xl p-8 relative overflow-hidden hp-reveal hp-reveal-d1">
@@ -145,10 +147,10 @@ export default function LoginPage() {
                 color: "var(--hp-text)",
               }}
             >
-              Welcome Back
+              {t("createAccount")}
             </h1>
             <p className="text-sm" style={{ color: "var(--hp-text-muted)" }}>
-              Sign in to track your test results and schedule.
+              {t("subtitle")}
             </p>
           </div>
 
@@ -158,13 +160,40 @@ export default function LoginPage() {
                 className="block text-sm font-medium mb-1.5"
                 style={{ color: "var(--hp-text)" }}
               >
-                Email
+                {tc("name")}
+              </label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder={t("namePlaceholder")}
+                className="w-full rounded-xl px-4 py-3 text-sm transition-all outline-none"
+                style={{
+                  background: "var(--hp-bg)",
+                  border: "1px solid var(--hp-border)",
+                  color: "var(--hp-text)",
+                }}
+                onFocus={(e) =>
+                  (e.currentTarget.style.borderColor = "var(--hp-accent)")
+                }
+                onBlur={(e) =>
+                  (e.currentTarget.style.borderColor = "var(--hp-border)")
+                }
+              />
+            </div>
+
+            <div className="hp-reveal hp-reveal-d2">
+              <label
+                className="block text-sm font-medium mb-1.5"
+                style={{ color: "var(--hp-text)" }}
+              >
+                {tc("email")}
               </label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
+                placeholder={t("emailPlaceholder")}
                 className="w-full rounded-xl px-4 py-3 text-sm transition-all outline-none"
                 style={{
                   background: "var(--hp-bg)",
@@ -185,13 +214,13 @@ export default function LoginPage() {
                 className="block text-sm font-medium mb-1.5"
                 style={{ color: "var(--hp-text)" }}
               >
-                Password
+                {tc("password")}
               </label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Your password"
+                placeholder={t("passwordPlaceholder")}
                 className="w-full rounded-xl px-4 py-3 text-sm transition-all outline-none"
                 style={{
                   background: "var(--hp-bg)",
@@ -207,26 +236,15 @@ export default function LoginPage() {
               />
             </div>
 
-            <div className="flex items-center gap-2 hp-reveal hp-reveal-d3">
-              <input
-                type="checkbox"
-                id="remember-me"
-                checked={rememberMe}
-                onChange={(e) => setRememberMe(e.target.checked)}
-                className="w-4 h-4 rounded border-gray-300 accent-[var(--hp-accent)] cursor-pointer"
-              />
-              <label
-                htmlFor="remember-me"
-                className="text-sm cursor-pointer select-none"
-                style={{ color: "var(--hp-text-muted)" }}
-              >
-                Remember my email
-              </label>
-            </div>
-
             {error && (
               <div className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-3">
                 {error}
+              </div>
+            )}
+
+            {success && (
+              <div className="text-sm text-green-600 bg-green-50 border border-green-200 rounded-xl px-4 py-3">
+                {success}
               </div>
             )}
 
@@ -235,10 +253,10 @@ export default function LoginPage() {
               className="hp-cta-btn w-full rounded-full py-3.5 text-sm flex items-center justify-center gap-2 hp-reveal hp-reveal-d4"
             >
               {submitting ? (
-                "Please wait..."
+                tc("pleaseWait")
               ) : (
                 <>
-                  Sign In
+                  {t("createAccount")}
                   <ArrowRight className="w-4 h-4" />
                 </>
               )}
@@ -247,7 +265,7 @@ export default function LoginPage() {
 
           <div className="text-center mt-6 hp-reveal hp-reveal-d5">
             <button
-              onClick={() => router.push("/signup")}
+              onClick={() => router.push("/login")}
               className="text-sm font-medium transition-colors"
               style={{ color: "var(--hp-accent)" }}
               onMouseEnter={(e) =>
@@ -257,7 +275,7 @@ export default function LoginPage() {
                 (e.currentTarget.style.color = "var(--hp-accent)")
               }
             >
-              Don&rsquo;t have an account? Sign up
+              {t("hasAccount")}
             </button>
           </div>
         </div>

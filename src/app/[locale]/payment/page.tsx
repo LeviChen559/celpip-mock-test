@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { useAuth } from "@/lib/hooks/use-auth";
 import Image from "next/image";
 import {
@@ -14,85 +15,73 @@ import {
   BicepsFlexed,
 } from "lucide-react";
 
-const plans = [
-  {
-    id: "free",
-    name: "Free",
-    price: "$0",
-    period: "forever",
-    description: "Get started with basic practice",
-    icon: Zap,
-    accent: false,
-    features: [
-      "15 test credits / month",
-      "Full test: 30 cr · Section test: 4–15 cr",
-      "Quiz practice: 1–3 cr per section",
-      "Basic study dashboard",
-      "Community support",
-    ],
-    cta: "Continue Free",
-  },
-  {
-    id: "improver",
-    name: "Improver",
-    price: "$15",
-    period: "/ month",
-    description: "AI-powered feedback to level up fast",
-    icon: Sparkles,
-    accent: true,
-    popular: true,
-    features: [
-      "100 test credits / month",
-      "AI writing scoring & feedback",
-      "AI speaking evaluation",
-      "Personalized study plan",
-      "Diagnostic assessment",
-      "Priority support",
-    ],
-    cta: "Get Improver",
-  },
-  {
-    id: "intensive",
-    name: "Intensive",
-    price: "$45",
-    period: "/ 3 months",
-    description: "Maximum preparation for test day",
-    icon: BicepsFlexed,
-    accent: false,
-    features: [
-      "500 test credits / month",
-      "Everything in Improver",
-      "Exclusive CELPIP test video",
-      "Real-time writing feedback",
-      "Advanced analytics & trends",
-      "Speaking practice with AI coach",
-      "Dedicated support",
-    ],
-    cta: "Get Intensive",
-  },
-  {
-    id: "guarantee",
-    name: "Score Guarantee",
-    price: "$79",
-    period: "one-time",
-    description: "90-day unlimited access with confidence",
-    icon: Crown,
-    accent: false,
-    features: [
-      "Unlimited test credits for 90 days",
-      "Everything in Intensive",
-      "Teacher review sessions",
-      "Custom study schedule",
-      "Score improvement guarantee",
-      "1-on-1 support channel",
-    ],
-    cta: "Get Guarantee",
-  },
+const plansMeta = [
+  { id: "free", icon: Zap, accent: false },
+  { id: "improver", icon: Sparkles, accent: true, popular: true },
+  { id: "intensive", icon: BicepsFlexed, accent: false },
+  { id: "guarantee", icon: Crown, accent: false },
 ];
 
 export default function PaymentPage() {
   const router = useRouter();
   const { currentUser, loading } = useAuth();
+  const t = useTranslations("payment");
+  const tp = useTranslations("pricing");
+  const tl = useTranslations("landing");
+
+  const plans = plansMeta.map((meta) => {
+    const featureKeys: Record<string, string[]> = {
+      free: ["freeFeature1", "freeFeature2", "freeFeature3", "freeFeature4", "freeFeature5"],
+      improver: ["improverFeature1", "improverFeature2", "improverFeature3", "improverFeature4", "improverFeature5", "improverFeature6"],
+      intensive: ["intensiveFeature1", "intensiveFeature2", "intensiveFeature3", "intensiveFeature4", "intensiveFeature5", "intensiveFeature6", "intensiveFeature7"],
+      guarantee: ["guaranteeFeature1", "guaranteeFeature2", "guaranteeFeature3", "guaranteeFeature4", "guaranteeFeature5", "guaranteeFeature6"],
+    };
+
+    const nameKeys: Record<string, string> = {
+      free: "freeName",
+      improver: "improverName",
+      intensive: "intensiveName",
+      guarantee: "guaranteeName",
+    };
+
+    const priceKeys: Record<string, string> = {
+      free: "freePrice",
+      improver: "improverPrice",
+      intensive: "intensivePrice",
+      guarantee: "guaranteePrice",
+    };
+
+    const periodKeys: Record<string, string> = {
+      free: "freePeriod",
+      improver: "improverPeriod",
+      intensive: "intensivePeriod",
+      guarantee: "guaranteePeriod",
+    };
+
+    const descKeys: Record<string, string> = {
+      free: "freeDesc",
+      improver: "improverDesc",
+      intensive: "intensiveDesc",
+      guarantee: "guaranteeDesc",
+    };
+
+    const ctaKeys: Record<string, string> = {
+      free: "continueFree",
+      improver: "getImprover",
+      intensive: "getIntensive",
+      guarantee: "getGuarantee",
+    };
+
+    return {
+      ...meta,
+      name: tp(nameKeys[meta.id]),
+      price: tp(priceKeys[meta.id]),
+      period: tp(periodKeys[meta.id]),
+      description: tp(descKeys[meta.id]),
+      features: featureKeys[meta.id].map((key) => t(key)),
+      cta: t(ctaKeys[meta.id]),
+    };
+  });
 
   useEffect(() => {
     if (!loading && !currentUser) {
@@ -191,14 +180,13 @@ export default function PaymentPage() {
               color: "var(--hp-text)",
             }}
           >
-            Choose Your Plan
+            {t("chooseYourPlan")}
           </h1>
           <p
             className="text-base md:text-lg max-w-lg mx-auto hp-reveal hp-reveal-d2"
             style={{ color: "var(--hp-text-muted)" }}
           >
-            Welcome, {currentUser.name || "there"}! Pick the plan that fits your
-            CELPIP preparation goals.
+            {t("welcomeUser", { name: currentUser.name || "there" })}
           </p>
         </div>
 
@@ -232,7 +220,7 @@ export default function PaymentPage() {
                   className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-semibold text-white"
                   style={{ background: "var(--hp-accent)" }}
                 >
-                  Most Popular
+                  {tl("mostPopular")}
                 </div>
               )}
 
@@ -360,7 +348,7 @@ export default function PaymentPage() {
               (e.currentTarget.style.color = "var(--hp-text-muted)")
             }
           >
-            Skip for now — continue with free account
+            {t("skipForNow")}
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
@@ -368,9 +356,9 @@ export default function PaymentPage() {
         {/* Trust badges */}
         <div className="mt-12 flex flex-wrap items-center justify-center gap-6 md:gap-10 hp-reveal hp-reveal-d8">
           {[
-            "Cancel anytime",
-            "Secure payment",
-            "7-day money-back guarantee",
+            tl("cancelAnytime"),
+            tl("securePayment"),
+            tl("moneyBack"),
           ].map((badge) => (
             <div
               key={badge}

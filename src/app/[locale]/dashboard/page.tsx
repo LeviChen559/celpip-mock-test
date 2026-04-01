@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { resetTestState, saveTestState, PracticeSection } from "@/lib/test-store";
 import {
   listeningParts as hardcodedListeningParts,
@@ -56,6 +57,7 @@ import {
   UserCheck,
   LogOut,
   Crown,
+  Settings,
 } from "lucide-react";
 
 // ── Helpers ────────────────────────────────────────────
@@ -88,15 +90,16 @@ function buildSections(
   listeningParts: ListeningPart[],
   readingParts: ReadingPart[],
   writingTasks: WritingTask[],
-  speakingTasks: SpeakingTask[]
+  speakingTasks: SpeakingTask[],
+  t: (key: string) => string,
+  tc: (key: string) => string
 ) {
   return [
     {
-      title: "Listening",
+      title: tc("listening"),
       key: "listening" as PracticeSection,
       icon: Headphones,
-      description:
-        "Conversations, news reports, and discussions with multiple-choice questions.",
+      description: t("listeningDesc"),
       duration: "~47 min",
       summary: "6 parts + practice, 39 questions",
       color: "#b8703b",
@@ -110,11 +113,10 @@ function buildSections(
       })),
     },
     {
-      title: "Reading",
+      title: tc("reading"),
       key: "reading" as PracticeSection,
       icon: BookOpen,
-      description:
-        "Emails, schedules, articles, and opinion pieces with comprehension questions.",
+      description: t("readingDesc"),
       duration: "~55 min",
       summary: "4 parts + practice, 39 questions",
       color: "#5a8a6a",
@@ -128,11 +130,10 @@ function buildSections(
       })),
     },
     {
-      title: "Writing",
+      title: tc("writing"),
       key: "writing" as PracticeSection,
       icon: PenLine,
-      description:
-        "Write an email and respond to a survey question with structured responses.",
+      description: t("writingDesc"),
       duration: "~53 min",
       summary: "2 tasks",
       color: "#7a7ac7",
@@ -146,11 +147,10 @@ function buildSections(
       })),
     },
     {
-      title: "Speaking",
+      title: tc("speaking"),
       key: "speaking" as PracticeSection,
       icon: Mic,
-      description:
-        "Respond to prompts covering advice, descriptions, opinions, and persuasion.",
+      description: t("speakingDesc"),
       duration: "~20 min",
       summary: "8 tasks + practice",
       color: "#c77a8b",
@@ -210,15 +210,16 @@ function buildQuizSections(
   listeningParts: ListeningPart[],
   readingParts: ReadingPart[],
   writingTasks: WritingTask[],
-  speakingTasks: SpeakingTask[]
+  speakingTasks: SpeakingTask[],
+  t: (key: string) => string,
+  tc: (key: string) => string
 ) {
   return [
     {
       key: "listening",
-      title: "Listening",
+      title: tc("listening"),
       icon: Headphones,
-      description:
-        "Conversations, news reports, and discussions with multiple-choice questions.",
+      description: t("listeningDesc"),
       color: "#b8703b",
       categories: groupByCategory(
         listeningParts.map((p) => ({
@@ -231,10 +232,9 @@ function buildQuizSections(
     },
     {
       key: "reading",
-      title: "Reading",
+      title: tc("reading"),
       icon: BookOpen,
-      description:
-        "Emails, schedules, articles, and opinion pieces with comprehension questions.",
+      description: t("readingDesc"),
       color: "#5a8a6a",
       categories: groupByCategory(
         readingParts.map((p) => ({
@@ -248,10 +248,9 @@ function buildQuizSections(
     },
     {
       key: "writing",
-      title: "Writing",
+      title: tc("writing"),
       icon: PenLine,
-      description:
-        "Write an email and respond to a survey question with structured responses.",
+      description: t("writingDesc"),
       color: "#7a7ac7",
       categories: groupByCategory(
         writingTasks.map((t) => ({
@@ -264,10 +263,9 @@ function buildQuizSections(
     },
     {
       key: "speaking",
-      title: "Speaking",
+      title: tc("speaking"),
       icon: Mic,
-      description:
-        "Respond to prompts covering advice, descriptions, opinions, and persuasion.",
+      description: t("speakingDesc"),
       color: "#c77a8b",
       categories: groupByCategory(
         speakingTasks.map((t) => ({
@@ -284,15 +282,15 @@ function buildQuizSections(
 // ── Tabs ───────────────────────────────────────────────
 
 const tabs = [
-  { key: "full", label: "Full Mock Test", icon: FileText },
-  { key: "section", label: "Section Practice", icon: Layers },
-  { key: "quiz", label: "Quiz Practice", icon: Zap },
-  { key: "plan", label: "Study Plan", icon: ClipboardList },
-  { key: "mytests", label: "My Test Results", icon: BarChart3 },
-  { key: "schedule", label: "My Schedule", icon: CalendarDays },
-  { key: "videos", label: "Videos", icon: Play },
-  { key: "advice", label: "Advice", icon: Lightbulb },
-  { key: "strategy", label: "Strategy", icon: Target },
+  { key: "full", labelKey: "fullMockTest", icon: FileText },
+  { key: "section", labelKey: "sectionPractice", icon: Layers },
+  { key: "quiz", labelKey: "quizPractice", icon: Zap },
+  { key: "plan", labelKey: "studyPlan", icon: ClipboardList },
+  { key: "mytests", labelKey: "myTestResults", icon: BarChart3 },
+  { key: "schedule", labelKey: "mySchedule", icon: CalendarDays },
+  { key: "videos", labelKey: "videos", icon: Play },
+  { key: "advice", labelKey: "advice", icon: Lightbulb },
+  { key: "strategy", labelKey: "strategy", icon: Target },
 ] as const;
 
 type TabKey = (typeof tabs)[number]["key"];
@@ -301,6 +299,8 @@ type TabKey = (typeof tabs)[number]["key"];
 
 export default function Dashboard() {
   const router = useRouter();
+  const t = useTranslations("dashboard");
+  const tc = useTranslations("common");
   const { currentUser, loading, signOut } = useAuth();
   const { records } = useHistory();
   const [activeTab, setActiveTab] = useState<TabKey | null>(null);
@@ -321,8 +321,8 @@ export default function Dashboard() {
     getSpeakingTasksClient().then(setSpeakingTasks);
   }, []);
 
-  const sections = buildSections(listeningParts, readingParts, writingTasks, speakingTasks);
-  const quizSections = buildQuizSections(listeningParts, readingParts, writingTasks, speakingTasks);
+  const sections = buildSections(listeningParts, readingParts, writingTasks, speakingTasks, t, tc);
+  const quizSections = buildQuizSections(listeningParts, readingParts, writingTasks, speakingTasks, t, tc);
 
   useEffect(() => {
     if (!loading && !currentUser) {
@@ -441,7 +441,7 @@ export default function Dashboard() {
                 }}
               >
                 {Icon && <Icon className="w-4 h-4" />}
-                {tab.label}
+                {t(tab.labelKey)}
               </button>
             );
           })}
@@ -454,7 +454,7 @@ export default function Dashboard() {
 
         {(() => {
           const RoleIcon = userRole === "admin" ? HatGlasses : (userRole === "teacher" || userRole === "editor") ? UserCheck : User;
-          const roleLabel = userRole === "admin" ? "Admin" : userRole === "teacher" ? "Teacher" : userRole === "editor" ? "Editor" : null;
+          const roleLabel = userRole === "admin" ? tc("admin") : userRole === "teacher" ? tc("teacher") : userRole === "editor" ? tc("editor") : null;
           const isClickable = userRole === "admin";
           return isClickable ? (
             <button
@@ -493,7 +493,7 @@ export default function Dashboard() {
               (e.currentTarget.style.color = "var(--hp-accent)")
             }
           >
-            My Students
+            {tc("myStudents")}
           </button>
         )}
         {userRole === "user" && (
@@ -512,9 +512,22 @@ export default function Dashboard() {
             }}
           >
             <Crown className="w-3.5 h-3.5" />
-            Upgrade
+            {tc("upgrade")}
           </button>
         )}
+        <button
+          onClick={() => router.push("/settings")}
+          className="px-3 py-1.5 rounded-full text-xs font-medium transition-colors flex items-center gap-1.5"
+          style={{ color: "var(--hp-text-muted)" }}
+          onMouseEnter={(e) =>
+            (e.currentTarget.style.color = "var(--hp-accent)")
+          }
+          onMouseLeave={(e) =>
+            (e.currentTarget.style.color = "var(--hp-text-muted)")
+          }
+        >
+          <Settings className="w-3.5 h-3.5" />
+        </button>
         <button
           onClick={() => signOut()}
           className="px-3 py-1.5 rounded-full text-xs font-medium transition-colors flex items-center gap-1.5"
@@ -525,7 +538,7 @@ export default function Dashboard() {
           }
         >
           <LogOut className="w-3.5 h-3.5" />
-          Sign Out
+          {tc("signOut")}
         </button>
       </nav>
 
@@ -540,17 +553,13 @@ export default function Dashboard() {
                 color: "var(--hp-text)",
               }}
             >
-              Welcome back,{" "}
-              <span style={{ color: "var(--hp-accent)" }}>
-                {currentUser.name.split(" ")[0]}
-              </span>
+              {t("welcomeBack", { name: currentUser.name.split(" ")[0] })}
             </h2>
             <p
               className="text-base leading-relaxed mt-1"
               style={{ color: "var(--hp-text-muted)" }}
             >
-              Full timed tests, single section practice, or untimed quiz mode
-              with instant feedback.
+              {t("subtitle")}
             </p>
           </div>
           <div className="w-full md:w-56 shrink-0">
@@ -605,7 +614,7 @@ export default function Dashboard() {
                 {Icon && <Icon className="w-4 h-4" />}
                 {/* On mobile: only show label for active tab; on sm+: always show */}
                 <span className={isActive ? "" : "hidden sm:inline"}>
-                  {tab.label}
+                  {t(tab.labelKey)}
                 </span>
               </button>
             );
@@ -662,11 +671,11 @@ export default function Dashboard() {
                 className="hp-cta-btn px-10 py-4 rounded-full text-base flex items-center gap-2 mx-auto"
                 onClick={handleFullTest}
               >
-                Start Full Mock Test
+                {t("startFullTest")}
                 <ArrowRight className="w-4 h-4" />
               </button>
               <p className="text-sm" style={{ color: "var(--hp-text-muted)" }}>
-                ~2 hours 55 minutes — Listening, Reading, Writing, Speaking
+                {t("fullTestDesc")}
               </p>
             </div>
           </div>
@@ -1046,7 +1055,7 @@ export default function Dashboard() {
                                       className="text-[11px] font-medium"
                                       style={{ color: "var(--hp-text-muted)" }}
                                     >
-                                      Upgrade
+                                      {tc("upgrade")}
                                     </span>
                                   ) : (
                                     <span
@@ -1361,10 +1370,10 @@ export default function Dashboard() {
           const sectionKeys = ["listening", "reading", "writing", "speaking"] as const;
           type SectionKey = typeof sectionKeys[number];
           const sectionMeta: Record<SectionKey, { icon: LucideIcon; color: string; label: string }> = {
-            listening: { icon: Headphones, color: "#b8703b", label: "Listening" },
-            reading:   { icon: BookOpen, color: "#5a8a6a", label: "Reading" },
-            writing:   { icon: PenLine, color: "#7a7ac7", label: "Writing" },
-            speaking:  { icon: Mic, color: "#c77a8b", label: "Speaking" },
+            listening: { icon: Headphones, color: "#b8703b", label: tc("listening") },
+            reading:   { icon: BookOpen, color: "#5a8a6a", label: tc("reading") },
+            writing:   { icon: PenLine, color: "#7a7ac7", label: tc("writing") },
+            speaking:  { icon: Mic, color: "#c77a8b", label: tc("speaking") },
           };
 
           const scoresBySection: Record<SectionKey, number[]> = {

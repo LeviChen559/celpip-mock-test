@@ -1,7 +1,8 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { useAuth } from "@/lib/hooks/use-auth";
+import { useTranslations } from "next-intl";
 import HeroAnimation from "@/components/HeroAnimation";
 import {
   Target,
@@ -20,6 +21,9 @@ import {
   Crown,
   BicepsFlexed,
 } from "lucide-react";
+import Image from "next/image";
+import Logo from "../../../public/logo-celpip-en-hz@2x.png"
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const testimonials = [
   {
@@ -75,9 +79,190 @@ const testimonials = [
 export default function Home() {
   const router = useRouter();
   const { currentUser, loading } = useAuth();
+  const t = useTranslations("landing");
+  const tp = useTranslations("pricing");
+  const tc = useTranslations("common");
 
   const handleCta = () =>
     router.push(!loading && currentUser ? "/dashboard" : "/signup");
+
+  const trustIndicators = [t("trust1"), t("trust2"), t("trust3")];
+
+  const stats = [
+    { value: "2,000+", label: t("statsScoresImproved") },
+    { value: "+1.5", label: t("statsAvgIncrease") },
+    { value: "30", label: t("statsDayPlans") },
+    { value: "4", label: t("statsScoreDimensions") },
+  ];
+
+  const problems = [
+    {
+      icon: ShieldQuestion,
+      title: t("problem1Title"),
+      description: t("problem1Desc"),
+      color: "#c4493c",
+    },
+    {
+      icon: CircleAlert,
+      title: t("problem2Title"),
+      description: t("problem2Desc"),
+      color: "#c78b3c",
+    },
+    {
+      icon: Clock,
+      title: t("problem3Title"),
+      description: t("problem3Desc"),
+      color: "#7a8fc7",
+    },
+  ];
+
+  const solutions = [
+    {
+      icon: Target,
+      title: t("solution1Title"),
+      description: t("solution1Desc"),
+      callout: t("solution1Callout"),
+      color: "#c78b3c",
+    },
+    {
+      icon: CalendarCheck,
+      title: t("solution2Title"),
+      description: t("solution2Desc"),
+      callout: t("solution2Callout"),
+      color: "#6b8f71",
+    },
+    {
+      icon: TrendingUp,
+      title: t("solution3Title"),
+      description: t("solution3Desc"),
+      callout: t("solution3Callout"),
+      color: "#7a8fc7",
+    },
+  ];
+
+  const steps = [
+    {
+      step: "1",
+      title: t("step1Title"),
+      description: t("step1Desc"),
+      color: "#c78b3c",
+      cta: t("step1Cta"),
+      href: "/quiz/listening?part=0",
+    },
+    {
+      step: "2",
+      title: t("step2Title"),
+      description: t("step2Desc"),
+      color: "#6b8f71",
+      cta: t("step2Cta"),
+      href: "/quiz-practice/writing?part=0",
+    },
+    {
+      step: "3",
+      title: t("step3Title"),
+      description: t("step3Desc"),
+      color: "#7a8fc7",
+      cta: t("step3Cta"),
+      href: "/signup",
+    },
+  ];
+
+  const dashboardFeatures = [
+    t("dashboardFeature1"),
+    t("dashboardFeature2"),
+    t("dashboardFeature3"),
+    t("dashboardFeature4"),
+  ];
+
+  const comparisonRows = [
+    { feature: t("compareFeedback"), old: t("compareFeedbackOld"), pugpip: t("compareFeedbackNew") },
+    { feature: t("compareStudyPlan"), old: t("compareStudyPlanOld"), pugpip: t("compareStudyPlanNew") },
+    { feature: t("compareWeakness"), old: t("compareWeaknessOld"), pugpip: t("compareWeaknessNew") },
+    { feature: t("compareScoreTracking"), old: t("compareScoreTrackingOld"), pugpip: t("compareScoreTrackingNew") },
+    { feature: t("comparePracticeModes"), old: t("comparePracticeModesOld"), pugpip: t("comparePracticeModesNew") },
+    { feature: t("compareTime"), old: t("compareTimeOld"), pugpip: t("compareTimeNew") },
+  ];
+
+  const plans = [
+    {
+      id: "free",
+      name: tp("freeName"),
+      price: tp("freePrice"),
+      period: tp("freePeriod"),
+      description: tp("freeDesc"),
+      icon: Zap,
+      accent: false,
+      popular: false,
+      features: [
+        tp("freeFeature1"),
+        tp("freeFeature2"),
+        tp("freeFeature3"),
+        tp("freeFeature4"),
+        tp("freeFeature5"),
+      ],
+      cta: tp("freeCta"),
+    },
+    {
+      id: "improver",
+      name: tp("improverName"),
+      price: tp("improverPrice"),
+      period: tp("improverPeriod"),
+      description: tp("improverDesc"),
+      icon: Sparkles,
+      accent: true,
+      popular: true,
+      features: [
+        tp("improverFeature1"),
+        tp("improverFeature2"),
+        tp("improverFeature3"),
+        tp("improverFeature4"),
+        tp("improverFeature5"),
+        tp("improverFeature6"),
+      ],
+      cta: tp("improverCta"),
+    },
+    {
+      id: "intensive",
+      name: tp("intensiveName"),
+      price: tp("intensivePrice"),
+      period: tp("intensivePeriod"),
+      description: tp("intensiveDesc"),
+      icon: BicepsFlexed,
+      accent: false,
+      popular: false,
+      features: [
+        tp("intensiveFeature1"),
+        tp("intensiveFeature2"),
+        tp("intensiveFeature3"),
+        tp("intensiveFeature4"),
+        tp("intensiveFeature5"),
+        tp("intensiveFeature6"),
+        tp("intensiveFeature7"),
+      ],
+      cta: tp("intensiveCta"),
+    },
+    {
+      id: "guarantee",
+      name: tp("guaranteeName"),
+      price: tp("guaranteePrice"),
+      period: tp("guaranteePeriod"),
+      description: tp("guaranteeDesc"),
+      icon: Crown,
+      accent: false,
+      popular: false,
+      features: [
+        tp("guaranteeFeature1"),
+        tp("guaranteeFeature2"),
+        tp("guaranteeFeature3"),
+        tp("guaranteeFeature4"),
+        tp("guaranteeFeature5"),
+        tp("guaranteeFeature6"),
+      ],
+      cta: tp("guaranteeCta"),
+    },
+  ];
+
+  const trustBadges = [t("cancelAnytime"), t("securePayment"), t("moneyBack")];
 
   return (
     <main className="homepage bg-grid min-h-screen relative">
@@ -119,14 +304,15 @@ export default function Home() {
       />
 
       {/* ── Nav ─────────────────────────────────────── */}
-      <nav className="max-w-screen-xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8 flex justify-between items-center relative z-10 hp-reveal">
+      <nav className="max-w-screen-xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8 flex justify-between items-center relative z-20 hp-reveal">
         <span
           className="text-xs sm:text-sm font-semibold tracking-wider sm:tracking-widest shrink-0"
           style={{ color: "var(--hp-accent)" }}
         >
-          PugPIP
+          <Image src={Logo} alt="logo"  width={100}  style={{aspectRatio:"256/113"}}/>
         </span>
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <LanguageSwitcher />
           {!loading && currentUser ? (
             <>
               <span
@@ -139,7 +325,7 @@ export default function Home() {
                 onClick={() => router.push("/dashboard")}
                 className="hp-cta-btn px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-sm"
               >
-                Dashboard
+                {tc("dashboard")}
               </button>
             </>
           ) : (
@@ -155,13 +341,13 @@ export default function Home() {
                   (e.currentTarget.style.color = "var(--hp-text-muted)")
                 }
               >
-                Sign In
+                {tc("signIn")}
               </button>
               <button
                 onClick={() => router.push("/signup")}
                 className="hp-cta-btn px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-sm whitespace-nowrap"
               >
-                Get Started
+                {tc("getStarted")}
               </button>
             </>
           )}
@@ -182,7 +368,7 @@ export default function Home() {
                 }}
               >
                 <Sparkles className="w-3.5 h-3.5" />
-                AI Score Improvement System
+                {t("heroTag")}
               </span>
             </div>
             {/* Headline variation 2: "Hit your target CELPIP score in 30 days — not 6 months." */}
@@ -191,28 +377,28 @@ export default function Home() {
               className="hp-reveal hp-reveal-d2 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-[1.05]"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              Stop practicing blindly.
+              {t("heroTitle1")}
               <br />
               <span
                 className="hp-accent-line"
                 style={{ color: "var(--hp-accent)" }}
               >
-                Improve
+                {t("heroTitleAccent")}
               </span>{" "}
-              your CELPIP score.
+              {t("heroTitle2")}
             </h1>
             <p
               className="hp-reveal hp-reveal-d3 text-lg leading-relaxed mb-10 max-w-lg"
               style={{ color: "var(--hp-text-muted)" }}
             >
-              PugPIP analyzes your weaknesses, tells you exactly what to practice each day, and tracks your score improvement — so nothing is wasted.
+              {t("heroDescription")}
             </p>
             <div className="hp-reveal hp-reveal-d4 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
               <button
                 onClick={handleCta}
                 className="hp-cta-btn px-6 sm:px-8 py-3.5 sm:py-4 rounded-full text-sm sm:text-base flex items-center justify-center gap-2"
               >
-                {!loading && currentUser ? "Go to Dashboard" : "Start Free Diagnosis"}
+                {!loading && currentUser ? t("ctaDashboard") : t("ctaStart")}
                 <ArrowRight className="w-4 h-4" />
               </button>
               <button
@@ -235,23 +421,19 @@ export default function Home() {
                   e.currentTarget.style.color = "var(--hp-text-muted)";
                 }}
               >
-                See How It Works
+                {t("ctaHowItWorks")}
               </button>
             </div>
             {/* Trust indicators */}
             <div className="hp-reveal hp-reveal-d5 flex flex-wrap gap-4 sm:gap-6 mt-8 justify-center md:justify-start">
-              {[
-                "2,000+ scores improved",
-                "AI-scored on 4 dimensions",
-                "Personalized 30-day plans",
-              ].map((t) => (
+              {trustIndicators.map((indicator) => (
                 <span
-                  key={t}
+                  key={indicator}
                   className="text-xs font-medium flex items-center gap-1.5"
                   style={{ color: "var(--hp-text-muted)" }}
                 >
                   <Check className="w-3.5 h-3.5" style={{ color: "var(--hp-accent)" }} />
-                  {t}
+                  {indicator}
                 </span>
               ))}
             </div>
@@ -265,12 +447,7 @@ export default function Home() {
       {/* ── Stats strip ─────────────────────────────── */}
       <section className="relative z-10 my-8">
         <div className="hp-strip max-w-screen-xl mx-auto px-4 sm:px-6 py-6 flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-16 hp-reveal hp-reveal-d6">
-          {[
-            { value: "2,000+", label: "Scores Improved" },
-            { value: "+1.5", label: "Avg. CLB Increase" },
-            { value: "30", label: "Day Study Plans" },
-            { value: "4", label: "Score Dimensions" },
-          ].map((s) => (
+          {stats.map((s) => (
             <div key={s.label} className="text-center">
               <p
                 className="text-2xl font-bold"
@@ -299,35 +476,14 @@ export default function Home() {
             className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 hp-reveal"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            Sound{" "}
-            <span style={{ color: "var(--hp-accent)" }}>familiar?</span>
+            {t.rich("problemTitle", {
+              accent: (chunks) => <span style={{ color: "var(--hp-accent)" }}>{chunks}</span>,
+            })}
           </h2>
         </div>
 
         <div className="grid md:grid-cols-3 gap-4 max-w-5xl mx-auto">
-          {[
-            {
-              icon: ShieldQuestion,
-              title: "Practicing without direction",
-              description:
-                "You take mock tests. You check answers. But your score stays the same. Because nobody tells you why you got it wrong — or what to fix first.",
-              color: "#c4493c",
-            },
-            {
-              icon: CircleAlert,
-              title: "No real feedback",
-              description:
-                "Generic answer keys don't explain your writing weaknesses. You don't know if your coherence is the issue, your grammar, or your vocabulary.",
-              color: "#c78b3c",
-            },
-            {
-              icon: Clock,
-              title: "Running out of time",
-              description:
-                "Your test date is approaching. You've spent weeks studying everything equally — instead of focusing on the 2–3 things that would actually move your score.",
-              color: "#7a8fc7",
-            },
-          ].map((p, i) => (
+          {problems.map((p, i) => (
             <div
               key={p.title}
               className={`hp-problem-card rounded-2xl p-6 relative overflow-hidden hp-reveal hp-reveal-d${i + 1}`}
@@ -356,7 +512,9 @@ export default function Home() {
 
         <div className="mt-10 sm:mt-14 hp-reveal hp-reveal-d4">
           <p className="hp-quote-line">
-            You don&apos;t need more practice. You need the <em>right</em> practice.
+            {t.rich("problemQuote", {
+              em: (chunks) => <em>{chunks}</em>,
+            })}
           </p>
         </div>
       </section>
@@ -374,53 +532,27 @@ export default function Home() {
               }}
             >
               <Sparkles className="w-3 h-3" />
-              Meet Your AI Score Coach
+              {t("solutionTag")}
             </span>
           </div>
           <h2
             className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 hp-reveal hp-reveal-d1"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            This is not another
+            {t("solutionTitle1")}
             <br />
-            <span style={{ color: "var(--hp-accent)" }}>mock test platform.</span>
+            <span style={{ color: "var(--hp-accent)" }}>{t("solutionTitleAccent")}</span>
           </h2>
           <p
             className="text-base max-w-2xl mx-auto hp-reveal hp-reveal-d2"
             style={{ color: "var(--hp-text-muted)" }}
           >
-            PugPIP is an AI-powered score improvement system that diagnoses your weaknesses,
-            builds your study plan, and tells you exactly what to practice — every single day.
+            {t("solutionDescription")}
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-4 max-w-5xl mx-auto">
-          {[
-            {
-              icon: Target,
-              title: "Know exactly what to fix",
-              description:
-                "AI scores your writing and speaking across 4 CELPIP dimensions — Task Response, Coherence, Vocabulary, Grammar. You get specific weaknesses and rewrite examples.",
-              callout: "Coherence: 7/12 → 'Use linking phrases between paragraphs'",
-              color: "#c78b3c",
-            },
-            {
-              icon: CalendarCheck,
-              title: "Follow a plan that adapts",
-              description:
-                "Set your goal score and test date. The AI builds a 3-phase study plan with daily tasks that shift as your scores change.",
-              callout: "Phase 1: Drills → Phase 2: Mixed → Phase 3: Full mocks",
-              color: "#6b8f71",
-            },
-            {
-              icon: TrendingUp,
-              title: "Watch your score climb",
-              description:
-                "After 2+ attempts, the AI diagnoses recurring patterns, predicts your next score, and tells you if you're on track.",
-              callout: "Predicted next score: 9.0 — on track",
-              color: "#7a8fc7",
-            },
-          ].map((s, i) => (
+          {solutions.map((s, i) => (
             <div
               key={s.title}
               className={`hp-glass rounded-2xl p-6 relative overflow-hidden hp-reveal hp-reveal-d${i + 1}`}
@@ -469,47 +601,19 @@ export default function Home() {
             className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 hp-reveal"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            Three steps to your{" "}
-            <span style={{ color: "var(--hp-accent)" }}>target score</span>
+            {t("howItWorksTitle1")}
+            <span style={{ color: "var(--hp-accent)" }}>{t("howItWorksTitleAccent")}</span>
           </h2>
           <p
             className="text-base hp-reveal hp-reveal-d1"
             style={{ color: "var(--hp-text-muted)" }}
           >
-            From diagnosis to improvement in minutes, not months.
+            {t("howItWorksSubtitle")}
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
-          {[
-            {
-              step: "1",
-              title: "Take a 5-minute diagnostic",
-              description:
-                "Complete one writing or listening task. The AI scores it across 4 CELPIP dimensions and identifies your exact gaps.",
-              color: "#c78b3c",
-              cta: "Try Listening",
-              href: "/quiz/listening?part=0",
-            },
-            {
-              step: "2",
-              title: "Get your personalized plan",
-              description:
-                "Based on your weaknesses, the AI builds a day-by-day study plan — targeted drills, practice tasks, and mock tests.",
-              color: "#6b8f71",
-              cta: "Try Writing",
-              href: "/quiz-practice/writing?part=0",
-            },
-            {
-              step: "3",
-              title: "Improve and track progress",
-              description:
-                "Follow your daily tasks. Watch your predicted score improve. Walk into test day knowing you're ready.",
-              color: "#7a8fc7",
-              cta: "Get Started",
-              href: "/signup",
-            },
-          ].map((s, i) => (
+          {steps.map((s, i) => (
             <div
               key={s.step}
               className={`hp-glass rounded-2xl p-6 text-center relative overflow-hidden hp-reveal hp-reveal-d${i + 1}`}
@@ -566,19 +670,19 @@ export default function Home() {
               <div className="hp-mockup-card p-4 space-y-4">
                 <div className="flex items-center justify-between">
                   <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hp-text-muted)" }}>
-                    Writing Task 1 — AI Score
+                    {t("mockupWritingTask")}
                   </p>
                   <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: "var(--hp-accent-glow)", color: "var(--hp-accent)" }}>
-                    Overall: 8 / CLB 8–9
+                    {t("mockupOverall")}
                   </span>
                 </div>
                 {/* 4 dimension scores */}
                 <div className="space-y-2.5">
                   {[
-                    { dim: "Task Response", score: 9, pct: "75%" },
-                    { dim: "Coherence", score: 7, pct: "58%" },
-                    { dim: "Vocabulary", score: 8, pct: "67%" },
-                    { dim: "Grammar", score: 6, pct: "50%" },
+                    { dim: t("mockupTaskResponse"), score: 9, pct: "75%" },
+                    { dim: t("mockupCoherence"), score: 7, pct: "58%" },
+                    { dim: t("mockupVocabulary"), score: 8, pct: "67%" },
+                    { dim: t("mockupGrammar"), score: 6, pct: "50%" },
                   ].map((d) => (
                     <div key={d.dim} className="flex items-center gap-3">
                       <span className="text-xs w-24 shrink-0" style={{ color: "var(--hp-text-muted)" }}>{d.dim}</span>
@@ -591,15 +695,15 @@ export default function Home() {
                 </div>
                 {/* Weakness tags */}
                 <div className="flex flex-wrap gap-1.5">
-                  <span className="hp-weakness-tag">Run-on sentences</span>
-                  <span className="hp-weakness-tag">Limited transition words</span>
-                  <span className="hp-weakness-tag">Paragraph structure</span>
+                  <span className="hp-weakness-tag">{t("mockupRunOnSentences")}</span>
+                  <span className="hp-weakness-tag">{t("mockupLimitedTransition")}</span>
+                  <span className="hp-weakness-tag">{t("mockupParagraphStructure")}</span>
                 </div>
                 {/* Improvement tip */}
                 <div className="rounded-lg px-3 py-2.5" style={{ background: "rgba(107,143,113,0.06)", border: "1px solid rgba(107,143,113,0.12)" }}>
                   <p className="text-xs" style={{ color: "var(--hp-text)" }}>
-                    <span className="font-semibold" style={{ color: "#6b8f71" }}>Fix:</span>{" "}
-                    Weak paragraph transitions → Use linking phrases like &ldquo;Furthermore&rdquo;, &ldquo;In contrast&rdquo;, &ldquo;As a result&rdquo;
+                    <span className="font-semibold" style={{ color: "#6b8f71" }}>{t("mockupFix")}</span>{" "}
+                    {t("mockupFixDesc")}
                   </p>
                 </div>
               </div>
@@ -608,19 +712,19 @@ export default function Home() {
               <div className="hp-mockup-card p-4 space-y-4">
                 <div className="flex items-center justify-between">
                   <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hp-text-muted)" }}>
-                    Progress — All Sections
+                    {t("mockupProgress")}
                   </p>
                   <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full" style={{ background: "rgba(107,143,113,0.1)", color: "#6b8f71" }}>
-                    +1.5 avg improvement
+                    {t("mockupAvgImprovement")}
                   </span>
                 </div>
                 {/* Section rows */}
                 <div className="space-y-3">
                   {[
-                    { name: "Listening", score: 9, prev: 8, color: "#e89234", barPct: "75%", sparkline: [6, 7, 7, 8, 8, 9], weakness: "Part 3: Viewpoints" },
-                    { name: "Reading", score: 8, prev: 7, color: "#5a8a6a", barPct: "67%", sparkline: [5, 6, 6, 7, 7, 8], weakness: "Part 4: Opinions" },
-                    { name: "Writing", score: 8, prev: 6, color: "#7a7ac7", barPct: "67%", sparkline: [5, 5, 6, 7, 7, 8], weakness: "Coherence" },
-                    { name: "Speaking", score: 7, prev: 6, color: "#c77a8b", barPct: "58%", sparkline: [5, 5, 6, 6, 6, 7], weakness: "Grammar" },
+                    { name: tc("listening"), score: 9, prev: 8, color: "#e89234", barPct: "75%", sparkline: [6, 7, 7, 8, 8, 9], weakness: "Part 3: Viewpoints" },
+                    { name: tc("reading"), score: 8, prev: 7, color: "#5a8a6a", barPct: "67%", sparkline: [5, 6, 6, 7, 7, 8], weakness: "Part 4: Opinions" },
+                    { name: tc("writing"), score: 8, prev: 6, color: "#7a7ac7", barPct: "67%", sparkline: [5, 5, 6, 7, 7, 8], weakness: "Coherence" },
+                    { name: tc("speaking"), score: 7, prev: 6, color: "#c77a8b", barPct: "58%", sparkline: [5, 5, 6, 6, 6, 7], weakness: "Grammar" },
                   ].map((s) => (
                     <div key={s.name} className="flex items-center gap-3">
                       <span className="w-2 h-2 rounded-full shrink-0" style={{ background: s.color }} />
@@ -652,7 +756,7 @@ export default function Home() {
                 {/* Weakness summary */}
                 <div className="rounded-lg px-3 py-2.5" style={{ background: "rgba(0,0,0,0.02)", border: "1px solid rgba(0,0,0,0.04)" }}>
                   <p className="text-[10px] uppercase tracking-wide font-semibold mb-1.5" style={{ color: "var(--hp-text-muted)" }}>
-                    Areas to Focus
+                    {t("mockupAreasToFocus")}
                   </p>
                   <div className="flex flex-wrap gap-1.5">
                     {[
@@ -674,13 +778,13 @@ export default function Home() {
                 {/* Stats row */}
                 <div className="grid grid-cols-2 gap-3">
                   <div className="rounded-lg px-3 py-2" style={{ background: "rgba(0,0,0,0.02)" }}>
-                    <p className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "var(--hp-text-muted)" }}>Predicted Next</p>
+                    <p className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "var(--hp-text-muted)" }}>{t("mockupPredictedNext")}</p>
                     <p className="text-lg font-bold" style={{ color: "var(--hp-accent)", fontFamily: "var(--font-serif)" }}>9.0</p>
                   </div>
                   <div className="rounded-lg px-3 py-2" style={{ background: "rgba(0,0,0,0.02)" }}>
-                    <p className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "var(--hp-text-muted)" }}>Status</p>
-                    <p className="text-sm font-bold" style={{ color: "#6b8f71" }}>On Track</p>
-                    <p className="text-[10px]" style={{ color: "var(--hp-text-muted)" }}>9 days remaining</p>
+                    <p className="text-[10px] uppercase tracking-wide mb-0.5" style={{ color: "var(--hp-text-muted)" }}>{t("mockupStatus")}</p>
+                    <p className="text-sm font-bold" style={{ color: "#6b8f71" }}>{t("mockupOnTrack")}</p>
+                    <p className="text-[10px]" style={{ color: "var(--hp-text-muted)" }}>{t("mockupDaysRemaining", { days: 9 })}</p>
                   </div>
                 </div>
               </div>
@@ -689,10 +793,10 @@ export default function Home() {
               <div className="hp-mockup-card p-4 space-y-3">
                 <div className="flex items-center justify-between">
                   <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--hp-text-muted)" }}>
-                    Today&apos;s Tasks
+                    {t("mockupTodaysTasks")}
                   </p>
                   <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full" style={{ background: "#7a8fc715", color: "#7a8fc7" }}>
-                    Phase 2: Practice &amp; Measure
+                    {t("mockupPhase2")}
                   </span>
                 </div>
                 <div className="space-y-2">
@@ -700,30 +804,30 @@ export default function Home() {
                     { task: "Grammar Drill — Sentence Structure", time: "3 min", ai: true, reason: "Targets your #1 weakness" },
                     { task: "Writing Task 1 — AI Scored", time: "15 min", ai: true, reason: "Coherence focus" },
                     { task: "Vocabulary Review — Transition Words", time: "5 min", ai: false, reason: "" },
-                  ].map((t) => (
+                  ].map((item) => (
                     <div
-                      key={t.task}
+                      key={item.task}
                       className="rounded-lg px-3 py-2.5"
                       style={{ background: "rgba(0,0,0,0.02)", border: "1px solid rgba(0,0,0,0.04)" }}
                     >
                       <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs font-medium" style={{ color: "var(--hp-text)" }}>{t.task}</span>
-                        <span className="text-xs shrink-0 ml-2" style={{ color: "var(--hp-text-muted)" }}>{t.time}</span>
+                        <span className="text-xs font-medium" style={{ color: "var(--hp-text)" }}>{item.task}</span>
+                        <span className="text-xs shrink-0 ml-2" style={{ color: "var(--hp-text-muted)" }}>{item.time}</span>
                       </div>
-                      {t.ai && (
+                      {item.ai && (
                         <div className="flex items-center gap-2 mt-1">
                           <span className="hp-ai-badge">
                             <Sparkles className="w-2.5 h-2.5" />
-                            AI Recommended
+                            {t("mockupAiRecommended")}
                           </span>
-                          <span className="text-[10px]" style={{ color: "var(--hp-text-muted)" }}>{t.reason}</span>
+                          <span className="text-[10px]" style={{ color: "var(--hp-text-muted)" }}>{item.reason}</span>
                         </div>
                       )}
                     </div>
                   ))}
                 </div>
                 <div className="flex items-center justify-between pt-1">
-                  <span className="text-xs" style={{ color: "var(--hp-text-muted)" }}>Day 21 of 30</span>
+                  <span className="text-xs" style={{ color: "var(--hp-text-muted)" }}>{t("mockupDayOf30", { day: 21 })}</span>
                   <div className="hp-mockup-progress-bar w-24">
                     <div className="hp-mockup-progress-fill" style={{ width: "70%" }} />
                   </div>
@@ -742,31 +846,24 @@ export default function Home() {
                 }}
               >
                 <Sparkles className="w-3 h-3" />
-                Inside the Dashboard
+                {t("dashboardTag")}
               </span>
               <h2
                 className="text-3xl md:text-4xl font-bold mb-4"
                 style={{ fontFamily: "var(--font-serif)" }}
               >
-                See your improvement
+                {t("dashboardTitle1")}
                 <br />
-                <span style={{ color: "var(--hp-accent)" }}>in real time</span>
+                <span style={{ color: "var(--hp-accent)" }}>{t("dashboardTitleAccent")}</span>
               </h2>
               <p
                 className="text-sm leading-relaxed mb-6"
                 style={{ color: "var(--hp-text-muted)" }}
               >
-                Every day, your dashboard shows exactly what to do. No guessing.
-                No scrolling through question banks. Just the tasks that will move
-                your score the most.
+                {t("dashboardDesc")}
               </p>
               <div className="space-y-3 mb-8">
-                {[
-                  "Track all 4 sections — Listening, Reading, Writing, Speaking",
-                  "AI scores writing & speaking across 4 dimensions",
-                  "Pinpoints weakest parts and recurring patterns",
-                  "Predicted score and adaptive study plan",
-                ].map((item) => (
+                {dashboardFeatures.map((item) => (
                   <div key={item} className="flex items-center gap-2.5">
                     <Check className="w-4 h-4 shrink-0" style={{ color: "var(--hp-accent)" }} />
                     <span className="text-sm" style={{ color: "var(--hp-text)" }}>{item}</span>
@@ -777,7 +874,7 @@ export default function Home() {
                 onClick={handleCta}
                 className="hp-cta-btn px-6 py-3 rounded-full text-sm flex items-center gap-2"
               >
-                {!loading && currentUser ? "Go to Dashboard" : "Start Free Diagnosis"}
+                {!loading && currentUser ? t("ctaDashboard") : t("ctaStart")}
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
@@ -792,8 +889,9 @@ export default function Home() {
             className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 hp-reveal"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            Not all CELPIP prep is{" "}
-            <span style={{ color: "var(--hp-accent)" }}>the same</span>
+            {t.rich("comparisonTitle", {
+              accent: (chunks) => <span style={{ color: "var(--hp-accent)" }}>{chunks}</span>,
+            })}
           </h2>
         </div>
 
@@ -803,19 +901,12 @@ export default function Home() {
               <thead>
                 <tr>
                   <th></th>
-                  <th>Traditional Prep</th>
-                  <th>PugPIP</th>
+                  <th>{t("compareTraditional")}</th>
+                  <th>{t("comparePugpip")}</th>
                 </tr>
               </thead>
               <tbody>
-                {[
-                  { feature: "Feedback", old: "Answer keys only", pugpip: "AI scores Task Response, Coherence, Vocabulary, Grammar + rewrite examples" },
-                  { feature: "Study Plan", old: "Figure it out yourself", pugpip: "AI-generated 3-phase plan with daily sessions" },
-                  { feature: "Weakness Detection", old: "None", pugpip: "Recurring patterns + strongest/weakest dimensions" },
-                  { feature: "Score Tracking", old: "Take another test and hope", pugpip: "Predicted score + 'on track' status" },
-                  { feature: "Practice Modes", old: "Random question banks", pugpip: "Full mock tests + section drills + targeted quizzes" },
-                  { feature: "Time to Improve", old: "Months of general practice", pugpip: "Weeks of targeted practice" },
-                ].map((row) => (
+                {comparisonRows.map((row) => (
                   <tr key={row.feature}>
                     <td className="font-semibold" style={{ color: "var(--hp-text)" }}>{row.feature}</td>
                     <td>
@@ -845,96 +936,20 @@ export default function Home() {
             className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 hp-reveal"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            Simple,{" "}
-            <span style={{ color: "var(--hp-accent)" }}>transparent pricing</span>
+            {t.rich("pricingTitle", {
+              accent: (chunks) => <span style={{ color: "var(--hp-accent)" }}>{chunks}</span>,
+            })}
           </h2>
           <p
             className="text-base max-w-xl mx-auto hp-reveal hp-reveal-d1"
             style={{ color: "var(--hp-text-muted)" }}
           >
-            Start for free. Upgrade when you&apos;re ready to get serious about your score.
+            {t("pricingSubtitle")}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
-          {[
-            {
-              id: "free",
-              name: "Free",
-              price: "$0",
-              period: "forever",
-              description: "Get started with basic practice",
-              icon: Zap,
-              accent: false,
-              popular: false,
-              features: [
-                "15 AI credits / month",
-                "Full-length mock tests",
-                "Instant reading & listening scores",
-                "Basic study dashboard",
-                "Community support",
-              ],
-              cta: "Get Started",
-            },
-            {
-              id: "improver",
-              name: "Improver",
-              price: "$15",
-              period: "/ month",
-              description: "AI-powered feedback to level up fast",
-              icon: Sparkles,
-              accent: true,
-              popular: true,
-              features: [
-                "100 AI credits / month",
-                "AI writing scoring & feedback",
-                "AI speaking evaluation",
-                "Personalized study plan",
-                "Diagnostic assessment",
-                "Priority support",
-              ],
-              cta: "Get Improver",
-            },
-            {
-              id: "intensive",
-              name: "Intensive",
-              price: "$45",
-              period: "/ 3 months",
-              description: "Maximum preparation for test day",
-              icon: BicepsFlexed,
-              accent: false,
-              popular: false,
-              features: [
-                "500 AI credits / month",
-                "Everything in Improver",
-                "Exclusive CELPIP test video",
-                "Real-time writing feedback",
-                "Advanced analytics & trends",
-                "Speaking practice with AI coach",
-                "Dedicated support",
-              ],
-              cta: "Get Intensive",
-            },
-            {
-              id: "guarantee",
-              name: "Score Guarantee",
-              price: "$79",
-              period: "one-time",
-              description: "90-day unlimited access with confidence",
-              icon: Crown,
-              accent: false,
-              popular: false,
-              features: [
-                "Unlimited AI credits for 90 days",
-                "Everything in Intensive",
-                "Teacher review sessions",
-                "Custom study schedule",
-                "Score improvement guarantee",
-                "1-on-1 support channel",
-              ],
-              cta: "Get Guarantee",
-            },
-          ].map((plan, i) => (
+          {plans.map((plan, i) => (
             <div
               key={plan.id}
               className={`hp-reveal hp-reveal-d${i} relative rounded-2xl p-6 sm:p-8 flex flex-col ${
@@ -955,7 +970,7 @@ export default function Home() {
                   className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-semibold text-white"
                   style={{ background: "var(--hp-accent)" }}
                 >
-                  Most Popular
+                  {t("mostPopular")}
                 </div>
               )}
 
@@ -1035,7 +1050,7 @@ export default function Home() {
 
         {/* Trust badges */}
         <div className="mt-10 flex flex-wrap items-center justify-center gap-6 md:gap-10 hp-reveal hp-reveal-d5">
-          {["Cancel anytime", "Secure payment", "7-day money-back guarantee"].map((badge) => (
+          {trustBadges.map((badge) => (
             <div key={badge} className="flex items-center gap-2 text-xs font-medium" style={{ color: "var(--hp-text-muted)" }}>
               <Shield className="w-3.5 h-3.5" style={{ color: "var(--hp-accent)" }} />
               {badge}
@@ -1051,27 +1066,28 @@ export default function Home() {
             className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 hp-reveal"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            Real{" "}
-            <span style={{ color: "var(--hp-accent)" }}>score improvements</span>
+            {t.rich("testimonialsTitle", {
+              accent: (chunks) => <span style={{ color: "var(--hp-accent)" }}>{chunks}</span>,
+            })}
           </h2>
           <p
             className="text-base hp-reveal hp-reveal-d1"
             style={{ color: "var(--hp-text-muted)" }}
           >
-            Test-takers across Canada reaching their target scores.
+            {t("testimonialsSubtitle")}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {testimonials.map((t, i) => (
+          {testimonials.map((testimonial, i) => (
             <div
-              key={t.name}
+              key={testimonial.name}
               className={`hp-glass rounded-2xl p-6 relative overflow-hidden hp-reveal hp-reveal-d${i + 1}`}
             >
               {/* Accent bar */}
               <div
                 className="hp-testimonial-bar"
-                style={{ background: t.color }}
+                style={{ background: testimonial.color }}
               />
               <div className="pl-4">
                 {/* Stars */}
@@ -1080,8 +1096,8 @@ export default function Home() {
                     <Star
                       key={j}
                       className="w-3.5 h-3.5"
-                      style={{ color: t.color }}
-                      fill={t.color}
+                      style={{ color: testimonial.color }}
+                      fill={testimonial.color}
                     />
                   ))}
                 </div>
@@ -1089,17 +1105,17 @@ export default function Home() {
                   className="text-sm leading-relaxed mb-5 italic"
                   style={{ color: "var(--hp-text-muted)" }}
                 >
-                  &ldquo;{t.quote}&rdquo;
+                  &ldquo;{testimonial.quote}&rdquo;
                 </p>
                 <div className="flex items-center gap-3">
                   <div
                     className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold"
                     style={{
-                      background: `${t.color}20`,
-                      color: t.color,
+                      background: `${testimonial.color}20`,
+                      color: testimonial.color,
                     }}
                   >
-                    {t.name
+                    {testimonial.name
                       .split(" ")
                       .map((n) => n[0])
                       .join("")}
@@ -1109,10 +1125,10 @@ export default function Home() {
                       className="text-sm font-semibold"
                       style={{ color: "var(--hp-text)" }}
                     >
-                      {t.name}
+                      {testimonial.name}
                     </p>
                     <p className="text-xs" style={{ color: "var(--hp-text-muted)" }}>
-                      Scored {t.score} &middot; {t.location}
+                      {t("scored")} {testimonial.score} &middot; {testimonial.location}
                     </p>
                   </div>
                 </div>
@@ -1135,34 +1151,34 @@ export default function Home() {
           className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 relative hp-reveal"
           style={{ fontFamily: "var(--font-serif)" }}
         >
-          Your target score is
+          {t("finalCtaTitle1")}
           <br />
-          <span style={{ color: "var(--hp-accent)" }}>closer than you think.</span>
+          <span style={{ color: "var(--hp-accent)" }}>{t("finalCtaTitleAccent")}</span>
         </h2>
         <p
           className="text-base mb-4 relative hp-reveal hp-reveal-d1"
           style={{ color: "var(--hp-text-muted)" }}
         >
-          Most users see measurable improvement within 2 weeks. Start with a free AI diagnosis — it takes 5 minutes.
+          {t("finalCtaDesc")}
         </p>
         <p
           className="text-sm mb-8 relative hp-reveal hp-reveal-d2 italic max-w-lg mx-auto"
           style={{ color: "var(--hp-text-muted)" }}
         >
-          &ldquo;Your CELPIP tutor charges $60/hr and still can&apos;t tell you exactly what to fix.&rdquo;
+          {t("finalCtaQuote")}
         </p>
         <button
           onClick={handleCta}
           className="hp-cta-btn px-10 py-5 rounded-full text-lg flex items-center gap-3 mx-auto relative hp-reveal hp-reveal-d3"
         >
-          {!loading && currentUser ? "Go to Dashboard" : "Start Free Diagnosis"}
+          {!loading && currentUser ? t("ctaDashboard") : t("ctaStart")}
           <ArrowRight className="w-5 h-5" />
         </button>
         <p
           className="text-xs mt-4 relative hp-reveal hp-reveal-d4"
           style={{ color: "var(--hp-text-muted)" }}
         >
-          No credit card required. Stop guessing. Start knowing.
+          {t("noCreditCard")}
         </p>
       </section>
 
