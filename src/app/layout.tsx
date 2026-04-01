@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Lato } from "next/font/google";
+import { Roboto } from "next/font/google";
 import { Geist_Mono } from "next/font/google";
-import { DM_Serif_Display } from "next/font/google";
+import { Roboto_Slab } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/components/AuthProvider";
 
-const lato = Lato({
+const roboto = Roboto({
   variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "700", "900"],
+  weight: ["400", "500", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -16,10 +16,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const dmSerif = DM_Serif_Display({
+const robotoSlab = Roboto_Slab({
   variable: "--font-serif",
   subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -71,7 +71,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${lato.variable} ${geistMono.variable} ${dmSerif.variable} antialiased font-sans`}
+        className={`${roboto.variable} ${geistMono.variable} ${robotoSlab.variable} antialiased font-sans`}
         style={{ fontFamily: "var(--font-sans)" }}
       >
         <AuthProvider>{children}</AuthProvider>
