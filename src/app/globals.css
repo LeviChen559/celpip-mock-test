@@ -46,41 +46,81 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Brand colors */
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-rose: var(--brand-rose);
+
+  /* Accent colors */
+  --color-light-pink: var(--light-pink);
+  --color-text-mark: var(--text-mark);
+  --color-rich-black: var(--rich-black);
+
+  /* Spacing scale */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-96: 96px;
+
+  /* Border radius tokens */
+  --radius-none: 0px;
+  --radius-small: 4px;
+  --radius-medium: 8px;
+  --radius-large: 12px;
+  --radius-xlarge: 16px;
+  --radius-pill: 9999px;
 }
 
 :root {
-  --background: #faf8f5;
-  --foreground: #1a1a2e;
-  --card: #ffffff;
-  --card-foreground: #1a1a2e;
-  --popover: #ffffff;
-  --popover-foreground: #1a1a2e;
-  --primary: #6b4c9a;
-  --primary-foreground: #ffffff;
-  --secondary: #f3efe8;
-  --secondary-foreground: #1a1a2e;
-  --muted: #f3efe8;
-  --muted-foreground: #6b6b7b;
-  --accent: #f3efe8;
-  --accent-foreground: #1a1a2e;
-  --destructive: #e74c3c;
-  --border: #e2ddd5;
-  --input: #e2ddd5;
-  --ring: #6b4c9a;
-  --chart-1: #6b4c9a;
-  --chart-2: #e8734a;
-  --chart-3: #4a9a6b;
-  --chart-4: #d4a843;
-  --chart-5: #4a7a9a;
-  --radius: 0.75rem;
-  --sidebar: #faf8f5;
-  --sidebar-foreground: #1a1a2e;
-  --sidebar-primary: #6b4c9a;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f3efe8;
-  --sidebar-accent-foreground: #1a1a2e;
-  --sidebar-border: #e2ddd5;
-  --sidebar-ring: #6b4c9a;
+  /* Brand tokens */
+  --brand-primary: #DD4422;
+  --brand-dark: #772228;
+  --brand-rose: #A45056;
+
+  /* Accent tokens */
+  --light-pink: #FADEE0;
+  --text-mark: #FFFF00;
+  --rich-black: #000000;
+
+  /* Shadcn semantic mapping */
+  --background: #F5F5F5;
+  --foreground: #333333;
+  --card: #FFFFFF;
+  --card-foreground: #333333;
+  --popover: #FFFFFF;
+  --popover-foreground: #333333;
+  --primary: #DD4422;
+  --primary-foreground: #FFFFFF;
+  --secondary: #FADEE0;
+  --secondary-foreground: #333333;
+  --muted: #F5F5F5;
+  --muted-foreground: #A45056;
+  --accent: #FADEE0;
+  --accent-foreground: #333333;
+  --destructive: #DD4422;
+  --border: #FADEE0;
+  --input: #FADEE0;
+  --ring: #DD4422;
+  --chart-1: #DD4422;
+  --chart-2: #772228;
+  --chart-3: #A45056;
+  --chart-4: #FADEE0;
+  --chart-5: #333333;
+  --radius: 0.5rem;
+  --sidebar: #F5F5F5;
+  --sidebar-foreground: #333333;
+  --sidebar-primary: #DD4422;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #FADEE0;
+  --sidebar-accent-foreground: #333333;
+  --sidebar-border: #FADEE0;
+  --sidebar-ring: #DD4422;
 }
 
 .dark {
@@ -143,14 +183,14 @@
 /* ── Homepage "Warm Editorial" theme ─────────────── */
 
 .homepage {
-  --hp-bg: #faf8f5;
-  --hp-bg-card: #ffffff;
-  --hp-bg-card-hover: #f7f4f0;
-  --hp-text: #1a1a2e;
-  --hp-text-muted: #6b6b7b;
-  --hp-accent: #b8703b;
-  --hp-accent-light: #d4884e;
-  --hp-accent-glow: rgba(184, 112, 59, 0.10);
+  --hp-bg: #F5F5F5;
+  --hp-bg-card: #FFFFFF;
+  --hp-bg-card-hover: #FADEE0;
+  --hp-text: #333333;
+  --hp-text-muted: #A45056;
+  --hp-accent: #DD4422;
+  --hp-accent-light: #A45056;
+  --hp-accent-glow: rgba(221, 68, 34, 0.10);
   --hp-border: rgba(0, 0, 0, 0.07);
   --hp-glass: rgba(255, 255, 255, 0.7);
   background-color: var(--hp-bg);
@@ -550,16 +590,16 @@
 /* ── Quiz "Ink & Parchment" theme ─────────────── */
 
 .quiz-page {
-  --quiz-ink: #1a1a2e;
-  --quiz-parchment: #faf8f5;
-  --quiz-warm: #f5f0e8;
-  --quiz-copper: #b8703b;
-  --quiz-copper-light: #d4884e;
-  --quiz-copper-glow: rgba(184, 112, 59, 0.12);
+  --quiz-ink: #333333;
+  --quiz-parchment: #F5F5F5;
+  --quiz-warm: #FADEE0;
+  --quiz-copper: #DD4422;
+  --quiz-copper-light: #A45056;
+  --quiz-copper-glow: rgba(221, 68, 34, 0.12);
   --quiz-sage: #3d7a5f;
   --quiz-sage-light: #e8f0eb;
-  --quiz-terra: #c4493c;
-  --quiz-terra-light: #faeae8;
+  --quiz-terra: #772228;
+  --quiz-terra-light: #FADEE0;
   --quiz-border: rgba(0, 0, 0, 0.06);
   --quiz-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.03);
   --quiz-shadow-hover: 0 2px 8px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.05);
