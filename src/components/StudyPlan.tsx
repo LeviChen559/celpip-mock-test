@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -191,6 +192,7 @@ function capitalize(s: string): string {
 // ── Component ──────────────────────────────────────────
 
 export default function StudyPlan() {
+  const t = useTranslations("studyPlan");
   const { targetDate, loading: scheduleLoading, setTargetDate, addItems, clearAll: clearSchedule } = useSchedule();
   const { records, loading: historyLoading } = useHistory();
   const [goalScore, setGoalScore] = useState(8);
@@ -376,24 +378,29 @@ export default function StudyPlan() {
 
   function getPhase(date: string): string {
     const day = daysBetween(addDays(todayStr(), 1), date);
-    if (day < phase1End) return "Foundation";
-    if (day < phase2End) return "Integration";
-    return "Final Prep";
+    if (day < phase1End) return "foundation";
+    if (day < phase2End) return "integration";
+    return "finalPrep";
   }
 
   function getPhaseColor(phase: string): string {
-    if (phase === "Foundation") return "bg-blue-100 text-blue-700 border-blue-200";
-    if (phase === "Integration") return "bg-amber-100 text-amber-700 border-amber-200";
+    if (phase === "foundation") return "bg-blue-100 text-blue-700 border-blue-200";
+    if (phase === "integration") return "bg-amber-100 text-amber-700 border-amber-200";
     return "bg-red-100 text-red-700 border-red-200";
   }
 
+  const translatedSectionMeta = sectionMeta.map((s) => ({
+    ...s,
+    label: t(`section_${s.key}`),
+  }));
+
   const getSectionStyle = (section: string) => {
     return (
-      sectionMeta.find((m) => m.key === section) ||
+      translatedSectionMeta.find((m) => m.key === section) ||
       (section.startsWith("quiz-")
-        ? sectionMeta.find((m) => m.key === section.replace("quiz-", ""))
+        ? translatedSectionMeta.find((m) => m.key === section.replace("quiz-", ""))
         : null) ||
-      { key: "full", label: "Full Mock Test", bg: "bg-purple-100 text-[#6b4c9a] border-purple-200" }
+      { key: "full", label: t("sectionFull"), bg: "bg-purple-100 text-[#6b4c9a] border-purple-200" }
     );
   };
 
@@ -402,12 +409,12 @@ export default function StudyPlan() {
       {/* ── Configuration ─────────────────────────── */}
       <Card className="border-2 border-[#e2ddd5] rounded-2xl mb-6">
         <CardContent className="pt-5">
-          <p className="text-lg font-bold text-[#1a1a2e] mb-4">Generate Study Plan</p>
+          <p className="text-lg font-bold text-[#1a1a2e] mb-4">{t("generatePlan")}</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             {/* Target date */}
             <div>
-              <label className="block text-sm font-medium text-[#1a1a2e] mb-1">Test Date</label>
+              <label className="block text-sm font-medium text-[#1a1a2e] mb-1">{t("testDate")}</label>
               <input
                 type="date"
                 value={planDate}
@@ -417,7 +424,7 @@ export default function StudyPlan() {
               />
               {totalDays > 0 && (
                 <p className="text-xs mt-1" style={{ color: "var(--muted-foreground)" }}>
-                  {totalDays} days from now
+                  {t("daysFromNow", { days: totalDays })}
                 </p>
               )}
             </div>
@@ -425,7 +432,7 @@ export default function StudyPlan() {
             {/* Goal score */}
             <div>
               <label className="block text-sm font-medium text-[#1a1a2e] mb-1">
-                Goal Score (CELPIP 2–12)
+                {t("goalScore")}
               </label>
               <div className="flex items-center gap-3">
                 <input
@@ -443,7 +450,7 @@ export default function StudyPlan() {
 
           {/* Sessions per day */}
           <div className="mb-4">
-            <label className="block text-sm font-medium text-[#1a1a2e] mb-1">Sessions per Day</label>
+            <label className="block text-sm font-medium text-[#1a1a2e] mb-1">{t("sessionsPerDay")}</label>
             <div className="flex gap-2">
               {[1, 2, 3].map((n) => (
                 <button
@@ -455,7 +462,7 @@ export default function StudyPlan() {
                       : "bg-white border border-[#e2ddd5] text-[#6b6b7b] hover:border-[#6b4c9a]"
                   }`}
                 >
-                  {n} {n === 1 ? "session" : "sessions"}
+                  {t("sessionCount", { count: n })}
                 </button>
               ))}
             </div>
@@ -464,10 +471,10 @@ export default function StudyPlan() {
           {/* Focus areas */}
           <div className="mb-5">
             <label className="block text-sm font-medium text-[#1a1a2e] mb-1">
-              Focus Areas <span className="font-normal" style={{ color: "var(--muted-foreground)" }}>(optional — auto-detected from history)</span>
+              {t("focusAreas")} <span className="font-normal" style={{ color: "var(--muted-foreground)" }}>{t("focusAreasOptional")}</span>
             </label>
             <div className="flex gap-2 flex-wrap">
-              {sectionMeta.map((s) => {
+              {translatedSectionMeta.map((s) => {
                 const avg = avgScores[s.key];
                 const isWeak = weakSections.includes(s.key);
                 const isSelected = focusAreas.includes(s.key);
@@ -494,8 +501,7 @@ export default function StudyPlan() {
             </div>
             {weakSections.length > 0 && (
               <p className="text-xs mt-1" style={{ color: "var(--muted-foreground)" }}>
-                Based on your history, weakest areas:{" "}
-                {weakSections.map((s) => capitalize(s)).join(", ")}
+                {t("weakestAreas", { areas: weakSections.map((s) => capitalize(s)).join(", ") })}
               </p>
             )}
           </div>
@@ -510,12 +516,12 @@ export default function StudyPlan() {
                 className="w-4 h-4 rounded accent-[#6b4c9a]"
               />
               <span className="text-sm font-medium text-[#1a1a2e]">
-                Use AI-powered plan
+                {t("useAiPlan")}
               </span>
             </label>
             {useAiPlan && (
               <Badge className="bg-purple-100 text-[#6b4c9a] border-purple-200 text-[10px]">
-                Personalized to your diagnostics
+                {t("personalizedDiagnostics")}
               </Badge>
             )}
           </div>
@@ -526,7 +532,7 @@ export default function StudyPlan() {
               disabled={!planDate || totalDays <= 0 || aiPlanLoading}
               className="rounded-full bg-[#6b4c9a] hover:bg-[#5a3d85] text-white px-8"
             >
-              {aiPlanLoading ? "AI is planning..." : useAiPlan ? "Generate AI Plan" : "Generate Plan"}
+              {aiPlanLoading ? t("aiPlanning") : useAiPlan ? t("generateAiPlan") : t("generatePlanBtn")}
             </Button>
             {!goalSaved && (
               <Button
@@ -535,12 +541,12 @@ export default function StudyPlan() {
                 variant="outline"
                 className="rounded-full px-6"
               >
-                {goalSaving ? "Saving..." : "Save Goal"}
+                {goalSaving ? t("saving") : t("saveGoal")}
               </Button>
             )}
             {goalSaved && (
               <Badge variant="outline" className="text-green-600 border-green-300 text-xs self-center">
-                Goal saved
+                {t("goalSaved")}
               </Badge>
             )}
           </div>
@@ -553,32 +559,32 @@ export default function StudyPlan() {
           <Card className="border-2 border-[#e2ddd5] rounded-2xl mb-6">
             <CardContent className="pt-5">
               <div className="flex items-center justify-between mb-3">
-                <p className="text-lg font-bold text-[#1a1a2e]">Plan Overview</p>
+                <p className="text-lg font-bold text-[#1a1a2e]">{t("planOverview")}</p>
                 <Button
                   onClick={handleApply}
                   className="rounded-full bg-[#6b4c9a] hover:bg-[#5a3d85] text-white"
                 >
-                  Apply to My Schedule
+                  {t("applyToSchedule")}
                 </Button>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                 <div className="text-center">
                   <p className="text-2xl font-bold text-[#6b4c9a]">{totalDays}</p>
-                  <p className="text-xs" style={{ color: "var(--muted-foreground)" }}>Total Days</p>
+                  <p className="text-xs" style={{ color: "var(--muted-foreground)" }}>{t("totalDays")}</p>
                 </div>
                 <div className="text-center">
                   <p className="text-2xl font-bold text-[#6b4c9a]">{preview.length}</p>
-                  <p className="text-xs" style={{ color: "var(--muted-foreground)" }}>Sessions</p>
+                  <p className="text-xs" style={{ color: "var(--muted-foreground)" }}>{t("sessions")}</p>
                 </div>
                 <div className="text-center">
                   <p className="text-2xl font-bold text-[#6b4c9a]">
                     {preview.filter((p) => p.section === "full").length}
                   </p>
-                  <p className="text-xs" style={{ color: "var(--muted-foreground)" }}>Full Tests</p>
+                  <p className="text-xs" style={{ color: "var(--muted-foreground)" }}>{t("fullTests")}</p>
                 </div>
                 <div className="text-center">
                   <p className="text-2xl font-bold text-[#6b4c9a]">{goalScore}</p>
-                  <p className="text-xs" style={{ color: "var(--muted-foreground)" }}>Target Score</p>
+                  <p className="text-xs" style={{ color: "var(--muted-foreground)" }}>{t("targetScore")}</p>
                 </div>
               </div>
 
@@ -588,11 +594,11 @@ export default function StudyPlan() {
                   <p className="text-sm text-purple-800">{aiPlanSummary}</p>
                   {aiGoalProgress && (
                     <div className="flex gap-4 mt-2 text-xs text-purple-600">
-                      <span>Current avg: <strong>{aiGoalProgress.current_avg}</strong></span>
-                      <span>Target: <strong>{aiGoalProgress.target}</strong></span>
-                      <span>{aiGoalProgress.days_remaining} days left</span>
+                      <span>{t("currentAvg")}: <strong>{aiGoalProgress.current_avg}</strong></span>
+                      <span>{t("target")}: <strong>{aiGoalProgress.target}</strong></span>
+                      <span>{aiGoalProgress.days_remaining} {t("daysLeft")}</span>
                       <Badge className={aiGoalProgress.on_track ? "bg-green-100 text-green-700 text-[10px]" : "bg-red-100 text-red-700 text-[10px]"}>
-                        {aiGoalProgress.on_track ? "On track" : "Needs focus"}
+                        {aiGoalProgress.on_track ? t("onTrack") : t("needsFocus")}
                       </Badge>
                     </div>
                   )}
@@ -602,13 +608,13 @@ export default function StudyPlan() {
               {/* Phase breakdown */}
               {!useAiPlan && (
                 <div className="flex gap-2 flex-wrap">
-                  {[
-                    { label: "Foundation", pct: 60, desc: "Quizzes & section drills" },
-                    { label: "Integration", pct: 30, desc: "Mixed practice & full tests" },
-                    { label: "Final Prep", pct: 10, desc: "Full mock tests & review" },
-                  ].map((phase) => (
-                    <div key={phase.label} className="flex-1 min-w-[120px]">
-                      <Badge className={getPhaseColor(phase.label) + " border text-xs mb-1"}>
+                  {([
+                    { key: "foundation", label: t("phaseFoundation"), pct: 60, desc: t("phaseFoundationDesc") },
+                    { key: "integration", label: t("phaseIntegration"), pct: 30, desc: t("phaseIntegrationDesc") },
+                    { key: "finalPrep", label: t("phaseFinalPrep"), pct: 10, desc: t("phaseFinalPrepDesc") },
+                  ] as const).map((phase) => (
+                    <div key={phase.key} className="flex-1 min-w-[120px]">
+                      <Badge className={getPhaseColor(phase.key) + " border text-xs mb-1"}>
                         {phase.label}
                       </Badge>
                       <p className="text-xs" style={{ color: "var(--muted-foreground)" }}>
@@ -634,7 +640,7 @@ export default function StudyPlan() {
                   {showPhaseLabel && (
                     <div className="flex items-center gap-2 mb-3 mt-2">
                       <Badge className={getPhaseColor(phase) + " border text-xs"}>
-                        {phase} Phase
+                        {t("phaseLabel", { phase: phase === "foundation" ? t("phaseFoundation") : phase === "integration" ? t("phaseIntegration") : t("phaseFinalPrep") })}
                       </Badge>
                       <Separator className="flex-1" />
                     </div>
@@ -676,9 +682,9 @@ export default function StudyPlan() {
       {generated && preview.length === 0 && (
         <Card className="border-2 border-dashed border-[#e2ddd5] rounded-2xl">
           <CardContent className="pt-8 pb-8 text-center">
-            <p className="text-lg font-medium text-[#1a1a2e] mb-1">Cannot generate plan</p>
+            <p className="text-lg font-medium text-[#1a1a2e] mb-1">{t("cannotGenerate")}</p>
             <p className="text-sm" style={{ color: "var(--muted-foreground)" }}>
-              The test date must be in the future. Please select a valid date.
+              {t("cannotGenerateDesc")}
             </p>
           </CardContent>
         </Card>

@@ -902,7 +902,7 @@ export default function Home() {
                 <tr>
                   <th></th>
                   <th>{t("compareTraditional")}</th>
-                  <th>{t("comparePugpip")}</th>
+                  <th><Image src={Logo} alt="CELPIP" width={80} style={{aspectRatio:"256/113"}} /></th>
                 </tr>
               </thead>
               <tbody>
@@ -1190,12 +1190,7 @@ export default function Home() {
             borderTop: "1px solid var(--hp-border)",
           }}
         >
-          <span
-            className="text-xs tracking-widest"
-            style={{ color: "var(--hp-text-muted)" }}
-          >
-            PugPIP
-          </span>
+          <Image src={Logo} alt="CELPIP" width={80} style={{aspectRatio:"256/113"}} />
           <span className="text-xs" style={{ color: "var(--hp-text-muted)" }}>
             &copy; {new Date().getFullYear()}
           </span>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations, useLocale } from "next-intl";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -8,19 +9,15 @@ import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import { useSchedule, ScheduleItem } from "@/lib/hooks/use-schedule";
 
-const sectionOptions = [
-  { value: "full", label: "Full Mock Test", bg: "bg-purple-100 text-[#6b4c9a] border-purple-200" },
-  { value: "listening", label: "Listening", bg: "bg-orange-100 text-orange-700 border-orange-200" },
-  { value: "reading", label: "Reading", bg: "bg-green-100 text-green-700 border-green-200" },
-  { value: "writing", label: "Writing", bg: "bg-purple-100 text-purple-700 border-purple-200" },
-  { value: "speaking", label: "Speaking", bg: "bg-pink-100 text-pink-700 border-pink-200" },
-  { value: "quiz-listening", label: "Listening Quiz", bg: "bg-orange-50 text-orange-600 border-orange-200" },
-  { value: "quiz-reading", label: "Reading Quiz", bg: "bg-green-50 text-green-600 border-green-200" },
-];
-
-function getSectionStyle(value: string) {
-  return sectionOptions.find((o) => o.value === value) || sectionOptions[0];
-}
+const sectionOptionsBg: Record<string, string> = {
+  full: "bg-purple-100 text-[#6b4c9a] border-purple-200",
+  listening: "bg-orange-100 text-orange-700 border-orange-200",
+  reading: "bg-green-100 text-green-700 border-green-200",
+  writing: "bg-purple-100 text-purple-700 border-purple-200",
+  speaking: "bg-pink-100 text-pink-700 border-pink-200",
+  "quiz-listening": "bg-orange-50 text-orange-600 border-orange-200",
+  "quiz-reading": "bg-green-50 text-green-600 border-green-200",
+};
 
 function getSectionDot(value: string): string {
   if (value === "full") return "bg-[#6b4c9a]";
@@ -31,10 +28,10 @@ function getSectionDot(value: string): string {
   return "bg-gray-400";
 }
 
-function formatDate(dateStr: string): string {
+function formatDate(dateStr: string, locale: string): string {
   if (!dateStr) return "";
   const d = new Date(dateStr + "T00:00:00");
-  return new Intl.DateTimeFormat("en-CA", { dateStyle: "medium" }).format(d);
+  return new Intl.DateTimeFormat(locale, { dateStyle: "medium" }).format(d);
 }
 
 function daysUntil(dateStr: string): number {
@@ -65,8 +62,8 @@ function getStartDayOfWeek(year: number, month: number): number {
   return new Date(year, month, 1).getDay();
 }
 
-function formatMonthYear(year: number, month: number): string {
-  return new Date(year, month, 1).toLocaleDateString("en-CA", { month: "long", year: "numeric" });
+function formatMonthYear(year: number, month: number, locale: string): string {
+  return new Date(year, month, 1).toLocaleDateString(locale, { month: "long", year: "numeric" });
 }
 
 // ── Component ─────────────────────────────────────────
@@ -74,6 +71,8 @@ function formatMonthYear(year: number, month: number): string {
 type ViewMode = "list" | "calendar";
 
 export default function MySchedule() {
+  const t = useTranslations("schedule");
+  const locale = useLocale();
   const { targetDate, items, loading, setTargetDate, addItem, toggleItem, deleteItem, clearAll } = useSchedule();
   const [formDate, setFormDate] = useState(todayStr());
   const [formSection, setFormSection] = useState("full");
@@ -85,6 +84,20 @@ export default function MySchedule() {
   const now = new Date();
   const [calYear, setCalYear] = useState(now.getFullYear());
   const [calMonth, setCalMonth] = useState(now.getMonth());
+
+  const sectionOptions = [
+    { value: "full", label: t("sectionFull"), bg: sectionOptionsBg.full },
+    { value: "listening", label: t("sectionListening"), bg: sectionOptionsBg.listening },
+    { value: "reading", label: t("sectionReading"), bg: sectionOptionsBg.reading },
+    { value: "writing", label: t("sectionWriting"), bg: sectionOptionsBg.writing },
+    { value: "speaking", label: t("sectionSpeaking"), bg: sectionOptionsBg.speaking },
+    { value: "quiz-listening", label: t("sectionQuizListening"), bg: sectionOptionsBg["quiz-listening"] },
+    { value: "quiz-reading", label: t("sectionQuizReading"), bg: sectionOptionsBg["quiz-reading"] },
+  ];
+
+  function getSectionStyle(value: string) {
+    return sectionOptions.find((o) => o.value === value) || sectionOptions[0];
+  }
 
   if (loading) return null;
 
@@ -141,7 +154,7 @@ export default function MySchedule() {
           <CardContent className="pt-5">
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
               <div className="flex-1">
-                <p className="text-sm font-medium text-[#1a1a2e] mb-1">Target Test Date</p>
+                <p className="text-sm font-medium text-[#1a1a2e] mb-1">{t("targetTestDate")}</p>
                 <input
                   type="date"
                   value={targetDate}
@@ -156,7 +169,7 @@ export default function MySchedule() {
                     {days > 0 ? days : 0}
                   </p>
                   <p className="text-xs" style={{ color: "var(--muted-foreground)" }}>
-                    {days > 0 ? "days remaining" : days === 0 ? "Test day!" : "Past due"}
+                    {days > 0 ? t("daysRemaining") : days === 0 ? t("testDay") : t("pastDue")}
                   </p>
                   {totalItems > 0 && (
                     <Button
@@ -164,7 +177,7 @@ export default function MySchedule() {
                       variant="outline"
                       className="mt-2 rounded-full border-red-300 text-red-600 hover:bg-red-50 text-xs px-4"
                     >
-                      Reset Plan
+                      {t("resetPlan")}
                     </Button>
                   )}
                 </div>
@@ -177,12 +190,12 @@ export default function MySchedule() {
           <Card className="border-2 border-[#e2ddd5] rounded-2xl">
             <CardContent className="pt-5">
               <div className="flex items-center justify-between mb-2">
-                <p className="text-sm font-medium text-[#1a1a2e]">Study Progress</p>
+                <p className="text-sm font-medium text-[#1a1a2e]">{t("studyProgress")}</p>
                 <p className="text-sm font-bold text-[#6b4c9a]">{completedCount}/{totalItems}</p>
               </div>
               <Progress value={completionPct} className="h-2.5" />
               <p className="text-xs mt-1" style={{ color: "var(--muted-foreground)" }}>
-                {completionPct}% complete
+                {t("percentComplete", { pct: completionPct })}
               </p>
             </CardContent>
           </Card>
@@ -192,7 +205,7 @@ export default function MySchedule() {
       {/* Add form */}
       <Card className="border-2 border-[#e2ddd5] rounded-2xl mb-6">
         <CardContent className="pt-5">
-          <p className="text-sm font-medium text-[#1a1a2e] mb-3">Add Study Session</p>
+          <p className="text-sm font-medium text-[#1a1a2e] mb-3">{t("addStudySession")}</p>
           <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
             <input
               type="date"
@@ -213,14 +226,14 @@ export default function MySchedule() {
               type="text"
               value={formLabel}
               onChange={(e) => setFormLabel(e.target.value)}
-              placeholder="Note (optional)"
+              placeholder={t("noteOptional")}
               className="border border-[#e2ddd5] rounded-lg px-3 py-2 text-sm bg-white"
             />
             <Button
               onClick={handleAdd}
               className="rounded-full bg-[#6b4c9a] hover:bg-[#5a3d85] text-white"
             >
-              Add
+              {t("add")}
             </Button>
           </div>
         </CardContent>
@@ -228,7 +241,7 @@ export default function MySchedule() {
 
       {/* View toggle */}
       <div className="flex items-center justify-between mb-4">
-        <p className="text-sm font-bold text-[#1a1a2e]">Schedule</p>
+        <p className="text-sm font-bold text-[#1a1a2e]">{t("schedule")}</p>
         <div className="flex rounded-full border border-[#e2ddd5] overflow-hidden">
           <button
             onClick={() => setView("calendar")}
@@ -238,7 +251,7 @@ export default function MySchedule() {
                 : "bg-white text-[#6b6b7b] hover:text-[#6b4c9a]"
             }`}
           >
-            Calendar
+            {t("calendar")}
           </button>
           <button
             onClick={() => setView("list")}
@@ -248,7 +261,7 @@ export default function MySchedule() {
                 : "bg-white text-[#6b6b7b] hover:text-[#6b4c9a]"
             }`}
           >
-            List
+            {t("list")}
           </button>
         </div>
       </div>
@@ -257,9 +270,9 @@ export default function MySchedule() {
       {totalItems === 0 ? (
         <Card className="border-2 border-dashed border-[#e2ddd5] rounded-2xl">
           <CardContent className="pt-8 pb-8 text-center">
-            <p className="text-lg font-medium text-[#1a1a2e] mb-1">No study sessions planned</p>
+            <p className="text-lg font-medium text-[#1a1a2e] mb-1">{t("noSessions")}</p>
             <p className="text-sm" style={{ color: "var(--muted-foreground)" }}>
-              Set a target date and add study sessions to build your plan.
+              {t("noSessionsDesc")}
             </p>
           </CardContent>
         </Card>
@@ -277,12 +290,12 @@ export default function MySchedule() {
                   &larr;
                 </button>
                 <div className="flex items-center gap-3">
-                  <p className="text-sm font-bold text-[#1a1a2e]">{formatMonthYear(calYear, calMonth)}</p>
+                  <p className="text-sm font-bold text-[#1a1a2e]">{formatMonthYear(calYear, calMonth, locale)}</p>
                   <button
                     onClick={goToToday}
                     className="text-[10px] font-medium text-[#6b4c9a] hover:underline"
                   >
-                    Today
+                    {t("today")}
                   </button>
                 </div>
                 <button
@@ -295,7 +308,7 @@ export default function MySchedule() {
 
               {/* Day headers */}
               <div className="grid grid-cols-7 mb-1">
-                {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
+                {[t("sun"), t("mon"), t("tue"), t("wed"), t("thu"), t("fri"), t("sat")].map((d) => (
                   <div key={d} className="text-center text-[10px] font-medium py-1" style={{ color: "var(--muted-foreground)" }}>
                     {d}
                   </div>
@@ -376,22 +389,22 @@ export default function MySchedule() {
               {/* Legend */}
               <div className="flex items-center gap-4 mt-2 pt-2 border-t border-[#e2ddd5] flex-wrap">
                 <div className="flex items-center gap-1.5 text-[10px]" style={{ color: "var(--muted-foreground)" }}>
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-400" /> Completed
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-400" /> {t("completed")}
                 </div>
                 <div className="flex items-center gap-1.5 text-[10px]" style={{ color: "var(--muted-foreground)" }}>
-                  <span className="w-1.5 h-1.5 rounded-full bg-orange-400" /> Listening
+                  <span className="w-1.5 h-1.5 rounded-full bg-orange-400" /> {t("legendListening")}
                 </div>
                 <div className="flex items-center gap-1.5 text-[10px]" style={{ color: "var(--muted-foreground)" }}>
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-500" /> Reading
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-500" /> {t("legendReading")}
                 </div>
                 <div className="flex items-center gap-1.5 text-[10px]" style={{ color: "var(--muted-foreground)" }}>
-                  <span className="w-1.5 h-1.5 rounded-full bg-purple-500" /> Writing
+                  <span className="w-1.5 h-1.5 rounded-full bg-purple-500" /> {t("legendWriting")}
                 </div>
                 <div className="flex items-center gap-1.5 text-[10px]" style={{ color: "var(--muted-foreground)" }}>
-                  <span className="w-1.5 h-1.5 rounded-full bg-pink-500" /> Speaking
+                  <span className="w-1.5 h-1.5 rounded-full bg-pink-500" /> {t("legendSpeaking")}
                 </div>
                 <div className="flex items-center gap-1.5 text-[10px]" style={{ color: "var(--muted-foreground)" }}>
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#6b4c9a]" /> Full Test
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#6b4c9a]" /> {t("legendFullTest")}
                 </div>
               </div>
             </CardContent>
@@ -403,12 +416,12 @@ export default function MySchedule() {
               <CardContent className="pt-5">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
-                    <p className="text-sm font-bold text-[#1a1a2e]">{formatDate(selectedDate)}</p>
+                    <p className="text-sm font-bold text-[#1a1a2e]">{formatDate(selectedDate, locale)}</p>
                     {selectedDate === today && (
-                      <Badge className="bg-[#6b4c9a] text-white text-[10px] px-2 py-0">Today</Badge>
+                      <Badge className="bg-[#6b4c9a] text-white text-[10px] px-2 py-0">{t("today")}</Badge>
                     )}
                     {selectedDate === targetDate && (
-                      <Badge className="bg-red-100 text-red-700 border-red-200 text-[10px]">Test Day</Badge>
+                      <Badge className="bg-red-100 text-red-700 border-red-200 text-[10px]">{t("testDayBadge")}</Badge>
                     )}
                   </div>
                   <button
@@ -416,13 +429,13 @@ export default function MySchedule() {
                     className="text-xs hover:text-red-600 transition-colors"
                     style={{ color: "var(--muted-foreground)" }}
                   >
-                    Close
+                    {t("close")}
                   </button>
                 </div>
 
                 {selectedItems.length === 0 ? (
                   <p className="text-sm py-4 text-center" style={{ color: "var(--muted-foreground)" }}>
-                    No sessions scheduled for this day.
+                    {t("noSessionsDay")}
                   </p>
                 ) : (
                   <div className="space-y-2">
@@ -449,7 +462,7 @@ export default function MySchedule() {
                               </Badge>
                               {isAi && (
                                 <Badge className="bg-purple-100 text-[#6b4c9a] border-purple-200 text-[10px]">
-                                  AI Recommended
+                                  {t("aiRecommended")}
                                 </Badge>
                               )}
                             </div>
@@ -470,7 +483,7 @@ export default function MySchedule() {
                             className="text-xs hover:text-red-600 transition-colors shrink-0"
                             style={{ color: "var(--muted-foreground)" }}
                           >
-                            Remove
+                            {t("remove")}
                           </button>
                         </div>
                       );
@@ -492,14 +505,14 @@ export default function MySchedule() {
               <div key={date}>
                 <div className="flex items-center gap-2 mb-2">
                   <p className={`text-sm font-bold ${isToday ? "text-[#6b4c9a]" : "text-[#1a1a2e]"}`}>
-                    {formatDate(date)}
+                    {formatDate(date, locale)}
                   </p>
                   {isToday && (
-                    <Badge className="bg-[#6b4c9a] text-white text-[10px] px-2 py-0">Today</Badge>
+                    <Badge className="bg-[#6b4c9a] text-white text-[10px] px-2 py-0">{t("today")}</Badge>
                   )}
                   {isPast && !isToday && (
                     <Badge variant="outline" className="text-[10px] px-2 py-0" style={{ color: "var(--muted-foreground)" }}>
-                      Past
+                      {t("past")}
                     </Badge>
                   )}
                 </div>
@@ -527,7 +540,7 @@ export default function MySchedule() {
                             </Badge>
                             {isAi && (
                               <Badge className="bg-purple-100 text-[#6b4c9a] border-purple-200 text-[10px]">
-                                AI Recommended
+                                {t("aiRecommended")}
                               </Badge>
                             )}
                           </div>
@@ -548,7 +561,7 @@ export default function MySchedule() {
                           className="text-xs hover:text-red-600 transition-colors shrink-0"
                           style={{ color: "var(--muted-foreground)" }}
                         >
-                          Remove
+                          {t("remove")}
                         </button>
                       </div>
                     );

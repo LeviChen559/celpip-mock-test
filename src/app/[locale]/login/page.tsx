@@ -119,7 +119,7 @@ export default function LoginPage() {
               (e.currentTarget.style.color = "var(--hp-accent)")
             }
           >
-            &larr; PugPIP
+            &larr; <Image src="/logo-celpip-en-hz@2x.png" alt="CELPIP" width={80} height={35} style={{display: 'inline', verticalAlign: 'middle'}} />
           </button>
           <LanguageSwitcher />
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import {
   listeningPartsOfficial as listeningParts,
@@ -356,7 +357,7 @@ export default function Results() {
           <p className="text-muted-foreground">
             {isPractice
               ? "Single section practice score"
-              : "PugPIP Score Report"}
+              : <><Image src="/logo-celpip-en-hz@2x.png" alt="CELPIP" width={80} height={35} style={{display: 'inline', verticalAlign: 'middle'}} /> Score Report</>}
           </p>
         </div>
 

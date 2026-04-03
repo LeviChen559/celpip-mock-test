@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { useRouter } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { resetTestState, saveTestState, PracticeSection } from "@/lib/test-store";
@@ -413,7 +414,7 @@ export default function Dashboard() {
             (e.currentTarget.style.color = "var(--hp-accent)")
           }
         >
-          PugPIP
+          <Image src="/logo-celpip-en-hz@2x.png" alt="CELPIP" width={100} height={44} style={{aspectRatio:"256/113"}} />
         </button>
 
         {/* Desktop-only nav tabs */}
@@ -1100,61 +1101,61 @@ export default function Dashboard() {
                   className="text-lg font-bold"
                   style={{ fontFamily: "var(--font-serif)", color: "var(--hp-text)" }}
                 >
-                  Video Resources
+                  {t("videoResources")}
                 </h3>
               </div>
 
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {([
                   {
-                    title: "CELPIP Listening Tips: How to Score 9+",
-                    section: "Listening",
+                    title: t("video_0_title"),
+                    section: tc("listening"),
                     duration: "12:34",
                     thumbnail: Headphones,
                     color: "#b8703b",
-                    description: "Master note-taking strategies and learn to identify key information in conversations and discussions.",
+                    description: t("video_0_desc"),
                   },
                   {
-                    title: "Reading Comprehension Strategies",
-                    section: "Reading",
+                    title: t("video_1_title"),
+                    section: tc("reading"),
                     duration: "15:20",
                     thumbnail: BookOpen,
                     color: "#5a8a6a",
-                    description: "Skimming, scanning, and time management techniques for all four reading parts.",
+                    description: t("video_1_desc"),
                   },
                   {
-                    title: "Writing Task 1: Email Writing Masterclass",
-                    section: "Writing",
+                    title: t("video_2_title"),
+                    section: tc("writing"),
                     duration: "18:45",
                     thumbnail: PenLine,
                     color: "#7a7ac7",
-                    description: "Structure, tone, and vocabulary tips to write effective emails that score high.",
+                    description: t("video_2_desc"),
                   },
                   {
-                    title: "Speaking: Describe a Scene Like a Pro",
-                    section: "Speaking",
+                    title: t("video_3_title"),
+                    section: tc("speaking"),
                     duration: "10:15",
                     thumbnail: Mic,
                     color: "#c77a8b",
-                    description: "Frameworks for organizing your response and using advanced vocabulary naturally.",
+                    description: t("video_3_desc"),
                   },
                   {
-                    title: "CELPIP vs IELTS: Key Differences",
-                    section: "General",
+                    title: t("video_4_title"),
+                    section: t("videoSectionGeneral"),
                     duration: "8:50",
                     thumbnail: BarChartHorizontal,
                     color: "var(--hp-text-muted)",
-                    description: "Understand the format differences and which strategies work specifically for CELPIP.",
+                    description: t("video_4_desc"),
                   },
                   {
-                    title: "Common Mistakes That Drop Your Score",
-                    section: "General",
+                    title: t("video_5_title"),
+                    section: t("videoSectionGeneral"),
                     duration: "14:10",
                     thumbnail: AlertTriangle,
                     color: "var(--hp-text-muted)",
-                    description: "Avoid these frequent errors in writing and speaking that cost candidates 1-2 score levels.",
+                    description: t("video_5_desc"),
                   },
-                ] as const).map((video) => (
+                ]).map((video) => (
                   <div
                     key={video.title}
                     className="hp-glass rounded-2xl overflow-hidden group cursor-pointer"
@@ -1234,49 +1235,19 @@ export default function Dashboard() {
                   className="text-lg font-bold"
                   style={{ fontFamily: "var(--font-serif)", color: "var(--hp-text)" }}
                 >
-                  Expert Advice
+                  {t("expertAdvice")}
                 </h3>
               </div>
 
               <div className="grid sm:grid-cols-2 gap-4">
                 {([
-                  {
-                    title: "Time Management is Everything",
-                    content: "In the CELPIP test, every section is timed. Practice with strict timers from day one. For reading, spend no more than 10 minutes per part. For writing, allocate 5 minutes to plan, 18 minutes to write, and 4 minutes to review.",
-                    icon: Timer,
-                    category: "Strategy",
-                  },
-                  {
-                    title: "Use the Notepad Feature",
-                    content: "CELPIP provides a digital notepad during the listening section. Write down key names, numbers, and relationships as you listen. This is especially crucial for Parts 3-6 where you need to track multiple speakers.",
-                    icon: StickyNote,
-                    category: "Listening",
-                  },
-                  {
-                    title: "Master the Email Format",
-                    content: "Writing Task 1 always asks for an email. Use a clear structure: greeting, 3 body paragraphs (one per bullet point), and a closing. Match your tone to the audience — formal for a manager, semi-formal for a colleague, informal for a friend.",
-                    icon: Mail,
-                    category: "Writing",
-                  },
-                  {
-                    title: "Don't Memorize — Practice Patterns",
-                    content: "Memorized responses sound unnatural and score low. Instead, practice response patterns: 'In my opinion... because firstly... secondly... For instance...' These frameworks let you speak naturally about any topic.",
-                    icon: MessageCircle,
-                    category: "Speaking",
-                  },
-                  {
-                    title: "Read the Questions First",
-                    content: "Before reading a passage, scan all the questions. This tells your brain what to look for, making you faster and more accurate. Focus on keywords in questions — names, dates, opinions, and cause-effect relationships.",
-                    icon: SearchIcon,
-                    category: "Reading",
-                  },
-                  {
-                    title: "Simulate Real Test Conditions",
-                    content: "Take at least 3 full-length practice tests under real conditions: no pausing, no phone, quiet room, full timing. This builds stamina for the 3-hour test and reduces anxiety on test day.",
-                    icon: Crosshair,
-                    category: "Strategy",
-                  },
-                ] as const).map((advice) => (
+                  { title: t("advice_0_title"), content: t("advice_0_content"), icon: Timer, category: t("strategy") },
+                  { title: t("advice_1_title"), content: t("advice_1_content"), icon: StickyNote, category: tc("listening") },
+                  { title: t("advice_2_title"), content: t("advice_2_content"), icon: Mail, category: tc("writing") },
+                  { title: t("advice_3_title"), content: t("advice_3_content"), icon: MessageCircle, category: tc("speaking") },
+                  { title: t("advice_4_title"), content: t("advice_4_content"), icon: SearchIcon, category: tc("reading") },
+                  { title: t("advice_5_title"), content: t("advice_5_content"), icon: Crosshair, category: t("strategy") },
+                ]).map((advice) => (
                   <div
                     key={advice.title}
                     className="hp-glass rounded-2xl p-5 relative overflow-hidden"
@@ -1328,16 +1299,16 @@ export default function Dashboard() {
                   className="text-lg font-bold"
                   style={{ fontFamily: "var(--font-serif)", color: "var(--hp-text)" }}
                 >
-                  Useful Links
+                  {t("usefulLinks")}
                 </h3>
               </div>
 
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
                 {[
-                  { label: "Official CELPIP Website", url: "https://www.celpip.ca", description: "Test registration, dates, and official prep materials" },
-                  { label: "CELPIP Score Calculator", url: "https://www.celpip.ca/prepare-for-celpip/score-comparison", description: "Compare your scores to CLB levels and IELTS equivalents" },
-                  { label: "Free Sample Test", url: "https://www.celpip.ca/prepare-for-celpip/free-practice-test", description: "Official free practice test from CELPIP" },
-                  { label: "Test Day Checklist", url: "https://www.celpip.ca/take-celpip/test-day", description: "What to bring, what to expect, and test-day tips" },
+                  { label: t("link_0_label"), url: "https://www.celpip.ca", description: t("link_0_desc") },
+                  { label: t("link_1_label"), url: "https://www.celpip.ca/prepare-for-celpip/score-comparison", description: t("link_1_desc") },
+                  { label: t("link_2_label"), url: "https://www.celpip.ca/prepare-for-celpip/free-practice-test", description: t("link_2_desc") },
+                  { label: t("link_3_label"), url: "https://www.celpip.ca/take-celpip/test-day", description: t("link_3_desc") },
                 ].map((link) => (
                   <a
                     key={link.label}
@@ -1430,44 +1401,20 @@ export default function Dashboard() {
           });
 
           // Improvement tips
-          const getTips = (sk: SectionKey, score: number | null): { priority: string; tips: string[] } => {
-            if (score == null) return { priority: "No data yet", tips: ["Take a practice test to get personalized recommendations."] };
-            if (score >= 10) return { priority: "Excellent — maintain your edge", tips: sk === "listening"
-              ? ["Focus on the most nuanced inference questions in Parts 5-6.", "Practice with varied accents and faster speech speeds.", "Challenge yourself with academic lectures and panel discussions."]
-              : sk === "reading"
-              ? ["Practice speed-reading to bank extra time for review.", "Focus on tone/attitude questions that require subtle inference.", "Read editorials and academic papers to sharpen critical analysis."]
-              : sk === "writing"
-              ? ["Aim for sophisticated cohesion devices (moreover, notwithstanding).", "Experiment with complex sentence structures — conditionals, cleft sentences.", "Proofread for micro-errors: article usage, preposition collocations."]
-              : ["Use idiomatic expressions naturally — avoid overuse.", "Work on intonation and stress patterns for emphasis.", "Practice impromptu responses to unfamiliar topics under time pressure."] };
-            if (score >= 8) return { priority: "Strong — push to advanced", tips: sk === "listening"
-              ? ["Focus on implicit meaning and speaker attitude in Parts 4-6.", "Practice note-taking with abbreviations for speed.", "Listen to podcasts at 1.25x speed to build processing capacity."]
-              : sk === "reading"
-              ? ["Work on inference and 'author's purpose' question types.", "Practice eliminating distractors in multiple-choice questions.", "Read opinion pieces and practice identifying the writer's stance."]
-              : sk === "writing"
-              ? ["Expand vocabulary with less common synonyms and collocations.", "Use a wider range of sentence structures (participle clauses, inversions).", "Strengthen paragraph transitions with clear topic sentences."]
-              : ["Develop more detailed descriptions with specific adjectives and adverbs.", "Practice expressing and defending opinions with supporting examples.", "Record yourself and review for filler words (um, uh, like)."] };
-            if (score >= 6) return { priority: "Developing — build core skills", tips: sk === "listening"
-              ? ["Practice active listening — pause after each part and summarize what you heard.", "Focus on catching numbers, names, and key details on first listen.", "Use the notepad to jot speaker opinions and relationships."]
-              : sk === "reading"
-              ? ["Read the questions BEFORE the passage to know what to look for.", "Practice skimming for main ideas and scanning for specific details.", "Build vocabulary with CELPIP-level word lists — focus on academic words."]
-              : sk === "writing"
-              ? ["Master the basic email format: greeting, 3 body paragraphs, closing.", "Practice the 5-18-4 rule: 5 min plan, 18 min write, 4 min review.", "Focus on addressing ALL bullet points in the prompt completely."]
-              : ["Use simple response frameworks: state opinion → reason 1 → reason 2 → example.", "Practice speaking for the full time allotted — don't stop early.", "Focus on clarity and fluency over complex vocabulary."] };
-            return { priority: "Needs focus — foundational work", tips: sk === "listening"
-              ? ["Start with slower audio materials and gradually increase speed.", "Practice identifying the main topic of short conversations.", "Learn to recognize common question patterns (who, what, why, where)."]
-              : sk === "reading"
-              ? ["Build reading stamina — read English articles for 20 minutes daily.", "Start with shorter passages and focus on understanding the main idea.", "Learn common CELPIP vocabulary through flashcards and context reading."]
-              : sk === "writing"
-              ? ["Practice writing simple, clear sentences before attempting complex ones.", "Learn basic email conventions: formal vs informal tone.", "Focus on spelling and basic grammar — subject-verb agreement, tenses."]
-              : ["Practice speaking English daily, even 10 minutes of self-talk helps.", "Learn and rehearse common opinion phrases and transition words.", "Focus on pronunciation of commonly mispronounced words in your language."] };
+          const getTips = (sk: SectionKey, score: number | null): { priorityKey: string; tipKeys: string[] } => {
+            if (score == null) return { priorityKey: "noDataYet", tipKeys: ["takeTestRecs"] };
+            if (score >= 10) return { priorityKey: "priorityExcellent", tipKeys: [`tip_${sk}_exc_0`, `tip_${sk}_exc_1`, `tip_${sk}_exc_2`] };
+            if (score >= 8) return { priorityKey: "priorityStrong", tipKeys: [`tip_${sk}_str_0`, `tip_${sk}_str_1`, `tip_${sk}_str_2`] };
+            if (score >= 6) return { priorityKey: "priorityDeveloping", tipKeys: [`tip_${sk}_dev_0`, `tip_${sk}_dev_1`, `tip_${sk}_dev_2`] };
+            return { priorityKey: "priorityNeedsFocus", tipKeys: [`tip_${sk}_nds_0`, `tip_${sk}_nds_1`, `tip_${sk}_nds_2`] };
           };
 
           const getBarColor = (score: number) =>
             score >= 10 ? "#22c55e" : score >= 8 ? "#3b82f6" : score >= 6 ? "#f59e0b" : "#ef4444";
 
           const getTag = (sk: string) => {
-            if (strongest && sk === strongest.key && weakest && sk !== weakest.key) return { text: "Strength", bg: "#22c55e" };
-            if (weakest && sk === weakest.key && strongest && sk !== strongest.key) return { text: "Weakness", bg: "#ef4444" };
+            if (strongest && sk === strongest.key && weakest && sk !== weakest.key) return { textKey: "strengthTag", bg: "#22c55e" };
+            if (weakest && sk === weakest.key && strongest && sk !== strongest.key) return { textKey: "weaknessTag", bg: "#ef4444" };
             return null;
           };
 
@@ -1481,13 +1428,13 @@ export default function Dashboard() {
                   className="text-lg font-bold"
                   style={{ fontFamily: "var(--font-serif)", color: "var(--hp-text)" }}
                 >
-                  Your Improvement Strategy
+                  {t("improvementStrategy")}
                 </h3>
               </div>
               <p className="text-sm" style={{ color: "var(--hp-text-muted)" }}>
                 {hasAnyData
-                  ? "Personalized recommendations based on your test results."
-                  : "Take a practice test to unlock personalized strategy recommendations."}
+                  ? t("personalizedRecs")
+                  : t("takePracticeUnlock")}
               </p>
             </div>
 
@@ -1497,7 +1444,7 @@ export default function Dashboard() {
                 {/* Radar Chart */}
                 <div className="hp-glass rounded-2xl p-5">
                   <h4 className="text-sm font-bold mb-4" style={{ color: "var(--hp-text)" }}>
-                    Skills Overview
+                    {t("skillsOverview")}
                   </h4>
                   <svg viewBox="0 0 340 300" className="w-full max-w-[340px] mx-auto">
                     {/* Grid rings */}
@@ -1601,7 +1548,7 @@ export default function Dashboard() {
                 {/* Bar Chart — Strength / Weakness */}
                 <div className="hp-glass rounded-2xl p-5">
                   <h4 className="text-sm font-bold mb-4" style={{ color: "var(--hp-text)" }}>
-                    Score Breakdown
+                    {t("scoreBreakdown")}
                   </h4>
                   <div className="space-y-5">
                     {sectionStats.map((s) => {
@@ -1622,7 +1569,7 @@ export default function Dashboard() {
                                   className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded"
                                   style={{ background: `${tag.bg}18`, color: tag.bg }}
                                 >
-                                  {tag.text}
+                                  {t(tag.textKey as Parameters<typeof t>[0])}
                                 </span>
                               )}
                             </div>
@@ -1653,10 +1600,10 @@ export default function Dashboard() {
                           {/* Avg + count */}
                           <div className="flex items-center justify-between mt-1">
                             <span className="text-[10px]" style={{ color: "var(--hp-text-muted)" }}>
-                              {s.testCount > 0 ? `avg ${s.average}` : "no tests yet"}
+                              {s.testCount > 0 ? t("avgLabel", { average: s.average ?? "—" }) : t("noTestsYet")}
                             </span>
                             <span className="text-[10px]" style={{ color: "var(--hp-text-muted)" }}>
-                              {s.testCount > 0 ? `${s.testCount} test${s.testCount > 1 ? "s" : ""}` : ""}
+                              {s.testCount > 0 ? t("testCount", { count: s.testCount }) : ""}
                             </span>
                           </div>
                         </div>
@@ -1670,12 +1617,12 @@ export default function Dashboard() {
                       className="mt-6 rounded-xl p-3 text-xs leading-relaxed"
                       style={{ background: "var(--hp-accent-glow)", color: "var(--hp-text)" }}
                     >
-                      <span className="font-bold" style={{ color: "#22c55e" }}>Strongest:</span>{" "}
+                      <span className="font-bold" style={{ color: "#22c55e" }}>{t("strongestLabel")}:</span>{" "}
                       {strongest.label} ({strongest.latest}){" · "}
-                      <span className="font-bold" style={{ color: "#ef4444" }}>Weakest:</span>{" "}
+                      <span className="font-bold" style={{ color: "#ef4444" }}>{t("weakestLabel")}:</span>{" "}
                       {weakest.label} ({weakest.latest}){" · "}
                       <span style={{ color: "var(--hp-text-muted)" }}>
-                        Focus your practice on {weakest.label.toLowerCase()} to balance your overall score.
+                        {t("focusPractice", { skill: weakest.label })}
                       </span>
                     </div>
                   )}
@@ -1733,7 +1680,7 @@ export default function Dashboard() {
               return (
                 <div className="space-y-4">
                   <h4 className="text-sm font-bold" style={{ color: "var(--hp-text)" }}>
-                    Part-by-Part Breakdown
+                    {t("partByPart")}
                   </h4>
                   {sectionStats.filter((s) => partScores[s.key].size > 0).map((s) => {
                     const parts = Array.from(partScores[s.key].entries())
@@ -1758,7 +1705,7 @@ export default function Dashboard() {
                               {s.label}
                             </span>
                             <span className="text-[10px] px-1.5 py-0.5 rounded-full font-semibold" style={{ background: `${s.color}15`, color: s.color }}>
-                              {parts.length} part{parts.length > 1 ? "s" : ""} tested
+                              {t("partsTestedCount", { count: parts.length })}
                             </span>
                           </div>
                           <ChevronDown
@@ -1782,19 +1729,19 @@ export default function Dashboard() {
                                 <div className="flex items-center justify-between mb-1">
                                   <div className="flex items-center gap-1.5 min-w-0">
                                     <span className="text-[11px] font-semibold shrink-0" style={{ color: "var(--hp-text)" }}>
-                                      Part {Number(p.partKey) + 1}
+                                      {t("partN", { n: Number(p.partKey) + 1 })}
                                     </span>
                                     <span className="text-[10px] truncate" style={{ color: "var(--hp-text-muted)" }}>
                                       {shortTitle}
                                     </span>
                                     {isBest && (
                                       <span className="text-[8px] font-bold uppercase px-1 py-0.5 rounded shrink-0" style={{ background: "#22c55e18", color: "#22c55e" }}>
-                                        Best
+                                        {t("bestBadge")}
                                       </span>
                                     )}
                                     {isWorst && (
                                       <span className="text-[8px] font-bold uppercase px-1 py-0.5 rounded shrink-0" style={{ background: "#ef444418", color: "#ef4444" }}>
-                                        Weakest
+                                        {t("weakestBadge")}
                                       </span>
                                     )}
                                   </div>
@@ -1834,11 +1781,11 @@ export default function Dashboard() {
                               className="rounded-lg p-2.5 mt-2 text-[11px] leading-relaxed"
                               style={{ background: `${s.color}08`, color: "var(--hp-text-muted)" }}
                             >
-                              <span className="font-semibold" style={{ color: "#22c55e" }}>Best:</span>{" "}
-                              Part {Number(bestPart.partKey) + 1} ({bestPart.latest}){" · "}
-                              <span className="font-semibold" style={{ color: "#ef4444" }}>Weakest:</span>{" "}
-                              Part {Number(worstPart.partKey) + 1} ({worstPart.latest}){" · "}
-                              Prioritize practicing Part {Number(worstPart.partKey) + 1} to improve your {s.label.toLowerCase()} score.
+                              <span className="font-semibold" style={{ color: "#22c55e" }}>{t("bestLabel")}:</span>{" "}
+                              {t("partN", { n: Number(bestPart.partKey) + 1 })} ({bestPart.latest}){" · "}
+                              <span className="font-semibold" style={{ color: "#ef4444" }}>{t("weakestLabel")}:</span>{" "}
+                              {t("partN", { n: Number(worstPart.partKey) + 1 })} ({worstPart.latest}){" · "}
+                              {t("prioritizePart", { n: Number(worstPart.partKey) + 1, skill: s.label })}
                             </div>
                           )}
                         </div>
@@ -1852,11 +1799,11 @@ export default function Dashboard() {
             {/* ── Per-section strategy cards ── */}
             <div>
               <h4 className="text-sm font-bold mb-4" style={{ color: "var(--hp-text)" }}>
-                {hasAnyData ? "Improvement Plan" : "General Tips"}
+                {hasAnyData ? t("improvementPlan") : t("generalTips")}
               </h4>
               <div className="grid sm:grid-cols-2 gap-5">
                 {sectionStats.map((s) => {
-                  const { priority, tips } = getTips(s.key, s.latest);
+                  const { priorityKey, tipKeys } = getTips(s.key, s.latest);
                   const priorityColor = s.latest == null ? "var(--hp-text-muted)"
                     : s.latest >= 10 ? "#22c55e"
                     : s.latest >= 8 ? "#3b82f6"
@@ -1871,7 +1818,7 @@ export default function Dashboard() {
                     <div
                       key={s.key}
                       className="hp-glass rounded-2xl p-5 relative overflow-hidden"
-                      style={tag?.text === "Weakness" ? { border: "1px solid #ef444430" } : undefined}
+                      style={tag?.textKey === "weaknessTag" ? { border: "1px solid #ef444430" } : undefined}
                     >
                       <div
                         className="absolute top-0 left-5 right-5 h-[2px] rounded-full"
@@ -1890,7 +1837,7 @@ export default function Dashboard() {
                               className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded"
                               style={{ background: `${tag.bg}18`, color: tag.bg }}
                             >
-                              {tag.text}
+                              {t(tag.textKey as Parameters<typeof t>[0])}
                             </span>
                           )}
                         </div>
@@ -1899,7 +1846,7 @@ export default function Dashboard() {
                             className="text-xs font-bold px-2 py-0.5 rounded-full"
                             style={{ background: `${priorityColor}15`, color: priorityColor }}
                           >
-                            Score: {s.latest}
+                            {t("scoreLabel", { score: s.latest })}
                           </span>
                         )}
                       </div>
@@ -1911,13 +1858,13 @@ export default function Dashboard() {
                           className="text-[11px] font-semibold"
                           style={{ color: priorityColor }}
                         >
-                          {priority}
+                          {t(priorityKey as Parameters<typeof t>[0])}
                         </span>
                       </div>
 
                       {/* Tips */}
                       <ul className="space-y-2">
-                        {tips.map((tip, i) => (
+                        {tipKeys.map((tipKey, i) => (
                           <li key={i} className="flex items-start gap-2">
                             <CheckCircle2
                               className="w-3.5 h-3.5 shrink-0 mt-0.5"
@@ -1927,7 +1874,7 @@ export default function Dashboard() {
                               className="text-xs leading-relaxed"
                               style={{ color: "var(--hp-text-muted)" }}
                             >
-                              {tip}
+                              {t(tipKey as Parameters<typeof t>[0])}
                             </span>
                           </li>
                         ))}
